@@ -60,6 +60,24 @@
   text-wrap: balance;
 }
 
+.nk-featured__header h2,
+.nk-shop-all h2,
+.nk-spotlight h2,
+.nk-place h2,
+.nk-build h2,
+.nk-real h2,
+.nk-brand-close h2,
+.nk-footer h2 {
+  line-height: 1.06;
+}
+
+.nk-featured h3,
+.nk-product-card h3,
+.nk-place__option strong,
+.nk-build__step strong {
+  line-height: 1.1;
+}
+
 .nk-nav a {
   font-family: var(--nk-v3-ui);
   font-weight: 600;
