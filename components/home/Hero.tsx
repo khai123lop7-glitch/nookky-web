@@ -1,3 +1,7 @@
+"use client";
+
+import { track } from "@/lib/analytics";
+
 export function Hero() {
   return (
     <section className="nk-hero" aria-labelledby="nk-hero-title">
@@ -17,7 +21,7 @@ export function Hero() {
             Những nơi chốn quen thuộc, thu nhỏ thành một góc sáng để bạn tự tay hoàn thiện và giữ lại trên kệ sách.
           </p>
           <div className="nk-hero__actions">
-            <a className="nk-button nk-button--light" href="#shop-all">
+            <a className="nk-button nk-button--light" href="#shop-all" onClick={() => track("hero_primary_click", { destination: "shop-all" })}>
               Khám phá bộ sưu tập
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M14 7l5 5-5 5"/></svg>
             </a>
