@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { AddToCartButton } from "@/components/commerce/AddToCartButton";
 import { formatVnd, spotlightProduct as product } from "@/data/products";
 import { track } from "@/lib/analytics";
 
@@ -107,11 +108,9 @@ export function ProductSpotlight() {
             </div>
 
             <div className="nk-spotlight__actions">
-              <a className="nk-button" href={`/product/${product.slug}`}>
-                Xem chi tiết sản phẩm
-                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M14 7l5 5-5 5"/></svg>
-              </a>
-              <a className="nk-text-link" href="/shop">Xem toàn bộ bộ sưu tập</a>
+              <AddToCartButton slug={product.slug} />
+              <a className="nk-text-link" href={`/product/${product.slug}`}>Xem chi tiết sản phẩm</a>
+              <a className="nk-text-link" href="/cart">Xem giỏ hàng</a>
             </div>
 
             <ul className="nk-spotlight__trust">
