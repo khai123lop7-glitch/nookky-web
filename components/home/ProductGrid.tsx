@@ -22,6 +22,16 @@ export function ProductGrid() {
     track("shop_filter_click", { filter: value });
   };
 
+  const selectProduct = (product: (typeof products)[number]) => {
+    track("select_item", {
+      item_id: product.slug,
+      item_name: product.name,
+      location: product.location,
+      filter,
+      value: product.price,
+    });
+  };
+
   return (
     <section className="nk-shop-all" id="shop-all" aria-labelledby="nk-shop-title">
       <div className="nk-container">
@@ -53,13 +63,13 @@ export function ProductGrid() {
         <div className="nk-product-grid nk-shop-all__grid" aria-live="polite">
           {visible.map((product) => (
             <article className="nk-product-card" key={product.slug}>
-              <a className="nk-product-card__media" href={`/product/${product.slug}`} aria-label={product.name}>
+              <a className="nk-product-card__media" href={`/product/${product.slug}`} aria-label={product.name} onClick={() => selectProduct(product)}>
                 <img className="nk-product-card__cover" src={product.media.cover} alt={product.name} loading="lazy" decoding="async" />
               </a>
               <div className="nk-product-card__body">
                 <p className="nk-product-card__location">{product.location}</p>
                 <div className="nk-product-card__title-row">
-                  <a href={`/product/${product.slug}`}><h3>{product.name}</h3></a>
+                  <a href={`/product/${product.slug}`} onClick={() => selectProduct(product)}><h3>{product.name}</h3></a>
                   <p className="nk-product-card__price">
                     {product.regularPrice ? <del>{formatVnd(product.regularPrice)}</del> : null}
                     <strong>{formatVnd(product.price)}</strong>
