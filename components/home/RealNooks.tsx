@@ -1,8 +1,10 @@
+import { products } from "@/data/products";
+
 const realNooks = [
-  { src: "/media/editorial/real-hoi-an.webp", name: "Phố Vừa Lên Đèn", context: "Góc đọc sách", className: "nk-real__card--tall" },
-  { src: "/media/editorial/real-ha-noi.webp", name: "Sáng Trên Phố Cũ", context: "Bên cửa sổ", className: "" },
-  { src: "/media/editorial/real-da-lat.webp", name: "Đèn Ấm Trên Dốc", context: "Góc nghỉ", className: "" },
-  { src: "/media/editorial/real-mien-tay.webp", name: "Sông Vừa Thức Giấc", context: "Không gian sống", className: "nk-real__card--wide" },
+  { product: products[0], context: "Góc đọc sách", className: "nk-real__card--tall" },
+  { product: products[2], context: "Bên cửa sổ", className: "" },
+  { product: products[4], context: "Góc nghỉ", className: "" },
+  { product: products[5], context: "Không gian sống", className: "nk-real__card--wide" },
 ];
 
 export function RealNooks() {
@@ -17,10 +19,10 @@ export function RealNooks() {
       </div>
 
       <div className="nk-container nk-real__grid">
-        {realNooks.map((item) => (
-          <figure className={`nk-real__card ${item.className}`} key={item.src}>
-            <img src={item.src} alt={`${item.name} trong ${item.context.toLowerCase()}`} loading="lazy" />
-            <figcaption><span>{item.name}</span><span>{item.context}</span></figcaption>
+        {realNooks.map(({ product, context, className }) => (
+          <figure className={`nk-real__card ${className}`} key={product.slug}>
+            <img src={product.media.lifestyle} alt={`${product.name} trong ${context.toLowerCase()}`} loading="lazy" decoding="async" />
+            <figcaption><span>{product.name}</span><span>{context}</span></figcaption>
           </figure>
         ))}
       </div>
