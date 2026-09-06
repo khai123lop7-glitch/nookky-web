@@ -22,4 +22,16 @@ Expected structure:
 - `products/05-den-am-tren-doc-da-lat/{cover,detail,lifestyle}.webp`
 - `products/06-song-vua-thuc-giac-mien-tay/{cover,detail,lifestyle}.webp`
 
-Do not commit font files, API keys, secrets, `.env`, or WordPress export folders.
+## Font asset policy
+
+Ortland is a required Nook Ký Brand asset, but it is **not part of the media-only pack above**.
+
+The migration audit expects the approved Brand font at:
+
+- `public/fonts/1FTV-Ortland.ttf`
+
+The previous WordPress V2 handoff packaged this file under `assets/fonts/1FTV-Ortland.ttf`, but the current Next.js branch does not contain `public/fonts/` yet.
+
+Because this GitHub repository is public, do not upload a licensed font binary blindly. First confirm that the font license permits the intended web/self-hosted use and repository exposure. If repository redistribution is not permitted, use an approved private build/deployment asset pipeline or make the relevant source repository private before integrating the font.
+
+Do not commit API keys, secrets, `.env`, or WordPress export folders.
