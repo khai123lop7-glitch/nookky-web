@@ -19,7 +19,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           <div className="nk-pdp__gallery">
             {[product.media.cover, product.media.detail, product.media.lifestyle].map((src, index) => (
               <div className="nk-pdp__media" key={src}>
-                <img src={src} alt={`${product.name} - ảnh ${index + 1}`} />
+                <img src={src} alt={`${product.name} - ảnh ${index + 1}`} loading={index === 0 ? "eager" : "lazy"} decoding="async" />
               </div>
             ))}
           </div>
@@ -37,7 +37,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
               {product.regularPrice ? <s>{formatVnd(product.regularPrice)}</s> : null}
               <strong>{formatVnd(product.price)}</strong>
             </div>
-            <button className="nk-button" type="button" disabled title="Tính năng mua hàng đang được hoàn thiện">Mua hàng đang được hoàn thiện</button>
+            <a className="nk-button" href="/shop">Xem thêm sản phẩm</a>
           </aside>
         </section>
       </main>
