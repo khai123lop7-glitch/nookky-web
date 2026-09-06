@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
+import { useCart } from "@/components/commerce/CartProvider";
 
 const nav = [
   ["Trang chủ", "/"],
@@ -13,6 +14,7 @@ const nav = [
 
 export function Header() {
   const pathname = usePathname();
+  const { itemCount } = useCart();
   const isHome = pathname === "/";
   const [compact, setCompact] = useState(!isHome);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -29,12 +31,12 @@ export function Header() {
 
       const hero = document.querySelector<HTMLElement>(".nk-hero");
       if (hero) {
-        const compactBoundary = 96;
+        const compactBoundary = 72;
         setCompact(hero.getBoundingClientRect().bottom <= compactBoundary);
         return;
       }
 
-      setCompact(window.scrollY >= window.innerHeight - 96);
+      setCompact(window.scrollY >= window.innerHeight - 72);
     };
 
     sync();
@@ -96,8 +98,9 @@ export function Header() {
         </a>
 
         <div className="nk-header__tools" aria-label="Tiện ích">
-          <a className="nk-icon-button" href="/cart" aria-label="Giỏ hàng">
+          <a className="nk-icon-button nk-cart-link" href="/cart" aria-label={`Giỏ hàng, ${itemCount} sản phẩm`}>
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 8.5h11l-1 11h-9l-1-11Z"/><path d="M9 9V6.5a3 3 0 0 1 6 0V9"/></svg>
+            {itemCount > 0 ? <span className="nk-cart-count" aria-hidden="true">{itemCount > 99 ? "99+" : itemCount}</span> : null}
           </a>
           <button
             className="nk-menu-toggle"
