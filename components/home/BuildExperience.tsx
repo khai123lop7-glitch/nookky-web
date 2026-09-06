@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { spotlightProduct } from "@/data/products";
+import { track } from "@/lib/analytics";
 
 const steps = [
   { index: "01", title: "Mở hộp", copy: "Làm quen với từng mảng kiến trúc, vật liệu và các chi tiết nhỏ trước khi bắt đầu.", image: spotlightProduct.media.cover },
@@ -16,6 +17,8 @@ export function BuildExperience() {
 
   const selectStep = (index: number) => {
     if (index === active) return;
+    const nextStep = steps[index];
+    track("build_step_select", { step: nextStep.index, title: nextStep.title });
     setSwitching(true);
     window.setTimeout(() => {
       setActive(index);
@@ -34,12 +37,12 @@ export function BuildExperience() {
       </div>
 
       <div className="nk-container nk-build__grid">
-        <div className={`nk-build__visual ${switching ? "is-switching" : ""}`}>
-          <img src={step.image} alt="Trải nghiệm lắp ráp Nook Ký" loading="lazy" />
+        <div className={`nk-build__visual ${switching ? "is-switching" : ""}`} aria-live="polite">
+          <img src={step.image} alt={`Bước ${step.index}: ${step.title}`} loading="lazy" decoding="async" />
           <span className="nk-build__counter">{step.index} / 03</span>
         </div>
 
-        <div className="nk-build__steps">
+        <div className="nk-build__steps" role="group" aria-label="Các bước lắp ráp">
           {steps.map((item, index) => (
             <button
               type="button"
