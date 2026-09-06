@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import "./v3-migration.css";
 
 export const metadata: Metadata = {
   title: "Nook Ký",
