@@ -1,0 +1,65 @@
+.compactDesktop :global(.nk-announcement) {
+  display: none;
+}
+
+.compactDesktop :global(.nk-header__main) {
+  min-height: 64px;
+  height: 64px;
+  grid-template-columns: 160px 1fr 64px;
+  border-bottom: 1px solid rgba(47, 22, 7, .14);
+}
+
+.compactDesktop :global(.nk-symbol) {
+  display: none;
+}
+
+.compactDesktop :global(.nk-wordmark) {
+  grid-column: 1;
+  justify-self: start;
+  min-width: 0;
+  z-index: 3;
+}
+
+.compactDesktop :global(.nk-wordmark img) {
+  width: 128px;
+  max-height: 34px;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.compactDesktop :global(.nk-header__tools) {
+  grid-column: 3;
+  justify-self: end;
+  z-index: 3;
+}
+
+.compactDesktop :global(.nk-nav) {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 50%;
+  width: max-content;
+  height: 64px;
+  min-height: 64px;
+  transform: translateX(-50%);
+  gap: 30px;
+  border: 0;
+  background: transparent;
+}
+
+.compactDesktop :global(.nk-nav a) {
+  padding: 0;
+  font-size: 12px;
+}
+
+@media (max-width: 1040px) {
+  .compactDesktop :global(.nk-nav) {
+    gap: 20px;
+  }
+  .compactDesktop :global(.nk-nav a) {
+    font-size: 11px;
+  }
+  .compactDesktop :global(.nk-wordmark img) {
+    width: 112px;
+  }
+}
