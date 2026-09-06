@@ -1,5 +1,6 @@
 :root {
-  --nk-v3-display: "NookOrtland", "Be Vietnam Pro", "Arial Black", sans-serif;
+  /* Ortland asset is not in the repo yet. Keep the fallback explicit so QA does not depend on a missing font file. */
+  --nk-v3-display: "Be Vietnam Pro", "Arial Black", sans-serif;
 }
 
 ::selection { background: #2f1607; color: #fcf4e9; }
@@ -27,8 +28,8 @@
 .nk-studio-intro h1,
 .nk-cart-shell h1 {
   font-family: var(--nk-v3-display);
-  font-weight: 400;
-  letter-spacing: -.035em;
+  font-weight: 900;
+  letter-spacing: -.045em;
 }
 
 .nk-nav a {
@@ -83,6 +84,61 @@
 }
 
 .nk-studio-status span { color: var(--nk-v3-soft); }
+
+/* Homepage QA polish */
+.nk-featured {
+  padding-bottom: clamp(96px, 7vw, 118px);
+}
+
+.nk-featured-card__body {
+  min-height: 132px;
+}
+
+.nk-product-card__title-row {
+  min-height: 70px;
+}
+
+.nk-build {
+  padding-top: clamp(92px, 7vw, 118px);
+  padding-bottom: clamp(100px, 8vw, 132px);
+}
+
+.nk-build__header {
+  margin-bottom: 44px;
+}
+
+/* Keep gallery dots visually small while giving them a real touch/click target. */
+.nk-spotlight__dots {
+  gap: 2px;
+}
+
+.nk-spotlight__dots button {
+  width: 28px;
+  height: 28px;
+  position: relative;
+  display: grid;
+  place-items: center;
+  background: transparent;
+}
+
+.nk-spotlight__dots button::after {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(47,22,7,.24);
+  transition: transform .2s ease, background-color .2s ease;
+}
+
+.nk-spotlight__dots button.is-active {
+  background: transparent;
+  transform: none;
+}
+
+.nk-spotlight__dots button.is-active::after {
+  background: var(--nk-v3-brown);
+  transform: scale(1.18);
+}
 
 .nk-pdp { padding-bottom: 120px; }
 .nk-pdp__grid {
@@ -140,6 +196,33 @@
   text-transform: uppercase;
 }
 
+@media (min-width: 801px) {
+  .nk-header.is-compact .nk-header__main {
+    min-height: 58px;
+  }
+
+  .nk-header.is-compact .nk-nav {
+    min-height: 36px;
+  }
+
+  .nk-header.is-compact .nk-nav a {
+    padding: 10px 0 8px;
+  }
+
+  .nk-header.is-compact .nk-wordmark img {
+    width: 142px;
+  }
+
+  .nk-header.is-compact .nk-icon-button {
+    width: 34px;
+    height: 34px;
+  }
+
+  .nk-inner-page {
+    padding-top: 94px;
+  }
+}
+
 @media (max-width: 800px) {
   .nk-inner-page { padding-top: 64px; }
   .nk-pdp__grid { grid-template-columns: 1fr; padding-top: 34px; }
@@ -157,6 +240,9 @@
   .nk-studio-intro h1,
   .nk-cart-shell h1 { font-size: clamp(46px, 13vw, 62px); }
   .nk-studio-status { flex-direction: column; gap: 8px; }
+  .nk-product-card__title-row { min-height: 0; }
+  .nk-build { padding-top: 78px; padding-bottom: 84px; }
+  .nk-build__header { margin-bottom: 38px; }
   .nk-pdp { padding-bottom: 84px; }
   .nk-pdp__media { min-height: 112vw; }
   .nk-footer__nav { grid-template-columns: 1fr 1fr; gap: 28px; }
