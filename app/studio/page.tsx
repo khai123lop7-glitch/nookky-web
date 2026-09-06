@@ -4,7 +4,7 @@ export default function StudioPage() {
   return (
     <>
       <Header />
-      <main className="nk-inner-page nk-studio-shell">
+      <main id="main-content" tabIndex={-1} className="nk-inner-page nk-studio-shell">
         <section className="nk-studio-intro nk-container">
           <p className="nk-eyebrow">NOOK KÝ STUDIO</p>
           <h1>Tự tạo một nơi chốn của riêng bạn.</h1>
