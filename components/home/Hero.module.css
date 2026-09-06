@@ -1,0 +1,11 @@
+.title {
+  line-height: 1.02 !important;
+  letter-spacing: -.035em !important;
+}
+
+@media (max-width: 800px) {
+  .title {
+    line-height: 1.04 !important;
+    letter-spacing: -.028em !important;
+  }
+}
