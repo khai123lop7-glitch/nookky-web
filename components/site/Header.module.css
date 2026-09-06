@@ -1,22 +1,3 @@
-/* Home visual reset: keep the navigation visually separate from the Hero image. */
-.homeClean:global(.nk-header.is-overlay) {
-  color: var(--nk-v3-brown);
-  background: rgba(255, 250, 244, .985);
-  box-shadow: 0 10px 30px rgba(47, 22, 7, .05);
-  backdrop-filter: blur(16px);
-}
-
-.homeClean:global(.nk-header.is-overlay) :global(.nk-header__main),
-.homeClean:global(.nk-header.is-overlay) :global(.nk-nav) {
-  border-bottom-color: rgba(47, 22, 7, .12);
-}
-
-.homeClean:global(.nk-header.is-overlay) :global(.nk-icon-button:hover),
-.homeClean:global(.nk-header.is-overlay) :global(.nk-menu-toggle:hover) {
-  background: var(--nk-v3-cream);
-  color: var(--nk-v3-green);
-}
-
 @media (min-width: 801px) {
   .compact :global(.nk-announcement) {
     display: none;
