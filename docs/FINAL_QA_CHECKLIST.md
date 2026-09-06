@@ -7,22 +7,33 @@ Nguyên tắc sign-off:
 - Vercel build PASS chỉ là một gate kỹ thuật, không thay thế visual/functional QA.
 - Desktop bắt buộc: 1440×900.
 - Mobile bắt buộc: 390×844.
-- Deep audit chi tiết: `docs/DEEP_QA_AUDIT_2026-09-06.md`.
+- Ortland được **tách khỏi merge gate hiện tại theo quyết định của owner**. Typography final sẽ QA riêng khi font asset được tích hợp.
+- Deep audit gốc: `docs/DEEP_QA_AUDIT_2026-09-06.md`.
 
-## P0 — Release blockers
+## P0 — Release blockers hiện tại, không tính font
 
 | ID | Khu vực | Phát hiện | Hành động | Trạng thái |
 |---|---|---|---|---|
-| P0-01 | Typography | Ortland đã từng có trong V2 archive nhưng không được migrate sang Next. `docs/MIGRATION_AUDIT.md` yêu cầu `public/fonts/1FTV-Ortland.ttf`, trong khi media README cũ lại cấm commit font binary. | Đã sửa tài liệu để phản ánh đúng root cause. Cần recover font + kiểm tra license + tích hợp webfont đúng cách. | FONT ASSET PENDING |
-| P0-02 | Mobile | Chưa có bằng chứng trực quan 390×844 sau batch QA. | Kiểm tra full homepage, menu, Hero CTA, Shop 2 cột, Spotlight, Place, Build, Brand Close, Footer. | PENDING VISUAL VERIFY |
-| P0-03 | Cuối trang | Brand Close + Footer chưa được nhìn trọn sau batch mới nhất. | Review crop, seam, footer rhythm trên Preview. | PENDING VISUAL VERIFY |
-| P0-04 | Deploy | HEAD mới nhất phải build/deploy thành công trên Vercel. | Deep QA batch đã trigger Preview mới; kiểm tra status HEAD sau cùng. | VERIFY LATEST HEAD |
-| P0-05 | User-facing controls | Search vẫn là button không có handler. PDP/Cart/Studio trước đây lộ implementation copy. | PDP/Cart/Studio đã đổi sang user-facing placeholder. Search vẫn phải làm thật hoặc ẩn khỏi sign-off build. | SEARCH OPEN |
-| P0-06 | CSS source of truth | `globals.css` + `v3-migration.css` + `final-polish.css` đang override chồng nhau. | Consolidate sau visual PASS nhưng trước merge; không tạo thêm CSS fix layer. | OPEN |
+| P0-01 | Mobile | Chưa có bằng chứng trực quan 390×844 sau batch deep QA mới nhất. | Kiểm tra full homepage, menu, Hero CTA, Shop 2 cột, Spotlight, Place, Build, Brand Close, Footer. | PENDING VISUAL VERIFY |
+| P0-02 | Cuối trang | Brand Close + Footer chưa được nhìn trọn sau batch mới nhất. | Review crop, seam, footer rhythm trên Preview. | PENDING VISUAL VERIFY |
+| P0-03 | Deploy | HEAD cuối cùng phải build/deploy thành công trên Vercel. | Code HEAD `7a62710d3bfe776e8a707cbcad32977c92a8f040` đã PASS. Mọi commit tiếp theo vẫn phải re-check. | PASS / REVERIFY LATEST HEAD |
+| P0-04 | CSS source of truth | `globals.css` + `v3-migration.css` + `final-polish.css` đang override chồng nhau. | Consolidate sau visual PASS nhưng trước merge; không tạo thêm CSS fix layer. | OPEN |
+
+### Đã gỡ khỏi P0 sau deep QA
+
+- Search dead control: **đã gỡ khỏi Header**.
+- PDP disabled purchase control: **đã bỏ**, CTA hiện dẫn về bộ sưu tập cho tới khi commerce thật được nối.
+- Cart/Studio development-facing copy: **đã làm sạch**.
+- Header compact boundary: **đã sửa theo boundary thật của Hero**.
+- PDP nav active state: **đã sửa cho `/product/*`**.
+
+### Typography deferred
+
+Ortland vẫn chưa được tích hợp vào Next.js, nhưng theo chỉ đạo hiện tại nó **không chặn batch frontend merge gate này**. Khi font thật được đưa vào, cần mở một QA riêng cho line-break, line-height, Vietnamese glyph và hierarchy desktop/mobile.
 
 ### Course submission gate riêng
 
-Repo hiện có 6 SKU. Tài liệu học phần yêu cầu website có tối thiểu 10 sản phẩm đầy đủ tên, mô tả, giá và hình ảnh trước Buổi 3. Đây không chặn việc QA 6 SKU của migration, nhưng **chặn trạng thái “sẵn sàng nộp môn”** cho tới khi có ít nhất 10 sản phẩm.
+Repo canonical hiện có 6 SKU. Tài liệu học phần yêu cầu website có tối thiểu 10 sản phẩm đầy đủ tên, mô tả, giá và hình ảnh trước Buổi 3. Đây không chặn việc QA migration 6 SKU, nhưng **chặn trạng thái “sẵn sàng nộp môn”** cho tới khi có ít nhất 10 sản phẩm từ data/asset được duyệt. Không tự bịa thêm 4 SKU.
 
 ## P1 — Visual / UX / engineering polish
 
@@ -31,17 +42,18 @@ Repo hiện có 6 SKU. Tài liệu học phần yêu cầu website có tối thi
 | P1-01 | Compact Header | Header cũ chuyển compact ở 72% viewport, trước khi Hero kết thúc. | Đã đổi sang boundary thật của `.nk-hero` với fallback theo viewport. | CODE FIXED / VISUAL VERIFY PENDING |
 | P1-02 | Featured Nooks | Khoảng trống nâu sau 2 product card khá dài. | Đã giảm bottom padding và min-height phần thông tin card. | CODE FIXED / VISUAL VERIFY PENDING |
 | P1-03 | Shop Grid | Tên sản phẩm dài làm title/price thiếu nhịp đều. | Đã khóa min-height title row desktop và reset ở mobile. | CODE FIXED / VISUAL VERIFY PENDING |
-| P1-04 | Product Spotlight | CTA `Thêm vào giỏ` disabled nhìn như chức năng lỗi. | Đã thay bằng CTA sang PDP và link về collection. | FIXED |
+| P1-04 | Product Spotlight | CTA `Thêm vào giỏ` disabled nhìn như chức năng lỗi. | Đã thay bằng CTA sang PDP; PDP cũng không còn disabled purchase control. | FIXED |
 | P1-05 | Build Experience | Header → grid hơi giãn. | Đã giảm spacing. | CODE FIXED / VISUAL VERIFY PENDING |
-| P1-06 | Typography identity | Be Vietnam Pro hiện chỉ là fallback; chưa phải typography Brand final. | Recover Ortland rồi review lại line-break/line-height desktop/mobile. | BLOCKED BY FONT ASSET |
-| P1-07 | Spotlight controls | Dot hit target nhỏ. | Đã tăng hit target lên 28×28px, visual dot giữ 7px. | FIXED |
-| P1-08 | Editorial assets | `real-hoi-an.webp` trùng binary với `brand-close.webp`; `real-ha-noi.webp` trùng `hero-mobile.webp`. | Thay asset đúng hoặc xác nhận chủ đích reuse. | OPEN |
-| P1-09 | PDP navigation | `/product/*` trước đây không active mục Sản phẩm. | Đã map `/product/*` vào active state của Sản phẩm. | FIXED |
-| P1-10 | Image performance | Toàn site dùng raw `<img>`; Hero chưa dùng Next image optimization. | Ưu tiên Hero/above-the-fold trước, sau đó Shop/PDP. | OPEN |
-| P1-11 | Font loading | Poppins/Inter/Be Vietnam Pro đang load qua Google Fonts `@import`. | Chuyển sang `next/font/google` hoặc self-hosted pipeline. | OPEN |
-| P1-12 | Build reproducibility | Không có package lockfile, dependency dùng caret ranges. | Chọn package manager, generate + commit lockfile. | OPEN |
-| P1-13 | Accessibility | Zoom modal chưa focus trap/return focus; chưa có skip link. | Bổ sung và test keyboard thật. | OPEN |
-| P1-14 | Analytics | Có `track()` boundary nhưng homepage component chưa instrument event. | Nối event khi tới phase GA4/GTM. | DEFERRED AFTER FRONTEND |
+| P1-06 | Spotlight controls | Dot hit target nhỏ. | Đã tăng hit target lên 28×28px, visual dot giữ 7px. | FIXED |
+| P1-07 | Editorial assets | Hai editorial file trước đây trùng binary dưới tên khác. | Real Nooks đã chuyển sang 4 canonical lifestyle assets riêng của sản phẩm. | FIXED |
+| P1-08 | PDP navigation | `/product/*` trước đây không active mục Sản phẩm. | Đã map `/product/*` vào active state của Sản phẩm. | FIXED |
+| P1-09 | Accessibility modal | Zoom modal trước đây chưa quản lý focus. | Đã focus nút đóng khi mở, giữ focus trong modal, Escape close và trả focus về trigger. | CODE FIXED / LIVE KEYBOARD VERIFY PENDING |
+| P1-10 | Analytics interactions | Có `track()` boundary nhưng interaction chưa instrument. | Filter, Spotlight gallery/zoom, Place Selector và Build Experience đã gọi `track()`. | PARTIALLY FIXED |
+| P1-11 | Product grid performance | Hover detail layer có thể làm tải thêm 6 ảnh chỉ để phục vụ hover. | Đã bỏ detail hover image; giữ cover + micro scale. | FIXED |
+| P1-12 | Image loading | Nhiều ảnh không critical chưa khai báo decoding. | Đã thêm `decoding="async"` cho Featured, Shop, Spotlight, Place, Build, Real Nooks, Brand Close và ảnh PDP phù hợp. | PARTIALLY FIXED |
+| P1-13 | Image pipeline | Toàn site vẫn chủ yếu dùng raw `<img>`; Hero chưa dùng Next image optimization. | Chuyển Hero/above-the-fold sang Next image pipeline sau khi visual baseline ổn định. | OPEN BEFORE PRODUCTION |
+| P1-14 | Build reproducibility | Không có package lockfile, dependency dùng caret ranges. | Chọn package manager, generate + commit lockfile khi khóa environment production. | OPEN BEFORE PRODUCTION |
+| P1-15 | Skip link / keyboard | Chưa có skip link và chưa live keyboard traversal toàn trang. | Bổ sung sau visual merge hoặc cùng accessibility pass cuối. | OPEN BEFORE PRODUCTION |
 
 ## Desktop 1440×900
 
@@ -54,7 +66,7 @@ Repo hiện có 6 SKU. Tài liệu học phần yêu cầu website có tối thi
 - [x] Spotlight arrows/dots/zoom + Escape handler có trong code
 - [x] Place Selector đổi active product, visual, label và CTA trong code
 - [x] Build Experience đổi đủ 3 step trong code
-- [x] Real Nooks có editorial hierarchy ở phần nhìn thấy
+- [x] Real Nooks hiện dùng 4 lifestyle asset riêng
 - [ ] Review lại compact Header sau boundary fix
 - [ ] Review lại Featured/Shop/Build spacing sau polish
 - [ ] Brand Close + Footer không có visual seam
@@ -83,34 +95,36 @@ Repo hiện có 6 SKU. Tài liệu học phần yêu cầu website có tối thi
 - [x] Product routes active mục Sản phẩm
 - [x] Region filters dùng state + `useMemo`, không reload trang
 - [x] Spotlight dots, arrows, modal zoom, overlay close, Escape close
+- [x] Spotlight modal focus management cơ bản
 - [x] Place Selector đổi active item và CTA
 - [x] Build Experience đổi hình/nội dung theo 3 bước
 - [x] `:focus-visible` có global treatment
 - [x] `prefers-reduced-motion` tắt decorative motion
 - [x] Logo có fallback nếu asset lỗi
-- [ ] Search control có outcome thật
-- [ ] Focus order + keyboard traversal live
+- [x] Search dead control đã gỡ
+- [x] Interaction tracking đã nối vào analytics boundary cho filter/gallery/place/build
+- [ ] Focus order + keyboard traversal live toàn trang
 - [ ] Touch interaction live mobile
 
 ## Merge decision
 
-**NO MERGE YET.**
+**NO MERGE YET**, nhưng lý do hiện tại **không còn là font**.
 
 Bắt buộc trước Ready for Review:
-1. Resolve Ortland delivery/integration hoặc có quyết định Brand rõ về fallback cho milestone này.
-2. Search không còn dead control.
-3. 390×844 live visual PASS.
-4. Brand Close + Footer live visual PASS.
-5. Consolidate CSS đủ để source of truth rõ trước merge.
-6. Vercel HEAD cuối cùng PASS.
+1. 390×844 live visual PASS.
+2. Brand Close + Footer live visual PASS.
+3. Review lại desktop sau Header/spacing deep QA fixes.
+4. Consolidate CSS đủ để source of truth rõ trước merge.
+5. Vercel HEAD cuối cùng PASS.
 
 Course gate trước submission:
-7. Có >=10 sản phẩm đầy đủ.
-8. Cart/checkout/account đạt outcome yêu cầu của môn.
-9. GA4 + Search Console có thể nối trên URL cuối.
+6. Có >=10 sản phẩm đầy đủ từ source được duyệt.
+7. Cart/checkout/account đạt outcome yêu cầu của môn.
+8. GA4 + Search Console có thể nối trên URL cuối.
 
 ## Ngoài phạm vi frontend migration hiện tại nhưng không được quên
 
+- Ortland final typography QA
 - Real cart persistence
 - Checkout/payment
 - Supabase
