@@ -51,6 +51,21 @@ Các block cần port đầu tiên:
 
 WordPress/PHP/WooCommerce hooks sẽ không được bê nguyên vào Next.js. Chỉ tái sử dụng design, assets, copy, data và interaction có giá trị.
 
+## QA gate trước merge
+
+PR migration không được merge chỉ vì Vercel build PASS.
+
+Source of truth hiện tại:
+
+- `docs/FINAL_QA_CHECKLIST.md`
+- `docs/DEEP_QA_AUDIT_2026-09-06.md`
+
+Các blocker chính đang mở gồm: Ortland integration, Search dead control, mobile 390×844 live visual QA, Brand Close → Footer QA và CSS consolidation.
+
+## Font Brand
+
+Display font đã khóa là `1FTV Ortland Regular`. Font từng nằm trong WordPress V2 archive nhưng chưa được migrate vào Next.js branch. Vì repo này là public, font binary chỉ được đưa vào source/deployment sau khi xác nhận quyền sử dụng web/self-hosted phù hợp. Xem thêm `public/media/README.md` và deep QA audit.
+
 ## Không commit secrets
 
 Không commit `.env`, API keys, Supabase service keys, payment secrets hoặc token vào repo. Dùng Vercel Environment Variables cho secrets.
