@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { formatVnd, products, Region } from "@/data/products";
+import { track } from "@/lib/analytics";
 
 type Filter = "all" | Region;
 
@@ -15,6 +16,11 @@ const filters: { label: string; value: Filter }[] = [
 export function ProductGrid() {
   const [filter, setFilter] = useState<Filter>("all");
   const visible = useMemo(() => filter === "all" ? products : products.filter((product) => product.region === filter), [filter]);
+
+  const selectFilter = (value: Filter) => {
+    setFilter(value);
+    track("shop_filter_click", { filter: value });
+  };
 
   return (
     <section className="nk-shop-all" id="shop-all" aria-labelledby="nk-shop-title">
@@ -37,19 +43,19 @@ export function ProductGrid() {
               key={item.value}
               className={filter === item.value ? "is-active" : ""}
               aria-pressed={filter === item.value}
-              onClick={() => setFilter(item.value)}
+              onClick={() => selectFilter(item.value)}
             >
               {item.label}
             </button>
           ))}
         </div>
 
-        <div className="nk-product-grid nk-shop-all__grid">
+        <div className="nk-product-grid nk-shop-all__grid" aria-live="polite">
           {visible.map((product) => (
             <article className="nk-product-card" key={product.slug}>
               <a className="nk-product-card__media" href={`/product/${product.slug}`} aria-label={product.name}>
-                <img className="nk-product-card__cover" src={product.media.cover} alt={product.name} loading="lazy" />
-                <img className="nk-product-card__hover" src={product.media.detail} alt="" aria-hidden="true" loading="lazy" />
+                <img className="nk-product-card__cover" src={product.media.cover} alt={product.name} loading="lazy" decoding="async" />
+                <img className="nk-product-card__hover" src={product.media.detail} alt="" aria-hidden="true" loading="lazy" decoding="async" />
               </a>
               <div className="nk-product-card__body">
                 <p className="nk-product-card__location">{product.location}</p>
