@@ -12,7 +12,7 @@ export default function HomePage() {
   return (
     <>
       <Header />
-      <main>
+      <main id="main-content" tabIndex={-1}>
         <Hero />
         <FeaturedNooks />
         <ProductGrid />
