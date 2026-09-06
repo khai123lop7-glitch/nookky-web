@@ -2,7 +2,7 @@ export function BrandClose() {
   return (
     <section className="nk-brand-close" aria-labelledby="nk-brand-close-title">
       <div className="nk-brand-close__media" aria-hidden="true">
-        <img src="/media/editorial/brand-close.webp" alt="" loading="lazy" />
+        <img src="/media/editorial/brand-close.webp" alt="" loading="lazy" decoding="async" />
       </div>
       <div className="nk-brand-close__shade" aria-hidden="true" />
       <div className="nk-container nk-brand-close__inner">
