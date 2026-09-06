@@ -13,6 +13,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="vi">
       <body>
+        <a className="nk-skip-link" href="#main-content">Bỏ qua điều hướng</a>
         {children}
         <Footer />
       </body>
