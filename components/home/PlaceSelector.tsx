@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { products } from "@/data/products";
+import { track } from "@/lib/analytics";
 
 export function PlaceSelector() {
   const [active, setActive] = useState(0);
@@ -10,6 +11,8 @@ export function PlaceSelector() {
 
   const selectPlace = (index: number) => {
     if (index === active) return;
+    const nextProduct = products[index];
+    track("place_select", { product: nextProduct.slug, location: nextProduct.location, index: index + 1 });
     setSwitching(true);
     window.setTimeout(() => {
       setActive(index);
@@ -20,8 +23,8 @@ export function PlaceSelector() {
   return (
     <section className="nk-place" aria-labelledby="nk-place-title">
       <div className="nk-container nk-place__grid">
-        <div className={`nk-place__visual ${switching ? "is-switching" : ""}`}>
-          <img src={product.media.lifestyle} alt={product.name} loading="lazy" />
+        <div className={`nk-place__visual ${switching ? "is-switching" : ""}`} aria-live="polite">
+          <img src={product.media.lifestyle} alt={product.name} loading="lazy" decoding="async" />
           <div className="nk-place__visual-label">
             <span>{product.location}</span>
             <span>{String(active + 1).padStart(2, "0")} / 06</span>
@@ -33,7 +36,7 @@ export function PlaceSelector() {
           <h2 id="nk-place-title">Bạn muốn giữ lại nơi nào?</h2>
           <p className="nk-place__lead">Mỗi địa danh mang một nhịp ánh sáng, chất liệu và câu chuyện khác nhau.</p>
 
-          <div className="nk-place__options" role="list">
+          <div className="nk-place__options" role="group" aria-label="Chọn địa danh">
             {products.map((item, index) => (
               <button
                 type="button"
