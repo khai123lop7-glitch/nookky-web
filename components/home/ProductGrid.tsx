@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { formatVnd, products, Region } from "@/data/products";
 import { track } from "@/lib/analytics";
 
@@ -16,6 +16,10 @@ const filters: { label: string; value: Filter }[] = [
 export function ProductGrid() {
   const [filter, setFilter] = useState<Filter>("all");
   const visible = useMemo(() => filter === "all" ? products : products.filter((product) => product.region === filter), [filter]);
+
+  useEffect(() => {
+    track("view_item_list", { item_count: products.length, list: window.location.pathname === "/shop" ? "shop" : "homepage" });
+  }, []);
 
   const selectFilter = (value: Filter) => {
     setFilter(value);
