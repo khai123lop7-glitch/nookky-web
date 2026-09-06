@@ -10,6 +10,26 @@
   outline-offset: 4px;
 }
 
+.nk-skip-link {
+  position: fixed;
+  z-index: 1000;
+  top: 12px;
+  left: 12px;
+  padding: 10px 14px;
+  border: 1px solid var(--nk-v3-brown);
+  background: var(--nk-v3-paper);
+  color: var(--nk-v3-brown);
+  font-family: var(--nk-v3-ui);
+  font-size: 12px;
+  font-weight: 600;
+  transform: translateY(-160%);
+  transition: transform .18s ease;
+}
+
+.nk-skip-link:focus {
+  transform: translateY(0);
+}
+
 .nk-hero h1,
 .nk-featured h2,
 .nk-featured h3,
