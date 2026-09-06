@@ -4,7 +4,7 @@ export default function CartPage() {
   return (
     <>
       <Header />
-      <main className="nk-inner-page">
+      <main id="main-content" tabIndex={-1} className="nk-inner-page">
         <section className="nk-cart-shell nk-container">
           <p className="nk-eyebrow">GIỎ HÀNG</p>
           <h1>Giỏ hàng đang được hoàn thiện.</h1>
