@@ -1,6 +1,13 @@
+@font-face {
+  font-family: "NookOrtland";
+  src: url("/fonts/1FTV-Ortland.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
 :root {
-  /* Ortland asset is not in the repo yet. Keep the fallback explicit so QA does not depend on a missing font file. */
-  --nk-v3-display: "Be Vietnam Pro", "Arial Black", sans-serif;
+  --nk-v3-display: "NookOrtland", "Be Vietnam Pro", "Arial Black", sans-serif;
 }
 
 ::selection { background: #2f1607; color: #fcf4e9; }
@@ -48,8 +55,9 @@
 .nk-studio-intro h1,
 .nk-cart-shell h1 {
   font-family: var(--nk-v3-display);
-  font-weight: 900;
-  letter-spacing: -.045em;
+  font-weight: 400;
+  letter-spacing: -.018em;
+  text-wrap: balance;
 }
 
 .nk-nav a {
@@ -79,7 +87,7 @@
   max-width: 900px;
   margin: 0 0 28px;
   font-size: clamp(58px, 6vw, 92px);
-  line-height: .95;
+  line-height: 1.06;
 }
 
 .nk-about-intro > p:not(.nk-eyebrow),
@@ -171,8 +179,8 @@
 .nk-pdp__gallery { display: grid; gap: 18px; }
 .nk-pdp__media { min-height: 640px; background: #f4eee6; display: grid; place-items: center; overflow: hidden; }
 .nk-pdp__media img { width: 100%; height: 100%; max-height: 760px; object-fit: contain; }
-.nk-pdp__summary { position: sticky; top: 130px; padding-top: 12px; }
-.nk-pdp__summary h1 { margin: 0 0 24px; font-size: clamp(52px, 4.8vw, 76px); line-height: .95; }
+.nk-pdp__summary { position: sticky; top: 92px; padding-top: 12px; }
+.nk-pdp__summary h1 { margin: 0 0 24px; font-size: clamp(52px, 4.8vw, 76px); line-height: 1.06; }
 .nk-pdp__summary > p:not(.nk-eyebrow) { color: var(--nk-v3-soft); font-size: 15px; line-height: 1.8; }
 .nk-pdp__summary dl { margin: 30px 0 0; border-top: 1px solid var(--nk-v3-line); }
 .nk-pdp__summary dl > div { display: flex; justify-content: space-between; gap: 22px; padding: 13px 0; border-bottom: 1px solid var(--nk-v3-line); }
@@ -182,6 +190,7 @@
 .nk-pdp__price s { opacity: .38; font-size: 17px; }
 .nk-pdp__price strong { font-size: 31px; }
 .nk-pdp__summary .nk-button { width: 100%; }
+.nk-pdp__actions { display: grid; gap: 16px; }
 
 .nk-footer {
   background: #1d0e07;
@@ -195,7 +204,7 @@
   padding-top: clamp(82px, 8vw, 124px);
   padding-bottom: clamp(80px, 8vw, 120px);
 }
-.nk-footer__brand h2 { max-width: 760px; margin: 0 0 24px; font-size: clamp(48px, 5vw, 78px); line-height: .96; color: var(--nk-v3-cream); }
+.nk-footer__brand h2 { max-width: 760px; margin: 0 0 24px; font-size: clamp(48px, 5vw, 78px); line-height: 1.06; color: var(--nk-v3-cream); }
 .nk-footer__brand > p:not(.nk-eyebrow) { max-width: 580px; margin: 0; color: rgba(252,244,233,.62); font-size: 14px; line-height: 1.8; }
 .nk-footer__nav { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 44px; }
 .nk-footer__group { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; }
@@ -217,29 +226,12 @@
 }
 
 @media (min-width: 801px) {
-  .nk-header.is-compact .nk-header__main {
-    min-height: 58px;
-  }
-
-  .nk-header.is-compact .nk-nav {
-    min-height: 36px;
-  }
-
-  .nk-header.is-compact .nk-nav a {
-    padding: 10px 0 8px;
-  }
-
-  .nk-header.is-compact .nk-wordmark img {
-    width: 142px;
-  }
-
-  .nk-header.is-compact .nk-icon-button {
-    width: 34px;
-    height: 34px;
+  .nk-hero__inner {
+    padding-top: clamp(190px, 22svh, 220px);
   }
 
   .nk-inner-page {
-    padding-top: 94px;
+    padding-top: 64px;
   }
 }
 
@@ -258,7 +250,7 @@
   .nk-cart-shell { padding-top: 72px; padding-bottom: 90px; }
   .nk-about-intro h1,
   .nk-studio-intro h1,
-  .nk-cart-shell h1 { font-size: clamp(46px, 13vw, 62px); }
+  .nk-cart-shell h1 { font-size: clamp(46px, 13vw, 62px); line-height: 1.08; }
   .nk-studio-status { flex-direction: column; gap: 8px; }
   .nk-product-card__title-row { min-height: 0; }
   .nk-build { padding-top: 78px; padding-bottom: 84px; }
