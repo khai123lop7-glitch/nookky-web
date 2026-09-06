@@ -16,7 +16,7 @@ Nguyên tắc sign-off:
 | P0-01 | Typography | Ortland đã từng có trong V2 archive nhưng không được migrate sang Next. `docs/MIGRATION_AUDIT.md` yêu cầu `public/fonts/1FTV-Ortland.ttf`, trong khi media README cũ lại cấm commit font binary. | Đã sửa tài liệu để phản ánh đúng root cause. Cần recover font + kiểm tra license + tích hợp webfont đúng cách. | FONT ASSET PENDING |
 | P0-02 | Mobile | Chưa có bằng chứng trực quan 390×844 sau batch QA. | Kiểm tra full homepage, menu, Hero CTA, Shop 2 cột, Spotlight, Place, Build, Brand Close, Footer. | PENDING VISUAL VERIFY |
 | P0-03 | Cuối trang | Brand Close + Footer chưa được nhìn trọn sau batch mới nhất. | Review crop, seam, footer rhythm trên Preview. | PENDING VISUAL VERIFY |
-| P0-04 | Deploy | HEAD mới nhất phải build/deploy thành công trên Vercel. | HEAD `543be7f597ac93c86630657e937a97fa0cec91a8` đã Vercel `success`. | PASS |
+| P0-04 | Deploy | HEAD mới nhất phải build/deploy thành công trên Vercel. | Deep QA batch đã trigger Preview mới; kiểm tra status HEAD sau cùng. | VERIFY LATEST HEAD |
 | P0-05 | User-facing controls | Search vẫn là button không có handler. PDP/Cart/Studio trước đây lộ implementation copy. | PDP/Cart/Studio đã đổi sang user-facing placeholder. Search vẫn phải làm thật hoặc ẩn khỏi sign-off build. | SEARCH OPEN |
 | P0-06 | CSS source of truth | `globals.css` + `v3-migration.css` + `final-polish.css` đang override chồng nhau. | Consolidate sau visual PASS nhưng trước merge; không tạo thêm CSS fix layer. | OPEN |
 
