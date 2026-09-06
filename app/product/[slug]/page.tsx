@@ -37,7 +37,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
               {product.regularPrice ? <s>{formatVnd(product.regularPrice)}</s> : null}
               <strong>{formatVnd(product.price)}</strong>
             </div>
-            <button className="nk-button" type="button" disabled>Thêm vào giỏ · nối commerce ở phase sau</button>
+            <button className="nk-button" type="button" disabled title="Tính năng mua hàng đang được hoàn thiện">Mua hàng đang được hoàn thiện</button>
           </aside>
         </section>
       </main>
