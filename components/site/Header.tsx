@@ -16,6 +16,7 @@ export function Header() {
   const isHome = pathname === "/";
   const [compact, setCompact] = useState(!isHome);
   const [menuOpen, setMenuOpen] = useState(false);
+  const useDarkBrandAssets = compact || menuOpen;
 
   useEffect(() => {
     const sync = () => {
@@ -67,7 +68,7 @@ export function Header() {
       <div className="nk-header__main nk-container-wide">
         <a className="nk-symbol" href="/" aria-label="Nook Ký trang chủ">
           <img
-            src={compact ? "/media/brand/logo-symbol-dark.png" : "/media/brand/logo-symbol-light.png"}
+            src={useDarkBrandAssets ? "/media/brand/logo-symbol-dark.png" : "/media/brand/logo-symbol-light.png"}
             alt=""
             onError={(event) => { event.currentTarget.style.display = "none"; }}
           />
@@ -76,7 +77,7 @@ export function Header() {
 
         <a className="nk-wordmark" href="/" aria-label="Nook Ký">
           <img
-            src={compact ? "/media/brand/wordmark-dark.png" : "/media/brand/wordmark-light.png"}
+            src={useDarkBrandAssets ? "/media/brand/wordmark-dark.png" : "/media/brand/wordmark-light.png"}
             alt="Nook Ký"
             onError={(event) => { event.currentTarget.style.display = "none"; }}
           />
