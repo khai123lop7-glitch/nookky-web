@@ -1,3 +1,7 @@
+"use client";
+
+import { useEffect, useState } from "react";
+
 const nav = [
   ["Trang chủ", "/"],
   ["Sản phẩm", "/shop"],
@@ -7,8 +11,21 @@ const nav = [
 ] as const;
 
 export function Header() {
+  const [compact, setCompact] = useState(false);
+
+  useEffect(() => {
+    const sync = () => setCompact(window.scrollY > Math.max(120, window.innerHeight * 0.72));
+    sync();
+    window.addEventListener("scroll", sync, { passive: true });
+    window.addEventListener("resize", sync);
+    return () => {
+      window.removeEventListener("scroll", sync);
+      window.removeEventListener("resize", sync);
+    };
+  }, []);
+
   return (
-    <header className="nk-header">
+    <header className={`nk-header ${compact ? "is-compact" : "is-overlay"}`}>
       <div className="nk-announcement">Miễn phí vận chuyển cho đơn từ 1.000.000₫</div>
       <div className="nk-header__main nk-container-wide">
         <a className="nk-symbol" href="/" aria-label="Nook Ký trang chủ">
