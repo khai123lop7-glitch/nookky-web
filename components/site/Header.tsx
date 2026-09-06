@@ -19,17 +19,9 @@ export function Header() {
   const isHome = pathname === "/";
   const [compact, setCompact] = useState(!isHome);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [desktop, setDesktop] = useState(false);
   const [symbolFailed, setSymbolFailed] = useState(false);
   const [wordmarkFailed, setWordmarkFailed] = useState(false);
   const useDarkBrandAssets = compact || menuOpen;
-
-  useEffect(() => {
-    const syncViewport = () => setDesktop(window.innerWidth > 800);
-    syncViewport();
-    window.addEventListener("resize", syncViewport);
-    return () => window.removeEventListener("resize", syncViewport);
-  }, []);
 
   useEffect(() => {
     const sync = () => {
@@ -40,8 +32,7 @@ export function Header() {
 
       const hero = document.querySelector<HTMLElement>(".nk-hero");
       if (hero) {
-        const compactBoundary = 72;
-        setCompact(hero.getBoundingClientRect().bottom <= compactBoundary);
+        setCompact(hero.getBoundingClientRect().bottom <= 72);
         return;
       }
 
@@ -83,7 +74,7 @@ export function Header() {
     "nk-header",
     compact ? "is-compact" : "is-overlay",
     menuOpen ? "is-menu-open" : "",
-    compact && desktop ? styles.compactDesktop : "",
+    compact ? styles.compact : "",
   ].filter(Boolean).join(" ");
 
   return (
