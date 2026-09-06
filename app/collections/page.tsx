@@ -6,7 +6,7 @@ export default function CollectionsPage() {
   return (
     <>
       <Header />
-      <main className="nk-inner-page">
+      <main id="main-content" tabIndex={-1} className="nk-inner-page">
         <PlaceSelector />
         <FeaturedNooks />
       </main>
