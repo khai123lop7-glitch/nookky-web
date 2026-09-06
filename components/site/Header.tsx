@@ -45,6 +45,15 @@ export function Header() {
 
   useEffect(() => setMenuOpen(false), [pathname]);
 
+  useEffect(() => {
+    if (!menuOpen) return;
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setMenuOpen(false);
+    };
+    window.addEventListener("keydown", closeOnEscape);
+    return () => window.removeEventListener("keydown", closeOnEscape);
+  }, [menuOpen]);
+
   const isNavActive = (href: string) => {
     if (href === "/") return pathname === "/";
     if (href === "/shop") return pathname.startsWith("/shop") || pathname.startsWith("/product/");
@@ -83,6 +92,7 @@ export function Header() {
             type="button"
             aria-label={menuOpen ? "Đóng menu" : "Mở menu"}
             aria-expanded={menuOpen}
+            aria-controls="nk-primary-nav"
             onClick={() => setMenuOpen((value) => !value)}
           >
             <span/><span/>
@@ -90,7 +100,7 @@ export function Header() {
         </div>
       </div>
 
-      <nav className="nk-nav" aria-label="Điều hướng chính">
+      <nav id="nk-primary-nav" className="nk-nav" aria-label="Điều hướng chính">
         {nav.map(([label, href]) => {
           const active = isNavActive(href);
           return <a className={active ? "is-active" : ""} aria-current={active ? "page" : undefined} href={href} key={href}>{label}</a>;
