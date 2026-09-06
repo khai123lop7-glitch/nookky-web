@@ -1,0 +1,1 @@
+Trigger Vercel Preview after Git integration. 2026-09-06.
