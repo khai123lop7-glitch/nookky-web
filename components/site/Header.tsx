@@ -16,6 +16,8 @@ export function Header() {
   const isHome = pathname === "/";
   const [compact, setCompact] = useState(!isHome);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [symbolFailed, setSymbolFailed] = useState(false);
+  const [wordmarkFailed, setWordmarkFailed] = useState(false);
   const useDarkBrandAssets = compact || menuOpen;
 
   useEffect(() => {
@@ -47,6 +49,11 @@ export function Header() {
   useEffect(() => setMenuOpen(false), [pathname]);
 
   useEffect(() => {
+    setSymbolFailed(false);
+    setWordmarkFailed(false);
+  }, [useDarkBrandAssets]);
+
+  useEffect(() => {
     if (!menuOpen) return;
     const closeOnEscape = (event: KeyboardEvent) => {
       if (event.key === "Escape") setMenuOpen(false);
@@ -67,20 +74,24 @@ export function Header() {
 
       <div className="nk-header__main nk-container-wide">
         <a className="nk-symbol" href="/" aria-label="Nook Ký trang chủ">
-          <img
-            src={useDarkBrandAssets ? "/media/brand/logo-symbol-dark.png" : "/media/brand/logo-symbol-light.png"}
-            alt=""
-            onError={(event) => { event.currentTarget.style.display = "none"; }}
-          />
+          {!symbolFailed ? (
+            <img
+              src={useDarkBrandAssets ? "/media/brand/logo-symbol-dark.png" : "/media/brand/logo-symbol-light.png"}
+              alt=""
+              onError={() => setSymbolFailed(true)}
+            />
+          ) : null}
           <span className="nk-symbol__fallback" aria-hidden="true">NK</span>
         </a>
 
         <a className="nk-wordmark" href="/" aria-label="Nook Ký">
-          <img
-            src={useDarkBrandAssets ? "/media/brand/wordmark-dark.png" : "/media/brand/wordmark-light.png"}
-            alt="Nook Ký"
-            onError={(event) => { event.currentTarget.style.display = "none"; }}
-          />
+          {!wordmarkFailed ? (
+            <img
+              src={useDarkBrandAssets ? "/media/brand/wordmark-dark.png" : "/media/brand/wordmark-light.png"}
+              alt="Nook Ký"
+              onError={() => setWordmarkFailed(true)}
+            />
+          ) : null}
           <span className="nk-wordmark__fallback">NOOK KÝ</span>
         </a>
 
