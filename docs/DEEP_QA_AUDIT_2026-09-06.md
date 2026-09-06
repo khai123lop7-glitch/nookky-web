@@ -7,9 +7,9 @@ Phạm vi: branch `migration/v3-2-next`, homepage + các route người dùng c�
 Vercel build PASS nhưng branch **chưa đủ điều kiện merge**. Visual desktop đã đi đúng hướng, tuy nhiên deep QA phát hiện các vấn đề nghiêm trọng hơn lớp spacing/typography ban đầu:
 
 1. Ortland không bị “quên” ở phía Brand. Font đã tồn tại trong WordPress V2 archive trước đây, nhưng bị rơi khỏi migration pipeline.
-2. Tài liệu migration đang tự mâu thuẫn về font: `docs/MIGRATION_AUDIT.md` yêu cầu copy `public/fonts/1FTV-Ortland.ttf`, trong khi `public/media/README.md` lại ghi `Do not commit font files`.
+2. Tài liệu migration từng tự mâu thuẫn về font: `docs/MIGRATION_AUDIT.md` yêu cầu copy `public/fonts/1FTV-Ortland.ttf`, trong khi `public/media/README.md` cũ lại ghi `Do not commit font files`. README đã được sửa để phản ánh đúng root cause và licensing gate.
 3. Repo hiện có ba lớp CSS `globals.css` → `v3-migration.css` → `final-polish.css`, trái với nguyên tắc đã chốt là không tiếp tục tạo CSS override layer. Cần consolidation trước merge.
-4. Homepage vẫn dẫn người dùng tới một số UI/route còn development copy hoặc chức năng chưa hoạt động: Search button, PDP add-to-cart, Cart, Studio.
+4. Development copy ở PDP/Cart/Studio đã được thay bằng user-facing placeholder. Search button vẫn là dead control và chưa thể sign-off.
 5. Course-readiness chưa đạt: source học phần yêu cầu tối thiểu 10 sản phẩm, repo hiện mới có 6 SKU canonical.
 6. Editorial asset pack có file trùng binary dưới tên khác: `real-hoi-an.webp` trùng `brand-close.webp`; `real-ha-noi.webp` trùng `hero-mobile.webp`.
 7. Mobile 390×844 và Brand Close → Footer vẫn chưa có live visual evidence sau batch sửa.
@@ -25,35 +25,32 @@ Vercel build PASS nhưng branch **chưa đủ điều kiện merge**. Visual des
 - WordPress V2 handoff trước đây ghi font nằm trong `assets/fonts/1FTV-Ortland.ttf` của theme archive.
 - `docs/MIGRATION_AUDIT.md` hiện vẫn yêu cầu copy sang `public/fonts/1FTV-Ortland.ttf`.
 - Branch hiện tại không có `public/fonts/`.
-- `public/media/README.md` lại ghi blanket rule `Do not commit font files`.
+- Media-only pipeline trước đây đã loại font ra khỏi pack.
 
 **Root cause**
 Asset migration pack được thiết kế theo kiểu “media only”, còn font bị loại ra bởi một rule bảo vệ binary/licensing. Sau đó CSS migration vẫn giả định font sẽ xuất hiện ở `/fonts/1FTV-Ortland.ttf`. Đây là lỗi pipeline/documentation, không phải Brand chưa cung cấp font.
 
-**Required fix**
+**Đã làm**
+- Sửa `public/media/README.md` để bỏ mâu thuẫn và ghi rõ Ortland là Brand asset bắt buộc nhưng phải đi qua licensing/webfont gate phù hợp với public repo.
+
+**Còn phải làm**
 - Recover đúng file Ortland từ V2 archive hoặc nguồn Brand.
 - Kiểm tra quyền sử dụng webfont trước khi đưa vào public deployment vì repo hiện là public.
 - Sau khi asset hợp lệ, ưu tiên tích hợp bằng `next/font/local` hoặc một self-hosted webfont pipeline rõ ràng.
 - Review lại toàn bộ line-break/line-height desktop + mobile sau khi font thật hoạt động.
 
-### P0-02 — Dead / development-facing UI vẫn lộ ra cho người dùng
+### P0-02 — Dead / development-facing UI
 
-**Search**
-Header có button Tìm kiếm nhưng không có handler. `title` hiện còn ghi “Tìm kiếm sẽ được nối ở phase data”. Đây là control nhìn như hoạt động nhưng click không tạo outcome.
+**Đã sửa**
+- PDP không còn copy “nối commerce ở phase sau”; thay bằng trạng thái user-facing.
+- Cart không còn mô tả Commerce Adapter/backend.
+- Studio không còn “Frontend foundation · chưa nối data/commerce”.
 
-**PDP**
-`/product/[slug]` có button disabled với copy “Thêm vào giỏ · nối commerce ở phase sau”. Đây là development copy xuất hiện trực tiếp trên giao diện người dùng.
-
-**Cart**
-`/cart` hiển thị “Giỏ hàng mới sẽ nối vào Commerce Adapter” và mô tả backend implementation.
-
-**Studio**
-`/studio` hiển thị “Frontend foundation · chưa nối data/commerce”.
+**Còn mở**
+- Header Search vẫn là button không có handler; `title` còn mang ngôn ngữ implementation.
 
 **Required fix**
-Trước visual sign-off cho bản demo/merge, các route/user controls phải rơi vào một trong hai trạng thái:
-1. hoạt động thật; hoặc
-2. user-facing placeholder sạch, không lộ ngôn ngữ implementation nội bộ.
+Search phải được làm thật hoặc ẩn khỏi sign-off build. Không giữ một control nhìn như hoạt động nhưng click không có outcome.
 
 ### P0-03 — Course requirement: 6 SKU chưa đủ 10 sản phẩm
 
@@ -114,19 +111,21 @@ Tree hiện tại cho thấy:
 
 **Fix**: thay bằng asset đúng cho từng ngữ cảnh hoặc đổi content strategy nếu chủ đích là reuse.
 
-### P1-02 — Header compact trigger chưa theo đúng boundary Hero
+### P1-02 — Header compact boundary
 
-Header home chuyển compact khi `scrollY > max(120, innerHeight * 0.72)`, tức khoảng 72% viewport. Hero lại cao `100svh`.
+**Phát hiện**
+Header home trước đây chuyển compact ở `72%` viewport dù Hero cao `100svh`, nên compact state có thể xuất hiện trước khi Hero kết thúc.
 
-Kết quả: header có thể chuyển cream state khi người dùng vẫn đang ở 28% cuối Hero.
+**Đã sửa**
+Header hiện đọc boundary thật của `.nk-hero` và chuyển state khi bottom Hero chạm vùng header; có fallback theo viewport nếu selector không tồn tại.
 
-**Fix khuyến nghị**: dùng Hero sentinel/IntersectionObserver hoặc threshold theo boundary thật của Hero thay vì 0.72 viewport.
+**Còn phải làm**
+Visual verify trên Preview ở 1440×900 và 390×844.
 
-### P1-03 — PDP không active nav “Sản phẩm”
+### P1-03 — PDP nav active state
 
-Current nav active logic chỉ xem `/shop` là Sản phẩm. Route `/product/...` không match nên user ở PDP không thấy section active.
-
-**Fix**: xem `/product/*` là active state của Sản phẩm.
+**Đã sửa**
+Route `/product/*` hiện được map vào active state của mục `Sản phẩm`.
 
 ### P1-04 — Toàn site đang dùng `<img>` thay vì Next image pipeline
 
@@ -204,7 +203,7 @@ Với 6 card, đây là thêm 6 ảnh chỉ để phục vụ hover. Cần đo n
 Vercel build PASS chỉ xác nhận code build/deploy được. Nó chưa chứng minh:
 - typography đúng Brand;
 - mobile visual đúng;
-- control/route không dead;
+- Search có outcome;
 - asset pack đúng nội dung;
 - course requirement đạt;
 - CSS architecture đủ sạch để làm baseline mới.
@@ -212,12 +211,12 @@ Vercel build PASS chỉ xác nhận code build/deploy được. Nó chưa chứn
 ### Gate để chuyển PR #1 sang Ready for Review
 
 Bắt buộc PASS:
-1. Ortland pipeline có quyết định rõ và không còn tài liệu mâu thuẫn.
-2. Không còn development copy ở Search/PDP/Cart/Studio trong user-facing flow.
+1. Ortland pipeline có quyết định rõ và font thật được recover/tích hợp hoặc Brand chốt fallback cho milestone.
+2. Search không còn dead control.
 3. 390×844 live visual PASS.
 4. Brand Close + Footer live visual PASS.
-5. CSS consolidation plan được thực hiện hoặc ít nhất xóa stale conflict đủ để source of truth rõ.
-6. P1 Header boundary + PDP nav active được sửa.
+5. CSS consolidation đủ để source of truth rõ trước merge.
+6. Vercel HEAD cuối cùng PASS.
 
 Course gate bổ sung trước submission:
 7. Có >=10 sản phẩm đầy đủ.
