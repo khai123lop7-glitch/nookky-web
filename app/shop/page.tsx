@@ -5,7 +5,7 @@ export default function ShopPage() {
   return (
     <>
       <Header />
-      <main className="nk-inner-page nk-inner-page--shop">
+      <main id="main-content" tabIndex={-1} className="nk-inner-page nk-inner-page--shop">
         <ProductGrid />
       </main>
     </>
