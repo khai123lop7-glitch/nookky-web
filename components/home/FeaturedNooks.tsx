@@ -17,7 +17,7 @@ export function FeaturedNooks() {
             <article className="nk-featured-card" key={product.slug}>
               <a className="nk-featured-card__link" aria-label={`Khám phá ${product.name}`} href={`/product/${product.slug}`}>
                 <picture className="nk-featured-card__media">
-                  <img src={product.media.cover} alt={product.name} loading="lazy" />
+                  <img src={product.media.cover} alt={product.name} loading="lazy" decoding="async" />
                 </picture>
                 <div className="nk-featured-card__body">
                   <div className="nk-featured-card__identity">
