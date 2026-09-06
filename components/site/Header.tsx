@@ -23,7 +23,15 @@ export function Header() {
         setCompact(true);
         return;
       }
-      setCompact(window.scrollY > Math.max(120, window.innerHeight * 0.72));
+
+      const hero = document.querySelector<HTMLElement>(".nk-hero");
+      if (hero) {
+        const compactBoundary = 96;
+        setCompact(hero.getBoundingClientRect().bottom <= compactBoundary);
+        return;
+      }
+
+      setCompact(window.scrollY >= window.innerHeight - 96);
     };
 
     sync();
@@ -36,6 +44,12 @@ export function Header() {
   }, [isHome]);
 
   useEffect(() => setMenuOpen(false), [pathname]);
+
+  const isNavActive = (href: string) => {
+    if (href === "/") return pathname === "/";
+    if (href === "/shop") return pathname.startsWith("/shop") || pathname.startsWith("/product/");
+    return pathname.startsWith(href);
+  };
 
   return (
     <header className={`nk-header ${compact ? "is-compact" : "is-overlay"} ${menuOpen ? "is-menu-open" : ""}`}>
@@ -82,7 +96,7 @@ export function Header() {
 
       <nav className="nk-nav" aria-label="Điều hướng chính">
         {nav.map(([label, href]) => {
-          const active = href === "/" ? pathname === "/" : pathname.startsWith(href);
+          const active = isNavActive(href);
           return <a className={active ? "is-active" : ""} aria-current={active ? "page" : undefined} href={href} key={href}>{label}</a>;
         })}
       </nav>
