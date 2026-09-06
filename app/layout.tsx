@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import { Footer } from "@/components/site/Footer";
 import "./globals.css";
 import "./v3-migration.css";
+import "./final-polish.css";
 
 export const metadata: Metadata = {
   title: "Nook Ký",
@@ -10,7 +12,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="vi">
-      <body>{children}</body>
+      <body>
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }
