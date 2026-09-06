@@ -21,7 +21,10 @@ export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [symbolFailed, setSymbolFailed] = useState(false);
   const [wordmarkFailed, setWordmarkFailed] = useState(false);
-  const useDarkBrandAssets = compact || menuOpen;
+
+  // Home header now uses the dark brand assets on a solid paper background.
+  // This removes the previous text/logo-over-image collision at the top of Hero.
+  const useDarkBrandAssets = isHome || compact || menuOpen;
 
   useEffect(() => {
     const sync = () => {
@@ -74,6 +77,7 @@ export function Header() {
     "nk-header",
     compact ? "is-compact" : "is-overlay",
     menuOpen ? "is-menu-open" : "",
+    isHome ? styles.homeClean : "",
     compact ? styles.compact : "",
   ].filter(Boolean).join(" ");
 
