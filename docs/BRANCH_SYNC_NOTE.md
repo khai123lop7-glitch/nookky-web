@@ -20,7 +20,9 @@ Theo chỉ đạo hiện tại, Ortland được tách khỏi batch xử lý nà
 - Product filter, Spotlight gallery/zoom, Place Selector và Build Experience đã gọi analytics boundary `track()`.
 - Product Grid/Place/Build/Spotlight bổ sung `aria-pressed`/`aria-live` phù hợp và `decoding="async"` cho ảnh không critical.
 - Real Nooks chuyển sang 4 lifestyle assets canonical của sản phẩm, không còn dùng hai editorial binary bị trùng dưới tên khác.
-- Vercel PASS tại HEAD `139c5e7e1d446e630f7c5cb03781a295dca79ec1`.
+- Product Grid bỏ hover detail image layer để tránh tải thêm 6 ảnh chỉ phục vụ hover.
+- Featured và Brand Close bổ sung async image decoding.
+- Vercel PASS tại HEAD `7a62710d3bfe776e8a707cbcad32977c92a8f040`.
 
 ## Còn mở ngoài font
 
