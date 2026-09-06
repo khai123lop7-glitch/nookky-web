@@ -14,7 +14,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   return (
     <>
       <Header />
-      <main className="nk-inner-page nk-pdp">
+      <main id="main-content" tabIndex={-1} className="nk-inner-page nk-pdp">
         <section className="nk-container-wide nk-pdp__grid">
           <div className="nk-pdp__gallery">
             {[product.media.cover, product.media.detail, product.media.lifestyle].map((src, index) => (
