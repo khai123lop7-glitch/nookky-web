@@ -16,16 +16,19 @@ Nguyên tắc sign-off:
 |---|---|---|---|---|
 | P0-01 | Mobile | Chưa có bằng chứng trực quan 390×844 sau batch deep QA mới nhất. | Kiểm tra full homepage, menu, Hero CTA, Shop 2 cột, Spotlight, Place, Build, Brand Close, Footer. | PENDING VISUAL VERIFY |
 | P0-02 | Cuối trang | Brand Close + Footer chưa được nhìn trọn sau batch mới nhất. | Review crop, seam, footer rhythm trên Preview. | PENDING VISUAL VERIFY |
-| P0-03 | Deploy | HEAD cuối cùng phải build/deploy thành công trên Vercel. | Code HEAD `7a62710d3bfe776e8a707cbcad32977c92a8f040` đã PASS. Mọi commit tiếp theo vẫn phải re-check. | PASS / REVERIFY LATEST HEAD |
+| P0-03 | Deploy | HEAD cuối cùng phải build/deploy thành công trên Vercel. | Code HEAD `d716f755b94146f48f6f1572cd74b886c3f4914c` đã PASS. Mọi commit tiếp theo vẫn phải re-check. | PASS / REVERIFY LATEST HEAD |
 | P0-04 | CSS source of truth | `globals.css` + `v3-migration.css` + `final-polish.css` đang override chồng nhau. | Consolidate sau visual PASS nhưng trước merge; không tạo thêm CSS fix layer. | OPEN |
 
 ### Đã gỡ khỏi P0 sau deep QA
 
 - Search dead control: **đã gỡ khỏi Header**.
+- Fake cart count `0`: **đã gỡ** cho tới khi có cart state thật.
 - PDP disabled purchase control: **đã bỏ**, CTA hiện dẫn về bộ sưu tập cho tới khi commerce thật được nối.
 - Cart/Studio development-facing copy: **đã làm sạch**.
 - Header compact boundary: **đã sửa theo boundary thật của Hero**.
 - PDP nav active state: **đã sửa cho `/product/*`**.
+- Mobile menu light/dark asset mismatch: **đã sửa**, mở menu trên Hero sẽ dùng dark Brand assets trên nền sáng.
+- Brand asset fallback: **đã sửa logic**, fallback thật sự xuất hiện nếu image load lỗi.
 
 ### Typography deferred
 
@@ -42,18 +45,20 @@ Repo canonical hiện có 6 SKU. Tài liệu học phần yêu cầu website có
 | P1-01 | Compact Header | Header cũ chuyển compact ở 72% viewport, trước khi Hero kết thúc. | Đã đổi sang boundary thật của `.nk-hero` với fallback theo viewport. | CODE FIXED / VISUAL VERIFY PENDING |
 | P1-02 | Featured Nooks | Khoảng trống nâu sau 2 product card khá dài. | Đã giảm bottom padding và min-height phần thông tin card. | CODE FIXED / VISUAL VERIFY PENDING |
 | P1-03 | Shop Grid | Tên sản phẩm dài làm title/price thiếu nhịp đều. | Đã khóa min-height title row desktop và reset ở mobile. | CODE FIXED / VISUAL VERIFY PENDING |
-| P1-04 | Product Spotlight | CTA `Thêm vào giỏ` disabled nhìn như chức năng lỗi. | Đã thay bằng CTA sang PDP; PDP cũng không còn disabled purchase control. | FIXED |
+| P1-04 | Product Spotlight/PDP | CTA disabled nhìn như chức năng lỗi. | Spotlight dùng CTA sang PDP; PDP không còn disabled purchase control. | FIXED |
 | P1-05 | Build Experience | Header → grid hơi giãn. | Đã giảm spacing. | CODE FIXED / VISUAL VERIFY PENDING |
 | P1-06 | Spotlight controls | Dot hit target nhỏ. | Đã tăng hit target lên 28×28px, visual dot giữ 7px. | FIXED |
 | P1-07 | Editorial assets | Hai editorial file trước đây trùng binary dưới tên khác. | Real Nooks đã chuyển sang 4 canonical lifestyle assets riêng của sản phẩm. | FIXED |
 | P1-08 | PDP navigation | `/product/*` trước đây không active mục Sản phẩm. | Đã map `/product/*` vào active state của Sản phẩm. | FIXED |
 | P1-09 | Accessibility modal | Zoom modal trước đây chưa quản lý focus. | Đã focus nút đóng khi mở, giữ focus trong modal, Escape close và trả focus về trigger. | CODE FIXED / LIVE KEYBOARD VERIFY PENDING |
-| P1-10 | Analytics interactions | Có `track()` boundary nhưng interaction chưa instrument. | Filter, Spotlight gallery/zoom, Place Selector và Build Experience đã gọi `track()`. | PARTIALLY FIXED |
-| P1-11 | Product grid performance | Hover detail layer có thể làm tải thêm 6 ảnh chỉ để phục vụ hover. | Đã bỏ detail hover image; giữ cover + micro scale. | FIXED |
+| P1-10 | Analytics interactions | Có `track()` boundary nhưng interaction chưa instrument. | Filter, product selection, Spotlight gallery/zoom, Place Selector và Build Experience đã gọi `track()`. | PARTIALLY FIXED |
+| P1-11 | Product hover image | Detail hover image có chi phí network, nhưng CSS hiện tại dựa vào crossfade cover → detail. | Giữ hover layer để không tạo regression; tối ưu lại sau khi chuyển image pipeline hoặc đo network thật. | DEFERRED BEFORE PRODUCTION |
 | P1-12 | Image loading | Nhiều ảnh không critical chưa khai báo decoding. | Đã thêm `decoding="async"` cho Featured, Shop, Spotlight, Place, Build, Real Nooks, Brand Close và ảnh PDP phù hợp. | PARTIALLY FIXED |
 | P1-13 | Image pipeline | Toàn site vẫn chủ yếu dùng raw `<img>`; Hero chưa dùng Next image optimization. | Chuyển Hero/above-the-fold sang Next image pipeline sau khi visual baseline ổn định. | OPEN BEFORE PRODUCTION |
 | P1-14 | Build reproducibility | Không có package lockfile, dependency dùng caret ranges. | Chọn package manager, generate + commit lockfile khi khóa environment production. | OPEN BEFORE PRODUCTION |
-| P1-15 | Skip link / keyboard | Chưa có skip link và chưa live keyboard traversal toàn trang. | Bổ sung sau visual merge hoặc cùng accessibility pass cuối. | OPEN BEFORE PRODUCTION |
+| P1-15 | Skip link / keyboard | Chưa có skip link và chưa live keyboard traversal toàn trang. | Bổ sung cùng accessibility pass cuối. | OPEN BEFORE PRODUCTION |
+| P1-16 | Mobile menu semantics | Menu trước đây chưa có `aria-controls`/Escape close và có nguy cơ logo sáng trên nền sáng. | Đã thêm `aria-controls`, Escape close và dark Brand assets khi menu mở. | CODE FIXED / LIVE MOBILE VERIFY PENDING |
+| P1-17 | Brand asset resilience | Fallback logo/wordmark trước đây bị giữ sau image với `z-index:-1`, nên onError chưa chắc nhìn thấy fallback. | Đã chuyển sang state và remove image lỗi khỏi DOM để fallback thực sự hiện. | FIXED |
 
 ## Desktop 1440×900
 
@@ -83,6 +88,7 @@ Repo canonical hiện có 6 SKU. Tài liệu học phần yêu cầu website có
 - [x] Build về 1 cột; step min-height 145px
 - [x] Real Nooks về 1 cột
 - [x] Footer links giữ 2 cột
+- [x] Menu mở dùng dark Brand assets trên nền paper
 - [ ] Screenshot/Preview thật ở 390×844
 - [ ] Không horizontal scroll thật ở 390px
 - [ ] Brand Close crop hợp lý
@@ -91,7 +97,7 @@ Repo canonical hiện có 6 SKU. Tài liệu học phần yêu cầu website có
 ## Interaction QA — code review
 
 - [x] Header compact state theo Hero boundary + pathname
-- [x] Mobile menu toggle và tự đóng khi route đổi
+- [x] Mobile menu toggle, tự đóng khi route đổi và Escape close
 - [x] Product routes active mục Sản phẩm
 - [x] Region filters dùng state + `useMemo`, không reload trang
 - [x] Spotlight dots, arrows, modal zoom, overlay close, Escape close
@@ -100,9 +106,10 @@ Repo canonical hiện có 6 SKU. Tài liệu học phần yêu cầu website có
 - [x] Build Experience đổi hình/nội dung theo 3 bước
 - [x] `:focus-visible` có global treatment
 - [x] `prefers-reduced-motion` tắt decorative motion
-- [x] Logo có fallback nếu asset lỗi
+- [x] Logo/wordmark có fallback thật khi asset lỗi
 - [x] Search dead control đã gỡ
-- [x] Interaction tracking đã nối vào analytics boundary cho filter/gallery/place/build
+- [x] Fake cart count đã gỡ
+- [x] Interaction tracking đã nối vào analytics boundary cho filter/select/gallery/place/build
 - [ ] Focus order + keyboard traversal live toàn trang
 - [ ] Touch interaction live mobile
 
