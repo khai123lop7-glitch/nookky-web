@@ -7,22 +7,25 @@ Homepage backlog: `docs/FINAL_QA_CHECKLIST.md`.
 
 Merge status: **NO MERGE YET**.
 
-Theo chỉ đạo hiện tại, Ortland được tách khỏi batch xử lý này. Font sẽ không chặn việc tiếp tục sửa các vấn đề còn lại, nhưng typography final vẫn chưa được sign-off cho tới khi asset được tích hợp sau.
+Theo chỉ đạo hiện tại, Ortland được tách khỏi batch xử lý này. Font không chặn việc tiếp tục sửa các vấn đề còn lại; typography final sẽ sign-off riêng khi asset được tích hợp sau.
 
 ## Deep QA fixes đã hoàn tất
 
 - Header compact theo boundary thật của Hero, không còn đổi state quá sớm.
 - PDP route active mục Sản phẩm.
-- Search dead control đã được gỡ khỏi Header thay vì để control giả.
+- Search dead control đã được gỡ khỏi Header.
+- Fake cart count `0` đã được gỡ cho tới khi có cart state thật.
+- Mobile menu có `aria-controls`, đóng bằng Escape và chuyển sang dark Brand assets khi menu mở trên nền sáng.
+- Logo/wordmark fallback đã được sửa để fallback thực sự xuất hiện nếu asset load lỗi.
 - PDP không còn disabled purchase control; CTA hiện quay về bộ sưu tập cho tới khi commerce thật được nối.
 - Cart/Studio bỏ toàn bộ development-facing copy.
-- Spotlight modal: Escape close, focus vào nút đóng khi mở, giữ focus trong modal, trả focus về trigger khi đóng.
-- Product filter, Spotlight gallery/zoom, Place Selector và Build Experience đã gọi analytics boundary `track()`.
+- Spotlight modal: Escape close, focus vào nút đóng khi mở, giữ focus trong modal và trả focus về trigger khi đóng.
+- Product filter, product selection, Spotlight gallery/zoom, Place Selector và Build Experience đã gọi analytics boundary `track()`.
 - Product Grid/Place/Build/Spotlight bổ sung `aria-pressed`/`aria-live` phù hợp và `decoding="async"` cho ảnh không critical.
 - Real Nooks chuyển sang 4 lifestyle assets canonical của sản phẩm, không còn dùng hai editorial binary bị trùng dưới tên khác.
-- Product Grid bỏ hover detail image layer để tránh tải thêm 6 ảnh chỉ phục vụ hover.
 - Featured và Brand Close bổ sung async image decoding.
-- Vercel PASS tại HEAD `7a62710d3bfe776e8a707cbcad32977c92a8f040`.
+- Product hover detail image được **giữ lại có chủ đích** vì CSS hiện tại dùng crossfade cover → detail. Một thử nghiệm bỏ layer này đã được rollback sau khi phát hiện sẽ làm card trắng khi hover.
+- Vercel PASS tại code HEAD `d716f755b94146f48f6f1572cd74b886c3f4914c`.
 
 ## Còn mở ngoài font
 
