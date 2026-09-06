@@ -1,0 +1,1 @@
+Recovery visual baseline preview. No cart/font integration. Source: clean migration snapshot 0fa441a9095647dadc0e27780502789f98e7f7a4. Triggered 2026-09-07.
