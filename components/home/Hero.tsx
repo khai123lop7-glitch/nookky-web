@@ -1,6 +1,7 @@
 "use client";
 
 import { track } from "@/lib/analytics";
+import styles from "./Hero.module.css";
 
 export function Hero() {
   return (
@@ -16,7 +17,7 @@ export function Hero() {
       <div className="nk-hero__inner nk-container-wide">
         <div className="nk-hero__copy">
           <p className="nk-eyebrow">BOOK NOOK · VIỆT NAM</p>
-          <h1 id="nk-hero-title">Giữ lại một góc Việt Nam.</h1>
+          <h1 id="nk-hero-title" className={styles.title}>Giữ lại một góc Việt Nam.</h1>
           <p className="nk-hero__lead">
             Những nơi chốn quen thuộc, thu nhỏ thành một góc sáng để bạn tự tay hoàn thiện và giữ lại trên kệ sách.
           </p>
