@@ -16,7 +16,7 @@ Nguyên tắc sign-off:
 |---|---|---|---|---|
 | P0-01 | Mobile | Chưa có bằng chứng trực quan 390×844 sau batch deep QA mới nhất. | Kiểm tra full homepage, menu, Hero CTA, Shop 2 cột, Spotlight, Place, Build, Brand Close, Footer. | PENDING VISUAL VERIFY |
 | P0-02 | Cuối trang | Brand Close + Footer chưa được nhìn trọn sau batch mới nhất. | Review crop, seam, footer rhythm trên Preview. | PENDING VISUAL VERIFY |
-| P0-03 | Deploy | HEAD cuối cùng phải build/deploy thành công trên Vercel. | Code HEAD `d716f755b94146f48f6f1572cd74b886c3f4914c` đã PASS. Mọi commit tiếp theo vẫn phải re-check. | PASS / REVERIFY LATEST HEAD |
+| P0-03 | Deploy | HEAD cuối cùng phải build/deploy thành công trên Vercel. | Code HEAD `6af84ed95a0d7c81bd385a95e01c5443b0c10adf` đã PASS. Mọi commit tiếp theo vẫn phải re-check. | PASS / REVERIFY LATEST HEAD |
 | P0-04 | CSS source of truth | `globals.css` + `v3-migration.css` + `final-polish.css` đang override chồng nhau. | Consolidate sau visual PASS nhưng trước merge; không tạo thêm CSS fix layer. | OPEN |
 
 ### Đã gỡ khỏi P0 sau deep QA
@@ -51,12 +51,12 @@ Repo canonical hiện có 6 SKU. Tài liệu học phần yêu cầu website có
 | P1-07 | Editorial assets | Hai editorial file trước đây trùng binary dưới tên khác. | Real Nooks đã chuyển sang 4 canonical lifestyle assets riêng của sản phẩm. | FIXED |
 | P1-08 | PDP navigation | `/product/*` trước đây không active mục Sản phẩm. | Đã map `/product/*` vào active state của Sản phẩm. | FIXED |
 | P1-09 | Accessibility modal | Zoom modal trước đây chưa quản lý focus. | Đã focus nút đóng khi mở, giữ focus trong modal, Escape close và trả focus về trigger. | CODE FIXED / LIVE KEYBOARD VERIFY PENDING |
-| P1-10 | Analytics interactions | Có `track()` boundary nhưng interaction chưa instrument. | Filter, product selection, Spotlight gallery/zoom, Place Selector và Build Experience đã gọi `track()`. | PARTIALLY FIXED |
+| P1-10 | Analytics interactions | Có `track()` boundary nhưng interaction chưa instrument. | Hero CTA, Featured clicks, view item list, filter, product selection, Spotlight gallery/zoom, Place Selector và Build Experience đã gọi `track()`. | FRONTEND BOUNDARY INSTRUMENTED |
 | P1-11 | Product hover image | Detail hover image có chi phí network, nhưng CSS hiện tại dựa vào crossfade cover → detail. | Giữ hover layer để không tạo regression; tối ưu lại sau khi chuyển image pipeline hoặc đo network thật. | DEFERRED BEFORE PRODUCTION |
 | P1-12 | Image loading | Nhiều ảnh không critical chưa khai báo decoding. | Đã thêm `decoding="async"` cho Featured, Shop, Spotlight, Place, Build, Real Nooks, Brand Close và ảnh PDP phù hợp. | PARTIALLY FIXED |
 | P1-13 | Image pipeline | Toàn site vẫn chủ yếu dùng raw `<img>`; Hero chưa dùng Next image optimization. | Chuyển Hero/above-the-fold sang Next image pipeline sau khi visual baseline ổn định. | OPEN BEFORE PRODUCTION |
 | P1-14 | Build reproducibility | Không có package lockfile, dependency dùng caret ranges. | Chọn package manager, generate + commit lockfile khi khóa environment production. | OPEN BEFORE PRODUCTION |
-| P1-15 | Skip link / keyboard | Chưa có skip link và chưa live keyboard traversal toàn trang. | Bổ sung cùng accessibility pass cuối. | OPEN BEFORE PRODUCTION |
+| P1-15 | Skip link / keyboard | Trước đây chưa có skip link. | Đã thêm `Bỏ qua điều hướng`, target `#main-content` trên toàn bộ route hiện tại; vẫn cần live keyboard traversal toàn trang. | CODE FIXED / LIVE VERIFY PENDING |
 | P1-16 | Mobile menu semantics | Menu trước đây chưa có `aria-controls`/Escape close và có nguy cơ logo sáng trên nền sáng. | Đã thêm `aria-controls`, Escape close và dark Brand assets khi menu mở. | CODE FIXED / LIVE MOBILE VERIFY PENDING |
 | P1-17 | Brand asset resilience | Fallback logo/wordmark trước đây bị giữ sau image với `z-index:-1`, nên onError chưa chắc nhìn thấy fallback. | Đã chuyển sang state và remove image lỗi khỏi DOM để fallback thực sự hiện. | FIXED |
 
@@ -106,10 +106,11 @@ Repo canonical hiện có 6 SKU. Tài liệu học phần yêu cầu website có
 - [x] Build Experience đổi hình/nội dung theo 3 bước
 - [x] `:focus-visible` có global treatment
 - [x] `prefers-reduced-motion` tắt decorative motion
+- [x] Skip link tới main content có trên toàn bộ route hiện tại
 - [x] Logo/wordmark có fallback thật khi asset lỗi
 - [x] Search dead control đã gỡ
 - [x] Fake cart count đã gỡ
-- [x] Interaction tracking đã nối vào analytics boundary cho filter/select/gallery/place/build
+- [x] Interaction tracking đã nối vào analytics boundary cho Hero/Featured/list/filter/select/gallery/place/build
 - [ ] Focus order + keyboard traversal live toàn trang
 - [ ] Touch interaction live mobile
 
