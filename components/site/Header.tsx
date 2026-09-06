@@ -13,11 +13,19 @@ const nav = [
 
 export function Header() {
   const pathname = usePathname();
-  const [compact, setCompact] = useState(false);
+  const isHome = pathname === "/";
+  const [compact, setCompact] = useState(!isHome);
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const sync = () => setCompact(window.scrollY > Math.max(120, window.innerHeight * 0.72));
+    const sync = () => {
+      if (!isHome) {
+        setCompact(true);
+        return;
+      }
+      setCompact(window.scrollY > Math.max(120, window.innerHeight * 0.72));
+    };
+
     sync();
     window.addEventListener("scroll", sync, { passive: true });
     window.addEventListener("resize", sync);
@@ -25,7 +33,7 @@ export function Header() {
       window.removeEventListener("scroll", sync);
       window.removeEventListener("resize", sync);
     };
-  }, []);
+  }, [isHome]);
 
   useEffect(() => setMenuOpen(false), [pathname]);
 
