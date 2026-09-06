@@ -5,7 +5,7 @@ export default function AboutPage() {
   return (
     <>
       <Header />
-      <main className="nk-inner-page">
+      <main id="main-content" tabIndex={-1} className="nk-inner-page">
         <section className="nk-about-intro nk-container">
           <p className="nk-eyebrow">VỀ NOOK KÝ</p>
           <h1>Thu nhỏ một nơi chốn để có thể nhìn gần hơn.</h1>
