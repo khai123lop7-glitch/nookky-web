@@ -1,4 +1,7 @@
+"use client";
+
 import { featuredProducts, formatVnd } from "@/data/products";
+import { track } from "@/lib/analytics";
 
 export function FeaturedNooks() {
   return (
@@ -15,7 +18,12 @@ export function FeaturedNooks() {
         <div className="nk-featured__grid">
           {featuredProducts.map((product, index) => (
             <article className="nk-featured-card" key={product.slug}>
-              <a className="nk-featured-card__link" aria-label={`Khám phá ${product.name}`} href={`/product/${product.slug}`}>
+              <a
+                className="nk-featured-card__link"
+                aria-label={`Khám phá ${product.name}`}
+                href={`/product/${product.slug}`}
+                onClick={() => track("featured_product_click", { item_id: product.slug, item_name: product.name, position: index + 1, value: product.price })}
+              >
                 <picture className="nk-featured-card__media">
                   <img src={product.media.cover} alt={product.name} loading="lazy" decoding="async" />
                 </picture>
