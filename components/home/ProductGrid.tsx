@@ -14,22 +14,19 @@ const filters: { label: string; value: Filter }[] = [
 
 export function ProductGrid() {
   const [filter, setFilter] = useState<Filter>("all");
-  const visible = useMemo(
-    () => (filter === "all" ? products : products.filter((p) => p.region === filter)),
-    [filter],
-  );
+  const visible = useMemo(() => filter === "all" ? products : products.filter((product) => product.region === filter), [filter]);
 
   return (
-    <section className="nk-shop" id="shop-all" aria-labelledby="shop-title">
+    <section className="nk-shop-all" id="shop-all" aria-labelledby="nk-shop-title">
       <div className="nk-container">
-        <header className="nk-section-head">
+        <header className="nk-shop-all__header">
           <div>
             <p className="nk-eyebrow">BỘ SƯU TẬP</p>
-            <h2 id="shop-title">Chọn một nơi để bắt đầu.</h2>
+            <h2 id="nk-shop-title">Chọn một nơi để bắt đầu.</h2>
           </div>
-          <div className="nk-section-head__aside">
+          <div className="nk-shop-all__aside">
             <p>Sáu nơi chốn, sáu nhịp ánh sáng. Lọc nhanh theo vùng hoặc xem toàn bộ bộ sưu tập.</p>
-            <a href="/shop">Xem trang sản phẩm</a>
+            <a className="nk-text-link" href="/shop">Xem trang sản phẩm</a>
           </div>
         </header>
 
@@ -47,25 +44,28 @@ export function ProductGrid() {
           ))}
         </div>
 
-        <div className="nk-product-grid">
+        <div className="nk-product-grid nk-shop-all__grid">
           {visible.map((product) => (
             <article className="nk-product-card" key={product.slug}>
-              <a href={`/product/${product.slug}`}>
-                <div className="nk-product-card__media"><img src={product.media.cover} alt={product.name} /></div>
+              <a className="nk-product-card__media" href={`/product/${product.slug}`} aria-label={product.name}>
+                <img className="nk-product-card__cover" src={product.media.cover} alt={product.name} loading="lazy" />
+                <img className="nk-product-card__hover" src={product.media.detail} alt="" aria-hidden="true" loading="lazy" />
+              </a>
+              <div className="nk-product-card__body">
                 <p className="nk-product-card__location">{product.location}</p>
                 <div className="nk-product-card__title-row">
-                  <h3>{product.name}</h3>
-                  <div className="nk-product-card__price">
-                    {product.regularPrice ? <s>{formatVnd(product.regularPrice)}</s> : null}
+                  <a href={`/product/${product.slug}`}><h3>{product.name}</h3></a>
+                  <p className="nk-product-card__price">
+                    {product.regularPrice ? <del>{formatVnd(product.regularPrice)}</del> : null}
                     <strong>{formatVnd(product.price)}</strong>
-                  </div>
+                  </p>
                 </div>
-                <dl className="nk-product-card__facts">
+                <dl className="nk-product-card__facts" aria-label="Thông tin sản phẩm">
                   <div><dt>Độ khó</dt><dd>{product.difficulty}</dd></div>
                   {product.pieces ? <div><dt>Số mảnh</dt><dd>{product.pieces}</dd></div> : null}
                   <div><dt>Thời gian</dt><dd>{product.buildTime}</dd></div>
                 </dl>
-              </a>
+              </div>
             </article>
           ))}
         </div>
