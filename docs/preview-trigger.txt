@@ -1,1 +1,1 @@
-Trigger Vercel Preview after Git integration. 2026-09-06.
+Deep QA batch 2 complete. Verify HEAD preview: typography, search control, mobile 390x844, Brand Close/Footer, header boundary.
