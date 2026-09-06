@@ -1,24 +1,52 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { formatVnd, spotlightProduct as product } from "@/data/products";
+import { track } from "@/lib/analytics";
 
 const gallery = [product.media.cover, product.media.detail, product.media.lifestyle];
 
 export function ProductSpotlight() {
   const [slide, setSlide] = useState(0);
   const [zoom, setZoom] = useState(false);
+  const zoomTriggerRef = useRef<HTMLButtonElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
 
-  const go = (next: number) => setSlide((next + gallery.length) % gallery.length);
+  const selectSlide = (next: number) => {
+    const normalized = (next + gallery.length) % gallery.length;
+    setSlide(normalized);
+    track("spotlight_gallery_change", { product: product.slug, image_index: normalized + 1 });
+  };
+
+  const openZoom = () => {
+    setZoom(true);
+    track("spotlight_zoom_open", { product: product.slug, image_index: slide + 1 });
+  };
 
   useEffect(() => {
     if (!zoom) return;
-    const closeOnEscape = (event: KeyboardEvent) => event.key === "Escape" && setZoom(false);
+
+    const closeModal = () => setZoom(false);
+    const handleKeydown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        closeModal();
+        return;
+      }
+      if (event.key === "Tab") {
+        event.preventDefault();
+        closeButtonRef.current?.focus();
+      }
+    };
+
     document.body.style.overflow = "hidden";
-    window.addEventListener("keydown", closeOnEscape);
+    window.addEventListener("keydown", handleKeydown);
+    window.requestAnimationFrame(() => closeButtonRef.current?.focus());
+
     return () => {
       document.body.style.overflow = "";
-      window.removeEventListener("keydown", closeOnEscape);
+      window.removeEventListener("keydown", handleKeydown);
+      window.requestAnimationFrame(() => zoomTriggerRef.current?.focus());
     };
   }, [zoom]);
 
@@ -34,9 +62,10 @@ export function ProductSpotlight() {
                 src={src}
                 alt={`${product.name} - ảnh ${index + 1}`}
                 loading="lazy"
+                decoding="async"
               />
             ))}
-            <button className="nk-spotlight__zoom" type="button" onClick={() => setZoom(true)} aria-label="Phóng to ảnh sản phẩm">
+            <button ref={zoomTriggerRef} className="nk-spotlight__zoom" type="button" onClick={openZoom} aria-label="Phóng to ảnh sản phẩm">
               <span aria-hidden="true">＋</span><span>Phóng to</span>
             </button>
           </div>
@@ -48,15 +77,15 @@ export function ProductSpotlight() {
                   type="button"
                   key={index}
                   className={slide === index ? "is-active" : ""}
-                  onClick={() => setSlide(index)}
+                  onClick={() => selectSlide(index)}
                   aria-label={`Xem ảnh ${index + 1}`}
-                  aria-current={slide === index}
+                  aria-pressed={slide === index}
                 />
               ))}
             </div>
             <div className="nk-spotlight__arrows">
-              <button className="nk-spotlight__nav" type="button" onClick={() => go(slide - 1)} aria-label="Ảnh trước">←</button>
-              <button className="nk-spotlight__nav" type="button" onClick={() => go(slide + 1)} aria-label="Ảnh tiếp theo">→</button>
+              <button className="nk-spotlight__nav" type="button" onClick={() => selectSlide(slide - 1)} aria-label="Ảnh trước">←</button>
+              <button className="nk-spotlight__nav" type="button" onClick={() => selectSlide(slide + 1)} aria-label="Ảnh tiếp theo">→</button>
             </div>
           </div>
         </div>
@@ -94,9 +123,9 @@ export function ProductSpotlight() {
       </div>
 
       {zoom ? (
-        <div className="nk-zoom-modal" role="dialog" aria-modal="true" aria-label="Ảnh sản phẩm phóng to" onClick={() => setZoom(false)}>
-          <button type="button" className="nk-zoom-modal__close" onClick={() => setZoom(false)} aria-label="Đóng ảnh phóng to">×</button>
-          <img src={gallery[slide]} alt={product.name} onClick={(event) => event.stopPropagation()} />
+        <div className="nk-zoom-modal" role="dialog" aria-modal="true" aria-label={`Ảnh phóng to ${product.name}`} onClick={() => setZoom(false)}>
+          <button ref={closeButtonRef} type="button" className="nk-zoom-modal__close" onClick={() => setZoom(false)} aria-label="Đóng ảnh phóng to">×</button>
+          <img src={gallery[slide]} alt={product.name} decoding="async" onClick={(event) => event.stopPropagation()} />
         </div>
       ) : null}
     </section>
