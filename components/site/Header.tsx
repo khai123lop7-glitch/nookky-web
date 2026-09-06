@@ -75,9 +75,6 @@ export function Header() {
         </a>
 
         <div className="nk-header__tools" aria-label="Tiện ích">
-          <button className="nk-icon-button nk-search-button" type="button" aria-label="Tìm kiếm" title="Tìm kiếm sẽ được nối ở phase data">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/></svg>
-          </button>
           <a className="nk-icon-button" href="/cart" aria-label="Giỏ hàng">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 8.5h11l-1 11h-9l-1-11Z"/><path d="M9 9V6.5a3 3 0 0 1 6 0V9"/></svg>
             <span className="nk-cart-count" aria-label="0 sản phẩm">0</span>
