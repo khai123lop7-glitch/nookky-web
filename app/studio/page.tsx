@@ -9,11 +9,11 @@ export default function StudioPage() {
           <p className="nk-eyebrow">NOOK KÝ STUDIO</p>
           <h1>Tự tạo một nơi chốn của riêng bạn.</h1>
           <p>
-            Đây là route nền cho configurator mới: Chọn nơi chốn → kiến trúc → ánh sáng → đồ trang trí → dấu ký → lưu/mua.
+            Nook Ký Studio sẽ cho phép bạn chọn nơi chốn, kiến trúc, ánh sáng, đồ trang trí và dấu ký để tạo một phiên bản mang dấu ấn riêng.
           </p>
           <div className="nk-studio-status">
-            <span>Phase hiện tại</span>
-            <strong>Frontend foundation · chưa nối data/commerce</strong>
+            <span>Trạng thái</span>
+            <strong>Trải nghiệm tùy chỉnh đang được hoàn thiện</strong>
           </div>
         </section>
       </main>
