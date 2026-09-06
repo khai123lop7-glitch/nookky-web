@@ -55,7 +55,6 @@ export function ProductGrid() {
             <article className="nk-product-card" key={product.slug}>
               <a className="nk-product-card__media" href={`/product/${product.slug}`} aria-label={product.name}>
                 <img className="nk-product-card__cover" src={product.media.cover} alt={product.name} loading="lazy" decoding="async" />
-                <img className="nk-product-card__hover" src={product.media.detail} alt="" aria-hidden="true" loading="lazy" decoding="async" />
               </a>
               <div className="nk-product-card__body">
                 <p className="nk-product-card__location">{product.location}</p>
