@@ -78,8 +78,11 @@ export function ProductSpotlight() {
             </div>
 
             <div className="nk-spotlight__actions">
-              <button className="nk-button" type="button" disabled title="Commerce backend sẽ được nối ở phase sau">Thêm vào giỏ</button>
-              <a className="nk-text-link" href={`/product/${product.slug}`}>Xem chi tiết sản phẩm</a>
+              <a className="nk-button" href={`/product/${product.slug}`}>
+                Xem chi tiết sản phẩm
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M14 7l5 5-5 5"/></svg>
+              </a>
+              <a className="nk-text-link" href="/shop">Xem toàn bộ bộ sưu tập</a>
             </div>
 
             <ul className="nk-spotlight__trust">
