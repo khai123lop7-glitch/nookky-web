@@ -1,11 +1,25 @@
 "use client";
 
+import { useEffect } from "react";
 import { formatVnd, products } from "@/data/products";
+import { track } from "@/lib/analytics";
 import { useCart } from "./CartProvider";
+import { PromotionBar } from "./PromotionBar";
+import { PromoBox } from "./PromoBox";
 import styles from "./CartView.module.css";
 
 export function CartView() {
-  const { items, setQuantity, removeItem, clearCart } = useCart();
+  const {
+    items,
+    setQuantity,
+    removeItem,
+    clearCart,
+    hydrated,
+    appliedPromo,
+    discountAmount,
+    isFreeShipping,
+  } = useCart();
+
   const lines = items
     .map((item) => {
       const product = products.find((entry) => entry.slug === item.slug);
@@ -14,6 +28,34 @@ export function CartView() {
     .filter((line): line is NonNullable<typeof line> => Boolean(line));
 
   const subtotal = lines.reduce((sum, line) => sum + line.product.price * line.quantity, 0);
+  const finalTotal = Math.max(0, subtotal - discountAmount);
+
+  useEffect(() => {
+    if (hydrated && lines.length > 0) {
+      track("view_cart", {
+        item_count: lines.length,
+        value: finalTotal,
+        currency: "VND",
+      });
+    }
+  }, [hydrated, lines.length, finalTotal]);
+
+  if (!hydrated) {
+    return (
+      <section className={`${styles.cart} nk-container-wide`} aria-busy="true">
+        <header className={styles.header}>
+          <div>
+            <p className="nk-eyebrow">GIỎ HÀNG</p>
+            <h1>Đang tải giỏ hàng...</h1>
+          </div>
+        </header>
+        <div className={styles.skeletonLayout}>
+          <div className={styles.skeletonLine} />
+          <div className={styles.skeletonLine} />
+        </div>
+      </section>
+    );
+  }
 
   if (lines.length === 0) {
     return (
@@ -26,6 +68,14 @@ export function CartView() {
     );
   }
 
+  const handleCheckoutClick = () => {
+    track("begin_checkout", {
+      value: finalTotal,
+      currency: "VND",
+      item_count: lines.length,
+    });
+  };
+
   return (
     <section className={`${styles.cart} nk-container-wide`} aria-labelledby="nk-cart-title">
       <header className={styles.header}>
@@ -35,6 +85,9 @@ export function CartView() {
         </div>
         <button className={`${styles.clear} nk-text-link`} type="button" onClick={clearCart}>Xóa giỏ hàng</button>
       </header>
+
+      {/* Promotion bar */}
+      <PromotionBar />
 
       <div className={styles.layout}>
         <div className={styles.items}>
@@ -65,8 +118,35 @@ export function CartView() {
         <aside className={styles.summary} aria-label="Tóm tắt giỏ hàng">
           <p>Tạm tính</p>
           <strong>{formatVnd(subtotal)}</strong>
-          <div className={styles.note}>Phí vận chuyển và thanh toán sẽ được xác nhận ở bước tiếp theo.</div>
-          <a className="nk-button" href="/shop">Tiếp tục mua sắm</a>
+
+          {appliedPromo && discountAmount > 0 && (
+            <div className={styles.discountLine}>
+              <span>Ưu đãi ({appliedPromo.code}):</span>
+              <strong>-{formatVnd(discountAmount)}</strong>
+            </div>
+          )}
+
+          {/* Promo voucher input box */}
+          <PromoBox />
+
+          <div className={styles.note}>
+            {isFreeShipping ? (
+              <span className={styles.freeShipNote}>
+                ✓ Bạn được miễn phí vận chuyển {appliedPromo?.type === "freeship" ? "(Mã FREESHIP)" : ""}
+              </span>
+            ) : (
+              <span>Thêm {formatVnd(1000000 - subtotal)} để được miễn phí vận chuyển</span>
+            )}
+          </div>
+
+          <a className="nk-button" href="/checkout" onClick={handleCheckoutClick}>
+            Tiến hành đặt hàng →
+          </a>
+          <div className={styles.continueShopping}>
+            <a className="nk-text-link" href="/shop">
+              ← Tiếp tục xem sản phẩm
+            </a>
+          </div>
         </aside>
       </div>
     </section>

@@ -1,6 +1,9 @@
 @font-face {
   font-family: "NookOrtland";
-  src: url("/fonts/1FTV-Ortland.ttf") format("truetype");
+  src: url("/fonts/1FTV-Ortland.ttf") format("truetype"),
+       url("/fonts/1FTV-Ortland.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
   font-display: swap;
 }
 

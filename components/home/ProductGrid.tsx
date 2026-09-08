@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { formatVnd, products, Region } from "@/data/products";
 import { track } from "@/lib/analytics";
+import { AddToCartButton } from "@/components/commerce/AddToCartButton";
 
 type Filter = "all" | Region;
 
@@ -85,6 +86,15 @@ export function ProductGrid() {
                   {product.pieces ? <div><dt>Số mảnh</dt><dd>{product.pieces}</dd></div> : null}
                   <div><dt>Thời gian</dt><dd>{product.buildTime}</dd></div>
                 </dl>
+                <div className="nk-product-card__quick-add">
+                  <AddToCartButton
+                    slug={product.slug}
+                    className="nk-button nk-product-card__btn"
+                    label="+ Thêm vào giỏ"
+                    addedLabel="✓ Đã thêm vào giỏ"
+                    stopPropagation={true}
+                  />
+                </div>
               </div>
             </article>
           ))}

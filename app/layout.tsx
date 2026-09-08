@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Footer } from "@/components/site/Footer";
 import { CartProvider } from "@/components/commerce/CartProvider";
+import { CartToast } from "@/components/commerce/CartToast";
 import "./globals.css";
 import "./v3-migration.css";
 import "./final-polish.css";
@@ -18,6 +19,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           <a className="nk-skip-link" href="#main-content">Bỏ qua điều hướng</a>
           {children}
           <Footer />
+          <CartToast />
         </CartProvider>
       </body>
     </html>

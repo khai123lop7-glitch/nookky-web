@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { Header } from "@/components/site/Header";
-import { AddToCartButton } from "@/components/commerce/AddToCartButton";
+import { ProductPurchaseSection } from "@/components/commerce/ProductPurchaseSection";
 import { formatVnd, products } from "@/data/products";
 
 export function generateStaticParams() {
@@ -38,10 +38,11 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
               {product.regularPrice ? <s>{formatVnd(product.regularPrice)}</s> : null}
               <strong>{formatVnd(product.price)}</strong>
             </div>
-            <div className="nk-pdp__actions">
-              <AddToCartButton slug={product.slug} />
-              <a className="nk-text-link" href="/cart">Xem giỏ hàng</a>
-            </div>
+            <ProductPurchaseSection
+              slug={product.slug}
+              name={product.name}
+              price={product.price}
+            />
           </aside>
         </section>
       </main>
