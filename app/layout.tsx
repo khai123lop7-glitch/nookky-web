@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
+import { Footer } from "@/components/site/Footer";
+import { CartProvider } from "@/components/commerce/CartProvider";
+import { CartToast } from "@/components/commerce/CartToast";
 import "./globals.css";
+import "./v3-migration.css";
+import "./final-polish.css";
 
 export const metadata: Metadata = {
   title: "Nook Ký",
@@ -9,7 +14,14 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="vi">
-      <body>{children}</body>
+      <body>
+        <CartProvider>
+          <a className="nk-skip-link" href="#main-content">Bỏ qua điều hướng</a>
+          {children}
+          <Footer />
+          <CartToast />
+        </CartProvider>
+      </body>
     </html>
   );
 }

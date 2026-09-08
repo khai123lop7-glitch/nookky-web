@@ -1,0 +1,1 @@
+Deep QA batch 2 complete. Verify HEAD preview: typography, search control, mobile 390x844, Brand Close/Footer, header boundary.

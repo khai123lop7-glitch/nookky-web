@@ -1,0 +1,138 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 24px;
+}
+
+.quantityRow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.quantityLabel {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #745d4f;
+}
+
+.quantityControl {
+  display: inline-grid;
+  grid-template-columns: 40px 48px 40px;
+  border: 1px solid rgba(47, 22, 7, 0.2);
+  background: #fff;
+}
+
+.qtyBtn {
+  min-height: 42px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  background: transparent;
+  font-size: 18px;
+  cursor: pointer;
+  color: #2f1607;
+  transition: background 0.15s ease;
+}
+.qtyBtn:hover:not(:disabled) {
+  background: #f4ecdf;
+}
+.qtyBtn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.qtyValue {
+  display: grid;
+  place-items: center;
+  font-family: var(--nk-v3-display);
+  font-size: 17px;
+  font-weight: 400;
+  color: #2f1607;
+}
+
+.actionsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.addToCartBtn {
+  min-height: 52px;
+  padding: 0 16px;
+  border: 1px solid #2f1607;
+  background: transparent;
+  color: #2f1607;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.addToCartBtn:hover {
+  background: #f4ecdf;
+  border-color: #2f1607;
+  transform: translateY(-2px);
+}
+
+.buyNowBtn {
+  min-height: 52px;
+  padding: 0 16px;
+  border: 1px solid #2f1607;
+  background: #2f1607;
+  color: #fcf4e9;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.buyNowBtn:hover {
+  background: #193c32;
+  border-color: #193c32;
+  transform: translateY(-2px);
+}
+
+.cartLinkRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 6px;
+}
+
+.cartLink {
+  font-size: 12px;
+  font-weight: 600;
+  color: #745d4f;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.cartLink:hover {
+  color: #2f1607;
+}
+
+.shippingNote {
+  font-size: 11px;
+  color: #193c32;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+@media (max-width: 600px) {
+  .actionsGrid {
+    grid-template-columns: 1fr;
+  }
+}
