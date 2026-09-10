@@ -1,462 +1,275 @@
 /* ==========================================================================
-   BrandStory Module — Vintage Scrapbook Exact Replication (Target Image 2)
+   Section 2: Quà Tặng Doanh Nghiệp & Custom Gifts (Image Match)
    ========================================================================== */
 
-.storySection {
+.giftSection {
   position: relative;
-  background-color: #ede2cf;
-  background-image: url("/media/editorial/brand-story-bg.png");
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  color: #2a180e;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
   overflow: hidden;
-  scroll-margin-top: 72px;
-  padding: clamp(20px, 3vh, 36px) 0;
+  color: #fff9f0;
   box-sizing: border-box;
+  padding: clamp(60px, 8vh, 100px) 0;
+  background-color: #120a06;
 }
 
-@media (min-width: 992px) {
-  .storySection {
-    min-height: calc(100vh - 72px);
-    max-height: calc(100vh - 72px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-}
-
-/* ── Background Video Container ── */
-.videoBgWrap {
+/* Background image & lighting gradient overlay */
+.bgWrapper {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  overflow: hidden;
   z-index: 1;
   pointer-events: none;
 }
 
-.videoBg {
+.bgImage {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: right center;
   display: block;
 }
 
-.videoOverlay {
+.gradientOverlay {
   position: absolute;
   inset: 0;
-  background: rgba(237, 226, 207, 0.08);
+  background: linear-gradient(
+    90deg,
+    rgba(14, 8, 4, 0.94) 0%,
+    rgba(16, 9, 5, 0.88) 35%,
+    rgba(18, 10, 6, 0.65) 55%,
+    rgba(18, 10, 6, 0.15) 80%,
+    rgba(18, 10, 6, 0.4) 100%
+  );
   pointer-events: none;
 }
 
-/* ── 1. Top-Left Handwritten Scrapbook Note ── */
-.noteTopLeft {
-  position: absolute;
-  top: clamp(14px, 2.5vh, 26px);
-  left: clamp(20px, 4vw, 55px);
-  z-index: 10;
-  pointer-events: none;
-}
-
-.noteText {
-  font-family: "Caveat", cursive;
-  font-size: clamp(17px, 1.35vw, 22px);
-  line-height: 1.15;
-  color: #3b281c;
-  transform: rotate(-5deg);
-  margin: 0;
-  letter-spacing: 0.01em;
-}
-
-/* ── 2. Bottom-Right Location Note ── */
-.noteBottomRight {
-  position: absolute;
-  bottom: clamp(18px, 3.5vh, 36px);
-  right: clamp(180px, 19vw, 290px);
-  z-index: 10;
-  pointer-events: none;
-  text-align: center;
-}
-
-.locationText {
-  font-family: "Caveat", cursive;
-  font-size: clamp(19px, 1.5vw, 24px);
-  line-height: 1.15;
-  color: #443022;
-  transform: rotate(-4deg);
-  margin: 0;
-}
-
-/* ── 3. Main 2-Column Inner Container ── */
-.innerContainer {
-  width: min(calc(100% - 64px), 1320px);
-  margin-inline: auto;
-  display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
-  gap: clamp(28px, 4.5vw, 64px);
-  align-items: center;
+/* Content Container on the Left */
+.contentContainer {
   position: relative;
   z-index: 5;
-}
-
-/* ── LEFT COLUMN: Scrapbook Photo Collage ── */
-.leftCol {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-left: clamp(0px, 1.5vw, 24px);
-}
-
-.collageWrapper {
-  position: relative;
-  width: 100%;
-  max-width: clamp(280px, 27vw, 380px);
-  aspect-ratio: 4 / 4.5;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Torn Kraft Paper Behind */
-.tornPaperBackdrop {
-  position: absolute;
-  inset: -6px -12px 2px 8px;
-  background: #d8c4aa;
-  border-radius: 3px;
-  box-shadow: 2px 6px 18px rgba(45, 25, 12, 0.14);
-  transform: rotate(2.5deg);
-  z-index: 1;
-}
-
-/* Main Framed Photo */
-.mainPhotoCard {
-  position: relative;
-  z-index: 2;
-  width: 100%;
-  height: 100%;
-  background: #fdfaf6;
-  padding: clamp(8px, 0.8vw, 12px) clamp(8px, 0.8vw, 12px) clamp(12px, 1.2vw, 16px);
-  border-radius: 2px;
-  box-shadow: 0 10px 30px rgba(35, 18, 8, 0.22), 0 2px 6px rgba(0, 0, 0, 0.08);
-  box-sizing: border-box;
-}
-
-.mainPhotoInner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  background: #1e1108;
-}
-
-.mainPhotoImg {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-/* Polaroid Card at Bottom-Left */
-.polaroidCard {
-  position: absolute;
-  bottom: -16px;
-  left: -20px;
-  width: clamp(110px, 10.5vw, 150px);
-  background: #ffffff;
-  padding: 7px 7px 11px;
-  border-radius: 2px;
-  box-shadow: 0 10px 24px rgba(35, 15, 6, 0.3), 0 1px 4px rgba(0, 0, 0, 0.1);
-  transform: rotate(-6deg);
-  z-index: 3;
-  transition: transform 0.25s ease;
-  box-sizing: border-box;
-}
-
-.polaroidCard:hover {
-  transform: rotate(-2deg) scale(1.04);
-}
-
-.polaroidImgWrap {
-  aspect-ratio: 1 / 1;
-  overflow: hidden;
-  background: #180c05;
-}
-
-.polaroidImg {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-.polaroidCaption {
-  font-family: "Caveat", cursive;
-  font-size: clamp(11.5px, 0.9vw, 13.5px);
-  line-height: 1.15;
-  color: #3b281c;
-  text-align: center;
-  margin: 6px 0 0;
-}
-
-/* ── RIGHT COLUMN: Typography & Content ── */
-.rightCol {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding-right: clamp(10px, 3vw, 50px);
-}
-
-/* Header Block */
-.headerBlock {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: clamp(12px, 1.8vh, 20px);
-  position: relative;
-}
-
-.headerMain {
+  width: min(1320px, calc(100% - clamp(32px, 6vw, 100px)));
+  margin-inline: auto;
+  max-width: 660px;
+  margin-left: max(clamp(20px, 5vw, 80px), calc((100vw - 1320px) / 2));
   display: flex;
   flex-direction: column;
 }
 
+/* Eyebrow */
 .eyebrow {
-  font-family: var(--nk-v3-ui, "Be Vietnam Pro", sans-serif);
-  font-size: clamp(9.5px, 0.8vw, 11px);
-  font-weight: 700;
-  letter-spacing: 0.22em;
+  font-family: var(--nk-v3-serif, "Lora", serif);
+  font-size: clamp(11px, 0.9vw, 13px);
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: #e5b378;
+  margin: 0 0 clamp(12px, 1.8vh, 18px);
   text-transform: uppercase;
-  color: #553e2e;
-  margin: 0 0 6px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
 }
 
-.headerTick {
-  width: 1px;
-  height: 14px;
-  background: #998373;
-  margin: 0 0 8px 1px;
-}
-
-.mainHeadline {
-  font-family: var(--nk-v3-serif, "Playfair Display", serif);
-  font-size: clamp(26px, 2.7vw, 40px);
-  line-height: 1.12;
+/* Main Heading */
+.heading {
+  font-family: var(--nk-v3-serif, "Lora", "Playfair Display", serif);
+  font-size: clamp(42px, 4.6vw, 70px);
+  line-height: 1.05;
   font-weight: 600;
-  color: #27160d;
-  margin: 0;
-  letter-spacing: -0.015em;
+  color: #ffffff;
+  margin: 0 0 clamp(18px, 2.4vh, 26px);
+  letter-spacing: -0.025em;
+  text-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.9),
+    0 6px 24px rgba(0, 0, 0, 0.8),
+    0 12px 40px rgba(0, 0, 0, 0.6);
 }
 
-/* Side Note Margin */
-.sideNote {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-top: 18px;
+.headingLine1 {
+  display: block;
 }
 
-.sideNoteLine {
-  width: 1px;
-  height: 42px;
-  background: #b5a395;
+.headingLine2 {
+  display: block;
 }
 
-.sideNoteText {
-  font-family: var(--nk-v3-serif, "Playfair Display", serif);
+.headingLine2 em {
   font-style: italic;
-  font-size: clamp(11.5px, 0.9vw, 13px);
-  line-height: 1.25;
-  color: #644e3e;
+  font-family: var(--nk-v3-serif, "Cormorant Garamond", "Lora", serif);
+  font-weight: 500;
+  color: #faebd7;
+  margin-right: 8px;
 }
 
-/* Chapter Tabs */
-.chapterTabs {
-  display: flex;
-  gap: clamp(8px, 0.9vw, 12px);
-  margin-bottom: clamp(12px, 1.8vh, 18px);
+/* Description */
+.description {
+  font-family: var(--nk-v3-serif, "Lora", serif);
+  font-size: clamp(13px, 1.05vw, 15px);
+  line-height: 1.68;
+  color: rgba(253, 244, 233, 0.85);
+  margin: 0 0 clamp(28px, 3.5vh, 38px);
+  max-width: 500px;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.7);
 }
 
-.chapterBtn {
-  flex: 1;
-  padding: clamp(6px, 0.9vh, 9px) clamp(10px, 1vw, 14px);
-  border: 1px solid rgba(160, 130, 100, 0.45);
-  border-radius: 4px;
-  background: rgba(230, 218, 202, 0.65);
-  color: #4a3426;
-  cursor: pointer;
-  text-align: left;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  transition: all 0.2s ease;
-  box-sizing: border-box;
+/* 3 Pillars Grid */
+.featuresGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(12px, 1.5vw, 24px);
+  margin-bottom: clamp(28px, 3.5vh, 40px);
+  padding-bottom: clamp(16px, 2vh, 24px);
+  border-bottom: 1px solid rgba(245, 222, 190, 0.14);
 }
 
-.chapterBtn:hover {
-  background: rgba(220, 205, 185, 0.9);
-  border-color: #822622;
-}
-
-.chapterBtn.activeChapter {
-  background: #822622;
-  border-color: #822622;
-  color: #fff9f3;
-  box-shadow: 0 4px 14px rgba(130, 38, 34, 0.28);
-}
-
-.btnNum {
-  font-family: var(--nk-v3-serif, "Playfair Display", serif);
-  font-style: italic;
-  font-size: clamp(9.5px, 0.75vw, 11px);
-  opacity: 0.85;
-  margin-bottom: 1px;
-}
-
-.activeChapter .btnNum {
-  opacity: 0.92;
-}
-
-.btnTitle {
-  font-family: var(--nk-v3-ui, "Be Vietnam Pro", sans-serif);
-  font-size: clamp(10.5px, 0.82vw, 12.5px);
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-/* Chapter Story Body */
-.chapterStoryBody {
+.featureCard {
   display: flex;
   flex-direction: column;
-  animation: fadeIn 0.25s ease;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(4px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.chapterTitle {
-  font-family: var(--nk-v3-serif, "Playfair Display", serif);
-  font-size: clamp(19px, 1.8vw, 25px);
-  line-height: 1.15;
-  font-weight: 600;
-  color: #27160d;
-  margin: 0 0 clamp(8px, 1.2vh, 12px);
-}
-
-.paragraphGroup {
-  display: flex;
-  flex-direction: column;
-  gap: clamp(8px, 1.2vh, 12px);
-  margin-bottom: clamp(12px, 1.8vh, 18px);
-}
-
-.storyParagraph {
-  font-family: var(--nk-v3-ui, "Be Vietnam Pro", sans-serif);
-  font-size: clamp(12px, 0.95vw, 13.5px);
-  line-height: 1.65;
-  color: #3b2a1e;
-  margin: 0;
-}
-
-.dropCapN {
-  float: left;
-  font-family: var(--nk-v3-serif, "Playfair Display", serif);
-  font-size: clamp(38px, 3vw, 44px);
-  line-height: 0.8;
-  padding-right: 8px;
-  padding-top: 3px;
-  color: #822622;
-  font-weight: 700;
-}
-
-/* CTA Divider & Link */
-.ctaDivider {
-  width: 44px;
-  height: 1px;
-  background: rgba(140, 110, 85, 0.5);
-  margin-bottom: clamp(10px, 1.5vh, 14px);
-}
-
-.ctaLinkWrap {
-  display: inline-flex;
-}
-
-.ctaLink {
-  font-family: var(--nk-v3-serif, "Playfair Display", serif);
-  font-size: clamp(12.5px, 0.95vw, 14px);
-  font-weight: 600;
-  color: #27160d;
-  display: inline-flex;
-  align-items: center;
   gap: 6px;
-  padding-bottom: 2px;
-  text-decoration: none;
-  transition: all 0.2s ease;
 }
 
-.ctaLink:hover {
-  color: #822622;
+.featureIcon {
+  color: #ebc082;
+  margin-bottom: 2px;
+  display: flex;
+  align-items: center;
+}
+
+.featureTitle {
+  font-family: var(--nk-v3-serif, "Lora", serif);
+  font-size: clamp(12.5px, 0.95vw, 14.5px);
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.featureDesc {
+  font-family: var(--nk-v3-serif, "Lora", serif);
+  font-size: clamp(10.5px, 0.8vw, 12px);
+  line-height: 1.5;
+  color: rgba(253, 244, 233, 0.65);
+  margin: 0;
+}
+
+/* CTA Button Group */
+.ctaGroup {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: clamp(28px, 3.5vh, 38px);
+  flex-wrap: wrap;
+}
+
+.primaryBtn {
+  display: inline-flex;
+  align-items: center;
   gap: 10px;
+  background: #fdfaf6;
+  color: #271408;
+  padding: 12px 26px;
+  border-radius: 999px;
+  font-family: var(--nk-v3-serif, "Lora", serif);
+  font-size: 13.5px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.22s ease;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
 }
 
-/* ── 4. Responsive Breakpoints ── */
-@media (max-width: 1024px) {
-  .sideNote {
-    display: none;
-  }
+.primaryBtn:hover {
+  background: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+  color: #000000;
 }
 
+.secondaryBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(40, 24, 15, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: #f7e6ce;
+  border: 1px solid rgba(245, 222, 190, 0.28);
+  padding: 12px 24px;
+  border-radius: 999px;
+  font-family: var(--nk-v3-serif, "Lora", serif);
+  font-size: 13.5px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.22s ease;
+}
+
+.secondaryBtn:hover {
+  background: rgba(60, 36, 22, 0.85);
+  border-color: rgba(245, 222, 190, 0.55);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+/* Bottom Quote */
+.quoteWrap {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.quoteLine {
+  width: 28px;
+  height: 1px;
+  background: #c99859;
+  margin-top: 8px;
+  flex-shrink: 0;
+}
+
+.quoteText {
+  font-family: var(--nk-v3-serif, "Lora", serif);
+  font-style: italic;
+  font-size: clamp(11.5px, 0.88vw, 13px);
+  line-height: 1.5;
+  color: rgba(247, 230, 206, 0.72);
+  margin: 0;
+}
+
+/* Responsive adjustments */
 @media (max-width: 900px) {
-  .storySection {
-    max-height: none;
-    min-height: 0;
-    padding: 44px 0 60px;
+  .giftSection {
+    min-height: auto;
+    padding: 60px 20px;
   }
 
-  .innerContainer {
-    grid-template-columns: 1fr;
-    gap: 36px;
+  .contentContainer {
+    max-width: 100%;
+    margin-left: 0;
   }
 
-  .leftCol {
-    padding-left: 0;
-  }
-
-  .rightCol {
-    padding-right: 0;
-  }
-
-  .noteTopLeft,
-  .noteBottomRight {
-    display: none;
+  .gradientOverlay {
+    background: linear-gradient(
+      180deg,
+      rgba(14, 8, 4, 0.7) 0%,
+      rgba(16, 9, 5, 0.92) 50%,
+      rgba(14, 8, 4, 0.96) 100%
+    );
   }
 }
 
 @media (max-width: 600px) {
-  .chapterTabs {
+  .featuresGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .ctaGroup {
     flex-direction: column;
-    gap: 6px;
+    align-items: stretch;
   }
 
-  .chapterBtn {
-    min-height: 40px;
-  }
-
-  .polaroidCard {
-    width: 105px;
-    bottom: -10px;
-    left: -10px;
+  .primaryBtn,
+  .secondaryBtn {
+    justify-content: center;
   }
 }
+

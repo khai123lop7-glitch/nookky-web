@@ -1,263 +1,237 @@
 /* ==========================================================================
-   CraftProcess Module — Vintage Dark Wood Workbench Section (Image 2)
+   Section 3 / Craft Process: Hành trình tạo nên một Nook (Image Match)
    ========================================================================== */
 
 .craftSection {
   position: relative;
-  background-color: #211208;
-  background-image: url("/media/editorial/craft-bg.png");
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  color: #f7ede1;
-  overflow: hidden;
-  scroll-margin-top: 72px;
-  padding: clamp(20px, 2.8vh, 36px) 0;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff9f0;
   box-sizing: border-box;
+  padding: clamp(60px, 8vh, 90px) 0;
+  background-color: #1a0f08;
+  overflow: hidden;
 }
 
-@media (min-width: 992px) {
-  .craftSection {
-    min-height: calc(100vh - 72px);
-    max-height: calc(100vh - 72px);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-}
-
-/* ── Background Video Container ── */
-.videoBgWrap {
+/* Background image & Lighting Overlay */
+.bgWrapper {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  overflow: hidden;
   z-index: 1;
   pointer-events: none;
 }
 
-.videoBg {
+.bgImage {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
   display: block;
 }
 
-.videoOverlay {
+.bgOverlay {
   position: absolute;
   inset: 0;
-  background: rgba(20, 10, 4, 0.2);
+  background: linear-gradient(
+    180deg,
+    rgba(16, 9, 5, 0.75) 0%,
+    rgba(20, 11, 6, 0.82) 40%,
+    rgba(14, 8, 4, 0.94) 100%
+  );
   pointer-events: none;
 }
 
-/* ── Inner Container ── */
+/* Inner Container */
 .innerContainer {
-  width: min(calc(100% - 64px), 1340px);
+  position: relative;
+  z-index: 5;
+  width: min(1340px, calc(100% - clamp(32px, 5vw, 80px)));
   margin-inline: auto;
   display: flex;
   flex-direction: column;
-  gap: clamp(14px, 2.2vh, 24px);
-  position: relative;
-  z-index: 5;
+  gap: clamp(28px, 4vh, 48px);
 }
 
-/* ── 1. TOP REGION: Intro + Master Artisan Photo ── */
+/* ── 1. TOP REGION: Intro & Calligraphy Box ── */
 .topRegion {
-  display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.45fr);
-  gap: clamp(20px, 3.5vw, 54px);
-  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 32px;
 }
 
-/* Left: Intro */
 .introCol {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  max-width: 650px;
+}
+
+.eyebrowWrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: clamp(10px, 1.5vh, 16px);
 }
 
 .eyebrow {
-  font-family: var(--nk-v3-ui, "Be Vietnam Pro", sans-serif);
-  font-size: clamp(9px, 0.75vw, 10.5px);
-  font-weight: 700;
-  letter-spacing: 0.22em;
+  font-family: var(--nk-v3-serif, "Lora", serif);
+  font-size: clamp(10px, 0.82vw, 12px);
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: #dfbe8d;
   text-transform: uppercase;
-  color: #d6a04a;
-  margin: 0 0 clamp(6px, 1vh, 10px);
+}
+
+.eyebrowLine {
+  width: 48px;
+  height: 1px;
+  background: rgba(223, 190, 141, 0.4);
 }
 
 .title {
-  font-family: var(--nk-v3-serif, "Playfair Display", serif);
-  font-size: clamp(24px, 2.6vw, 38px);
-  line-height: 1.15;
-  font-weight: 600;
-  color: #faf3ea;
-  margin: 0 0 clamp(8px, 1.2vh, 14px);
-  letter-spacing: -0.015em;
+  font-family: var(--nk-v3-serif, "Lora", "Playfair Display", serif);
+  font-size: clamp(32px, 3.5vw, 52px);
+  line-height: 1.12;
+  font-weight: 500;
+  color: #ffffff;
+  margin: 0 0 clamp(14px, 2vh, 20px);
+  letter-spacing: -0.02em;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8);
+}
+
+.titleLine1 {
+  display: block;
+}
+
+.titleLine2 {
+  display: block;
+}
+
+.titleLine2 em {
+  font-style: italic;
+  font-family: var(--nk-v3-serif, "Cormorant Garamond", "Lora", serif);
+  font-weight: 400;
+  color: #f7e6ce;
 }
 
 .lead {
-  font-family: var(--nk-v3-ui, "Be Vietnam Pro", sans-serif);
-  font-size: clamp(11.5px, 0.9vw, 13.5px);
-  line-height: 1.65;
-  color: #c9b7a3;
-  margin: 0;
-  max-width: 48ch;
-}
-
-/* Right: Master Photo Card + Calligraphy */
-.masterPhotoCol {
-  display: flex;
-  align-items: center;
-  gap: clamp(16px, 2.5vw, 36px);
-  justify-content: flex-end;
-}
-
-.masterPhotoCard {
-  position: relative;
-  width: 100%;
-  max-width: 430px;
-  aspect-ratio: 16 / 9.5;
-  background: #fdfaf6;
-  padding: 8px 8px 12px;
-  border-radius: 2px;
-  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5), 0 2px 8px rgba(0, 0, 0, 0.25);
-  transform: rotate(-2deg);
-  box-sizing: border-box;
-}
-
-.masterPhotoInner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  background: #120904;
-}
-
-.masterImg {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  transition: opacity 0.2s ease;
-}
-
-.masterImg.switching {
-  opacity: 0.3;
-}
-
-/* Sticky Note on bottom right of master photo */
-.stickyNote {
-  position: absolute;
-  bottom: -16px;
-  right: -18px;
-  background: #eadecc;
-  padding: 8px 12px 10px;
-  border-radius: 2px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
-  transform: rotate(4deg);
-  z-index: 5;
-  border: 1px solid rgba(160, 130, 90, 0.3);
-}
-
-.stickyText {
-  font-family: "Caveat", cursive;
+  font-family: var(--nk-v3-serif, "Lora", serif);
   font-size: clamp(12.5px, 0.95vw, 14.5px);
-  line-height: 1.15;
-  color: #3b281c;
+  line-height: 1.65;
+  color: rgba(253, 244, 233, 0.8);
   margin: 0;
-  text-align: center;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.7);
 }
 
-/* Quote Calligraphy on the far right */
+/* Calligraphy Quote on Top Right */
 .quoteWrapper {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  min-width: 130px;
+  padding-left: 20px;
+  border-left: 1px solid rgba(223, 190, 141, 0.35);
+  margin-bottom: 8px;
 }
 
 .quoteCalligraphy {
-  font-family: "Caveat", cursive;
-  font-size: clamp(14px, 1.15vw, 17px);
-  line-height: 1.25;
-  color: #dfbe8d;
-  margin: 0 0 6px;
+  font-family: var(--nk-v3-serif, "Cormorant Garamond", "Lora", serif);
+  font-style: italic;
+  font-size: clamp(17px, 1.45vw, 23px);
+  line-height: 1.35;
+  color: #f3dfc5;
+  margin: 0 0 10px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+  letter-spacing: 0.01em;
 }
 
 .quoteLine {
-  width: 32px;
+  width: 36px;
   height: 1px;
-  background: rgba(223, 190, 141, 0.5);
+  background: rgba(223, 190, 141, 0.6);
 }
 
-/* ── 2. BOTTOM REGION: 4 Process Step Cards ── */
+/* ── 2. BOTTOM REGION: 4 Step Cards ── */
 .stepsGrid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: clamp(10px, 1.4vw, 18px);
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(12px, 1.5vw, 20px);
 }
 
 .stepCard {
-  background: rgba(36, 20, 11, 0.75);
-  border: 1px solid rgba(180, 140, 95, 0.28);
+  background: rgba(28, 16, 9, 0.7);
+  border: 1px solid rgba(223, 190, 141, 0.22);
   border-radius: 4px;
-  padding: clamp(10px, 1.2vh, 14px);
+  padding: clamp(12px, 1.4vh, 18px);
   cursor: pointer;
-  transition: all 0.22s ease;
+  transition: all 0.25s cubic-bezier(0.2, 0, 0, 1);
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  backdrop-filter: blur(4px);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.28);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   outline: none;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
 }
 
 .stepCard:hover {
-  background: rgba(48, 28, 16, 0.9);
-  border-color: #d6a04a;
-  transform: translateY(-2px);
+  background: rgba(44, 24, 14, 0.88);
+  border-color: rgba(223, 190, 141, 0.55);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
 }
 
 .stepCard.activeCard {
-  border: 1.5px solid #d6a04a;
-  background: rgba(54, 30, 18, 0.95);
-  box-shadow: 0 8px 24px rgba(214, 160, 74, 0.2);
+  border-color: #dfbe8d;
+  background: rgba(48, 26, 15, 0.95);
+  box-shadow: 0 12px 36px rgba(223, 190, 141, 0.25), 0 4px 12px rgba(0, 0, 0, 0.6);
 }
 
 .stepHeader {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.stepNumWrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .stepNum {
-  font-family: var(--nk-v3-serif, "Playfair Display", serif);
-  font-size: clamp(12px, 0.95vw, 14px);
+  font-family: var(--nk-v3-serif, "Lora", serif);
+  font-size: clamp(12px, 0.9vw, 14px);
   font-weight: 700;
-  color: #d6a04a;
+  color: #dfbe8d;
+}
+
+.stepNumLine {
+  width: 18px;
+  height: 1px;
+  background: rgba(223, 190, 141, 0.4);
 }
 
 .stepTitle {
-  font-family: var(--nk-v3-serif, "Playfair Display", serif);
-  font-size: clamp(13px, 1vw, 15.5px);
-  font-weight: 600;
-  color: #faf3ea;
+  font-family: var(--nk-v3-serif, "Lora", serif);
+  font-size: clamp(13px, 1.05vw, 16px);
+  font-weight: 700;
+  color: #ffffff;
   margin: 0;
-  letter-spacing: -0.01em;
+  line-height: 1.25;
 }
 
 .stepCopy {
-  font-family: var(--nk-v3-ui, "Be Vietnam Pro", sans-serif);
-  font-size: clamp(10px, 0.78vw, 11.5px);
+  font-family: var(--nk-v3-serif, "Lora", serif);
+  font-size: clamp(10.5px, 0.82vw, 12px);
   line-height: 1.55;
-  color: #b8a694;
-  margin: 0;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+  color: rgba(253, 244, 233, 0.68);
+  margin: 0 0 12px;
+  min-height: 48px;
 }
 
 .stepImgWrap {
@@ -265,8 +239,9 @@
   aspect-ratio: 16 / 10;
   overflow: hidden;
   border-radius: 2px;
-  background: #140a04;
+  background: #120904;
   margin-top: auto;
+  margin-bottom: 10px;
 }
 
 .stepImg {
@@ -274,30 +249,40 @@
   height: 100%;
   object-fit: cover;
   display: block;
+  transition: transform 0.3s ease;
+}
+
+.stepCard:hover .stepImg {
+  transform: scale(1.04);
+}
+
+.stepSubLabel {
+  font-family: var(--nk-v3-serif, "Lora", serif);
+  font-style: italic;
+  font-size: clamp(9.5px, 0.75vw, 11px);
+  line-height: 1.4;
+  color: rgba(223, 190, 141, 0.75);
+  margin: 0;
 }
 
 /* ── Responsive ── */
 @media (max-width: 1024px) {
   .topRegion {
-    grid-template-columns: 1fr;
+    flex-direction: column;
+    align-items: flex-start;
     gap: 20px;
-  }
-  .masterPhotoCol {
-    justify-content: flex-start;
-  }
-  .quoteWrapper {
-    display: none;
   }
 }
 
 @media (max-width: 900px) {
   .craftSection {
-    max-height: none;
-    min-height: 0;
-    padding: 36px 0 54px;
+    min-height: auto;
+    padding: 60px 20px;
   }
+
   .stepsGrid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
   }
 }
 
@@ -306,3 +291,4 @@
     grid-template-columns: 1fr;
   }
 }
+

@@ -8,6 +8,7 @@ interface ProcessStep {
   index: string;
   phase: string;
   copy: string;
+  subLabel: string;
   cardMedia: string;
   masterMedia: string;
 }
@@ -17,6 +18,7 @@ const processSteps: ProcessStep[] = [
     index: "01",
     phase: "Ý tưởng & Ký ức",
     copy: "Khảo sát thực địa, tìm kiếm những góc phố, kiến trúc và câu chuyện đặc trưng của từng vùng đất Việt Nam.",
+    subLabel: "Từ những chuyến đi, ký ức dần hình thành.",
     cardMedia: "/media/editorial/brand-close.webp",
     masterMedia: "/media/editorial/brand-close.webp",
   },
@@ -24,6 +26,7 @@ const processSteps: ProcessStep[] = [
     index: "02",
     phase: "Thiết kế & Kiến trúc",
     copy: "Phác thảo ý tưởng, dựng mô hình 3D và tính toán tỉ lệ để tái hiện không gian chân thực trong kích thước thu nhỏ.",
+    subLabel: "Biến cảm xúc thành bản thiết kế chi tiết.",
     cardMedia: "/media/products/01-pho-vua-len-den-hoi-an/detail.webp",
     masterMedia: "/media/products/01-pho-vua-len-den-hoi-an/detail.webp",
   },
@@ -31,6 +34,7 @@ const processSteps: ProcessStep[] = [
     index: "03",
     phase: "Chế tác mô hình",
     copy: "Cắt laser, lắp ráp thủ công và hoàn thiện từng chi tiết nhỏ từ gỗ, giấy, vải, nhựa... để tạo nên chiều sâu và cảm xúc thật.",
+    subLabel: "Tỉ mỉ trong từng chi tiết, tạo nên hồn cốt.",
     cardMedia: "/media/products/01-pho-vua-len-den-hoi-an/lifestyle.webp",
     masterMedia: "/media/products/01-pho-vua-len-den-hoi-an/lifestyle.webp",
   },
@@ -38,6 +42,7 @@ const processSteps: ProcessStep[] = [
     index: "04",
     phase: "Hoàn thiện & Thắp sáng",
     copy: "Lắp đặt hệ thống đèn LED, kiểm tra nét cuối cùng và đóng gói cẩn thận, sẵn sàng đến với không gian của bạn.",
+    subLabel: "Một tác phẩm hoàn chỉnh, sẵn sàng kể câu chuyện của riêng bạn.",
     cardMedia: "/media/products/01-pho-vua-len-den-hoi-an/cover.webp",
     masterMedia: "/media/products/01-pho-vua-len-den-hoi-an/cover.webp",
   },
@@ -64,83 +69,57 @@ export function CraftProcess() {
   return (
     <section
       className={styles.craftSection}
-      id="crafting-process"
+      id="quy-trinh-che-tac"
       aria-labelledby="nk-process-title"
     >
-      {/* Background Video */}
-      <div className={styles.videoBgWrap} aria-hidden="true">
-        <video
-          className={styles.videoBg}
-          autoPlay
-          muted
-          loop
-          playsInline
-          poster="/media/editorial/craft-bg.png"
-        >
-          <source src="/media/editorial/section4.mp4" type="video/mp4" />
-        </video>
-        <div className={styles.videoOverlay} />
+      {/* Background Image with Parallax Support */}
+      <div className={styles.bgWrapper} aria-hidden="true" data-nk-parallax data-nk-parallax-speed="0.14">
+        <img
+          src="/media/editorial/craft-process-bg.png"
+          alt="Quá trình tạo nên một Nook"
+          className={styles.bgImage}
+        />
+        <div className={styles.bgOverlay} />
       </div>
 
       <div className={styles.innerContainer}>
-        {/* ── TOP REGION: Story Intro & Master Artisan Photo ── */}
+        {/* ── TOP REGION: Story Intro & Calligraphy Quote ── */}
         <div className={styles.topRegion}>
           {/* Top-Left: Story Intro */}
-          <div className={styles.introCol}>
-            <p className={styles.eyebrow}>QUÁ TRÌNH TẠO NÊN MỘT NOOK</p>
+          <div className={styles.introCol} data-nk-reveal="left" data-nk-delay="1">
+            <div className={styles.eyebrowWrap}>
+              <span className={styles.eyebrow}>HÀNH TRÌNH TẠO NÊN MỘT NOOK</span>
+              <div className={styles.eyebrowLine} />
+            </div>
             <h2 id="nk-process-title" className={styles.title}>
-              Từ Lát Cắt Ký Ức
-              <br />
-              Đến Tác Phẩm Trên Kệ Sách.
+              <span className={styles.titleLine1}>Từ Lát Cắt Ký Ức</span>
+              <span className={styles.titleLine2}>
+                Đến <em>Tác Phẩm</em> Trên Kệ Sách.
+              </span>
             </h2>
             <p className={styles.lead}>
-              Hơn 120 giờ nghiên cứu và thử nghiệm để tái hiện công trình trăm
-              năm trong một không gian thu nhỏ sống động.
+              Hơn 120 giờ nghiên cứu và thực nghiệm để tái hiện
+              <br />
+              chân thực những góc phố, kiến trúc và cảm xúc Việt Nam
+              <br />
+              trong một không gian thu nhỏ.
             </p>
           </div>
 
-          {/* Top-Right: Master Photo Frame + Calligraphy Quote */}
-          <div className={styles.masterPhotoCol}>
-            <div className={styles.masterPhotoCard}>
-              <div className={styles.masterPhotoInner}>
-                <img
-                  src={currentStep.masterMedia}
-                  alt={`Quy trình chế tác - ${currentStep.phase}`}
-                  className={`${styles.masterImg} ${
-                    switching ? styles.switching : ""
-                  }`}
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-
-              {/* Taped Kraft Sticky Note */}
-              <div className={styles.stickyNote} aria-hidden="true">
-                <p className={styles.stickyText}>
-                  Tỉ mỉ
-                  <br />
-                  trong từng
-                  <br />
-                  chi tiết
-                </p>
-              </div>
-            </div>
-
-            {/* Right Calligraphy Quote */}
-            <div className={styles.quoteWrapper} aria-hidden="true">
-              <p className={styles.quoteCalligraphy}>
-                “Những điều nhỏ bé
-                <br />
-                cũng có thể lưu giữ
-                <br />
-                cả một thời thanh xuân.”
-              </p>
-              <div className={styles.quoteLine} />
-            </div>
+          {/* Top-Right: Calligraphy Quote Box */}
+          <div className={styles.quoteWrapper} aria-hidden="true" data-nk-reveal="right" data-nk-delay="2">
+            <p className={styles.quoteCalligraphy}>
+              “Những điều nhỏ bé
+              <br />
+              cũng có thể lưu giữ
+              <br />
+              cả một thời thanh xuân.”
+            </p>
+            <div className={styles.quoteLine} />
           </div>
         </div>
 
-        {/* ── BOTTOM REGION: 4 Process Step Cards ── */}
+        {/* ── BOTTOM REGION: 4 Process Step Cards with Staggered Reveal ── */}
         <div
           className={styles.stepsGrid}
           role="group"
@@ -158,6 +137,8 @@ export function CraftProcess() {
                 role="button"
                 tabIndex={0}
                 aria-pressed={isActive}
+                data-nk-reveal
+                data-nk-delay={(idx + 1).toString()}
                 onKeyDown={(e) => {
                   if (e.key === "Enter" || e.key === " ") {
                     selectStep(idx);
@@ -166,10 +147,10 @@ export function CraftProcess() {
               >
                 {/* Step Header */}
                 <div className={styles.stepHeader}>
-                  <span className={styles.stepNum}>
-                    {step.index}
-                    {isActive ? " •" : ""}
-                  </span>
+                  <div className={styles.stepNumWrap}>
+                    <span className={styles.stepNum}>{step.index}</span>
+                    <div className={styles.stepNumLine} />
+                  </div>
                   <h3 className={styles.stepTitle}>{step.phase}</h3>
                 </div>
 
@@ -186,6 +167,9 @@ export function CraftProcess() {
                     decoding="async"
                   />
                 </div>
+
+                {/* Step Caption / Sub-label */}
+                <p className={styles.stepSubLabel}>{step.subLabel}</p>
               </div>
             );
           })}

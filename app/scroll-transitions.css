@@ -1,0 +1,117 @@
+/* ==========================================================================
+   Smooth Transitions, Seams & Scroll Reveal System for Nook Ký
+   ========================================================================== */
+
+/* 1. Seamless Section Transition Masks (Ambient Edge Seams) */
+.heroSection::after,
+.giftSection::after,
+.craftSection::after,
+.ctaSection::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: clamp(60px, 10vh, 120px);
+  background: linear-gradient(180deg, transparent 0%, rgba(18, 9, 4, 0.6) 50%, #120904 100%);
+  pointer-events: none;
+  z-index: 4;
+}
+
+.giftSection::before,
+.craftSection::before,
+.ctaSection::before,
+.tocSection::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: clamp(60px, 10vh, 120px);
+  background: linear-gradient(0deg, transparent 0%, rgba(18, 9, 4, 0.6) 50%, #120904 100%);
+  pointer-events: none;
+  z-index: 4;
+}
+
+/* 2. Scroll Reveal Utility Classes */
+[data-nk-reveal] {
+  opacity: 0;
+  transform: translate3d(0, 28px, 0);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+[data-nk-reveal="left"] {
+  transform: translate3d(-32px, 0, 0);
+}
+
+[data-nk-reveal="right"] {
+  transform: translate3d(32px, 0, 0);
+}
+
+[data-nk-reveal="scale"] {
+  transform: scale(0.94);
+}
+
+/* When revealed */
+[data-nk-reveal].nk-revealed {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+/* Stagger Delays */
+[data-nk-delay="1"] { transition-delay: 0.1s; }
+[data-nk-delay="2"] { transition-delay: 0.2s; }
+[data-nk-delay="3"] { transition-delay: 0.3s; }
+[data-nk-delay="4"] { transition-delay: 0.4s; }
+[data-nk-delay="5"] { transition-delay: 0.5s; }
+
+/* 3. Heritage Divider / Chapter Seam Accent */
+.heritageSeamDivider {
+  position: relative;
+  width: 100%;
+  height: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.heritageSeamInner {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  width: min(1200px, 85vw);
+}
+
+.heritageSeamLine {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(235, 192, 130, 0.35), transparent);
+}
+
+.heritageSeamKnot {
+  color: #ebc082;
+  font-size: 13px;
+  opacity: 0.75;
+  filter: drop-shadow(0 0 6px rgba(235, 192, 130, 0.5));
+}
+
+/* 4. Subtle Parallax for Background Wrappers */
+[data-nk-parallax] {
+  will-change: transform;
+  transition: transform 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-nk-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  [data-nk-parallax] {
+    transform: none !important;
+  }
+}

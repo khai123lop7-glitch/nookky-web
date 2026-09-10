@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import { Footer } from "@/components/site/Footer";
 import { CartProvider } from "@/components/commerce/CartProvider";
 import { CartToast } from "@/components/commerce/CartToast";
+import { ScrollMotionSync } from "@/components/common/ScrollMotionSync";
 import "./globals.css";
 import "./v3-migration.css";
 import "./final-polish.css";
+import "./scroll-transitions.css";
 
 export const metadata: Metadata = {
   title: "Nook Ký",
@@ -18,8 +19,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <CartProvider>
           <a className="nk-skip-link" href="#main-content">Bỏ qua điều hướng</a>
           {children}
-          <Footer />
           <CartToast />
+          <ScrollMotionSync />
         </CartProvider>
       </body>
     </html>
