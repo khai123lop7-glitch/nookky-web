@@ -123,6 +123,22 @@ export default function CheckoutPage() {
       // Ignore localStorage write error if private browsing quota exceeded
     }
 
+    // Ghi đơn hàng vào backend (Google Sheet) + báo cho chủ shop ngay lập tức.
+    // localStorage ở trên chỉ phục vụ hiển thị lại đơn trên trình duyệt của
+    // chính khách hàng đó; fetch này mới là nơi dữ liệu thực sự "thoát" khỏi
+    // trình duyệt khách và đến được với chủ shop. Dùng keepalive để request
+    // vẫn hoàn tất kể cả khi router.push() điều hướng trang ngay sau đó.
+    fetch("/api/orders", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(orderData),
+      keepalive: true,
+    }).catch((error) => {
+      // Không chặn trải nghiệm khách hàng nếu ghi nhận nội bộ thất bại,
+      // nhưng log lại để không âm thầm mất đơn.
+      console.error("Không ghi được đơn hàng vào backend:", error);
+    });
+
     track("purchase", {
       transaction_id: orderId,
       value: total,
