@@ -51,6 +51,11 @@ export function generateOrderConfirmationEmailHtml(order: {
   const formatMoney = (val: number) =>
     new Intl.NumberFormat("vi-VN", { style: "currency", currency: "VND" }).format(val);
 
+  // COD chưa thực sự thu tiền ở bước đặt hàng, nên không hiển thị như đã
+  // thanh toán xong (trước đây email luôn ghi "ĐÃ THANH TOÁN THÀNH CÔNG" cho
+  // mọi phương thức, kể cả COD).
+  const isPrepaid = order.paymentMethod !== "cod";
+
   const itemsRows = order.items
     .map(
       (item) => `
@@ -90,7 +95,7 @@ export function generateOrderConfirmationEmailHtml(order: {
     <!-- Main Message -->
     <div style="padding: 32px 28px;">
       <div style="background: #edf7f2; border: 1px solid #c7e8d7; border-radius: 6px; padding: 16px; margin-bottom: 24px; text-align: center;">
-        <span style="display: block; font-size: 18px; font-weight: 700; color: #193c32; margin-bottom: 4px;">✓ Xác nhận thanh toán & Đặt hàng thành công</span>
+        <span style="display: block; font-size: 18px; font-weight: 700; color: #193c32; margin-bottom: 4px;">✓ ${isPrepaid ? "Xác nhận thanh toán & Đặt hàng thành công" : "Xác nhận đặt hàng thành công"}</span>
         <span style="font-size: 13px; color: #3d6858;">Mã đơn hàng của bạn: <strong>${order.orderId}</strong></span>
       </div>
 
@@ -141,7 +146,7 @@ export function generateOrderConfirmationEmailHtml(order: {
         <div><strong>Người nhận:</strong> ${order.customer.fullName} · ${order.customer.phone}</div>
         <div><strong>Địa chỉ:</strong> ${order.customer.address}${order.customer.district ? `, ${order.customer.district}` : ""}${order.customer.city ? `, ${order.customer.city}` : ""}</div>
         <div><strong>Phương thức thanh toán:</strong> ${paymentMethodLabel}</div>
-        <div><strong>Trạng thái thanh toán:</strong> <span style="color: #193c32; font-weight: 700;">ĐÃ THANH TOÁN THÀNH CÔNG</span></div>
+        <div><strong>Trạng thái thanh toán:</strong> <span style="color: #193c32; font-weight: 700;">${isPrepaid ? "ĐÃ THANH TOÁN THÀNH CÔNG" : "CHƯA THANH TOÁN - THU TIỀN MẶT KHI GIAO (COD)"}</span></div>
         ${order.customer.note ? `<div><strong>Ghi chú:</strong> ${order.customer.note}</div>` : ""}
       </div>
 

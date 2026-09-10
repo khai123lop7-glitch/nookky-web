@@ -71,6 +71,10 @@ function SuccessContent() {
 
   const displayOrderId = order?.orderId || queryOrderId || "NK-2026-PENDING";
   const trackingNumber = `GHN-${displayOrderId.replace(/[^0-9]/g, "") || "982341"}VN`;
+  // COD chưa thực sự thu tiền tại bước này (chỉ thu khi giao hàng), nên không
+  // được hiển thị như một đơn "đã thanh toán". Trước đây trang này luôn hiện
+  // "Đã thanh toán & Xác nhận đơn hàng" cho mọi phương thức, kể cả COD.
+  const isPrepaid = Boolean(order && order.paymentMethod !== "cod");
 
   const copyTracking = () => {
     if (typeof navigator !== "undefined" && navigator.clipboard) {
@@ -243,12 +247,14 @@ function SuccessContent() {
               <div className={styles.timelineContent}>
                 <div className={styles.timelineTitleRow}>
                   <span className={styles.timelineTitle}>
-                    Đã thanh toán & Xác nhận đơn hàng
+                    {isPrepaid ? "Đã thanh toán & Xác nhận đơn hàng" : "Đã xác nhận đơn hàng (thanh toán khi nhận hàng)"}
                   </span>
                   <span className={styles.timelineTime}>Vừa xong</span>
                 </div>
                 <p className={styles.timelineDesc}>
-                  Hệ thống Nook Ký đã nhận thanh toán qua {getPaymentLabel(order?.paymentMethod)} và xuất hóa đơn số #{displayOrderId}.
+                  {isPrepaid
+                    ? `Hệ thống Nook Ký đã nhận thanh toán qua ${getPaymentLabel(order?.paymentMethod)} và xuất hóa đơn số #${displayOrderId}.`
+                    : `Đơn hàng #${displayOrderId} đã được xác nhận. Bạn sẽ thanh toán ${formatVnd(order?.total || 0)} tiền mặt trực tiếp cho bưu tá khi nhận hàng.`}
                 </p>
               </div>
             </div>

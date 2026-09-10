@@ -112,6 +112,18 @@ function PaymentContent() {
         } catch {
           // Ignore storage error
         }
+
+        // Báo cho chủ shop: khách TỰ KHAI đã chuyển tiền. Đây chưa phải xác
+        // nhận ngân hàng thật (chưa có webhook cổng thanh toán), nên route
+        // này chỉ ghi log + nhắc chủ shop tự đối soát trước khi giao hàng.
+        fetch("/api/orders/payment-reported", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(updatedOrder),
+          keepalive: true,
+        }).catch((error) => {
+          console.error("Không ghi được sự kiện báo đã chuyển tiền:", error);
+        });
       }
 
       // Navigate to success after brief success feedback
