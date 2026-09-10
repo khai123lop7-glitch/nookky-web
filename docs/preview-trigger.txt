@@ -1,1 +1,1 @@
-Homepage typography update ready. Verify main production: Product Sans body/UI, Ortland display headings, Lora hero headline, no Heritage Seam dividers.
+Homepage typography update ready. Git integration restored; trigger production build from main.
