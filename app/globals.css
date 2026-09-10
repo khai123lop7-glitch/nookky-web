@@ -7,6 +7,38 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: "Product Sans VH";
+  src: url("/fonts/ProductSansVH-Regular.otf") format("opentype");
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Product Sans VH";
+  src: url("/fonts/ProductSansVH-Bold.otf") format("opentype");
+  font-style: normal;
+  font-weight: 700 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Product Sans VH";
+  src: url("/fonts/ProductSansVH-Italic.otf") format("opentype");
+  font-style: italic;
+  font-weight: 400 600;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Product Sans VH";
+  src: url("/fonts/ProductSansVH-BoldItalic.otf") format("opentype");
+  font-style: italic;
+  font-weight: 700 900;
+  font-display: swap;
+}
+
 :root {
   --nk-cream: #fcf4e9;
   --nk-brown: #2f1607;
@@ -27,7 +59,7 @@ body {
   margin: 0;
   background: var(--nk-cream);
   color: var(--nk-brown);
-  font-family: "Be Vietnam Pro", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: "Product Sans VH", "Be Vietnam Pro", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
   text-rendering: optimizeLegibility;
 }
 button, input, textarea, select { font: inherit; }

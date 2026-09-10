@@ -79,7 +79,7 @@
 }
 
 .eyebrow {
-  font-family: var(--nk-v3-serif, "Lora", serif);
+  font-family: var(--nk-v3-ui, "Product Sans VH", sans-serif);
   font-size: clamp(10px, 0.82vw, 12px);
   font-weight: 600;
   letter-spacing: 0.2em;
@@ -94,10 +94,10 @@
 }
 
 .title {
-  font-family: var(--nk-v3-serif, "Lora", "Playfair Display", serif);
+  font-family: var(--nk-v3-display, "NookOrtland", sans-serif);
   font-size: clamp(32px, 3.5vw, 52px);
   line-height: 1.12;
-  font-weight: 500;
+  font-weight: 400;
   color: #ffffff;
   margin: 0 0 clamp(14px, 2vh, 20px);
   letter-spacing: -0.02em;
@@ -114,13 +114,13 @@
 
 .titleLine2 em {
   font-style: italic;
-  font-family: var(--nk-v3-serif, "Cormorant Garamond", "Lora", serif);
+  font-family: var(--nk-v3-display, "NookOrtland", sans-serif);
   font-weight: 400;
   color: #f7e6ce;
 }
 
 .lead {
-  font-family: var(--nk-v3-serif, "Lora", serif);
+  font-family: var(--nk-v3-ui, "Product Sans VH", sans-serif);
   font-size: clamp(12.5px, 0.95vw, 14.5px);
   line-height: 1.65;
   color: rgba(253, 244, 233, 0.8);
@@ -139,7 +139,7 @@
 }
 
 .quoteCalligraphy {
-  font-family: var(--nk-v3-serif, "Cormorant Garamond", "Lora", serif);
+  font-family: var(--nk-v3-ui, "Product Sans VH", sans-serif);
   font-style: italic;
   font-size: clamp(17px, 1.45vw, 23px);
   line-height: 1.35;
@@ -204,7 +204,7 @@
 }
 
 .stepNum {
-  font-family: var(--nk-v3-serif, "Lora", serif);
+  font-family: var(--nk-v3-ui, "Product Sans VH", sans-serif);
   font-size: clamp(12px, 0.9vw, 14px);
   font-weight: 700;
   color: #dfbe8d;
@@ -217,7 +217,7 @@
 }
 
 .stepTitle {
-  font-family: var(--nk-v3-serif, "Lora", serif);
+  font-family: var(--nk-v3-ui, "Product Sans VH", sans-serif);
   font-size: clamp(13px, 1.05vw, 16px);
   font-weight: 700;
   color: #ffffff;
@@ -226,7 +226,7 @@
 }
 
 .stepCopy {
-  font-family: var(--nk-v3-serif, "Lora", serif);
+  font-family: var(--nk-v3-ui, "Product Sans VH", sans-serif);
   font-size: clamp(10.5px, 0.82vw, 12px);
   line-height: 1.55;
   color: rgba(253, 244, 233, 0.68);
@@ -257,7 +257,7 @@
 }
 
 .stepSubLabel {
-  font-family: var(--nk-v3-serif, "Lora", serif);
+  font-family: var(--nk-v3-ui, "Product Sans VH", sans-serif);
   font-style: italic;
   font-size: clamp(9.5px, 0.75vw, 11px);
   line-height: 1.4;
@@ -291,4 +291,3 @@
     grid-template-columns: 1fr;
   }
 }
-

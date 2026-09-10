@@ -5,18 +5,6 @@ import { CraftProcess } from "@/components/home/CraftProcess";
 import { ContactCta } from "@/components/home/ContactCta";
 import { TableOfContents } from "@/components/home/TableOfContents";
 
-function HeritageSeam() {
-  return (
-    <div className="heritageSeamDivider" aria-hidden="true">
-      <div className="heritageSeamInner">
-        <div className="heritageSeamLine" />
-        <span className="heritageSeamKnot">✧</span>
-        <div className="heritageSeamLine" />
-      </div>
-    </div>
-  );
-}
-
 /**
  * Nook Ký Homepage Flow:
  * 1. Hero Section
@@ -33,22 +21,14 @@ export default function HomePage() {
         {/* 1. Hero Section */}
         <Hero />
 
-        <HeritageSeam />
-
         {/* 2. Quà tặng doanh nghiệp & Custom Gifts */}
         <BrandStory />
-
-        <HeritageSeam />
 
         {/* 3. Hành trình tạo nên một Nook (Crafting Process) */}
         <CraftProcess />
 
-        <HeritageSeam />
-
         {/* 4. Kết nối & Đồng hành (Contact CTA Form) */}
         <ContactCta />
-
-        <HeritageSeam />
 
         {/* 5. Mục lục trang & Bản sắc văn hóa */}
         <TableOfContents />

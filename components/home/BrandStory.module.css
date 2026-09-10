@@ -61,7 +61,7 @@
 
 /* Eyebrow */
 .eyebrow {
-  font-family: var(--nk-v3-serif, "Lora", serif);
+  font-family: var(--nk-v3-ui, "Product Sans VH", sans-serif);
   font-size: clamp(11px, 0.9vw, 13px);
   font-weight: 600;
   letter-spacing: 0.2em;
@@ -73,10 +73,10 @@
 
 /* Main Heading */
 .heading {
-  font-family: var(--nk-v3-serif, "Lora", "Playfair Display", serif);
+  font-family: var(--nk-v3-display, "NookOrtland", sans-serif);
   font-size: clamp(42px, 4.6vw, 70px);
   line-height: 1.05;
-  font-weight: 600;
+  font-weight: 400;
   color: #ffffff;
   margin: 0 0 clamp(18px, 2.4vh, 26px);
   letter-spacing: -0.025em;
@@ -96,15 +96,15 @@
 
 .headingLine2 em {
   font-style: italic;
-  font-family: var(--nk-v3-serif, "Cormorant Garamond", "Lora", serif);
-  font-weight: 500;
+  font-family: var(--nk-v3-display, "NookOrtland", sans-serif);
+  font-weight: 400;
   color: #faebd7;
   margin-right: 8px;
 }
 
 /* Description */
 .description {
-  font-family: var(--nk-v3-serif, "Lora", serif);
+  font-family: var(--nk-v3-ui, "Product Sans VH", sans-serif);
   font-size: clamp(13px, 1.05vw, 15px);
   line-height: 1.68;
   color: rgba(253, 244, 233, 0.85);
@@ -137,7 +137,7 @@
 }
 
 .featureTitle {
-  font-family: var(--nk-v3-serif, "Lora", serif);
+  font-family: var(--nk-v3-ui, "Product Sans VH", sans-serif);
   font-size: clamp(12.5px, 0.95vw, 14.5px);
   font-weight: 700;
   color: #ffffff;
@@ -146,7 +146,7 @@
 }
 
 .featureDesc {
-  font-family: var(--nk-v3-serif, "Lora", serif);
+  font-family: var(--nk-v3-ui, "Product Sans VH", sans-serif);
   font-size: clamp(10.5px, 0.8vw, 12px);
   line-height: 1.5;
   color: rgba(253, 244, 233, 0.65);
@@ -170,7 +170,7 @@
   color: #271408;
   padding: 12px 26px;
   border-radius: 999px;
-  font-family: var(--nk-v3-serif, "Lora", serif);
+  font-family: var(--nk-v3-ui, "Product Sans VH", sans-serif);
   font-size: 13.5px;
   font-weight: 700;
   text-decoration: none;
@@ -196,7 +196,7 @@
   border: 1px solid rgba(245, 222, 190, 0.28);
   padding: 12px 24px;
   border-radius: 999px;
-  font-family: var(--nk-v3-serif, "Lora", serif);
+  font-family: var(--nk-v3-ui, "Product Sans VH", sans-serif);
   font-size: 13.5px;
   font-weight: 600;
   text-decoration: none;
@@ -226,7 +226,7 @@
 }
 
 .quoteText {
-  font-family: var(--nk-v3-serif, "Lora", serif);
+  font-family: var(--nk-v3-ui, "Product Sans VH", sans-serif);
   font-style: italic;
   font-size: clamp(11.5px, 0.88vw, 13px);
   line-height: 1.5;
@@ -272,4 +272,3 @@
     justify-content: center;
   }
 }
-

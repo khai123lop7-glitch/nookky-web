@@ -14,8 +14,8 @@
   --nk-v3-soft: #745d4f;
   --nk-v3-line: rgba(47,22,7,.16);
   --nk-v3-display: "Lora", "Playfair Display", "Be Vietnam Pro", serif;
-  --nk-v3-ui: "Lora", "Be Vietnam Pro", serif;
-  --nk-v3-body: "Be Vietnam Pro", "Lora", sans-serif;
+  --nk-v3-ui: "Product Sans VH", "Be Vietnam Pro", sans-serif;
+  --nk-v3-body: "Product Sans VH", "Be Vietnam Pro", sans-serif;
   --nk-v3-serif: "Lora", "Playfair Display", "Be Vietnam Pro", serif;
   --nk-v3-ease: cubic-bezier(.22,.61,.36,1);
   --nk-v3-page-pad: clamp(20px,4vw,64px);

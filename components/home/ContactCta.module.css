@@ -68,7 +68,7 @@
 }
 
 .eyebrow {
-  font-family: var(--nk-v3-serif, "Lora", serif);
+  font-family: var(--nk-v3-ui, "Product Sans VH", sans-serif);
   font-size: clamp(10.5px, 0.85vw, 12.5px);
   font-weight: 700;
   letter-spacing: 0.22em;
@@ -79,10 +79,10 @@
 }
 
 .title {
-  font-family: var(--nk-v3-serif, "Lora", "Playfair Display", serif);
+  font-family: var(--nk-v3-display, "NookOrtland", sans-serif);
   font-size: clamp(38px, 4.4vw, 62px);
   line-height: 1.06;
-  font-weight: 700;
+  font-weight: 400;
   color: #ffffff;
   margin: 0 0 clamp(18px, 2.4vh, 26px);
   letter-spacing: -0.025em;
@@ -110,14 +110,14 @@
 .accentWord {
   color: #f7d59b;
   font-style: italic;
-  font-family: var(--nk-v3-serif, "Cormorant Garamond", "Lora", serif);
-  font-weight: 600;
+  font-family: var(--nk-v3-display, "NookOrtland", sans-serif);
+  font-weight: 400;
   letter-spacing: 0.01em;
   text-shadow: 0 0 20px rgba(247, 213, 155, 0.55);
 }
 
 .desc {
-  font-family: var(--nk-v3-serif, "Lora", serif);
+  font-family: var(--nk-v3-ui, "Product Sans VH", sans-serif);
   font-size: clamp(13px, 1vw, 15px);
   line-height: 1.7;
   color: rgba(253, 244, 233, 0.86);
@@ -177,14 +177,14 @@
 }
 
 .perkTitle {
-  font-family: var(--nk-v3-serif, "Lora", serif);
+  font-family: var(--nk-v3-ui, "Product Sans VH", sans-serif);
   font-size: clamp(13.5px, 1.02vw, 15.5px);
   font-weight: 700;
   color: #ffffff;
 }
 
 .perkSub {
-  font-family: var(--nk-v3-serif, "Lora", serif);
+  font-family: var(--nk-v3-ui, "Product Sans VH", sans-serif);
   font-size: clamp(11.5px, 0.85vw, 13px);
   color: rgba(253, 244, 233, 0.72);
 }
@@ -205,7 +205,7 @@
 }
 
 .bottomQuote {
-  font-family: var(--nk-v3-serif, "Cormorant Garamond", "Lora", serif);
+  font-family: var(--nk-v3-ui, "Product Sans VH", sans-serif);
   font-style: italic;
   font-size: clamp(13px, 1vw, 15px);
   line-height: 1.45;
@@ -229,7 +229,7 @@
 }
 
 .formTitle {
-  font-family: var(--nk-v3-serif, "Lora", "Playfair Display", serif);
+  font-family: var(--nk-v3-ui, "Product Sans VH", sans-serif);
   font-size: clamp(23px, 2.1vw, 29px);
   font-weight: 700;
   color: #ffffff;
@@ -241,11 +241,11 @@
 .formTitleBrand {
   color: #ebc082;
   font-style: italic;
-  font-family: var(--nk-v3-serif, "Cormorant Garamond", "Lora", serif);
+  font-family: var(--nk-v3-ui, "Product Sans VH", sans-serif);
 }
 
 .formSubtitle {
-  font-family: var(--nk-v3-serif, "Lora", serif);
+  font-family: var(--nk-v3-ui, "Product Sans VH", sans-serif);
   font-size: clamp(12px, 0.9vw, 13.5px);
   line-height: 1.55;
   color: rgba(253, 244, 233, 0.78);
@@ -270,7 +270,7 @@
 }
 
 .inputGroup label {
-  font-family: var(--nk-v3-serif, "Lora", serif);
+  font-family: var(--nk-v3-ui, "Product Sans VH", sans-serif);
   font-size: clamp(11.5px, 0.82vw, 13px);
   font-weight: 600;
   color: #ebc082;
@@ -285,7 +285,7 @@
   border: 1px solid rgba(235, 192, 130, 0.32);
   border-radius: 4px;
   color: #fffaf4;
-  font-family: var(--nk-v3-serif, "Lora", serif);
+  font-family: var(--nk-v3-ui, "Product Sans VH", sans-serif);
   font-size: 13.5px;
   transition: all 0.22s ease;
   box-sizing: border-box;
@@ -320,7 +320,7 @@
   color: #241206;
   border: 1px solid #ebc082;
   border-radius: 999px;
-  font-family: var(--nk-v3-serif, "Lora", serif);
+  font-family: var(--nk-v3-ui, "Product Sans VH", sans-serif);
   font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.01em;
@@ -345,7 +345,7 @@
   align-items: center;
   justify-content: center;
   gap: 6px;
-  font-family: var(--nk-v3-serif, "Lora", serif);
+  font-family: var(--nk-v3-ui, "Product Sans VH", sans-serif);
   font-size: 10.5px;
   color: rgba(253, 244, 233, 0.55);
   margin-top: 2px;
@@ -373,7 +373,7 @@
 }
 
 .successTitle {
-  font-family: var(--nk-v3-serif, "Lora", serif);
+  font-family: var(--nk-v3-ui, "Product Sans VH", sans-serif);
   font-size: 18px;
   font-weight: 700;
   color: #ffffff;
@@ -381,7 +381,7 @@
 }
 
 .successDesc {
-  font-family: var(--nk-v3-serif, "Lora", serif);
+  font-family: var(--nk-v3-ui, "Product Sans VH", sans-serif);
   font-size: 13px;
   line-height: 1.55;
   color: rgba(253, 244, 233, 0.75);
@@ -394,7 +394,7 @@
   color: #dfbe8d;
   padding: 8px 18px;
   border-radius: 999px;
-  font-family: var(--nk-v3-serif, "Lora", serif);
+  font-family: var(--nk-v3-ui, "Product Sans VH", sans-serif);
   font-size: 12px;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -436,4 +436,3 @@
     );
   }
 }
-

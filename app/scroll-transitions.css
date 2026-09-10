@@ -66,40 +66,7 @@
 [data-nk-delay="4"] { transition-delay: 0.4s; }
 [data-nk-delay="5"] { transition-delay: 0.5s; }
 
-/* 3. Heritage Divider / Chapter Seam Accent */
-.heritageSeamDivider {
-  position: relative;
-  width: 100%;
-  height: 0;
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.heritageSeamInner {
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  width: min(1200px, 85vw);
-}
-
-.heritageSeamLine {
-  flex: 1;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(235, 192, 130, 0.35), transparent);
-}
-
-.heritageSeamKnot {
-  color: #ebc082;
-  font-size: 13px;
-  opacity: 0.75;
-  filter: drop-shadow(0 0 6px rgba(235, 192, 130, 0.5));
-}
-
-/* 4. Subtle Parallax for Background Wrappers */
+/* 3. Subtle Parallax for Background Wrappers */
 [data-nk-parallax] {
   will-change: transform;
   transition: transform 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94);
