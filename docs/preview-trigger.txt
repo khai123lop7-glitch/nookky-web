@@ -1,1 +1,1 @@
-Deep QA batch 2 complete. Verify HEAD preview: typography, search control, mobile 390x844, Brand Close/Footer, header boundary.
+Homepage typography update ready. Verify main production: Product Sans body/UI, Ortland display headings, Lora hero headline, no Heritage Seam dividers.
