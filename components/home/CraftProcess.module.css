@@ -1,0 +1,308 @@
+/* ==========================================================================
+   CraftProcess Module — Vintage Dark Wood Workbench Section (Image 2)
+   ========================================================================== */
+
+.craftSection {
+  position: relative;
+  background-color: #211208;
+  background-image: url("/media/editorial/craft-bg.png");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  color: #f7ede1;
+  overflow: hidden;
+  scroll-margin-top: 72px;
+  padding: clamp(20px, 2.8vh, 36px) 0;
+  box-sizing: border-box;
+}
+
+@media (min-width: 992px) {
+  .craftSection {
+    min-height: calc(100vh - 72px);
+    max-height: calc(100vh - 72px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+/* ── Background Video Container ── */
+.videoBgWrap {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.videoBg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.videoOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(20, 10, 4, 0.2);
+  pointer-events: none;
+}
+
+/* ── Inner Container ── */
+.innerContainer {
+  width: min(calc(100% - 64px), 1340px);
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(14px, 2.2vh, 24px);
+  position: relative;
+  z-index: 5;
+}
+
+/* ── 1. TOP REGION: Intro + Master Artisan Photo ── */
+.topRegion {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.45fr);
+  gap: clamp(20px, 3.5vw, 54px);
+  align-items: center;
+}
+
+/* Left: Intro */
+.introCol {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.eyebrow {
+  font-family: var(--nk-v3-ui, "Be Vietnam Pro", sans-serif);
+  font-size: clamp(9px, 0.75vw, 10.5px);
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #d6a04a;
+  margin: 0 0 clamp(6px, 1vh, 10px);
+}
+
+.title {
+  font-family: var(--nk-v3-serif, "Playfair Display", serif);
+  font-size: clamp(24px, 2.6vw, 38px);
+  line-height: 1.15;
+  font-weight: 600;
+  color: #faf3ea;
+  margin: 0 0 clamp(8px, 1.2vh, 14px);
+  letter-spacing: -0.015em;
+}
+
+.lead {
+  font-family: var(--nk-v3-ui, "Be Vietnam Pro", sans-serif);
+  font-size: clamp(11.5px, 0.9vw, 13.5px);
+  line-height: 1.65;
+  color: #c9b7a3;
+  margin: 0;
+  max-width: 48ch;
+}
+
+/* Right: Master Photo Card + Calligraphy */
+.masterPhotoCol {
+  display: flex;
+  align-items: center;
+  gap: clamp(16px, 2.5vw, 36px);
+  justify-content: flex-end;
+}
+
+.masterPhotoCard {
+  position: relative;
+  width: 100%;
+  max-width: 430px;
+  aspect-ratio: 16 / 9.5;
+  background: #fdfaf6;
+  padding: 8px 8px 12px;
+  border-radius: 2px;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5), 0 2px 8px rgba(0, 0, 0, 0.25);
+  transform: rotate(-2deg);
+  box-sizing: border-box;
+}
+
+.masterPhotoInner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #120904;
+}
+
+.masterImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: opacity 0.2s ease;
+}
+
+.masterImg.switching {
+  opacity: 0.3;
+}
+
+/* Sticky Note on bottom right of master photo */
+.stickyNote {
+  position: absolute;
+  bottom: -16px;
+  right: -18px;
+  background: #eadecc;
+  padding: 8px 12px 10px;
+  border-radius: 2px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+  transform: rotate(4deg);
+  z-index: 5;
+  border: 1px solid rgba(160, 130, 90, 0.3);
+}
+
+.stickyText {
+  font-family: "Caveat", cursive;
+  font-size: clamp(12.5px, 0.95vw, 14.5px);
+  line-height: 1.15;
+  color: #3b281c;
+  margin: 0;
+  text-align: center;
+}
+
+/* Quote Calligraphy on the far right */
+.quoteWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 130px;
+}
+
+.quoteCalligraphy {
+  font-family: "Caveat", cursive;
+  font-size: clamp(14px, 1.15vw, 17px);
+  line-height: 1.25;
+  color: #dfbe8d;
+  margin: 0 0 6px;
+}
+
+.quoteLine {
+  width: 32px;
+  height: 1px;
+  background: rgba(223, 190, 141, 0.5);
+}
+
+/* ── 2. BOTTOM REGION: 4 Process Step Cards ── */
+.stepsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(10px, 1.4vw, 18px);
+}
+
+.stepCard {
+  background: rgba(36, 20, 11, 0.75);
+  border: 1px solid rgba(180, 140, 95, 0.28);
+  border-radius: 4px;
+  padding: clamp(10px, 1.2vh, 14px);
+  cursor: pointer;
+  transition: all 0.22s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.28);
+  outline: none;
+}
+
+.stepCard:hover {
+  background: rgba(48, 28, 16, 0.9);
+  border-color: #d6a04a;
+  transform: translateY(-2px);
+}
+
+.stepCard.activeCard {
+  border: 1.5px solid #d6a04a;
+  background: rgba(54, 30, 18, 0.95);
+  box-shadow: 0 8px 24px rgba(214, 160, 74, 0.2);
+}
+
+.stepHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.stepNum {
+  font-family: var(--nk-v3-serif, "Playfair Display", serif);
+  font-size: clamp(12px, 0.95vw, 14px);
+  font-weight: 700;
+  color: #d6a04a;
+}
+
+.stepTitle {
+  font-family: var(--nk-v3-serif, "Playfair Display", serif);
+  font-size: clamp(13px, 1vw, 15.5px);
+  font-weight: 600;
+  color: #faf3ea;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.stepCopy {
+  font-family: var(--nk-v3-ui, "Be Vietnam Pro", sans-serif);
+  font-size: clamp(10px, 0.78vw, 11.5px);
+  line-height: 1.55;
+  color: #b8a694;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.stepImgWrap {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-radius: 2px;
+  background: #140a04;
+  margin-top: auto;
+}
+
+.stepImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .topRegion {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .masterPhotoCol {
+    justify-content: flex-start;
+  }
+  .quoteWrapper {
+    display: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .craftSection {
+    max-height: none;
+    min-height: 0;
+    padding: 36px 0 54px;
+  }
+  .stepsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .stepsGrid {
+    grid-template-columns: 1fr;
+  }
+}

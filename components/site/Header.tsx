@@ -82,27 +82,38 @@ export function Header() {
       <div className="nk-announcement">Miễn phí vận chuyển cho đơn từ 1.000.000₫</div>
 
       <div className="nk-header__main nk-container-wide">
-        <a className="nk-symbol" href="/" aria-label="Nook Ký trang chủ">
-          {!symbolFailed ? (
-            <img
-              src={useDarkBrandAssets ? "/media/brand/logo-symbol-dark.png" : "/media/brand/logo-symbol-light.png"}
-              alt=""
-              onError={() => setSymbolFailed(true)}
-            />
-          ) : null}
-          <span className="nk-symbol__fallback" aria-hidden="true">NK</span>
-        </a>
+        <div className="nk-header__brand">
+          <a className="nk-symbol" href="/" aria-label="Nook Ký trang chủ">
+            {!symbolFailed ? (
+              <img
+                src={useDarkBrandAssets ? "/media/brand/logo-symbol-dark.png" : "/media/brand/logo-symbol-light.png"}
+                alt=""
+                onError={() => setSymbolFailed(true)}
+              />
+            ) : (
+              <span className="nk-symbol__fallback" aria-hidden="true">NK</span>
+            )}
+          </a>
 
-        <a className="nk-wordmark" href="/" aria-label="Nook Ký">
-          {!wordmarkFailed ? (
-            <img
-              src={useDarkBrandAssets ? "/media/brand/wordmark-dark.png" : "/media/brand/wordmark-light.png"}
-              alt="Nook Ký"
-              onError={() => setWordmarkFailed(true)}
-            />
-          ) : null}
-          <span className="nk-wordmark__fallback">NOOK KÝ</span>
-        </a>
+          <a className="nk-wordmark" href="/" aria-label="Nook Ký">
+            {!wordmarkFailed ? (
+              <img
+                src={useDarkBrandAssets ? "/media/brand/wordmark-dark.png" : "/media/brand/wordmark-light.png"}
+                alt="Nook Ký"
+                onError={() => setWordmarkFailed(true)}
+              />
+            ) : (
+              <span className="nk-wordmark__fallback">NOOK KÝ</span>
+            )}
+          </a>
+        </div>
+
+        <nav id="nk-primary-nav" className="nk-nav" aria-label="Điều hướng chính">
+          {nav.map(([label, href]) => {
+            const active = isNavActive(href);
+            return <a className={active ? "is-active" : ""} aria-current={active ? "page" : undefined} href={href} key={href}>{label}</a>;
+          })}
+        </nav>
 
         <div className="nk-header__tools" aria-label="Tiện ích">
           <a className="nk-icon-button nk-cart-link" href="/cart" aria-label={`Giỏ hàng, ${itemCount} sản phẩm`}>
@@ -121,13 +132,6 @@ export function Header() {
           </button>
         </div>
       </div>
-
-      <nav id="nk-primary-nav" className="nk-nav" aria-label="Điều hướng chính">
-        {nav.map(([label, href]) => {
-          const active = isNavActive(href);
-          return <a className={active ? "is-active" : ""} aria-current={active ? "page" : undefined} href={href} key={href}>{label}</a>;
-        })}
-      </nav>
     </header>
   );
 }

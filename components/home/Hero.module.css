@@ -1,12 +1,380 @@
+/* ================================================
+   Hero module — Nook Ký (Cultural Art & Vietnamese Craft Edition)
+   ================================================ */
+
+/* --- Title typography --- */
 .title {
-  line-height: 1.08 !important;
-  letter-spacing: -.014em !important;
+  line-height: 1.05 !important;
+  letter-spacing: -.02em !important;
   text-wrap: balance;
+  text-shadow: 0 4px 28px rgba(0, 0, 0, 0.65);
 }
 
-@media (max-width: 800px) {
-  .title {
-    line-height: 1.1 !important;
-    letter-spacing: -.01em !important;
+/* --- Secondary CTA button (Lacquerwood Glassmorphism) --- */
+.secondaryButton {
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 22px;
+  border-radius: 4px;
+  border: 1px solid rgba(239, 189, 114, 0.35);
+  outline: 1px solid rgba(239, 189, 114, 0.15);
+  outline-offset: 2px;
+  background: rgba(26, 12, 5, 0.55);
+  color: var(--nk-v3-cream);
+  backdrop-filter: blur(12px);
+  font-family: var(--nk-v3-ui);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition: all 0.24s var(--nk-v3-ease);
+}
+
+.secondaryButton:hover {
+  background: rgba(45, 22, 10, 0.75);
+  border-color: #efbd72;
+  outline-color: rgba(239, 189, 114, 0.45);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+
+
+/* ================================================
+   Cinema Mode Toggle Button — positioned nicely on right
+   ================================================ */
+.cinemaToggle {
+  position: absolute;
+  bottom: clamp(65px, 9vh, 90px);
+  right: clamp(20px, 4vw, 64px);
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 99px;
+  background: rgba(22, 10, 4, 0.68);
+  border: 1px solid rgba(239, 189, 114, 0.4);
+  color: rgba(252, 244, 233, 0.92);
+  font-family: var(--nk-v3-ui);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  backdrop-filter: blur(14px);
+  transition: all 0.28s var(--nk-v3-ease);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4);
+}
+
+.cinemaToggle:hover {
+  background: rgba(214, 160, 74, 0.25);
+  border-color: #efbd72;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.5), 0 0 12px rgba(239, 189, 114, 0.35);
+}
+
+.cinemaToggleText {
+  display: inline-block;
+}
+
+/* ================================================
+   Cinema Active States
+   ================================================ */
+.cinemaActive .uiHidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(18px);
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+.nk-hero__inner {
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+.shadeSoft {
+  background:
+    linear-gradient(180deg, rgba(10, 5, 2, 0.12) 0%, transparent 35%),
+    linear-gradient(0deg, rgba(10, 5, 2, 0.28) 0%, transparent 35%) !important;
+  transition: background 0.65s ease;
+  cursor: pointer;
+}
+
+/* ================================================
+   Cultural Journey Module — Unified Waypoints with Traveler
+   ================================================ */
+.journeySection {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  max-width: 960px;
+}
+
+/* Container encompassing the track and the waypoint cards */
+.waypointsWrapper {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  padding-top: 48px; /* Space for the traveler and track */
+}
+
+/* The connecting path/rail running through all 7 waypoints */
+.waypointsRail {
+  position: absolute;
+  top: 24px;
+  left: calc(100% / 14);
+  right: calc(100% / 14);
+  height: 3px;
+  background: rgba(252, 244, 233, 0.22);
+  border-radius: 99px;
+  z-index: 1;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Active progress line connecting from 1st waypoint up to active waypoint */
+.waypointsProgress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: linear-gradient(90deg, #b87a28 0%, #d9953b 50%, #efbd72 100%);
+  border-radius: 99px;
+  box-shadow: 0 0 12px rgba(217, 149, 59, 0.85);
+  transition: width 0.65s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Dots container placed directly on the rail line */
+.railDotsContainer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* Dots: centered exactly on the rail line vertically and horizontally */
+.railDot {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #251004;
+  border: 2px solid rgba(252, 244, 233, 0.45);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+  transition: all 0.35s ease;
+  z-index: 3;
+}
+
+/* Active and completed dots */
+.railDotActive {
+  background: #efbd72;
+  border-color: #fffaf4;
+  box-shadow: 0 0 14px rgba(239, 189, 114, 0.95), 0 2px 6px rgba(0, 0, 0, 0.7);
+  transform: translate(-50%, -50%) scale(1.25);
+}
+
+/* Single Waypoint Button / Tab */
+.waypointItem {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 10px 12px;
+  background: rgba(26, 12, 5, 0.65);
+  border: 1px solid rgba(252, 244, 233, 0.18);
+  border-radius: 4px;
+  color: rgba(252, 244, 233, 0.82);
+  cursor: pointer;
+  text-align: left;
+  backdrop-filter: blur(12px);
+  transition: all 0.25s var(--nk-v3-ease);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+}
+
+.waypointItem:hover {
+  background: rgba(45, 22, 10, 0.75);
+  border-color: rgba(239, 189, 114, 0.5);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* Active Waypoint State */
+.activeWaypoint {
+  background: linear-gradient(135deg, rgba(56, 27, 10, 0.85) 0%, rgba(37, 16, 4, 0.95) 100%) !important;
+  border: 1px solid #d6a04a !important;
+  outline: 1px solid rgba(239, 189, 114, 0.35);
+  outline-offset: 1px;
+  color: #fff !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), 0 0 16px rgba(214, 160, 74, 0.25) !important;
+}
+
+/* Traditional Red Seal badge (Triện son) inside active tab */
+.sealBadge {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 14px;
+  height: 14px;
+  border: 1px solid rgba(239, 189, 114, 0.6);
+  background: #8f1e1d;
+  color: #fffaf4;
+  font-size: 8px;
+  font-weight: 800;
+  display: grid;
+  place-items: center;
+  border-radius: 2px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+}
+
+.waypointName {
+  font-family: var(--nk-v3-ui);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #fdf6ec;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.activeWaypoint .waypointName {
+  color: #efbd72;
+}
+
+.waypointSub {
+  font-family: var(--nk-v3-ui);
+  font-size: 10px;
+  font-weight: 400;
+  opacity: 0.75;
+  margin-top: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  color: rgba(252, 244, 233, 0.9);
+}
+
+/* ================================================
+   Walking Traveler — Aligned precisely on top of Waypoints
+   ================================================ */
+.travelerAvatar {
+  position: absolute;
+  top: 15px; /* Aligns traveler feet right above the rail and dots (at top: 24px) */
+  /* left set via inline style based on active index */
+  transform: translate(-50%, -100%);
+  width: 38px;
+  height: 48px;
+  pointer-events: none;
+  transition: left 0.65s cubic-bezier(0.25, 1, 0.5, 1);
+  z-index: 10;
+}
+
+.travelerSvg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.8));
+}
+
+.walkBackward .travelerSvg {
+  transform: scaleX(-1);
+  transform-origin: center;
+}
+
+/* Bobbing while walking */
+.isWalking .travelerSvg {
+  animation: travelerBob 0.2s infinite alternate ease-in-out;
+}
+
+.isWalking .legLeft {
+  animation: legSwingLeft 0.2s infinite alternate ease-in-out;
+  transform-origin: 13.5px 27px;
+}
+
+.isWalking .legRight {
+  animation: legSwingRight 0.2s infinite alternate ease-in-out;
+  transform-origin: 18.5px 27px;
+}
+
+@keyframes travelerBob {
+  0%   { transform: translateY(0); }
+  100% { transform: translateY(-5px); }
+}
+
+@keyframes legSwingLeft {
+  0%   { transform: rotate(-24deg); }
+  100% { transform: rotate(24deg); }
+}
+
+@keyframes legSwingRight {
+  0%   { transform: rotate(24deg); }
+  100% { transform: rotate(-24deg); }
+}
+
+/* Foot glow aura */
+.travelerPulse {
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(239, 189, 114, 0.8);
+  filter: blur(3px);
+  animation: pulseBeat 1.8s infinite ease-in-out;
+}
+
+@keyframes pulseBeat {
+  0%, 100% { opacity: 0.5; transform: translateX(-50%) scaleX(0.8); }
+  50%       { opacity: 1;   transform: translateX(-50%) scaleX(1.3); }
+}
+
+/* ================================================
+   Responsive adjustments
+   ================================================ */
+@media (max-width: 1100px) {
+  .waypointsWrapper {
+    grid-template-columns: repeat(4, 1fr);
+    padding-top: 10px;
+  }
+
+  .waypointsRail,
+  .travelerAvatar {
+    display: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .cinemaToggleText {
+    display: none;
+  }
+
+  .cinemaToggle {
+    padding: 10px 12px;
+    bottom: clamp(65px, 9vh, 90px);
+    right: 20px;
+  }
+
+  .heroDecorTL,
+  .heroDecorBR {
+    display: none;
+  }
+
+  .waypointsWrapper {
+    grid-template-columns: repeat(2, 1fr);
+    padding-top: 10px;
+  }
+
+  .waypointsRail,
+  .travelerAvatar {
+    display: none;
+  }
+
+  .waypointItem::before {
+    display: none;
   }
 }

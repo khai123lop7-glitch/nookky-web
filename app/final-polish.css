@@ -8,7 +8,7 @@
 }
 
 :root {
-  --nk-v3-display: "NookOrtland", "Be Vietnam Pro", "Arial Black", sans-serif;
+  --nk-v3-display: "NookOrtland", "Be Vietnam Pro", sans-serif;
 }
 
 ::selection { background: #2f1607; color: #fcf4e9; }
