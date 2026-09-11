@@ -5,16 +5,6 @@ import styles from "./TableOfContents.module.css";
 export function TableOfContents() {
   return (
     <section className={styles.tocSection} id="muc-luc" aria-labelledby="toc-heading">
-      {/* Background Image with Depth Parallax */}
-      <div className={styles.bgWrapper} aria-hidden="true" data-nk-parallax data-nk-parallax-speed="0.12">
-        <img
-          src="/media/editorial/site-toc-bg.png"
-          alt="Nook Ký mục lục"
-          className={styles.bgImage}
-        />
-        <div className={styles.bgOverlay} />
-      </div>
-
       <div className={styles.innerContainer}>
         {/* ── TOP SECTION: Brand Header & Philosophy ── */}
         <div className={styles.brandHeader} data-nk-reveal data-nk-delay="1">

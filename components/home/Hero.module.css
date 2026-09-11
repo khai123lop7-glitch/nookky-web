@@ -31,6 +31,18 @@
   object-fit: cover;
   object-position: center center;
   display: block;
+  animation: mediaReveal 0.55s ease both;
+}
+
+@keyframes mediaReveal {
+  from {
+    opacity: 0.35;
+    transform: scale(1.012);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 /* Cinematic Dark Warm Vignette */
@@ -39,8 +51,8 @@
   inset: 0;
   z-index: 2;
   background:
-    radial-gradient(ellipse at center, rgba(16, 7, 2, 0.18) 0%, rgba(14, 6, 2, 0.5) 100%),
-    linear-gradient(180deg, rgba(10, 4, 1, 0.52) 0%, rgba(10, 4, 1, 0.08) 25%, rgba(10, 4, 1, 0.14) 60%, rgba(8, 3, 1, 0.7) 100%);
+    radial-gradient(ellipse at center, rgba(16, 7, 2, 0.1) 0%, rgba(14, 6, 2, 0.38) 100%),
+    linear-gradient(180deg, rgba(10, 4, 1, 0.42) 0%, rgba(10, 4, 1, 0.04) 25%, rgba(10, 4, 1, 0.08) 60%, rgba(8, 3, 1, 0.58) 100%);
   pointer-events: none;
 }
 
@@ -223,19 +235,31 @@
   justify-content: center;
   gap: 16px;
   margin-top: auto;
+  min-width: 0;
 }
 
 .carouselTrack {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: clamp(12px, 1.8vw, 20px);
-  padding: 6px 4px;
+  justify-content: flex-start;
+  gap: 12px;
+  width: min(100%, 1160px);
+  min-width: 0;
+  padding: 8px 4px 10px;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scroll-behavior: smooth;
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
+}
+
+.carouselTrack::-webkit-scrollbar {
+  display: none;
 }
 
 /* Individual Destination Card */
 .cardItem {
-  flex: 0 0 auto;
+  flex: 0 0 202px;
   display: flex;
   align-items: center;
   gap: 14px;
@@ -250,12 +274,19 @@
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
   text-align: left;
   outline: none;
+  scroll-snap-align: center;
 }
 
 .cardItem:hover {
   background: rgba(45, 22, 10, 0.75);
   border-color: rgba(239, 189, 114, 0.5);
   transform: translateY(-2px);
+}
+
+.cardItem:focus-visible,
+.nextNavBtn:focus-visible {
+  outline: 2px solid #fff7e8;
+  outline-offset: 3px;
 }
 
 /* Active Destination Card with Golden Border and Arrow Indicator */
@@ -285,7 +316,8 @@
   display: flex;
   flex-direction: column;
   gap: 2px;
-  min-width: 78px;
+  min-width: 0;
+  flex: 1;
 }
 
 .cardTitle {
@@ -362,10 +394,87 @@
   }
 
   .carouselTrack {
-    max-width: 100%;
+    width: 100%;
+    padding-inline: 2px;
   }
 
   .nextNavBtn {
     display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .contentContainer {
+    padding: 88px 16px 18px;
+  }
+
+  .centerDossier {
+    width: 100%;
+    padding: 18px 4px;
+    border-radius: 16px;
+  }
+
+  .mainTitle {
+    font-size: clamp(32px, 10.2vw, 42px);
+    line-height: 1.08;
+  }
+
+  .titleLine,
+  .titleAccent {
+    white-space: normal;
+    text-wrap: balance;
+  }
+
+  .leadText {
+    max-width: 340px;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 22px;
+  }
+
+  .ctaRow {
+    gap: 10px;
+  }
+
+  .primaryCta,
+  .secondaryCta {
+    min-height: 44px;
+    padding-inline: 18px;
+    font-size: 12.5px;
+  }
+
+  .cardItem {
+    flex-basis: 172px;
+    gap: 10px;
+    padding: 7px 12px 7px 7px;
+  }
+
+  .cardThumbWrap {
+    width: 46px;
+    height: 34px;
+  }
+
+  .cardMeta {
+    gap: 1px;
+  }
+
+  .cardSub {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .cardActiveArrow {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bgVideo,
+  .bgImage {
+    animation: none;
+  }
+
+  .carouselTrack {
+    scroll-behavior: auto;
   }
 }

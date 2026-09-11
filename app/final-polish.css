@@ -38,6 +38,15 @@
   transform: translateY(0);
 }
 
+.nk-symbol,
+.nk-symbol img {
+  border-radius: 4px;
+}
+
+.nk-symbol {
+  overflow: hidden;
+}
+
 .nk-hero h1,
 .nk-featured h2,
 .nk-featured h3,
