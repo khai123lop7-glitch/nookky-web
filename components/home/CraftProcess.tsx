@@ -72,12 +72,17 @@ export function CraftProcess() {
       id="quy-trinh-che-tac"
       aria-labelledby="nk-process-title"
     >
-      {/* Background Image with Parallax Support */}
-      <div className={styles.bgWrapper} aria-hidden="true" data-nk-parallax data-nk-parallax-speed="0.14">
-        <img
-          src="/media/editorial/craft-process-bg.png"
-          alt="Quá trình tạo nên một Nook"
+      {/* Background craft film with a still fallback while loading */}
+      <div className={styles.bgWrapper} aria-hidden="true">
+        <video
           className={styles.bgImage}
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="metadata"
+          poster="/media/editorial/craft-process-poster.webp"
+          src="/media/editorial/craft-process.mp4"
         />
         <div className={styles.bgOverlay} />
       </div>
@@ -89,7 +94,6 @@ export function CraftProcess() {
           <div className={styles.introCol} data-nk-reveal="left" data-nk-delay="1">
             <div className={styles.eyebrowWrap}>
               <span className={styles.eyebrow}>HÀNH TRÌNH TẠO NÊN MỘT NOOK</span>
-              <div className={styles.eyebrowLine} />
             </div>
             <h2 id="nk-process-title" className={styles.title}>
               <span className={styles.titleLine1}>Từ Lát Cắt Ký Ức</span>
@@ -115,7 +119,6 @@ export function CraftProcess() {
               <br />
               cả một thời thanh xuân.”
             </p>
-            <div className={styles.quoteLine} />
           </div>
         </div>
 
@@ -149,7 +152,6 @@ export function CraftProcess() {
                 <div className={styles.stepHeader}>
                   <div className={styles.stepNumWrap}>
                     <span className={styles.stepNum}>{step.index}</span>
-                    <div className={styles.stepNumLine} />
                   </div>
                   <h3 className={styles.stepTitle}>{step.phase}</h3>
                 </div>

@@ -12,7 +12,7 @@ export function BrandStory() {
       {/* Background Image Container with Parallax Support */}
       <div className={styles.bgWrapper} aria-hidden="true" data-nk-parallax data-nk-parallax-speed="0.12">
         <img
-          src="/media/editorial/b2b-corporate-gifts.png"
+          src="/media/editorial/corporate-gifts-product.webp"
           alt="Quà tặng doanh nghiệp Nook Ký"
           className={styles.bgImage}
         />
@@ -23,7 +23,7 @@ export function BrandStory() {
       <div className={styles.contentContainer}>
         {/* Eyebrow */}
         <p className={styles.eyebrow} data-nk-reveal data-nk-delay="1">
-          QUÀ TẶNG DOANH NGHIỆP &bull; CUSTOM GIFTS
+          CUSTOM GIFTS
         </p>
 
         {/* Main Heading */}
@@ -158,7 +158,6 @@ export function BrandStory() {
 
         {/* Bottom Quote */}
         <div className={styles.quoteWrap} data-nk-reveal data-nk-delay="5">
-          <div className={styles.quoteLine} />
           <p className={styles.quoteText}>
             “Những món quà nhỏ
             <br />

@@ -31,20 +31,9 @@ export function ContactCta() {
       id="lien-he-tu-van"
       aria-labelledby="nk-contact-title"
     >
-      {/* Background Image with Subtle Depth Parallax */}
-      <div className={styles.bgWrapper} aria-hidden="true" data-nk-parallax data-nk-parallax-speed="0.14">
-        <img
-          src="/media/editorial/contact-cta-bg.png"
-          alt="Không gian Book Nook và Kết nối"
-          className={styles.bgImage}
-        />
-        <div className={styles.bgOverlay} />
-      </div>
-
       <div className={styles.innerContainer}>
         {/* Left Column: Brand Connection & Perks */}
         <div className={styles.infoCol} data-nk-reveal="left" data-nk-delay="1">
-          <p className={styles.eyebrow}>KẾT NỐI & ĐỒNG HÀNH</p>
           <h2 id="nk-contact-title" className={styles.title}>
             <span className={styles.titleLine1}>
               Đem một góc <span className={styles.goldText}>ký ức</span>
@@ -139,7 +128,6 @@ export function ContactCta() {
 
           {/* Bottom Quote */}
           <div className={styles.bottomQuoteWrap} aria-hidden="true" data-nk-reveal data-nk-delay="5">
-            <div className={styles.quoteBar} />
             <p className={styles.bottomQuote}>
               “Những điều nhỏ bé
               <br />

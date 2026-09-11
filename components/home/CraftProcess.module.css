@@ -74,7 +74,6 @@
 .eyebrowWrap {
   display: flex;
   align-items: center;
-  gap: 12px;
   margin-bottom: clamp(10px, 1.5vh, 16px);
 }
 
@@ -85,12 +84,6 @@
   letter-spacing: 0.2em;
   color: #dfbe8d;
   text-transform: uppercase;
-}
-
-.eyebrowLine {
-  width: 48px;
-  height: 1px;
-  background: rgba(223, 190, 141, 0.4);
 }
 
 .title {
@@ -149,12 +142,6 @@
   letter-spacing: 0.01em;
 }
 
-.quoteLine {
-  width: 36px;
-  height: 1px;
-  background: rgba(223, 190, 141, 0.6);
-}
-
 /* ── 2. BOTTOM REGION: 4 Step Cards ── */
 .stepsGrid {
   display: grid;
@@ -200,7 +187,6 @@
 .stepNumWrap {
   display: flex;
   align-items: center;
-  gap: 8px;
 }
 
 .stepNum {
@@ -208,12 +194,6 @@
   font-size: clamp(12px, 0.9vw, 14px);
   font-weight: 700;
   color: #dfbe8d;
-}
-
-.stepNumLine {
-  width: 18px;
-  height: 1px;
-  background: rgba(223, 190, 141, 0.4);
 }
 
 .stepTitle {

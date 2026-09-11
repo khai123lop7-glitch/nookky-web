@@ -39,8 +39,8 @@
   inset: 0;
   z-index: 2;
   background:
-    radial-gradient(ellipse at center, rgba(16, 7, 2, 0.35) 0%, rgba(14, 6, 2, 0.72) 100%),
-    linear-gradient(180deg, rgba(10, 4, 1, 0.75) 0%, rgba(10, 4, 1, 0.15) 25%, rgba(10, 4, 1, 0.25) 60%, rgba(8, 3, 1, 0.88) 100%);
+    radial-gradient(ellipse at center, rgba(16, 7, 2, 0.18) 0%, rgba(14, 6, 2, 0.5) 100%),
+    linear-gradient(180deg, rgba(10, 4, 1, 0.52) 0%, rgba(10, 4, 1, 0.08) 25%, rgba(10, 4, 1, 0.14) 60%, rgba(8, 3, 1, 0.7) 100%);
   pointer-events: none;
 }
 
