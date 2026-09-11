@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { Header } from "@/components/site/Header";
 import { formatVnd } from "@/data/products";
 import { sendOrderConfirmationEmail } from "@/lib/emailService";
+import { track } from "@/lib/analytics";
 import styles from "./Payment.module.css";
 
 interface OrderItem {
@@ -123,6 +124,16 @@ function PaymentContent() {
           keepalive: true,
         }).catch((error) => {
           console.error("Không ghi được sự kiện báo đã chuyển tiền:", error);
+        });
+
+        track("payment_reported", {
+          transaction_id: updatedOrder.orderId,
+          value: updatedOrder.total,
+          currency: "VND",
+          payment_method: updatedOrder.paymentMethod,
+          email: updatedOrder.customer?.email,
+          phone: updatedOrder.customer?.phone,
+          fullName: updatedOrder.customer?.fullName,
         });
       }
 

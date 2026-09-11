@@ -145,6 +145,15 @@ export default function CheckoutPage() {
       currency: "VND",
       shipping: shippingFee,
       item_count: lines.length,
+      email: email.trim(),
+      phone: phone.trim(),
+      fullName: fullName.trim(),
+      items: lines.map((l) => ({
+        item_id: l.product.slug,
+        item_name: l.product.name,
+        price: l.product.price,
+        quantity: l.quantity,
+      })),
     });
 
     clearCart();

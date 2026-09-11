@@ -1,5 +1,5 @@
 /**
- * Ghi dữ liệu đơn hàng vào một Google Sheet dùng làm "database" tạm thời.
+ * Ghi và đọc dữ liệu đơn hàng từ một Google Sheet dùng làm "database" tạm thời.
  *
  * Vì Vercel không có ổ đĩa bền vững cho serverless function, dữ liệu phải được
  * đẩy ra một nơi lưu trữ độc lập bên ngoài request. Google Sheet được chọn ở
@@ -12,7 +12,7 @@
  * để giữ bundle nhẹ).
  *
  * Biến môi trường cần cấu hình trên Vercel (Project Settings → Environment
- * Variables), xem hướng dẫn tạo trong README mục "Ghi đơn hàng vào Google Sheet":
+ * Variables):
  * - GOOGLE_SERVICE_ACCOUNT_EMAIL
  * - GOOGLE_PRIVATE_KEY   (giữ nguyên các ký tự \n, code bên dưới tự chuyển thành xuống dòng thật)
  * - GOOGLE_SHEET_ID      (lấy từ URL của Google Sheet)
@@ -23,6 +23,22 @@ type AppendResult =
   | { ok: true }
   | { ok: false; skipped: true; reason: string }
   | { ok: false; skipped?: false; error: string };
+
+export interface CleanedOrderRecord {
+  orderId: string;
+  orderDate: string;
+  lastEvent: string;
+  customerNameMasked: string;
+  phoneMasked: string;
+  itemsSummary: string;
+  total: number;
+  paymentMethod: string;
+  status: string;
+}
+
+export type LookupResult =
+  | { ok: true; orders: CleanedOrderRecord[] }
+  | { ok: false; orders: []; skipped?: boolean; error?: string; reason?: string };
 
 function base64url(input: Buffer | string) {
   const buff = typeof input === "string" ? Buffer.from(input) : input;
@@ -124,5 +140,118 @@ export async function appendOrderRow(values: Array<string | number>): Promise<Ap
   } catch (error) {
     console.error("[googleSheets] Lỗi khi ghi sheet:", error);
     return { ok: false, error: error instanceof Error ? error.message : String(error) };
+  }
+}
+
+function maskPhone(phone: string): string {
+  const cleaned = phone.replace(/\D/g, "");
+  if (cleaned.length < 7) return "***" + cleaned.slice(-3);
+  return cleaned.slice(0, 3) + "***" + cleaned.slice(-3);
+}
+
+function maskName(name: string): string {
+  const parts = name.trim().split(/\s+/);
+  if (parts.length <= 1) return name.slice(0, 1) + "***";
+  const firstName = parts[parts.length - 1];
+  return parts.slice(0, -1).map((p) => p[0] + "*").join(" ") + " " + firstName;
+}
+
+/**
+ * Tra cứu đơn hàng từ Google Sheet phục vụ AI Chatbot & Customer Service.
+ * Tìm kiếm theo Mã đơn hàng (orderId) hoặc Số điện thoại.
+ * Tự động gom nhóm các dòng cùng orderId để lấy trạng thái mới nhất,
+ * đồng thời che (mask) các thông tin nhạy cảm để bảo vệ quyền riêng tư.
+ */
+export async function lookupOrderRows(rawQuery: string): Promise<LookupResult> {
+  const sheetId = process.env.GOOGLE_SHEET_ID;
+  const tabName = process.env.GOOGLE_SHEET_TAB_NAME || "Orders";
+
+  if (!sheetId) {
+    console.warn("[googleSheets] Bỏ qua tra cứu: chưa cấu hình GOOGLE_SHEET_ID");
+    return { ok: false, orders: [], skipped: true, reason: "GOOGLE_SHEET_ID chưa được cấu hình" };
+  }
+
+  const query = rawQuery.trim().toLowerCase();
+  const queryDigits = rawQuery.replace(/\D/g, "");
+
+  if (!query && !queryDigits) {
+    return { ok: true, orders: [] };
+  }
+
+  try {
+    const accessToken = await getAccessToken();
+    const range = `${tabName}!A:L`;
+    const url = `https://sheets.googleapis.com/v4/spreadsheets/${sheetId}/values/${encodeURIComponent(range)}`;
+
+    const res = await fetch(url, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+      next: { revalidate: 0 }, // Không cache để đọc dữ liệu mới nhất
+    });
+
+    if (!res.ok) {
+      const errorText = await res.text();
+      console.error("[googleSheets] Đọc sheet thất bại:", errorText);
+      return { ok: false, orders: [], error: errorText };
+    }
+
+    const data = (await res.json()) as { values?: string[][] };
+    const rows = data.values || [];
+
+    if (rows.length <= 1) {
+      return { ok: true, orders: [] };
+    }
+
+    // Gom nhóm các dòng theo orderId (vì có thể có 2 dòng: order_placed và payment_reported)
+    const orderMap = new Map<string, any>();
+
+    for (let i = 1; i < rows.length; i++) {
+      const row = rows[i];
+      const timestamp = row[0] || "";
+      const eventType = row[1] || "";
+      const orderId = (row[2] || "").trim();
+      const fullName = row[3] || "";
+      const phone = (row[4] || "").trim();
+      const itemsSummary = row[7] || "";
+      const totalRaw = row[8] || "0";
+      const paymentMethod = row[9] || "";
+      const status = row[10] || "";
+
+      if (!orderId) continue;
+
+      const orderIdLower = orderId.toLowerCase();
+      const phoneDigits = phone.replace(/\D/g, "");
+
+      const matchesOrderId = orderIdLower.includes(query);
+      const matchesPhone =
+        queryDigits.length >= 4 &&
+        (phoneDigits.endsWith(queryDigits) || phoneDigits.includes(queryDigits));
+
+      if (matchesOrderId || matchesPhone) {
+        const existing = orderMap.get(orderId);
+        // Nếu có dòng mới hơn hoặc sự kiện payment_reported, ưu tiên trạng thái đó
+        if (!existing || eventType === "payment_reported" || new Date(timestamp) >= new Date(existing.orderDate)) {
+          orderMap.set(orderId, {
+            orderId,
+            orderDate: timestamp,
+            lastEvent: eventType,
+            customerNameMasked: maskName(fullName),
+            phoneMasked: maskPhone(phone),
+            itemsSummary,
+            total: Number(totalRaw) || 0,
+            paymentMethod,
+            status,
+          });
+        }
+      }
+    }
+
+    const matchedOrders = Array.from(orderMap.values());
+    return { ok: true, orders: matchedOrders };
+  } catch (error) {
+    console.error("[googleSheets] Lỗi khi tra cứu sheet:", error);
+    return { ok: false, orders: [], error: error instanceof Error ? error.message : String(error) };
   }
 }

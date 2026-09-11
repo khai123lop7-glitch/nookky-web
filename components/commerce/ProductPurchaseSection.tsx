@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { track } from "@/lib/analytics";
 import { useCart } from "./CartProvider";
@@ -17,6 +17,15 @@ export function ProductPurchaseSection({ slug, name, price }: ProductPurchaseSec
   const { addItem } = useCart();
   const [quantity, setQuantity] = useState(1);
   const [isAdding, setIsAdding] = useState(false);
+
+  useEffect(() => {
+    track("view_item", {
+      item_id: slug,
+      item_name: name,
+      value: price,
+      currency: "VND",
+    });
+  }, [slug, name, price]);
 
   const handleDecrease = () => {
     setQuantity((prev) => Math.max(1, prev - 1));
