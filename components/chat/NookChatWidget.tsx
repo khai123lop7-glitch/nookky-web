@@ -17,6 +17,43 @@ interface ViewedProduct {
   price: number;
 }
 
+function renderTextWithBold(text: string): React.ReactNode[] {
+  const parts = text.split(/(\*\*[^*]+\*\*)/g);
+  return parts.map((part, i) => {
+    if (part.startsWith("**") && part.endsWith("**")) {
+      return <strong key={i}>{part.slice(2, -2)}</strong>;
+    }
+    return part;
+  });
+}
+
+function formatMessageContent(content: string): React.ReactNode {
+  const linkRegex = /\[([^\]]+)\]\(([^)]+)\)/g;
+  const nodes: React.ReactNode[] = [];
+  let lastIdx = 0;
+  let match: RegExpExecArray | null;
+
+  while ((match = linkRegex.exec(content)) !== null) {
+    if (match.index > lastIdx) {
+      nodes.push(...renderTextWithBold(content.substring(lastIdx, match.index)));
+    }
+    const text = match[1];
+    const url = match[2];
+    nodes.push(
+      <a key={`link-${match.index}`} href={url} className={styles.chatLink}>
+        {text}
+      </a>
+    );
+    lastIdx = match.index + match[0].length;
+  }
+
+  if (lastIdx < content.length) {
+    nodes.push(...renderTextWithBold(content.substring(lastIdx)));
+  }
+
+  return nodes;
+}
+
 export function NookChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
   const [inputText, setInputText] = useState("");
@@ -259,7 +296,7 @@ export function NookChatWidget() {
                     msg.role === "assistant" ? styles.assistantBubble : styles.userBubble
                   }`}
                 >
-                  {msg.content}
+                  {formatMessageContent(msg.content)}
                 </div>
                 <span className={styles.timeTag}>{msg.time}</span>
               </div>
