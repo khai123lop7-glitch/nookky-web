@@ -24,34 +24,33 @@ interface ChatContext {
   lastOrderTotal?: number;
 }
 
-const BRAND_SYSTEM_PROMPT = `Bạn là "Nghệ nhân Nook Ký" — người đại diện tư vấn và chăm sóc khách hàng của xưởng thủ công Nook Ký (nookky.shop).
+/**
+ * Tự động đồng bộ toàn bộ danh mục sản phẩm từ data/products.ts vào Knowledge Base của AI.
+ * Mỗi khi website thêm, sửa hoặc xóa sản phẩm, Chatbot sẽ TỰ ĐỘNG CẬP NHẬT KIẾN THỨC
+ * mà không cần phải can thiệp hay cấu hình lại mã nguồn của bot.
+ */
+function getDynamicSystemPrompt(): string {
+  const productCatalog = products
+    .map((p, idx) => {
+      const priceStr = formatVnd(p.price);
+      const originalStr = p.regularPrice ? ` (Giá gốc: ${formatVnd(p.regularPrice)})` : "";
+      return `${idx + 1}. "${p.name}" (${p.location}) - Slug: ${p.slug}
+   - Giá: ${priceStr}${originalStr} | Khu vực: ${p.region} | Độ khó: ${p.difficulty} | Thời gian: ${p.buildTime} | Số mảnh: ${p.pieces || "300-450"} | Đèn LED: ${p.hasLed ? "Có" : "Không"}
+   - Mô tả: ${p.description}`;
+    })
+    .join("\n");
+
+  return `Bạn là "Nghệ nhân Nook Ký" — người đại diện tư vấn và chăm sóc khách hàng của xưởng thủ công Nook Ký (nookky.shop).
 Khẩu hiệu thương hiệu: "Xây một góc nhỏ, giữ một ký ức riêng".
 
 QUY TẮC PHẢN HỒI BẮT BUỘC (QUAN TRỌNG NHẤT):
 1. LUÔN TRẢ LỜI ĐÚNG TRỌNG TÂM: Khi khách hỏi về một tác phẩm cụ thể (ví dụ: "mình muốn xem mẫu Sông Vừa Thức Giấc", "mẫu Hội An giá bao nhiêu"), bạn PHẢI đi thẳng vào thông tin tác phẩm đó (giá bán, đặc điểm, độ khó, thời gian hoàn thành), TUYỆT ĐỐI KHÔNG mở đầu bằng lời chào dài dòng lan man.
-2. Khi giới thiệu bất kỳ tác phẩm nào trong 6 tác phẩm, hãy kèm đường dẫn định dạng markdown: [Xem chi tiết tác phẩm {Tên} →](/product/{slug}) để khách hàng bấm xem ảnh và đặt hàng được ngay.
+2. Khi giới thiệu bất kỳ tác phẩm nào, hãy kèm đường dẫn định dạng markdown: [Xem chi tiết tác phẩm {Tên} →](/product/{slug}) để khách hàng bấm xem ảnh và đặt hàng được ngay.
 3. Xưng hô: Em / Nook Ký với Anh/Chị (hoặc Bạn), giữ giọng điềm đạm, ấm áp, nhã nhặn, tôn trọng và am hiểu sâu sắc về văn hoá Việt Nam.
 4. Luôn trung thực, không bịa đặt. Không dùng từ ngữ quảng cáo thô thiển ("giá sốc", "sale sập sàn").
 
-DỮ LIỆU SẢN PHẨM CHÍNH THỨC CỦA NOOK KÝ (6 TÁC PHẨM):
-1. "Phố Vừa Lên Đèn" (Hội An) - Slug: pho-vua-len-den-hoi-an
-   - Giá ưu đãi: 899.000₫ (Giá gốc: 949.000₫) | Miền Trung | Độ khó: Trung bình | 6–8 giờ | 390–430 mảnh | Có LED ấm.
-   - Khe phố Hội An lúc chạng vạng, tường vàng, cửa chớp xanh, hoa giấy, ban công gỗ và đèn lồng bên mặt sông hoài niệm.
-2. "Mưa Qua Sân Gạch" (Huế) - Slug: mua-qua-san-gach-hue
-   - Giá: 929.000₫ | Miền Trung | Độ khó: Trung bình | 6–8 giờ | 350–410 mảnh | Có LED ấm.
-   - Khoảng sân Huế trầm mặc, nhịp ngói âm dương rêu phong, mảng gỗ và nền gạch hoa sau cơn mưa chiều.
-3. "Sáng Trên Phố Cũ" (Hà Nội) - Slug: sang-tren-pho-cu-ha-noi
-   - Giá ưu đãi: 849.000₫ (Giá gốc: 899.000₫) | Miền Bắc | Độ khó: Trung bình | 5–7 giờ | 380–430 mảnh | Có LED ấm.
-   - Lát cắt phố cũ Hà Nội buổi sớm, ban công hẹp, gánh hàng rong, mái hiên cổ kính và ánh nắng sớm len qua con ngõ nhỏ.
-4. "Hẻm Còn Sáng Đèn" (Sài Gòn) - Slug: hem-con-sang-den-sai-gon
-   - Giá: 1.099.000₫ | Miền Nam | Độ khó: Khá (Thử thách nhất) | 8–10 giờ | 430–500 mảnh | Có LED ấm.
-   - Hẻm phố Sài Gòn về đêm với nhiều tầng mặt tiền, biển hiệu retro rực rỡ và ánh đèn đa tầng có chiều sâu ấn tượng.
-5. "Đèn Ấm Trên Dốc" (Đà Lạt) - Slug: den-am-tren-doc-da-lat
-   - Giá: 849.000₫ | Tây Nguyên / Miền Nam | Độ khó: Trung bình | 5–7 giờ | 340–400 mảnh | Có LED ấm.
-   - Căn nhà gỗ nhỏ trên triền dốc Đà Lạt trong sương chiều, thông xanh và ánh đèn ấm áp giữa không khí se lạnh.
-6. "Sông Vừa Thức Giấc" (Miền Tây) - Slug: song-vua-thuc-giac-mien-tay
-   - Giá ưu đãi: 749.000₫ (Giá gốc: 799.000₫) | Miền Nam | Độ khó: Dễ (Phù hợp nhất cho người mới bắt đầu) | 4–6 giờ | 300–360 mảnh | Có LED ấm.
-   - Góc nhà ven sông miền Tây thanh bình lúc sớm mai, rặng dừa nước, nhịp thuyền ghe và tán cây hiền hòa.
+DỮ LIỆU SẢN PHẨM HIỆN CÓ CỦA NOOK KÝ (TỰ ĐỘNG ĐỒNG BỘ TỪ HỆ THỐNG):
+${productCatalog}
 
 CHÍNH SÁCH BÁN HÀNG & PHỤ KIỆN:
 - Bộ sản phẩm bao gồm đầy đủ 100%: Các vỉ gỗ ép laser cao cấp, dây điện và bóng đèn LED ánh vàng ấm, khay pin mini (an toàn, tiện để kệ sách), keo dán chuyên dụng, nhíp gắp chi tiết nhỏ, giấy ráp chà mịn và sách hướng dẫn minh hoạ chi tiết từng bước bằng tiếng Việt. Khách KHÔNG cần mua thêm bất kỳ phụ kiện nào từ bên ngoài.
@@ -60,6 +59,7 @@ CHÍNH SÁCH BÁN HÀNG & PHỤ KIỆN:
 
 TRA CỨU ĐƠN HÀNG:
 - Khi khách hỏi về tiến độ đơn hàng hoặc cung cấp mã đơn (dạng NK-...) hoặc số điện thoại, bạn PHẢI sử dụng công cụ 'lookup_order' để tra cứu dữ liệu thực tế từ Google Sheets trước khi trả lời.`;
+}
 
 function removeVietnameseTones(str: string): string {
   return str
@@ -113,15 +113,14 @@ async function handleLookupOrder(query: string): Promise<string> {
 }
 
 /**
- * Bộ máy phản hồi trực tiếp & thông minh (Native Fallback Engine)
- * Nhận diện chính xác ý định khách hàng, trả lời thẳng vào trọng tâm câu hỏi.
+ * Bộ máy phản hồi trực tiếp & thông minh (Native Fallback Engine).
+ * Tự động đồng bộ và quét động từ mảng `products` trong data/products.ts.
  */
 async function generateSmartFallbackResponse(
   userText: string,
   context?: ChatContext
 ): Promise<string> {
   const text = userText.trim();
-  const lower = text.toLowerCase();
   const norm = removeVietnameseTones(text);
 
   // 1. Ý định TRA CỨU ĐƠN HÀNG (Chứa mã NK- hoặc số điện thoại)
@@ -147,68 +146,33 @@ async function generateSmartFallbackResponse(
     return `Dạ, để em kiểm tra tình trạng đơn hàng cho mình, bạn vui lòng cho em xin **Mã đơn hàng** (dạng NK-2026...) hoặc **Số điện thoại** đã dùng khi đặt hàng nhé ạ!`;
   }
 
-  // 2. Ý định XEM SẢN PHẨM CỤ THỂ (Trả lời thẳng vào từng mẫu, kèm link xem ảnh & giá)
-  // Mẫu 1: Sông Vừa Thức Giấc (Miền Tây)
-  if (
-    norm.includes("song vua thuc giac") ||
-    norm.includes("mien tay") ||
-    norm.includes("song nuoc") ||
-    norm.includes("ven song") ||
-    norm.includes("mau 6")
-  ) {
-    return `Dạ, tác phẩm **"Sông Vừa Thức Giấc" (Miền Tây)** hiện đang có sẵn tại xưởng với mức giá ưu đãi **749.000₫** (giá gốc 799.000₫):\n\n• **Độ khó**: Dễ (khoảng 300–360 mảnh, hoàn thành trong 4–6 giờ) — đây là mẫu phù hợp nhất nếu bạn mới bắt đầu lắp mô hình book nook!\n• **Nét đặc sắc**: Tái hiện nhịp sống bình yên ven sông miền Tây với rặng dừa nước, nhịp ghe xuồng, mái hiên lá và ánh đèn LED vàng ấm lung linh.\n• **Bộ phụ kiện**: Đã bao gồm đủ vỉ gỗ ép laser cao cấp, dây đèn LED vàng ấm, khay pin mini an toàn, keo dán chuyên dụng, nhíp gắp và sách hướng dẫn chi tiết tiếng Việt.\n\n👉 Bạn có thể xem ảnh chi tiết từng góc và đặt mua tại đây nhé ạ:\n[Xem chi tiết tác phẩm Sông Vừa Thức Giấc →](/product/song-vua-thuc-giac-mien-tay)`;
-  }
+  // 2. TỰ ĐỘNG KHỚP SẢN PHẨM TỪ DANH MỤC DATA/PRODUCTS.TS (KỂ CẢ KHI THÊM MỚI)
+  const matchedProduct = products.find((p) => {
+    const normName = removeVietnameseTones(p.name);
+    const normLocation = removeVietnameseTones(p.location);
+    const normSlug = p.slug.replace(/-/g, " ");
 
-  // Mẫu 2: Phố Vừa Lên Đèn (Hội An)
-  if (
-    norm.includes("hoi an") ||
-    norm.includes("pho vua len den") ||
-    norm.includes("den long") ||
-    norm.includes("mau 1")
-  ) {
-    return `Dạ, tác phẩm **"Phố Vừa Lên Đèn" (Hội An)** là mẫu bán chạy nhất tại Nook Ký với mức giá ưu đãi **899.000₫** (giá gốc 949.000₫):\n\n• **Độ khó**: Trung bình (390–430 mảnh, thời gian lắp 6–8 giờ).\n• **Nét đặc sắc**: Tái hiện con ngõ phố cổ Hội An lúc chạng vạng với bức tường vàng rêu phong, cửa chớp xanh, giàn hoa giấy và lồng đèn rực rỡ dẫn mắt về phía bờ sông Hoài.\n• **Bộ phụ kiện**: Trọn gói đầy đủ gỗ, hệ thống đèn LED ấm, khay pin, keo dán, nhíp gắp và sách hướng dẫn.\n\n👉 Bạn có thể xem ảnh chi tiết và đặt mua tại đây:\n[Xem chi tiết tác phẩm Phố Vừa Lên Đèn →](/product/pho-vua-len-den-hoi-an)`;
-  }
+    if (norm.includes(normName) || norm.includes(normLocation) || norm.includes(normSlug)) {
+      return true;
+    }
 
-  // Mẫu 3: Mưa Qua Sân Gạch (Huế)
-  if (
-    norm.includes("hue") ||
-    norm.includes("mua qua san gach") ||
-    norm.includes("san gach") ||
-    norm.includes("mau 2")
-  ) {
-    return `Dạ, tác phẩm **"Mưa Qua Sân Gạch" (Huế)** hiện có giá **929.000₫**:\n\n• **Độ khó**: Trung bình (350–410 mảnh, thời gian lắp 6–8 giờ).\n• **Nét đặc sắc**: Tái hiện khoảng sân nhà Huế trầm mặc sau cơn mưa chiều, nhịp ngói âm dương cổ kính, mảng gỗ chạm khắc và nền gạch hoa phản chiếu ánh đèn vàng ấm.\n• **Bộ phụ kiện**: Đã bao gồm đủ gỗ, đèn LED ấm, khay pin mini, keo dán, nhíp và sách hướng dẫn.\n\n👉 Bạn có thể xem chi tiết tác phẩm tại đây:\n[Xem chi tiết tác phẩm Mưa Qua Sân Gạch →](/product/mua-qua-san-gach-hue)`;
-  }
+    // Kiểm tra từ khoá cụm từ chính (ví dụ: "song vua thuc giac", "sang tren pho cu", "mua qua san gach")
+    const words = normName.split(" ").filter((w) => w.length > 2);
+    if (words.length >= 2 && words.every((w) => norm.includes(w))) {
+      return true;
+    }
 
-  // Mẫu 4: Sáng Trên Phố Cũ (Hà Nội)
-  if (
-    norm.includes("ha noi") ||
-    norm.includes("sang tren pho cu") ||
-    norm.includes("pho cu") ||
-    norm.includes("mau 3")
-  ) {
-    return `Dạ, tác phẩm **"Sáng Trên Phố Cũ" (Hà Nội)** có giá ưu đãi **849.000₫** (giá gốc 899.000₫):\n\n• **Độ khó**: Trung bình (380–430 mảnh, thời gian lắp 5–7 giờ).\n• **Nét đặc sắc**: Lát cắt phố cũ Hà Nội buổi sớm mai với ban công hẹp, dây điện, gánh hàng rong và ánh nắng sớm len lỏi qua tán cây xuống con ngõ nhỏ.\n• **Bộ phụ kiện**: Trọn bộ đã kèm đầy đủ đèn LED, khay pin, keo dán, nhíp gắp và sách hướng dẫn.\n\n👉 Bạn có thể xem chi tiết tác phẩm tại đây:\n[Xem chi tiết tác phẩm Sáng Trên Phố Cũ →](/product/sang-tren-pho-cu-ha-noi)`;
-  }
+    return false;
+  });
 
-  // Mẫu 5: Hẻm Còn Sáng Đèn (Sài Gòn)
-  if (
-    norm.includes("sai gon") ||
-    norm.includes("hem con sang den") ||
-    norm.includes("hem") ||
-    norm.includes("tphcm") ||
-    norm.includes("mau 4")
-  ) {
-    return `Dạ, tác phẩm **"Hẻm Còn Sáng Đèn" (Sài Gòn)** là mô hình có độ chi tiết và thử thách cao nhất trong bộ sưu tập với giá **1.099.000₫**:\n\n• **Độ khó**: Khá (430–500 mảnh, thời gian lắp ráp 8–10 giờ) — rất cuốn hút cho người thích sự tỉ mỉ, kiên nhẫn!\n• **Nét đặc sắc**: Con hẻm Sài Gòn rực rỡ lúc đêm muộn với nhiều tầng mặt tiền, biển hiệu retro rực rỡ và ánh đèn đa tầng có chiều sâu ấn tượng.\n• **Bộ phụ kiện**: Đã bao gồm trọn bộ gỗ ép laser, đèn LED ấm, khay pin, keo dán, nhíp và sách hướng dẫn.\n\n👉 Bạn có thể xem chi tiết tác phẩm tại đây:\n[Xem chi tiết tác phẩm Hẻm Còn Sáng Đèn →](/product/hem-con-sang-den-sai-gon)`;
-  }
+  if (matchedProduct) {
+    const priceFormatted = formatVnd(matchedProduct.price);
+    const originalPriceFormatted = matchedProduct.regularPrice ? formatVnd(matchedProduct.regularPrice) : null;
+    const priceText = originalPriceFormatted
+      ? `mức giá ưu đãi **${priceFormatted}** (giá gốc ${originalPriceFormatted})`
+      : `mức giá **${priceFormatted}**`;
 
-  // Mẫu 6: Đèn Ấm Trên Dốc (Đà Lạt)
-  if (
-    norm.includes("da lat") ||
-    norm.includes("den am tren doc") ||
-    norm.includes("doc") ||
-    norm.includes("nha go") ||
-    norm.includes("mau 5")
-  ) {
-    return `Dạ, tác phẩm **"Đèn Ấm Trên Dốc" (Đà Lạt)** có mức giá **849.000₫**:\n\n• **Độ khó**: Trung bình (340–400 mảnh, thời gian lắp 5–7 giờ).\n• **Nét đặc sắc**: Căn nhà nhỏ trên triền dốc Đà Lạt giữa rặng thông xanh và ánh đèn vàng ấm áp như một nơi trú ẩn bình yên giữa không khí se lạnh của phố núi.\n• **Bộ phụ kiện**: Đầy đủ vỉ gỗ, đèn LED vàng ấm, khay pin, keo dán, nhíp và sách hướng dẫn.\n\n👉 Bạn có thể xem chi tiết tác phẩm tại đây:\n[Xem chi tiết tác phẩm Đèn Ấm Trên Dốc →](/product/den-am-tren-doc-da-lat)`;
+    return `Dạ, tác phẩm **"${matchedProduct.name}" (${matchedProduct.location})** hiện đang có sẵn tại xưởng với ${priceText}:\n\n• **Độ khó**: ${matchedProduct.difficulty} (${matchedProduct.pieces ? `khoảng ${matchedProduct.pieces} mảnh, ` : ""}hoàn thành trong ${matchedProduct.buildTime}).\n• **Nét đặc sắc**: ${matchedProduct.description}\n• **Bộ phụ kiện**: Đã bao gồm đủ vỉ gỗ ép laser cao cấp, hệ thống đèn LED vàng ấm, khay pin mini an toàn, keo dán chuyên dụng, nhíp gắp và sách hướng dẫn chi tiết tiếng Việt.\n\n👉 Bạn có thể xem ảnh chi tiết từng góc và đặt mua tại đây nhé ạ:\n[Xem chi tiết tác phẩm ${matchedProduct.name} →](/product/${matchedProduct.slug})`;
   }
 
   // 3. Ý định TƯ VẤN QUÀ TẶNG (Tặng bạn gái, bạn trai, người yêu, sinh nhật)
@@ -271,15 +235,26 @@ async function generateSmartFallbackResponse(
     return `Dạ, chính sách giao hàng của Nook Ký như sau:\n\n• **Miễn phí vận chuyển toàn quốc** cho đơn hàng từ 1.000.000₫ (hoặc từ 2 bộ mô hình trở lên). Đơn dưới 1.000.000₫ phí ship đồng giá 30.000₫ toàn quốc.\n• **Thời gian giao hàng**:\n  - Nội thành TP.HCM & Hà Nội: 2–3 ngày làm việc.\n  - Các tỉnh thành khác: 3–5 ngày làm việc.\n• Tác phẩm được đóng trong hộp quà kraft vintage dày dặn, bọc chống sốc đa tầng để đảm bảo an toàn tuyệt đối khi vận chuyển!`;
   }
 
-  // 8. Ý định HỎI BẢNG GIÁ / CÁC MẪU HIỆN CÓ
+  // 8. Ý định HỎI BẢNG GIÁ / CÁC MẪU HIỆN CÓ (TỰ ĐỘNG SINH TỪ DATA/PRODUCTS.TS)
   if (
     norm.includes("gia") ||
     norm.includes("bao nhieu") ||
     norm.includes("cac mau") ||
     norm.includes("danh sach") ||
-    norm.includes("bo suu tap")
+    norm.includes("bo suu tap") ||
+    norm.includes("co nhung mau nao") ||
+    norm.includes("co nhung tac pham nao")
   ) {
-    return `Dạ, hiện tại Nook Ký có 6 tác phẩm mô hình thủ công tương ứng với các miền ký ức Việt Nam:\n\n1. **"Sông Vừa Thức Giấc" (Miền Tây)**: 749.000₫ (Giá gốc: 799.000₫) — Dễ, 4–6h\n2. **"Sáng Trên Phố Cũ" (Hà Nội)**: 849.000₫ (Giá gốc: 899.000₫) — Trung bình, 5–7h\n3. **"Đèn Ấm Trên Dốc" (Đà Lạt)**: 849.000₫ — Trung bình, 5–7h\n4. **"Phố Vừa Lên Đèn" (Hội An)**: 899.000₫ (Giá gốc: 949.000₫) — Trung bình, 6–8h\n5. **"Mưa Qua Sân Gạch" (Huế)**: 929.000₫ — Trung bình, 6–8h\n6. **"Hẻm Còn Sáng Đèn" (Sài Gòn)**: 1.099.000₫ — Khá, 8–10h\n\n👉 Bạn muốn tìm hiểu kỹ hơn về tác phẩm nào trong 6 mẫu trên để em tư vấn chi tiết cho mình nhé ạ?`;
+    const listText = products
+      .map(
+        (p, i) =>
+          `${i + 1}. **"${p.name}" (${p.location})**: ${formatVnd(p.price)}${
+            p.regularPrice ? ` (Giá gốc: ${formatVnd(p.regularPrice)})` : ""
+          } — ${p.difficulty}, ${p.buildTime}`
+      )
+      .join("\n");
+
+    return `Dạ, hiện tại Nook Ký có ${products.length} tác phẩm mô hình thủ công tương ứng với các miền ký ức Việt Nam:\n\n${listText}\n\n👉 Bạn muốn tìm hiểu kỹ hơn về tác phẩm nào trong các mẫu trên để em tư vấn chi tiết cho mình nhé ạ?`;
   }
 
   // 9. Ngữ cảnh khách đang xem trang cụ thể
@@ -292,7 +267,7 @@ async function generateSmartFallbackResponse(
 }
 
 /**
- * Gọi OpenAI API gpt-4o-mini với Tool Calling tra cứu đơn hàng
+ * Gọi OpenAI API gpt-4o-mini với Tool Calling tra cứu đơn hàng và System Prompt động
  */
 async function callOpenAI(messages: ChatMessage[], context?: ChatContext): Promise<string> {
   const apiKey = process.env.OPENAI_API_KEY;
@@ -306,9 +281,11 @@ async function callOpenAI(messages: ChatMessage[], context?: ChatContext): Promi
 - Đơn hàng gần nhất trên máy khách: ${context.lastOrderId || "Chưa có"}`
     : "";
 
+  const dynamicSystemPrompt = getDynamicSystemPrompt();
+
   const systemMessage: ChatMessage = {
     role: "system",
-    content: `${BRAND_SYSTEM_PROMPT}${contextPrompt}`,
+    content: `${dynamicSystemPrompt}${contextPrompt}`,
   };
 
   const tools = [
