@@ -226,18 +226,25 @@ export function NookChatWidget() {
 
   return (
     <div className={styles.widgetContainer} aria-label="Khung trò chuyện tư vấn Nook Ký">
-      {/* Floating Action Button */}
+      {/* Floating Action Button - Mascot 3D & Speech Bubble */}
       {!isOpen && (
-        <button
-          type="button"
-          className={styles.fabButton}
-          onClick={toggleOpen}
-          aria-label="Mở khung tư vấn Nghệ nhân Nook Ký"
-        >
-          <span className={styles.fabPulseDot} />
-          <span className={styles.fabIcon}>🏮</span>
-          <span className={styles.fabLabel}>Tư vấn Nook Ký</span>
-        </button>
+        <div className={styles.fabWrapper}>
+          <div className={styles.fabSpeechBubble}>
+            Bạn cần Nook Ký tư vấn gì nè? 🏮
+          </div>
+          <button
+            type="button"
+            className={styles.fabButtonImage}
+            onClick={toggleOpen}
+            aria-label="Mở khung tư vấn Nghệ nhân Nook Ký"
+          >
+            <img
+              src="/media/chat-button-full.png"
+              alt="Tư vấn Nook Ký"
+              className={styles.fabMascotImg}
+            />
+          </button>
+        </div>
       )}
 
       {/* Chat Window Dialog */}
@@ -246,7 +253,13 @@ export function NookChatWidget() {
           {/* Header */}
           <div className={styles.header}>
             <div className={styles.headerLeft}>
-              <div className={styles.avatarBox}>🏮</div>
+              <div className={styles.avatarBox}>
+                <img
+                  src="/media/chat-mascot-avatar.png"
+                  alt="Linh vật Nghệ nhân Nook Ký"
+                  className={styles.avatarImg}
+                />
+              </div>
               <div className={styles.headerTitles}>
                 <h3 id="chat-title" className={styles.title}>
                   Nghệ nhân Nook Ký
