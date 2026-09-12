@@ -1,0 +1,273 @@
+/* ==========================================================================
+   Smooth Transitions, Ambient Seams, Shimmer & 3D Interactive System
+   (Version: Fixed Sharp Golden Words & Continuous Bi-directional Reveal)
+   ========================================================================== */
+
+/* 1. Global Ambient Spotlight Cursor Glow */
+.nk-cursor-glow {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 15;
+  background: radial-gradient(
+    circle,
+    rgba(223, 190, 141, 0.12) 0%,
+    rgba(217, 149, 59, 0.05) 35%,
+    transparent 70%
+  );
+  transform: translate(-50%, -50%);
+  transition: opacity 0.3s ease;
+  mix-blend-mode: screen;
+  will-change: left, top;
+}
+
+/* 2. Seamless Section Transition Masks (Ambient Edge Seams) */
+section {
+  position: relative;
+}
+
+/* Ambient Seamless Transition Top & Bottom Overlays */
+section[id]::before,
+section[id]::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: clamp(80px, 14vh, 180px);
+  pointer-events: none;
+  z-index: 6;
+}
+
+/* Top soft fade-in blend */
+section[id]::before {
+  top: 0;
+  background: linear-gradient(
+    0deg,
+    transparent 0%,
+    rgba(26, 14, 8, 0.4) 40%,
+    rgba(18, 9, 4, 0.85) 80%,
+    #120904 100%
+  );
+}
+
+/* Bottom soft fade-out blend */
+section[id]::after {
+  bottom: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(26, 14, 8, 0.4) 40%,
+    rgba(18, 9, 4, 0.85) 80%,
+    #120904 100%
+  );
+}
+
+/* 3. Golden Text Highlight for Emphasized Words (Clear, Crisp & Glowing) */
+em,
+.goldShimmer,
+[data-nk-shimmer] {
+  font-style: italic;
+  font-family: inherit;
+  color: #ebc082 !important;
+  text-shadow: 0 0 18px rgba(235, 192, 130, 0.45), 0 2px 10px rgba(0, 0, 0, 0.9);
+  position: relative;
+  display: inline;
+  -webkit-text-fill-color: initial !important;
+  background: none !important;
+  font-weight: inherit;
+}
+
+/* 4. Repeatable Scroll Reveal Utility Classes (Bền vững khi cuộn lên / xuống) */
+[data-nk-reveal] {
+  opacity: 0;
+  transform: translate3d(0, 42px, 0);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+[data-nk-reveal="left"] {
+  transform: translate3d(-50px, 0, 0);
+}
+
+[data-nk-reveal="right"] {
+  transform: translate3d(50px, 0, 0);
+}
+
+[data-nk-reveal="scale"] {
+  transform: scale(0.9) translate3d(0, 24px, 0);
+}
+
+/* When in view */
+[data-nk-reveal].nk-revealed {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+/* Stagger Delays */
+[data-nk-delay="1"] { transition-delay: 0.06s; }
+[data-nk-delay="2"] { transition-delay: 0.14s; }
+[data-nk-delay="3"] { transition-delay: 0.22s; }
+[data-nk-delay="4"] { transition-delay: 0.30s; }
+[data-nk-delay="5"] { transition-delay: 0.38s; }
+[data-nk-delay="6"] { transition-delay: 0.46s; }
+
+/* 5. 3D Perspective Tilt on Interactive Cards */
+[data-nk-tilt] {
+  transform-style: preserve-3d;
+  transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1), box-shadow 0.3s ease;
+  will-change: transform;
+}
+
+/* 6. Subtle Parallax for Background Wrappers */
+[data-nk-parallax] {
+  will-change: transform;
+  transition: transform 0.18s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* 7. Journey Navigation Rail */
+.nk-journey-rail {
+  position: fixed;
+  right: clamp(16px, 2.5vw, 36px);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 12px 8px;
+  border-radius: 30px;
+  background: rgba(26, 14, 8, 0.6);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(223, 190, 141, 0.28);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.nk-journey-dot {
+  position: relative;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(223, 190, 141, 0.35);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
+  display: grid;
+  place-items: center;
+}
+
+.nk-journey-dot:hover {
+  background: rgba(223, 190, 141, 0.85);
+  transform: scale(1.35);
+}
+
+.nk-journey-dot.is-active {
+  background: #ebc082;
+  box-shadow: 0 0 14px #ebc082, 0 0 0 3px rgba(235, 192, 130, 0.3);
+  transform: scale(1.45);
+}
+
+.nk-journey-tooltip {
+  position: absolute;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%) translateX(10px);
+  padding: 6px 12px;
+  border-radius: 6px;
+  background: rgba(20, 10, 5, 0.95);
+  border: 1px solid rgba(223, 190, 141, 0.35);
+  color: #f7e4cb;
+  font-family: var(--nk-v3-ui, "Product Sans VH", sans-serif);
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
+}
+
+.nk-journey-dot:hover .nk-journey-tooltip {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+}
+
+/* 8. Floating Button Shimmer Effect */
+.nk-button,
+a[class*="primaryBtn"],
+a[class*="primaryCta"],
+button[class*="submitBtn"] {
+  position: relative;
+  overflow: hidden;
+}
+
+.nk-button::after,
+a[class*="primaryBtn"]::after,
+a[class*="primaryCta"]::after,
+button[class*="submitBtn"]::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 40%;
+  height: 200%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.22) 50%,
+    transparent 100%
+  );
+  transform: rotate(25deg);
+  transition: none;
+  animation: btnShimmer 4.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  pointer-events: none;
+}
+
+@keyframes btnShimmer {
+  0% {
+    left: -70%;
+  }
+  30%, 100% {
+    left: 140%;
+  }
+}
+
+/* 9. Top Page Scroll Reading Progress Bar */
+.nk-scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2.5px;
+  background: linear-gradient(90deg, #b99059 0%, #ebc082 50%, #fff 100%);
+  z-index: 100;
+  pointer-events: none;
+  transition: width 0.1s ease-out;
+  box-shadow: 0 0 10px rgba(235, 192, 130, 0.85);
+}
+
+@media (max-width: 900px) {
+  .nk-journey-rail {
+    display: none;
+  }
+  .nk-cursor-glow {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-nk-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  [data-nk-parallax],
+  [data-nk-tilt] {
+    transform: none !important;
+  }
+}

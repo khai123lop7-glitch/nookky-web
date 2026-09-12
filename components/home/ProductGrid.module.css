@@ -1,0 +1,499 @@
+/* ==========================================================================
+   ProductGrid Module — Vintage Scrapbook Collection Section (Image 2)
+   ========================================================================== */
+
+.showcaseSection {
+  position: relative;
+  background-color: #ede2cf;
+  background-image: url("/media/editorial/collection-bg.png");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  color: #2a180e;
+  overflow: hidden;
+  scroll-margin-top: 72px;
+  padding: clamp(20px, 2.5vh, 32px) 0;
+  box-sizing: border-box;
+}
+
+@media (min-width: 992px) {
+  .showcaseSection {
+    min-height: calc(100vh - 72px);
+    max-height: calc(100vh - 72px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+/* ── Handwritten Note at Bottom Left ── */
+.noteBottomLeft {
+  position: absolute;
+  bottom: clamp(12px, 2vh, 24px);
+  left: clamp(140px, 15vw, 220px);
+  z-index: 10;
+  pointer-events: none;
+}
+
+.bottomNoteText {
+  font-family: "Caveat", cursive;
+  font-size: clamp(18px, 1.4vw, 22px);
+  line-height: 1.15;
+  color: #4a3424;
+  transform: rotate(-4deg);
+  margin: 0;
+}
+
+/* ── Inner Container ── */
+.innerContainer {
+  width: min(calc(100% - 64px), 1340px);
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(12px, 1.8vh, 20px);
+  position: relative;
+  z-index: 5;
+}
+
+/* ── Top Header Bar ── */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.titleArea {
+  display: flex;
+  flex-direction: column;
+}
+
+.eyebrow {
+  font-family: var(--nk-v3-ui, "Be Vietnam Pro", sans-serif);
+  font-size: clamp(9.5px, 0.75vw, 11px);
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #7b2923;
+  margin: 0 0 3px;
+}
+
+.title {
+  font-family: var(--nk-v3-serif, "Playfair Display", serif);
+  font-size: clamp(22px, 2.3vw, 34px);
+  line-height: 1.15;
+  font-weight: 600;
+  color: #27160d;
+  margin: 0 0 4px;
+  letter-spacing: -0.015em;
+}
+
+.subtitle {
+  font-family: var(--nk-v3-ui, "Be Vietnam Pro", sans-serif);
+  font-size: clamp(11.5px, 0.9vw, 13.5px);
+  color: #553e2d;
+  margin: 0;
+}
+
+.headerAside {
+  padding-bottom: 4px;
+}
+
+.allLink {
+  font-family: var(--nk-v3-serif, "Playfair Display", serif);
+  font-size: clamp(12px, 0.9vw, 13.5px);
+  font-weight: 600;
+  color: #27160d;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.2s ease;
+}
+
+.allLink:hover {
+  color: #822622;
+}
+
+/* ── 3-Column Showcase Layout ── */
+.showcaseLayout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr) minmax(0, 1.4fr);
+  gap: clamp(16px, 2.5vw, 36px);
+  align-items: center;
+}
+
+/* ── 1. SPOTLIGHT COLUMN (LEFT) ── */
+.spotlightCol {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spotlightCard {
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+  aspect-ratio: 3.8 / 5.2;
+  background: #fdfaf6;
+  padding: 10px 10px 14px;
+  border-radius: 2px;
+  box-shadow: 0 10px 28px rgba(35, 18, 8, 0.2), 0 2px 6px rgba(0, 0, 0, 0.08);
+  box-sizing: border-box;
+}
+
+.spotlightInner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #1e1108;
+  border-radius: 1px;
+}
+
+.spotlightImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: opacity 0.2s ease;
+}
+
+.spotlightImg.switching {
+  opacity: 0.2;
+}
+
+.polaroidNote {
+  position: absolute;
+  bottom: -16px;
+  left: -14px;
+  background: #ffffff;
+  padding: 8px 10px 14px;
+  border-radius: 2px;
+  box-shadow: 0 8px 20px rgba(35, 15, 6, 0.25);
+  transform: rotate(-6deg);
+  z-index: 4;
+}
+
+.polaroidText {
+  font-family: "Caveat", cursive;
+  font-size: clamp(12px, 0.9vw, 14px);
+  line-height: 1.15;
+  color: #3b281c;
+  margin: 0;
+  text-align: center;
+}
+
+/* ── 2. DOSSIER COLUMN (CENTER) ── */
+.dossierCol {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(6px, 1vh, 10px);
+}
+
+.metaRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.locName {
+  font-family: var(--nk-v3-ui, "Be Vietnam Pro", sans-serif);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #634b38;
+}
+
+.regionBadge {
+  background: #822622;
+  color: #ffffff;
+  font-family: var(--nk-v3-ui, "Be Vietnam Pro", sans-serif);
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  padding: 2px 7px;
+  border-radius: 3px;
+  text-transform: uppercase;
+}
+
+.prodTitle {
+  font-family: var(--nk-v3-serif, "Playfair Display", serif);
+  font-size: clamp(22px, 2.2vw, 32px);
+  line-height: 1.15;
+  font-weight: 600;
+  color: #27160d;
+  margin: 0;
+}
+
+.prodDesc {
+  font-family: var(--nk-v3-ui, "Be Vietnam Pro", sans-serif);
+  font-size: clamp(11.5px, 0.88vw, 13px);
+  line-height: 1.6;
+  color: #443022;
+  margin: 0;
+}
+
+/* 3 Specs Items */
+.specsList {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 2px 0;
+}
+
+.specItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.specIcon {
+  font-size: 14px;
+}
+
+.specText {
+  display: flex;
+  gap: 6px;
+  align-items: baseline;
+  font-family: var(--nk-v3-ui, "Be Vietnam Pro", sans-serif);
+  font-size: 11.5px;
+}
+
+.specLabel {
+  color: #7a6350;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  font-size: 10.5px;
+}
+
+.specValue {
+  color: #27160d;
+  font-weight: 700;
+}
+
+/* Price */
+.priceRow {
+  margin-top: 2px;
+}
+
+.priceValue {
+  font-family: var(--nk-v3-serif, "Playfair Display", serif);
+  font-size: clamp(22px, 2.2vw, 30px);
+  font-weight: 700;
+  color: #822622;
+}
+
+/* Action Buttons */
+.actionRow {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: 2px;
+}
+
+.addCartBtn {
+  background: #822622 !important;
+  color: #ffffff !important;
+  border: none !important;
+  padding: 8px 16px !important;
+  border-radius: 4px !important;
+  font-family: var(--nk-v3-ui, "Be Vietnam Pro", sans-serif) !important;
+  font-size: 12.5px !important;
+  font-weight: 600 !important;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(130, 38, 34, 0.25);
+  transition: background 0.2s ease;
+}
+
+.addCartBtn:hover {
+  background: #6e1c18 !important;
+}
+
+.detailBtn {
+  background: rgba(240, 230, 215, 0.7);
+  color: #3b281c;
+  border: 1px solid rgba(160, 130, 100, 0.4);
+  padding: 7px 14px;
+  border-radius: 4px;
+  font-family: var(--nk-v3-ui, "Be Vietnam Pro", sans-serif);
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.detailBtn:hover {
+  background: #ede0cb;
+  border-color: #822622;
+  color: #822622;
+}
+
+.quoteText {
+  font-family: "Caveat", cursive;
+  font-size: clamp(14px, 1.1vw, 17px);
+  color: #5d4635;
+  margin: 2px 0 0;
+}
+
+/* ── 3. MINI CATALOG GRID COLUMN (RIGHT) ── */
+.miniGridCol {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.miniCardsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(8px, 1vw, 14px);
+  width: 100%;
+}
+
+.miniCard {
+  background: rgba(253, 250, 246, 0.85);
+  border: 1px solid rgba(180, 150, 120, 0.35);
+  border-radius: 4px;
+  padding: 6px;
+  cursor: pointer;
+  transition: all 0.22s ease;
+  box-shadow: 0 4px 12px rgba(40, 20, 10, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.miniCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(40, 20, 10, 0.16);
+  border-color: #822622;
+  background: #ffffff;
+}
+
+.miniCard.activeMiniCard {
+  border: 1.5px solid #822622;
+  background: #ffffff;
+  box-shadow: 0 6px 18px rgba(130, 38, 34, 0.2);
+}
+
+.miniImgWrap {
+  width: 100%;
+  aspect-ratio: 1 / 1.15;
+  overflow: hidden;
+  border-radius: 2px;
+  background: #1c0e05;
+}
+
+.miniImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.miniInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.miniLoc {
+  font-family: var(--nk-v3-ui, "Be Vietnam Pro", sans-serif);
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #7b2923;
+}
+
+.miniName {
+  font-family: var(--nk-v3-serif, "Playfair Display", serif);
+  font-size: clamp(10.5px, 0.82vw, 12px);
+  font-weight: 600;
+  color: #27160d;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.miniBottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2px;
+}
+
+.miniPrice {
+  font-family: var(--nk-v3-ui, "Be Vietnam Pro", sans-serif);
+  font-size: 10.5px;
+  font-weight: 700;
+  color: #27160d;
+}
+
+.miniCartBtnWrap {
+  display: inline-flex;
+}
+
+.miniCartBtn {
+  background: #822622 !important;
+  color: #ffffff !important;
+  border: none !important;
+  border-radius: 3px !important;
+  padding: 3px 6px !important;
+  font-size: 10px !important;
+  cursor: pointer;
+  line-height: 1 !important;
+  min-height: 22px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.miniCartBtn:hover {
+  background: #6e1c18 !important;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1100px) {
+  .showcaseLayout {
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .miniGridCol {
+    grid-column: span 2;
+  }
+  .miniCardsGrid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .showcaseSection {
+    max-height: none;
+    min-height: 0;
+    padding: 36px 0 54px;
+  }
+  .showcaseLayout {
+    grid-template-columns: 1fr;
+  }
+  .miniGridCol {
+    grid-column: span 1;
+  }
+  .miniCardsGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .noteBottomLeft {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .miniCardsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}

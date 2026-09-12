@@ -1,0 +1,274 @@
+/* ==========================================================================
+   Section 3 / Craft Process: Hành trình tạo nên một Nook (Image Match)
+   ========================================================================== */
+
+.craftSection {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff9f0;
+  box-sizing: border-box;
+  padding: clamp(60px, 8vh, 90px) 0;
+  background-color: #1a0f08;
+  overflow: hidden;
+}
+
+/* Background image & Lighting Overlay */
+.bgWrapper {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.bgImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.bgOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(16, 9, 5, 0.75) 0%,
+    rgba(20, 11, 6, 0.82) 40%,
+    rgba(14, 8, 4, 0.94) 100%
+  );
+  pointer-events: none;
+}
+
+/* Inner Container */
+.innerContainer {
+  position: relative;
+  z-index: 5;
+  width: min(1340px, calc(100% - clamp(32px, 5vw, 80px)));
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(28px, 4vh, 48px);
+}
+
+/* ── 1. TOP REGION: Intro & Calligraphy Box ── */
+.topRegion {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 32px;
+}
+
+.introCol {
+  display: flex;
+  flex-direction: column;
+  max-width: 650px;
+}
+
+.eyebrowWrap {
+  display: flex;
+  align-items: center;
+  margin-bottom: clamp(10px, 1.5vh, 16px);
+}
+
+.eyebrow {
+  font-family: var(--nk-v3-ui, "Product Sans VH", sans-serif);
+  font-size: clamp(10px, 0.82vw, 12px);
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: #dfbe8d;
+  text-transform: uppercase;
+}
+
+.title {
+  font-family: var(--nk-v3-display, "NookOrtland", sans-serif);
+  font-size: clamp(32px, 3.5vw, 52px);
+  line-height: 1.12;
+  font-weight: 400;
+  color: #ffffff;
+  margin: 0 0 clamp(14px, 2vh, 20px);
+  letter-spacing: -0.02em;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8);
+}
+
+.titleLine1 {
+  display: block;
+}
+
+.titleLine2 {
+  display: block;
+}
+
+.titleLine2 em {
+  font-style: italic;
+  font-family: var(--nk-v3-display, "NookOrtland", sans-serif);
+  font-weight: 400;
+  color: #ebc082;
+  text-shadow: 0 0 16px rgba(235, 192, 130, 0.45);
+}
+
+.lead {
+  font-family: var(--nk-v3-ui, "Product Sans VH", sans-serif);
+  font-size: clamp(12.5px, 0.95vw, 14.5px);
+  line-height: 1.65;
+  color: rgba(253, 244, 233, 0.8);
+  margin: 0;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.7);
+}
+
+/* Calligraphy Quote on Top Right */
+.quoteWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-left: 20px;
+  border-left: 1px solid rgba(223, 190, 141, 0.35);
+  margin-bottom: 8px;
+}
+
+.quoteCalligraphy {
+  font-family: var(--nk-v3-ui, "Product Sans VH", sans-serif);
+  font-style: italic;
+  font-size: clamp(17px, 1.45vw, 23px);
+  line-height: 1.35;
+  color: #f3dfc5;
+  margin: 0 0 10px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+  letter-spacing: 0.01em;
+}
+
+/* ── 2. BOTTOM REGION: 4 Step Cards ── */
+.stepsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(12px, 1.5vw, 20px);
+}
+
+.stepCard {
+  background: rgba(28, 16, 9, 0.7);
+  border: 1px solid rgba(223, 190, 141, 0.22);
+  border-radius: 4px;
+  padding: clamp(12px, 1.4vh, 18px);
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.2, 0, 0, 1);
+  display: flex;
+  flex-direction: column;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  outline: none;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+.stepCard:hover {
+  background: rgba(44, 24, 14, 0.88);
+  border-color: rgba(223, 190, 141, 0.55);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+}
+
+.stepCard.activeCard {
+  border-color: #dfbe8d;
+  background: rgba(48, 26, 15, 0.95);
+  box-shadow: 0 12px 36px rgba(223, 190, 141, 0.25), 0 4px 12px rgba(0, 0, 0, 0.6);
+}
+
+.stepHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.stepNumWrap {
+  display: flex;
+  align-items: center;
+}
+
+.stepNum {
+  font-family: var(--nk-v3-ui, "Product Sans VH", sans-serif);
+  font-size: clamp(12px, 0.9vw, 14px);
+  font-weight: 700;
+  color: #dfbe8d;
+}
+
+.stepTitle {
+  font-family: var(--nk-v3-ui, "Product Sans VH", sans-serif);
+  font-size: clamp(13px, 1.05vw, 16px);
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.25;
+}
+
+.stepCopy {
+  font-family: var(--nk-v3-ui, "Product Sans VH", sans-serif);
+  font-size: clamp(10.5px, 0.82vw, 12px);
+  line-height: 1.55;
+  color: rgba(253, 244, 233, 0.68);
+  margin: 0 0 12px;
+  min-height: 48px;
+}
+
+.stepImgWrap {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-radius: 2px;
+  background: #120904;
+  margin-top: auto;
+  margin-bottom: 10px;
+}
+
+.stepImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.stepCard:hover .stepImg {
+  transform: scale(1.04);
+}
+
+.stepSubLabel {
+  font-family: var(--nk-v3-ui, "Product Sans VH", sans-serif);
+  font-style: italic;
+  font-size: clamp(9.5px, 0.75vw, 11px);
+  line-height: 1.4;
+  color: rgba(223, 190, 141, 0.75);
+  margin: 0;
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .topRegion {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 900px) {
+  .craftSection {
+    min-height: auto;
+    padding: 60px 20px;
+  }
+
+  .stepsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+}
+
+@media (max-width: 600px) {
+  .stepsGrid {
+    grid-template-columns: 1fr;
+  }
+}

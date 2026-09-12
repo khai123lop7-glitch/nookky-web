@@ -1,0 +1,5 @@
+@media (min-width: 801px) {
+  .compact :global(.nk-announcement) {
+    display: none;
+  }
+}

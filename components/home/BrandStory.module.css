@@ -1,0 +1,266 @@
+/* ==========================================================================
+   Section 2: Quà Tặng Doanh Nghiệp & Custom Gifts (Image Match)
+   ========================================================================== */
+
+.giftSection {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  color: #fff9f0;
+  box-sizing: border-box;
+  padding: clamp(60px, 8vh, 100px) 0;
+  background-color: #120a06;
+}
+
+/* Background image & lighting gradient overlay */
+.bgWrapper {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.bgImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.gradientOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(14, 8, 4, 0.94) 0%,
+    rgba(16, 9, 5, 0.88) 35%,
+    rgba(18, 10, 6, 0.65) 55%,
+    rgba(18, 10, 6, 0.15) 80%,
+    rgba(18, 10, 6, 0.4) 100%
+  );
+  pointer-events: none;
+}
+
+/* Content Container on the Left */
+.contentContainer {
+  position: relative;
+  z-index: 5;
+  width: min(1320px, calc(100% - clamp(32px, 6vw, 100px)));
+  margin-inline: auto;
+  max-width: 660px;
+  margin-left: max(clamp(20px, 5vw, 80px), calc((100vw - 1320px) / 2));
+  display: flex;
+  flex-direction: column;
+}
+
+/* Eyebrow */
+.eyebrow {
+  font-family: var(--nk-v3-ui, "Product Sans VH", sans-serif);
+  font-size: clamp(11px, 0.9vw, 13px);
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: #e5b378;
+  margin: 0 0 clamp(12px, 1.8vh, 18px);
+  text-transform: uppercase;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+}
+
+/* Main Heading */
+.heading {
+  font-family: var(--nk-v3-display, "NookOrtland", sans-serif);
+  font-size: clamp(42px, 4.6vw, 70px);
+  line-height: 1.05;
+  font-weight: 400;
+  color: #ffffff;
+  margin: 0 0 clamp(18px, 2.4vh, 26px);
+  letter-spacing: -0.025em;
+  text-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.9),
+    0 6px 24px rgba(0, 0, 0, 0.8),
+    0 12px 40px rgba(0, 0, 0, 0.6);
+}
+
+.headingLine1 {
+  display: block;
+}
+
+.headingLine2 {
+  display: block;
+}
+
+.headingLine2 em {
+  font-style: italic;
+  font-family: var(--nk-v3-display, "NookOrtland", sans-serif);
+  font-weight: 400;
+  color: #ebc082;
+  margin-right: 8px;
+  text-shadow: 0 0 16px rgba(235, 192, 130, 0.45);
+}
+
+/* Description */
+.description {
+  font-family: var(--nk-v3-ui, "Product Sans VH", sans-serif);
+  font-size: clamp(13px, 1.05vw, 15px);
+  line-height: 1.68;
+  color: rgba(253, 244, 233, 0.85);
+  margin: 0 0 clamp(28px, 3.5vh, 38px);
+  max-width: 500px;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.7);
+}
+
+/* 3 Pillars Grid */
+.featuresGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(12px, 1.5vw, 24px);
+  margin-bottom: clamp(28px, 3.5vh, 40px);
+  padding-bottom: clamp(16px, 2vh, 24px);
+  border-bottom: 1px solid rgba(245, 222, 190, 0.14);
+}
+
+.featureCard {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.featureIcon {
+  color: #ebc082;
+  margin-bottom: 2px;
+  display: flex;
+  align-items: center;
+}
+
+.featureTitle {
+  font-family: var(--nk-v3-ui, "Product Sans VH", sans-serif);
+  font-size: clamp(12.5px, 0.95vw, 14.5px);
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.featureDesc {
+  font-family: var(--nk-v3-ui, "Product Sans VH", sans-serif);
+  font-size: clamp(10.5px, 0.8vw, 12px);
+  line-height: 1.5;
+  color: rgba(253, 244, 233, 0.65);
+  margin: 0;
+}
+
+/* CTA Button Group */
+.ctaGroup {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: clamp(28px, 3.5vh, 38px);
+  flex-wrap: wrap;
+}
+
+.primaryBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #fdfaf6;
+  color: #271408;
+  padding: 12px 26px;
+  border-radius: 999px;
+  font-family: var(--nk-v3-ui, "Product Sans VH", sans-serif);
+  font-size: 13.5px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.22s ease;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+}
+
+.primaryBtn:hover {
+  background: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+  color: #000000;
+}
+
+.secondaryBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(40, 24, 15, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: #f7e6ce;
+  border: 1px solid rgba(245, 222, 190, 0.28);
+  padding: 12px 24px;
+  border-radius: 999px;
+  font-family: var(--nk-v3-ui, "Product Sans VH", sans-serif);
+  font-size: 13.5px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.22s ease;
+}
+
+.secondaryBtn:hover {
+  background: rgba(60, 36, 22, 0.85);
+  border-color: rgba(245, 222, 190, 0.55);
+  color: #ffffff;
+  transform: translateY(-2px);
+}
+
+/* Bottom Quote */
+.quoteWrap {
+  display: flex;
+  align-items: flex-start;
+}
+
+.quoteText {
+  font-family: var(--nk-v3-ui, "Product Sans VH", sans-serif);
+  font-style: italic;
+  font-size: clamp(11.5px, 0.88vw, 13px);
+  line-height: 1.5;
+  color: rgba(247, 230, 206, 0.72);
+  margin: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+  .giftSection {
+    min-height: auto;
+    padding: 60px 20px;
+  }
+
+  .contentContainer {
+    max-width: 100%;
+    margin-left: 0;
+  }
+
+  .gradientOverlay {
+    background: linear-gradient(
+      180deg,
+      rgba(14, 8, 4, 0.7) 0%,
+      rgba(16, 9, 5, 0.92) 50%,
+      rgba(14, 8, 4, 0.96) 100%
+    );
+  }
+}
+
+@media (max-width: 600px) {
+  .featuresGrid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .ctaGroup {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .primaryBtn,
+  .secondaryBtn {
+    justify-content: center;
+  }
+}

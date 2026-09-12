@@ -1,0 +1,578 @@
+/* ==========================================================================
+   Section: Sản Phẩm Tiêu Biểu (Featured Nooks Showcase)
+   Design replica based on user mock reference
+   ========================================================================== */
+
+.showcaseSection {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #1e130c;
+  background-image: 
+    radial-gradient(ellipse 65% 55% at 55% 45%, rgba(68, 38, 19, 0.45), transparent 70%),
+    radial-gradient(circle at 15% 20%, rgba(45, 23, 10, 0.6), transparent 50%),
+    linear-gradient(180deg, #180d07 0%, #1e130c 25%, #1b100a 75%, #140b06 100%);
+  color: #fff9f0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: clamp(60px, 7vh, 84px) 0 clamp(32px, 4vh, 48px);
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.innerContainer {
+  position: relative;
+  z-index: 2;
+  width: min(1340px, calc(100% - clamp(32px, 5vw, 88px)));
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: space-between;
+  gap: clamp(32px, 4vh, 52px);
+}
+
+/* ── MAIN 3-COLUMN LAYOUT ─────────────────────────────────────────── */
+.mainGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1.45fr) 110px;
+  gap: clamp(28px, 3.5vw, 64px);
+  align-items: center;
+}
+
+/* ── 1. LEFT COLUMN: Heading & Snapshot Detail ─────────────────────── */
+.leftCol {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 3vh, 32px);
+  max-width: 540px;
+}
+
+.eyebrowWrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.eyebrowLine {
+  width: 32px;
+  height: 1px;
+  background: rgba(223, 190, 141, 0.6);
+}
+
+.eyebrow {
+  font-family: var(--nk-v3-ui, "Product Sans VH", sans-serif);
+  font-size: clamp(10px, 0.8vw, 11.5px);
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  color: #dfbe8d;
+  text-transform: uppercase;
+}
+
+.heading {
+  font-family: var(--nk-v3-display, "NookOrtland", serif);
+  font-size: clamp(36px, 3.8vw, 56px);
+  line-height: 1.08;
+  font-weight: 400;
+  color: #ffffff;
+  margin: 0;
+  letter-spacing: -0.02em;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.6);
+}
+
+.heading em {
+  font-style: italic;
+  color: #f7e4cb;
+}
+
+.lead {
+  font-family: var(--nk-v3-ui, "Product Sans VH", sans-serif);
+  font-size: clamp(13px, 0.95vw, 14.5px);
+  line-height: 1.65;
+  color: rgba(253, 244, 233, 0.76);
+  margin: 0;
+}
+
+/* Detail Card Box */
+.detailCard {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: clamp(8px, 1.5vh, 16px);
+  max-width: 440px;
+}
+
+.detailMediaWrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #150b06;
+  border: 1px solid rgba(223, 190, 141, 0.2);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
+}
+
+.detailImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.5s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.detailCard:hover .detailImg {
+  transform: scale(1.04);
+}
+
+.detailBody {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.locationTagWrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.locationTag {
+  font-family: var(--nk-v3-ui, "Product Sans VH", sans-serif);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: #dfbe8d;
+  text-transform: uppercase;
+}
+
+.tagLine {
+  width: 24px;
+  height: 1px;
+  background: rgba(223, 190, 141, 0.5);
+}
+
+.productName {
+  font-family: var(--nk-v3-display, "NookOrtland", serif);
+  font-size: clamp(24px, 2.2vw, 32px);
+  font-weight: 400;
+  color: #ffffff;
+  margin: 0;
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+}
+
+.productDesc {
+  font-family: var(--nk-v3-ui, "Product Sans VH", sans-serif);
+  font-size: clamp(12px, 0.88vw, 13.5px);
+  line-height: 1.55;
+  color: rgba(253, 244, 233, 0.65);
+  margin: 0;
+}
+
+.priceAndCta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 6px;
+  padding-top: 10px;
+}
+
+.priceLabel {
+  font-family: var(--nk-v3-ui, "Product Sans VH", sans-serif);
+  font-size: clamp(14px, 1.15vw, 17px);
+  font-weight: 600;
+  color: #ebc082;
+  letter-spacing: 0.02em;
+}
+
+.exploreLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--nk-v3-ui, "Product Sans VH", sans-serif);
+  font-size: clamp(12.5px, 0.9vw, 14px);
+  font-weight: 600;
+  color: #f7e4cb;
+  border-bottom: 1px solid rgba(247, 228, 203, 0.4);
+  padding-bottom: 3px;
+  transition: all 0.25s ease;
+  cursor: pointer;
+}
+
+.exploreLink:hover {
+  color: #ffffff;
+  border-bottom-color: #ffffff;
+  transform: translateX(3px);
+}
+
+.arrowIcon {
+  display: inline-block;
+  transition: transform 0.25s ease;
+}
+
+.exploreLink:hover .arrowIcon {
+  transform: translateX(4px);
+}
+
+/* ── 2. CENTER COLUMN: Main Stage Frame ────────────────────────────── */
+.centerCol {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.centerStageFrame {
+  position: relative;
+  width: 100%;
+  max-width: 560px;
+  aspect-ratio: 4 / 4.4;
+  border-radius: 24px;
+  border: 1px solid rgba(223, 190, 141, 0.28);
+  background: rgba(26, 14, 8, 0.5);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 
+    0 24px 60px rgba(0, 0, 0, 0.65),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(24px, 3vh, 40px);
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.centerStageImg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 20px 35px rgba(0, 0, 0, 0.7));
+  transition: opacity 0.3s ease, transform 0.4s cubic-bezier(0.2, 0, 0, 1);
+  transform: scale(1.02);
+}
+
+.centerStageFrame:hover .centerStageImg {
+  transform: scale(1.06);
+}
+
+/* Zoom Button */
+.zoomBtn {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(30, 17, 10, 0.75);
+  border: 1px solid rgba(223, 190, 141, 0.3);
+  color: #f7e4cb;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  z-index: 5;
+  backdrop-filter: blur(8px);
+}
+
+.zoomBtn:hover {
+  background: rgba(223, 190, 141, 0.2);
+  border-color: #dfbe8d;
+  color: #ffffff;
+  transform: scale(1.08);
+}
+
+/* ── 3. RIGHT COLUMN: Thumbnail Selector & Pagination ─────────────── */
+.rightCol {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+.paginationCounter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--nk-v3-ui, "Product Sans VH", sans-serif);
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(223, 190, 141, 0.6);
+  letter-spacing: 0.1em;
+  margin-bottom: 4px;
+}
+
+.paginationActive {
+  color: #dfbe8d;
+  font-weight: 700;
+}
+
+.paginationSlash {
+  opacity: 0.4;
+  font-size: 10px;
+}
+
+.thumbList {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+}
+
+.thumbBtn {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1.18;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #150b06;
+  border: 1px solid rgba(223, 190, 141, 0.2);
+  padding: 0;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+.thumbBtn:hover {
+  border-color: rgba(223, 190, 141, 0.6);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.55);
+}
+
+.thumbBtn.activeThumb {
+  border: 2px solid #ebc082;
+  box-shadow: 
+    0 0 0 2px rgba(235, 192, 130, 0.25),
+    0 10px 24px rgba(0, 0, 0, 0.6);
+  transform: scale(1.03);
+}
+
+.thumbImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ── 4. BOTTOM FOOTER BAR ─────────────────────────────────────────── */
+.bottomBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(223, 190, 141, 0.15);
+  padding-top: clamp(16px, 2.5vh, 24px);
+  font-family: var(--nk-v3-ui, "Product Sans VH", sans-serif);
+}
+
+.bottomLeft {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.bottomNum {
+  font-size: 12px;
+  font-weight: 700;
+  color: #dfbe8d;
+  letter-spacing: 0.1em;
+}
+
+.bottomLine {
+  width: 36px;
+  height: 1px;
+  background: rgba(223, 190, 141, 0.4);
+}
+
+.bottomSub {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: rgba(253, 244, 233, 0.6);
+  text-transform: uppercase;
+}
+
+.bottomRight {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 3px;
+  text-align: right;
+  position: relative;
+  padding-top: 8px;
+}
+
+.bottomRightDecorLine {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50px;
+  height: 1px;
+  background: rgba(223, 190, 141, 0.35);
+}
+
+.sloganLine1,
+.sloganLine2 {
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  color: rgba(223, 190, 141, 0.55);
+  text-transform: uppercase;
+}
+
+/* ── 5. ZOOM MODAL ───────────────────────────────────────────────── */
+.zoomOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: rgba(14, 7, 3, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: grid;
+  place-items: center;
+  padding: 40px;
+  animation: fadeIn 0.25s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.zoomContainer {
+  position: relative;
+  max-width: 900px;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.zoomImg {
+  width: auto;
+  max-width: 100%;
+  max-height: 75vh;
+  object-fit: contain;
+  filter: drop-shadow(0 25px 50px rgba(0,0,0,0.8));
+}
+
+.zoomCloseBtn {
+  position: absolute;
+  top: -48px;
+  right: -20px;
+  background: transparent;
+  border: 1px solid rgba(223, 190, 141, 0.4);
+  color: #ffffff;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.zoomCloseBtn:hover {
+  background: rgba(223, 190, 141, 0.2);
+  border-color: #dfbe8d;
+}
+
+.zoomCaption {
+  margin-top: 16px;
+  font-family: var(--nk-v3-ui, "Product Sans VH", sans-serif);
+  font-size: 14px;
+  color: #dfbe8d;
+  letter-spacing: 0.05em;
+}
+
+/* ── 6. RESPONSIVE BREAKPOINTS ────────────────────────────────────── */
+@media (max-width: 1120px) {
+  .mainGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 36px;
+  }
+
+  .rightCol {
+    grid-column: span 2;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .paginationCounter {
+    flex-direction: row;
+    gap: 8px;
+    margin-bottom: 0;
+  }
+
+  .thumbList {
+    flex-direction: row;
+    width: auto;
+    gap: 12px;
+  }
+
+  .thumbBtn {
+    width: 80px;
+    aspect-ratio: 1 / 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .showcaseSection {
+    min-height: auto;
+    padding: 60px 0 32px;
+  }
+
+  .mainGrid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .leftCol {
+    max-width: 100%;
+  }
+
+  .centerStageFrame {
+    max-width: 100%;
+    aspect-ratio: 4 / 3.8;
+  }
+
+  .rightCol {
+    grid-column: auto;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .thumbList {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .thumbBtn {
+    width: 70px;
+  }
+
+  .bottomBar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .bottomRight {
+    align-items: flex-start;
+    text-align: left;
+    padding-top: 0;
+  }
+
+  .bottomRightDecorLine {
+    display: none;
+  }
+}

@@ -1,0 +1,1 @@
+Homepage typography update ready. Git integration restored; trigger production build from main.
