@@ -16,6 +16,7 @@ export type NookProduct = {
     cover: string;
     detail: string;
     lifestyle: string;
+    gallery: string[];
   };
 };
 
@@ -37,6 +38,12 @@ export const products: NookProduct[] = [
       cover: "/media/products/01-pho-vua-len-den-hoi-an/cover.webp",
       detail: "/media/products/01-pho-vua-len-den-hoi-an/detail.webp",
       lifestyle: "/media/products/01-pho-vua-len-den-hoi-an/lifestyle.webp",
+      gallery: [
+        "/media/products/Hoi-An-4-anh-gen-moi/Hoi-An-01-Product.png",
+        "/media/products/Hoi-An-4-anh-gen-moi/Hoi-An-02-Transparent-Roof.png",
+        "/media/products/Hoi-An-4-anh-gen-moi/Hoi-An-03-Details.png",
+        "/media/products/Hoi-An-4-anh-gen-moi/Hoi-An-04-Assembly.png",
+      ],
     },
   },
   {
@@ -55,6 +62,12 @@ export const products: NookProduct[] = [
       cover: "/media/products/02-mua-qua-san-gach-hue/cover.webp",
       detail: "/media/products/02-mua-qua-san-gach-hue/detail.webp",
       lifestyle: "/media/products/02-mua-qua-san-gach-hue/lifestyle.webp",
+      gallery: [
+        "/media/products/Hue-4-anh-gen-moi/Hue-01-Product.png",
+        "/media/products/Hue-4-anh-gen-moi/Hue-02-Interior.png",
+        "/media/products/Hue-4-anh-gen-moi/Hue-03-Details.png",
+        "/media/products/Hue-4-anh-gen-moi/Hue-04-Assembly.png",
+      ],
     },
   },
   {
@@ -74,6 +87,12 @@ export const products: NookProduct[] = [
       cover: "/media/products/03-sang-tren-pho-cu-ha-noi/cover.webp",
       detail: "/media/products/03-sang-tren-pho-cu-ha-noi/detail.webp",
       lifestyle: "/media/products/03-sang-tren-pho-cu-ha-noi/lifestyle.webp",
+      gallery: [
+        "/media/products/Ha-Noi-4-anh-gen-moi/Ha-Noi-01.png",
+        "/media/products/Ha-Noi-4-anh-gen-moi/Ha-Noi-02.png",
+        "/media/products/Ha-Noi-4-anh-gen-moi/Ha-Noi-03.png",
+        "/media/products/Ha-Noi-4-anh-gen-moi/Ha-Noi-04.png",
+      ],
     },
   },
   {
@@ -92,6 +111,12 @@ export const products: NookProduct[] = [
       cover: "/media/products/04-hem-con-sang-den-sai-gon/cover.webp",
       detail: "/media/products/04-hem-con-sang-den-sai-gon/detail.webp",
       lifestyle: "/media/products/04-hem-con-sang-den-sai-gon/lifestyle.webp",
+      gallery: [
+        "/media/products/Sai-Gon-4-anh-gen-moi/Sai-Gon-01.png",
+        "/media/products/Sai-Gon-4-anh-gen-moi/Sai-Gon-02.png",
+        "/media/products/Sai-Gon-4-anh-gen-moi/Sai-Gon-03.png",
+        "/media/products/Sai-Gon-4-anh-gen-moi/Sai-Gon-04.png",
+      ],
     },
   },
   {
@@ -110,6 +135,12 @@ export const products: NookProduct[] = [
       cover: "/media/products/05-den-am-tren-doc-da-lat/cover.webp",
       detail: "/media/products/05-den-am-tren-doc-da-lat/detail.webp",
       lifestyle: "/media/products/05-den-am-tren-doc-da-lat/lifestyle.webp",
+      gallery: [
+        "/media/products/Da-Lat-4-anh-gen-moi/Da-Lat-01-Product.png",
+        "/media/products/Da-Lat-4-anh-gen-moi/Da-Lat-02-Top-View.png",
+        "/media/products/Da-Lat-4-anh-gen-moi/Da-Lat-03-Details-Collage.png",
+        "/media/products/Da-Lat-4-anh-gen-moi/Da-Lat-04-Assembly.png",
+      ],
     },
   },
   {
@@ -129,6 +160,12 @@ export const products: NookProduct[] = [
       cover: "/media/products/06-song-vua-thuc-giac-mien-tay/cover.webp",
       detail: "/media/products/06-song-vua-thuc-giac-mien-tay/detail.webp",
       lifestyle: "/media/products/06-song-vua-thuc-giac-mien-tay/lifestyle.webp",
+      gallery: [
+        "/media/products/Mien-Tay-4-anh-gen-moi/Mien-Tay-01-Product.png",
+        "/media/products/Mien-Tay-4-anh-gen-moi/Mien-Tay-02-Details.png",
+        "/media/products/Mien-Tay-4-anh-gen-moi/Mien-Tay-03-Assembly.png",
+        "/media/products/Mien-Tay-4-anh-gen-moi/Mien-Tay-04-Lifestyle.png",
+      ],
     },
   },
 ];
@@ -139,3 +176,4 @@ export const spotlightProduct = products[0];
 export function formatVnd(value: number) {
   return new Intl.NumberFormat("vi-VN").format(value) + " ₫";
 }
+
