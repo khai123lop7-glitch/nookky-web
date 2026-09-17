@@ -1,8 +1,8 @@
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Header } from "@/components/site/Header";
 import { ProductPurchaseSection } from "@/components/commerce/ProductPurchaseSection";
 import { ProductGallery } from "@/components/product/ProductGallery";
+import { RelatedProductsCarousel } from "@/components/product/RelatedProductsCarousel";
 import { formatVnd, products } from "@/data/products";
 import styles from "./ProductPage.module.css";
 
@@ -17,7 +17,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
 
   const gallery = product.media.gallery;
   const labels = product.media.galleryLabels ?? [];
-  const related = products.filter((item) => item.slug !== product.slug).slice(0, 3);
+  const related = products.filter((item) => item.slug !== product.slug);
 
   return (
     <>
@@ -162,20 +162,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           <div className={styles.relatedInner}>
             <p className={styles.eyebrow}>Khám phá thêm</p>
             <h2>Những góc Việt Nam khác</h2>
-            <div className={styles.relatedGrid}>
-              {related.map((item) => (
-                <Link href={`/product/${item.slug}`} className={styles.relatedCard} key={item.slug}>
-                  <img src={item.media.cover} alt={item.name} loading="lazy" decoding="async" />
-                  <div>
-                    <div>
-                      <p>{item.location}</p>
-                      <h3>{item.name}</h3>
-                    </div>
-                    <strong>{formatVnd(item.price)}</strong>
-                  </div>
-                </Link>
-              ))}
-            </div>
+            <RelatedProductsCarousel products={related} />
           </div>
         </section>
 
