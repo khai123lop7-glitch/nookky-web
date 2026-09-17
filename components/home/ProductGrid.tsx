@@ -7,6 +7,7 @@ import { AddToCartButton } from "@/components/commerce/AddToCartButton";
 import styles from "./ProductCatalog.module.css";
 
 const driveImage = (id: string, width = 2200) => `https://drive.google.com/thumbnail?id=${id}&sz=w${width}`;
+const displayFont = '"NookOrtland", "Be Vietnam Pro", sans-serif';
 
 const COLLECTION_HERO = "https://drive.google.com/thumbnail?id=1pUnw74xRwg5aCjERwL_S5ul7op6ZweOu&sz=w2400";
 const LIFESTYLE_IMAGE = driveImage("1Nb_AB08zHjaLh1gLDPn66ytachTA4Ggz");
@@ -35,7 +36,7 @@ export function ProductGrid() {
         <div className={styles.heroShade} aria-hidden="true" />
         <div className={styles.heroCopy}>
           <p className={styles.heroEyebrow}>NOOK KÝ · BỘ SƯU TẬP VIỆT NAM THU NHỎ</p>
-          <h1>Những góc Việt Nam,<br />thu nhỏ để giữ lại.</h1>
+          <h1 style={{ fontFamily: displayFont }}>Những góc Việt Nam,<br />thu nhỏ để giữ lại.</h1>
           <p>
             Từ một con phố vừa lên đèn đến một mái nhà nép trên dốc,
             mỗi Nook là một lát cắt quen thuộc được dựng lại bằng ánh sáng, chi tiết và ký ức.
@@ -48,7 +49,7 @@ export function ProductGrid() {
         <header className={styles.header}>
           <div className={styles.titleArea}>
             <p className={styles.eyebrow}>BỘ SƯU TẬP NOOK KÝ</p>
-            <h2 id="nk-shop-title" className={styles.title}>Sáu Nơi Chốn, Sáu Nhịp Ánh Sáng.</h2>
+            <h2 id="nk-shop-title" className={styles.title} style={{ fontFamily: displayFont }}>Sáu Nơi Chốn, Sáu Nhịp Ánh Sáng.</h2>
             <p className={styles.subtitle}>Chọn một nơi chốn để xem đầy đủ hình ảnh, câu chuyện và thông tin sản phẩm.</p>
           </div>
         </header>
@@ -73,7 +74,7 @@ export function ProductGrid() {
               <div className={styles.catalogBody}>
                 <div>
                   <p className={styles.catalogLocation}>{product.location}</p>
-                  <h3 className={styles.catalogName}>{product.name}</h3>
+                  <h3 className={styles.catalogName} style={{ fontFamily: displayFont }}>{product.name}</h3>
                 </div>
 
                 <div className={styles.catalogFooter}>
@@ -97,7 +98,7 @@ export function ProductGrid() {
         </div>
         <div className={styles.storyFeatureCopy}>
           <p className={styles.eyebrow}>KHÔNG CHỈ ĐỂ TRƯNG BÀY</p>
-          <h2>Một góc nhỏ có thể làm căn phòng đổi nhịp.</h2>
+          <h2 style={{ fontFamily: displayFont }}>Một góc nhỏ có thể làm căn phòng đổi nhịp.</h2>
           <p>
             Khi đứng riêng, mỗi Nook là một mô hình. Khi đặt giữa sách, đèn bàn và những món đồ bạn dùng mỗi ngày,
             nó trở thành một phần của không gian sống — một điểm sáng đủ nhỏ để không lấn át, nhưng đủ đặc biệt để khiến bạn muốn nhìn lại.
@@ -114,7 +115,7 @@ export function ProductGrid() {
         </div>
         <div className={styles.storySplitCopy}>
           <p className={styles.eyebrow}>TỰ TAY HOÀN THIỆN</p>
-          <h2>Phần hay nhất là lúc mọi thứ dần thành hình.</h2>
+          <h2 style={{ fontFamily: displayFont }}>Phần hay nhất là lúc mọi thứ dần thành hình.</h2>
           <p>
             Từ những tấm gỗ phẳng, chi tiết rời và bộ đèn nhỏ, bạn ghép từng lớp không gian cho đến khi con phố bắt đầu có chiều sâu.
             Đây không phải trải nghiệm “mở hộp rồi đặt lên kệ” — mà là vài giờ chậm lại để tự tay dựng nên thành phẩm của chính mình.
@@ -133,7 +134,7 @@ export function ProductGrid() {
         </div>
         <div className={styles.storySplitCopy}>
           <p className={styles.eyebrow}>TRONG HỘP CÓ GÌ?</p>
-          <h2>Mở hộp là có thể bắt đầu.</h2>
+          <h2 style={{ fontFamily: displayFont }}>Mở hộp là có thể bắt đầu.</h2>
           <p>
             Mỗi bộ được chuẩn bị để bạn đi từ những chi tiết cơ bản đến thành phẩm hoàn chỉnh mà không phải tự tìm thêm quá nhiều thứ bên ngoài.
             Những nhóm phụ kiện nhỏ được tách rõ để quá trình lắp ráp dễ theo dõi hơn.
@@ -150,7 +151,7 @@ export function ProductGrid() {
       <section className={styles.detailStory}>
         <div className={styles.detailStoryCopy}>
           <p className={styles.eyebrow}>NHỮNG CHI TIẾT NHỎ GIỮ LẠI CẢM GIÁC</p>
-          <h2>Không phải nơi chốn nào cũng cần kể bằng toàn cảnh.</h2>
+          <h2 style={{ fontFamily: displayFont }}>Không phải nơi chốn nào cũng cần kể bằng toàn cảnh.</h2>
           <p>
             Có khi chỉ một chiếc đèn lồng, bậc thềm ướt, ban công cũ hay một con dốc đầy hoa cũng đủ khiến ta nhận ra nơi mình từng đi qua.
             Vì vậy mỗi mẫu đều dành nhiều chỗ cho những chi tiết nhỏ — thứ làm nên ký ức hơn là chỉ làm đầy mô hình.
@@ -165,7 +166,7 @@ export function ProductGrid() {
         <img src={FULL_SET_IMAGE} alt="Sáu mẫu trong bộ sưu tập Nook Ký" loading="lazy" decoding="async" />
         <div className={styles.collectionCloseCopy}>
           <p className={styles.eyebrow}>6 ĐỊA DANH · 6 NHỊP ÁNH SÁNG</p>
-          <h2>Đặt cạnh nhau, thành một Việt Nam nhỏ.</h2>
+          <h2 style={{ fontFamily: displayFont }}>Đặt cạnh nhau, thành một Việt Nam nhỏ.</h2>
           <p>
             Hội An, Huế, Hà Nội, Sài Gòn, Đà Lạt và Miền Tây — mỗi nơi giữ một nhịp riêng nhưng cùng chung chất liệu ấm áp,
             nhiều lớp không gian và cảm giác được tự tay hoàn thiện từng chi tiết.
