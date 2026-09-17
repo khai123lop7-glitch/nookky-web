@@ -39,20 +39,29 @@ export function ProductGrid() {
       </div>
 
       <div className={styles.editorialIntro}>
-        <div className={styles.editorialHeading}>
+        <figure className={styles.editorialVisual}>
+          <img
+            src={SECONDARY_HERO}
+            alt="Các mẫu Nook Ký được đặt cạnh nhau"
+            loading="lazy"
+            decoding="async"
+          />
+        </figure>
+
+        <div className={styles.editorialContent}>
           <p className={styles.eyebrow}>MỘT GÓC NHỎ, MỘT CÂU CHUYỆN RIÊNG</p>
           <h2>Không chỉ để trưng bày.</h2>
-        </div>
-        <div className={styles.editorialCopy}>
-          <p>
-            Nook Ký được làm để bạn có thể tự tay đi qua từng lớp không gian: ghép từng mảng nhỏ,
-            đặt từng chi tiết vào đúng chỗ và bật ánh đèn đầu tiên sau khi hoàn thiện.
-          </p>
-          <p>
-            Sáu mẫu là sáu nhịp sống khác nhau — Hội An, Huế, Hà Nội, Sài Gòn, Đà Lạt và Miền Tây —
-            nhưng cùng chung một ý niệm: giữ lại một nơi chốn quen thuộc theo cách rất riêng.
-          </p>
-          <div className={styles.editorialMeta}>6 địa danh · 6 nhịp ánh sáng · 1 bộ sưu tập</div>
+          <div className={styles.editorialCopy}>
+            <p>
+              Nook Ký được làm để bạn có thể tự tay đi qua từng lớp không gian: ghép từng mảng nhỏ,
+              đặt từng chi tiết vào đúng chỗ và bật ánh đèn đầu tiên sau khi hoàn thiện.
+            </p>
+            <p>
+              Sáu mẫu là sáu nhịp sống khác nhau — Hội An, Huế, Hà Nội, Sài Gòn, Đà Lạt và Miền Tây —
+              nhưng cùng chung một ý niệm: giữ lại một nơi chốn quen thuộc theo cách rất riêng.
+            </p>
+            <div className={styles.editorialMeta}>6 địa danh · 6 nhịp ánh sáng · 1 bộ sưu tập</div>
+          </div>
         </div>
       </div>
 
@@ -119,31 +128,6 @@ export function ProductGrid() {
           ))}
         </div>
       </div>
-
-      <figure
-        className={styles.secondaryHero}
-        style={{ width: "min(calc(100% - 24px), 620px)", marginInline: "auto" }}
-      >
-        <div
-          className={styles.secondaryHeroMedia}
-          style={{ aspectRatio: "auto", height: "auto", overflow: "visible", background: "transparent" }}
-        >
-          <img
-            src={SECONDARY_HERO}
-            alt="Các mẫu Nook Ký được đặt cạnh nhau"
-            loading="lazy"
-            decoding="async"
-            style={{ width: "100%", height: "auto", maxHeight: "none", objectFit: "contain", display: "block" }}
-          />
-        </div>
-        <figcaption>
-          <span>ĐẶT CẠNH NHAU, THÀNH MỘT VIỆT NAM NHỎ</span>
-          <p>
-            Mỗi mẫu giữ một sắc thái riêng — từ phố cổ, hẻm nhỏ đến miền sông nước và những con dốc nhiều hoa.
-            Khi đặt cạnh nhau, chúng tạo thành một bộ sưu tập có cùng hơi ấm nhưng không bị lặp lại.
-          </p>
-        </figcaption>
-      </figure>
     </section>
   );
 }
