@@ -9,7 +9,6 @@ import "./globals.css";
 import "./v3-migration.css";
 import "./final-polish.css";
 import "./scroll-transitions.css";
-import "./font-fix.css";
 
 export const metadata: Metadata = {
   title: "Nook Ký",
