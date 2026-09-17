@@ -7,6 +7,7 @@
   background: #fffdfa;
   color: var(--pdp-brown);
   padding-top: 104px;
+  font-family: var(--nk-v3-body, "Product Sans VH", "Be Vietnam Pro", sans-serif);
 }
 
 .hero {
@@ -29,28 +30,33 @@
 .location {
   margin: 0 0 12px;
   color: var(--pdp-gold);
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: .15em;
+  font-family: var(--nk-v3-ui, "Product Sans VH", "Be Vietnam Pro", sans-serif);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .14em;
   text-transform: uppercase;
 }
 .summary h1 {
   margin: 0;
-  font-size: clamp(46px, 4vw, 68px);
-  line-height: .96;
+  font-family: var(--nk-v3-display, "Lora", "Playfair Display", serif);
+  font-size: clamp(48px, 3.8vw, 64px);
+  font-weight: 800;
+  letter-spacing: -.045em;
+  line-height: 1;
 }
 .tagline {
   margin: 20px 0 0;
-  max-width: 460px;
-  font-size: 19px;
-  line-height: 1.4;
+  max-width: 500px;
+  font-family: var(--nk-v3-serif, "Lora", "Playfair Display", serif);
+  font-size: 20px;
+  line-height: 1.45;
 }
 .description {
   margin: 14px 0 0;
-  max-width: 500px;
+  max-width: 540px;
   color: #715f53;
-  font-size: 14px;
-  line-height: 1.68;
+  font-size: 16px;
+  line-height: 1.72;
 }
 
 .facts {
@@ -66,11 +72,11 @@
 .facts dt {
   margin-bottom: 5px;
   color: #8a7567;
-  font-size: 9px;
+  font-size: 10px;
   text-transform: uppercase;
   letter-spacing: .08em;
 }
-.facts dd { margin: 0; font-size: 13px; font-weight: 700; }
+.facts dd { margin: 0; font-size: 14px; font-weight: 700; }
 
 .price {
   margin-top: 24px;
@@ -78,31 +84,33 @@
   align-items: baseline;
   gap: 12px;
 }
-.price s { color: #9b897d; font-size: 13px; }
-.price strong { font-size: 26px; }
+.price s { color: #9b897d; font-size: 14px; }
+.price strong { font-size: 28px; }
 
 .subnav {
   position: sticky;
   top: 60px;
   z-index: 20;
-  min-height: 54px;
+  min-height: 58px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 34px;
+  gap: 38px;
   border-top: 1px solid rgba(47,22,7,.1);
   border-bottom: 1px solid rgba(47,22,7,.1);
   background: rgba(255,253,250,.96);
   backdrop-filter: blur(14px);
+  font-family: var(--nk-v3-ui, "Product Sans VH", "Be Vietnam Pro", sans-serif);
 }
-.subnav a { font-size: 11px; font-weight: 750; letter-spacing: .04em; }
+.subnav a { font-size: 13px; font-weight: 600; letter-spacing: .01em; }
 
 .eyebrow {
   margin: 0 0 16px;
   color: var(--pdp-gold);
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: .14em;
+  font-family: var(--nk-v3-ui, "Product Sans VH", "Be Vietnam Pro", sans-serif);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .12em;
   text-transform: uppercase;
 }
 
@@ -111,7 +119,7 @@
   text-align: center;
 }
 .storyInner {
-  width: min(calc(100% - 48px), 900px);
+  width: min(calc(100% - 48px), 940px);
   margin: 0 auto;
 }
 .story h2,
@@ -120,15 +128,18 @@
 .specs h2,
 .related h2 {
   margin: 0;
-  font-size: clamp(44px, 4.8vw, 76px);
-  line-height: .98;
+  font-family: var(--nk-v3-display, "Lora", "Playfair Display", serif);
+  font-weight: 800;
+  letter-spacing: -.045em;
+  font-size: clamp(46px, 4vw, 64px);
+  line-height: 1.02;
 }
 .story p:last-child {
-  width: min(100%, 650px);
-  margin: 22px auto 0;
+  width: min(100%, 720px);
+  margin: 24px auto 0;
   color: #715f53;
-  line-height: 1.75;
-  font-size: 15px;
+  line-height: 1.78;
+  font-size: 17px;
 }
 
 .detailSection {
@@ -145,8 +156,8 @@
   gap: 18px;
 }
 .detailNotes article { padding-top: 14px; border-top: 1px solid rgba(47,22,7,.18); }
-.detailNotes span { display: block; margin-bottom: 8px; color: var(--pdp-gold); font-size: 10px; font-weight: 800; }
-.detailNotes p { margin: 0; font-size: 13px; line-height: 1.55; }
+.detailNotes span { display: block; margin-bottom: 8px; color: var(--pdp-gold); font-size: 11px; font-weight: 800; }
+.detailNotes p { margin: 0; font-size: 15px; line-height: 1.6; }
 
 .split,
 .splitReverse {
@@ -171,15 +182,15 @@
 .sectionCopy { background: var(--pdp-paper); }
 .darkCopy { background: var(--pdp-brown); color: var(--pdp-cream); }
 .sectionCopy h2,
-.darkCopy h2 { font-size: clamp(40px, 4vw, 62px); }
+.darkCopy h2 { font-size: clamp(42px, 3.6vw, 58px); }
 .sectionCopy p,
 .darkCopy p {
   margin: 20px 0 0;
-  max-width: 500px;
-  font-size: 14px;
-  line-height: 1.72;
+  max-width: 540px;
+  font-size: 16px;
+  line-height: 1.75;
 }
-.darkCopy p { color: rgba(252,244,233,.72); }
+.darkCopy p { color: rgba(252,244,233,.76); }
 .contents {
   margin: 26px 0 0;
   padding: 0;
@@ -188,9 +199,9 @@
   gap: 6px;
 }
 .contents li {
-  padding: 9px 0;
+  padding: 10px 0;
   border-bottom: 1px solid rgba(252,244,233,.14);
-  font-size: 13px;
+  font-size: 15px;
 }
 
 .fullBleed {
@@ -212,10 +223,17 @@
   position: absolute;
   left: 48px;
   bottom: 42px;
-  width: min(580px, calc(100% - 96px));
+  width: min(620px, calc(100% - 96px));
 }
-.fullCopy h2 { margin: 0; font-size: clamp(46px, 4.6vw, 70px); line-height: .96; }
-.fullCopy p { margin: 16px 0 0; max-width: 500px; color: rgba(252,244,233,.8); line-height: 1.65; font-size: 14px; }
+.fullCopy h2 {
+  margin: 0;
+  font-family: var(--nk-v3-display, "Lora", "Playfair Display", serif);
+  font-weight: 800;
+  letter-spacing: -.045em;
+  font-size: clamp(46px, 4vw, 62px);
+  line-height: 1.02;
+}
+.fullCopy p { margin: 16px 0 0; max-width: 540px; color: rgba(252,244,233,.82); line-height: 1.72; font-size: 16px; }
 
 .specs {
   padding: 92px 0;
@@ -229,8 +247,8 @@
   border-top: 1px solid rgba(47,22,7,.14);
 }
 .specGrid div { padding: 22px 16px 22px 0; border-bottom: 1px solid rgba(47,22,7,.14); }
-.specGrid span { display: block; margin-bottom: 6px; color: #8c786a; font-size: 9px; text-transform: uppercase; letter-spacing: .08em; }
-.specGrid strong { font-size: 14px; }
+.specGrid span { display: block; margin-bottom: 6px; color: #8c786a; font-size: 10px; text-transform: uppercase; letter-spacing: .08em; }
+.specGrid strong { font-size: 15px; }
 
 .related {
   padding: 94px 0 112px;
@@ -243,9 +261,14 @@
 .relatedCard { display: block; }
 .relatedCard img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; background: #e8dccd; }
 .relatedCard div { padding-top: 14px; display: flex; justify-content: space-between; gap: 18px; }
-.relatedCard p { margin: 0 0 6px; color: var(--pdp-gold); font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; }
-.relatedCard h3 { margin: 0; font-size: 28px; line-height: .97; }
-.relatedCard strong { font-size: 12px; white-space: nowrap; }
+.relatedCard p { margin: 0 0 6px; color: var(--pdp-gold); font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; }
+.relatedCard h3 {
+  margin: 0;
+  font-family: var(--nk-v3-serif, "Lora", "Playfair Display", serif);
+  font-size: 30px;
+  line-height: 1.02;
+}
+.relatedCard strong { font-size: 13px; white-space: nowrap; }
 
 .mobileBuy { display: none; }
 
@@ -299,8 +322,8 @@
     border-top: 1px solid rgba(47,22,7,.14);
     backdrop-filter: blur(14px);
   }
-  .mobileBuy span { display: block; font-size: 10px; color: #806d60; }
-  .mobileBuy strong { display: block; margin-top: 2px; font-size: 14px; }
+  .mobileBuy span { display: block; font-size: 11px; color: #806d60; }
+  .mobileBuy strong { display: block; margin-top: 2px; font-size: 15px; }
   .mobileBuy a {
     min-height: 46px;
     padding: 0 20px;
@@ -308,21 +331,23 @@
     place-items: center;
     background: var(--pdp-brown);
     color: var(--pdp-cream);
-    font-size: 12px;
-    font-weight: 750;
+    font-size: 13px;
+    font-weight: 700;
   }
 }
 
 @media (max-width: 600px) {
   .hero { width: calc(100% - 20px); }
-  .summary h1 { font-size: 46px; }
-  .tagline { font-size: 17px; }
+  .summary h1 { font-size: 44px; }
+  .tagline { font-size: 18px; }
+  .description { font-size: 15px; }
   .story { padding: 72px 0 58px; }
-  .story h2 { font-size: 48px; }
+  .story h2 { font-size: 44px; }
+  .story p:last-child { font-size: 16px; }
   .detailNotes { grid-template-columns: 1fr; }
   .fullBleed { min-height: 500px; }
   .fullBleed img { height: 500px; }
-  .fullCopy h2 { font-size: 46px; }
+  .fullCopy h2 { font-size: 44px; }
   .specGrid { grid-template-columns: 1fr; }
   .relatedInner { width: calc(100% - 28px); }
 }
