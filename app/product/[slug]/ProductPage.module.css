@@ -249,6 +249,10 @@
 
 .mobileBuy { display: none; }
 
+@media (min-width: 1440px) {
+  .hero { gap: 28px; }
+}
+
 @media (max-width: 980px) {
   .page { padding-top: 88px; }
   .hero {
