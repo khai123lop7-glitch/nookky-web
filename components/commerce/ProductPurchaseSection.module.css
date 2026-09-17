@@ -23,6 +23,8 @@
   display: inline-grid;
   grid-template-columns: 38px 44px 38px;
   border: 1px solid rgba(252, 244, 233, 0.14);
+  border-radius: 12px;
+  overflow: hidden;
   background: rgba(255, 255, 255, 0.035);
 }
 
@@ -37,13 +39,8 @@
   color: #fcf4e9;
   transition: background 0.15s ease;
 }
-.qtyBtn:hover:not(:disabled) {
-  background: rgba(255, 255, 255, 0.08);
-}
-.qtyBtn:disabled {
-  opacity: 0.3;
-  cursor: not-allowed;
-}
+.qtyBtn:hover:not(:disabled) { background: rgba(255, 255, 255, 0.08); }
+.qtyBtn:disabled { opacity: 0.3; cursor: not-allowed; }
 
 .qtyValue {
   display: grid;
@@ -64,6 +61,7 @@
 .buyNowBtn {
   min-height: 50px;
   padding: 0 16px;
+  border-radius: 12px;
   font-size: 12px;
   font-weight: 750;
   letter-spacing: 0.03em;
