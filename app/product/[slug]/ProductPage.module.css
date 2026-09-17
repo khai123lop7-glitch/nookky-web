@@ -6,7 +6,7 @@
   --pdp-brown-2: #3a1f10;
   --pdp-dark: #1d120c;
   --pdp-gold: #d9953b;
-  --pdp-heading: var(--nk-v3-serif, "Lora", "Playfair Display", serif);
+  --pdp-heading: "NookOrtland", "Be Vietnam Pro", sans-serif;
   --pdp-ui: var(--nk-v3-ui, "Product Sans VH", "Be Vietnam Pro", sans-serif);
   background: var(--pdp-brown);
   color: var(--pdp-cream);
@@ -48,9 +48,9 @@
 .fullCopy h2 {
   margin: 0;
   font-family: var(--pdp-heading) !important;
-  font-weight: 600 !important;
-  letter-spacing: -.016em !important;
-  line-height: 1.05;
+  font-weight: 400 !important;
+  letter-spacing: -.018em !important;
+  line-height: 1.06;
 }
 .summary h1 {
   max-width: 620px;
@@ -61,7 +61,7 @@
   max-width: 520px;
   font-family: var(--pdp-heading);
   font-size: 21px;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.48;
   color: #f7e6d3;
 }
