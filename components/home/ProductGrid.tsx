@@ -1,15 +1,15 @@
 "use client";
 
-import { useRef } from "react";
 import { useRouter } from "next/navigation";
 import { formatVnd, products } from "@/data/products";
 import { track } from "@/lib/analytics";
 import { AddToCartButton } from "@/components/commerce/AddToCartButton";
 import styles from "./ProductCatalog.module.css";
 
+const COLLECTION_HERO = "https://drive.google.com/thumbnail?id=1pUnw74xRwg5aCjERwL_S5ul7op6ZweOu&sz=w2400";
+
 export function ProductGrid() {
   const router = useRouter();
-  const carouselRef = useRef<HTMLDivElement | null>(null);
 
   const openProduct = (product: (typeof products)[number]) => {
     track("select_item", {
@@ -21,32 +21,50 @@ export function ProductGrid() {
     router.push(`/product/${product.slug}`);
   };
 
-  const scrollCarousel = (direction: -1 | 1) => {
-    const carousel = carouselRef.current;
-    if (!carousel) return;
-
-    const card = carousel.querySelector<HTMLElement>("article");
-    const step = card ? card.offsetWidth + 16 : 280;
-    carousel.scrollBy({ left: direction * step * 2, behavior: "smooth" });
-  };
-
   return (
     <section className={styles.showcaseSection} id="shop-all" aria-labelledby="nk-shop-title">
-      <div className={styles.innerContainer}>
+      <div className={styles.heroBanner}>
+        <img src={COLLECTION_HERO} alt="Bộ sưu tập Book Nook Nook Ký" className={styles.heroImage} />
+        <div className={styles.heroShade} aria-hidden="true" />
+        <div className={styles.heroCopy}>
+          <p className={styles.heroEyebrow}>NOOK KÝ · BỘ SƯU TẬP VIỆT NAM THU NHỎ</p>
+          <h1>Những góc Việt Nam,<br />thu nhỏ để giữ lại.</h1>
+          <p>
+            Từ một con phố vừa lên đèn đến một mái nhà nép trên dốc,
+            mỗi Nook là một lát cắt quen thuộc được dựng lại bằng ánh sáng, chi tiết và ký ức.
+          </p>
+          <a href="#catalog-products" className={styles.heroCta}>Khám phá 6 mẫu <span aria-hidden="true">↓</span></a>
+        </div>
+      </div>
+
+      <div className={styles.editorialIntro}>
+        <div className={styles.editorialHeading}>
+          <p className={styles.eyebrow}>MỘT GÓC NHỎ, MỘT CÂU CHUYỆN RIÊNG</p>
+          <h2>Không chỉ để trưng bày.</h2>
+        </div>
+        <div className={styles.editorialCopy}>
+          <p>
+            Nook Ký được làm để bạn có thể tự tay đi qua từng lớp không gian: ghép từng mảng nhỏ,
+            đặt từng chi tiết vào đúng chỗ và bật ánh đèn đầu tiên sau khi hoàn thiện.
+          </p>
+          <p>
+            Sáu mẫu là sáu nhịp sống khác nhau — Hội An, Huế, Hà Nội, Sài Gòn, Đà Lạt và Miền Tây —
+            nhưng cùng chung một ý niệm: giữ lại một nơi chốn quen thuộc theo cách rất riêng.
+          </p>
+          <div className={styles.editorialMeta}>6 địa danh · 6 nhịp ánh sáng · 1 bộ sưu tập</div>
+        </div>
+      </div>
+
+      <div className={styles.innerContainer} id="catalog-products">
         <header className={styles.header}>
           <div className={styles.titleArea}>
             <p className={styles.eyebrow}>BỘ SƯU TẬP NOOK KÝ</p>
             <h2 id="nk-shop-title" className={styles.title}>Sáu Nơi Chốn, Sáu Nhịp Ánh Sáng.</h2>
             <p className={styles.subtitle}>Chọn một nơi chốn để xem đầy đủ hình ảnh, câu chuyện và thông tin sản phẩm.</p>
           </div>
-
-          <div className={styles.carouselControls} aria-label="Điều khiển danh sách sản phẩm">
-            <button type="button" onClick={() => scrollCarousel(-1)} aria-label="Sản phẩm trước">←</button>
-            <button type="button" onClick={() => scrollCarousel(1)} aria-label="Sản phẩm tiếp theo">→</button>
-          </div>
         </header>
 
-        <div ref={carouselRef} className={styles.catalogCarousel}>
+        <div className={styles.catalogGrid}>
           {products.map((product) => (
             <article
               key={product.slug}
@@ -99,8 +117,6 @@ export function ProductGrid() {
             </article>
           ))}
         </div>
-
-        <p className={styles.swipeHint}>Kéo ngang để xem thêm <span aria-hidden="true">→</span></p>
       </div>
     </section>
   );
