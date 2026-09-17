@@ -1,40 +1,149 @@
 .gallery {
   display: grid;
-  gap: 20px;
+  gap: 14px;
+  outline: none;
 }
 
-.frame {
-  margin: 0;
-  background: #eee5da;
+.mainStage {
+  position: relative;
   overflow: hidden;
+  background: #eee5da;
+  border-radius: 8px;
+  aspect-ratio: 1.08 / 1;
+  touch-action: pan-y;
 }
 
-.frame img {
+.mainImage {
   width: 100%;
+  height: 100%;
   display: block;
-  aspect-ratio: 4 / 5;
   object-fit: cover;
 }
 
-.frame figcaption {
-  min-height: 42px;
-  padding: 10px 12px 0;
+.arrowButton {
+  position: absolute;
+  top: 50%;
+  z-index: 3;
+  width: 44px;
+  height: 44px;
+  transform: translateY(-50%);
+  border: 1px solid rgba(47, 22, 7, 0.16);
+  border-radius: 999px;
+  background: rgba(255, 253, 250, 0.9);
+  color: #2f1607;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(47, 22, 7, 0.14);
+  backdrop-filter: blur(10px);
+  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.arrowButton:hover {
+  background: #fffdfa;
+  box-shadow: 0 10px 28px rgba(47, 22, 7, 0.2);
+}
+
+.arrowButton:focus-visible {
+  outline: 2px solid #d9953b;
+  outline-offset: 2px;
+}
+
+.arrowButton svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.arrowPrevious { left: 14px; }
+.arrowNext { right: 14px; }
+
+.counter {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  z-index: 2;
+  padding: 7px 10px;
+  border-radius: 999px;
+  background: rgba(29, 18, 12, 0.76);
+  color: #fffdfa;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  backdrop-filter: blur(8px);
+}
+
+.thumbnailRow {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.thumbnailButton {
+  position: relative;
+  padding: 0;
+  border: 1px solid rgba(47, 22, 7, 0.12);
+  border-radius: 6px;
+  overflow: hidden;
+  background: #eee5da;
+  cursor: pointer;
+  aspect-ratio: 1.2 / 1;
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.thumbnailButton:hover {
+  transform: translateY(-1px);
+  border-color: rgba(47, 22, 7, 0.36);
+}
+
+.thumbnailActive {
+  border-color: #d9953b;
+  box-shadow: 0 0 0 2px rgba(217, 149, 59, 0.18);
+}
+
+.thumbnailButton img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.thumbnailButton span {
+  position: absolute;
+  left: 7px;
+  bottom: 6px;
+  min-width: 24px;
+  padding: 3px 5px;
+  border-radius: 999px;
+  background: rgba(29, 18, 12, 0.72);
+  color: #fffdfa;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.caption {
+  min-height: 24px;
   display: flex;
   align-items: baseline;
   justify-content: space-between;
   gap: 16px;
   color: #6f5c4f;
   font-size: 9px;
-  letter-spacing: .08em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
-.frame figcaption span {
+.caption span {
   color: #d9953b;
   font-weight: 800;
 }
 
-.frame figcaption strong {
+.caption strong {
   color: #2f1607;
   font-weight: 750;
 }
@@ -44,35 +153,51 @@
   display: grid;
   place-items: center;
   background: #e9dfd4;
-  color: rgba(47,22,7,.58);
+  color: rgba(47, 22, 7, 0.58);
   font-size: 13px;
 }
 
-@media (min-width: 901px) {
-  .frame img {
-    aspect-ratio: 1.08 / 1;
-  }
-}
-
 @media (max-width: 900px) {
-  .gallery {
+  .mainStage {
+    aspect-ratio: 4 / 5;
+    border-radius: 6px;
+  }
+
+  .arrowButton {
+    width: 40px;
+    height: 40px;
+  }
+
+  .arrowPrevious { left: 10px; }
+  .arrowNext { right: 10px; }
+
+  .thumbnailRow {
     display: flex;
-    gap: 12px;
+    gap: 8px;
     overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    overscroll-behavior-x: contain;
+    scroll-snap-type: x proximity;
     scrollbar-width: none;
     padding-bottom: 2px;
   }
 
-  .gallery::-webkit-scrollbar { display: none; }
+  .thumbnailRow::-webkit-scrollbar { display: none; }
 
-  .frame {
-    flex: 0 0 88%;
+  .thumbnailButton {
+    flex: 0 0 74px;
     scroll-snap-align: start;
   }
+}
 
-  .frame img {
-    aspect-ratio: 4 / 5;
+@media (max-width: 560px) {
+  .gallery { gap: 10px; }
+  .arrowButton {
+    width: 36px;
+    height: 36px;
   }
+  .counter {
+    right: 10px;
+    bottom: 10px;
+    font-size: 10px;
+  }
+  .thumbnailButton { flex-basis: 66px; }
 }
