@@ -120,9 +120,21 @@ export function ProductGrid() {
         </div>
       </div>
 
-      <figure className={styles.secondaryHero}>
-        <div className={styles.secondaryHeroMedia}>
-          <img src={SECONDARY_HERO} alt="Các mẫu Nook Ký được đặt cạnh nhau" loading="lazy" decoding="async" />
+      <figure
+        className={styles.secondaryHero}
+        style={{ width: "min(calc(100% - 24px), 620px)", marginInline: "auto" }}
+      >
+        <div
+          className={styles.secondaryHeroMedia}
+          style={{ aspectRatio: "auto", height: "auto", overflow: "visible", background: "transparent" }}
+        >
+          <img
+            src={SECONDARY_HERO}
+            alt="Các mẫu Nook Ký được đặt cạnh nhau"
+            loading="lazy"
+            decoding="async"
+            style={{ width: "100%", height: "auto", maxHeight: "none", objectFit: "contain", display: "block" }}
+          />
         </div>
         <figcaption>
           <span>ĐẶT CẠNH NHAU, THÀNH MỘT VIỆT NAM NHỎ</span>
