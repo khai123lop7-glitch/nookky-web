@@ -38,16 +38,6 @@ export function ProductGrid() {
         </div>
       </div>
 
-      <figure className={styles.secondaryHero}>
-        <div className={styles.secondaryHeroMedia}>
-          <img src={SECONDARY_HERO} alt="Một góc khác của bộ sưu tập Nook Ký" loading="lazy" decoding="async" />
-        </div>
-        <figcaption>
-          <span>NHỮNG GÓC NHÌN KHÁC NHAU</span>
-          <p>Mỗi nơi chốn có một nhịp riêng, nhưng khi đặt cạnh nhau lại thành một lát cắt rất Việt Nam.</p>
-        </figcaption>
-      </figure>
-
       <div className={styles.editorialIntro}>
         <div className={styles.editorialHeading}>
           <p className={styles.eyebrow}>MỘT GÓC NHỎ, MỘT CÂU CHUYỆN RIÊNG</p>
@@ -129,6 +119,19 @@ export function ProductGrid() {
           ))}
         </div>
       </div>
+
+      <figure className={styles.secondaryHero}>
+        <div className={styles.secondaryHeroMedia}>
+          <img src={SECONDARY_HERO} alt="Các mẫu Nook Ký được đặt cạnh nhau" loading="lazy" decoding="async" />
+        </div>
+        <figcaption>
+          <span>ĐẶT CẠNH NHAU, THÀNH MỘT VIỆT NAM NHỎ</span>
+          <p>
+            Mỗi mẫu giữ một sắc thái riêng — từ phố cổ, hẻm nhỏ đến miền sông nước và những con dốc nhiều hoa.
+            Khi đặt cạnh nhau, chúng tạo thành một bộ sưu tập có cùng hơi ấm nhưng không bị lặp lại.
+          </p>
+        </figcaption>
+      </figure>
     </section>
   );
 }
