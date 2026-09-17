@@ -2,6 +2,13 @@
 
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import { products } from "@/data/products";
+import {
+  AVAILABLE_PROMOTIONS,
+  findPromotion,
+  normalizePromoCode,
+  quotePromotion,
+  type Promotion,
+} from "@/lib/promotions";
 
 export type CartItem = {
   slug: string;
@@ -16,38 +23,8 @@ export type ToastItem = {
   quantity: number;
 };
 
-export type PromoCode = {
-  code: string;
-  label: string;
-  description: string;
-  type: "percent" | "fixed" | "freeship";
-  value: number;
-  minOrder?: number;
-};
-
-export const AVAILABLE_PROMOS: PromoCode[] = [
-  {
-    code: "NOOKKY10",
-    label: "Chào Bạn Mới",
-    description: "Giảm 10% tổng đơn hàng",
-    type: "percent",
-    value: 10,
-  },
-  {
-    code: "KYUC50K",
-    label: "Ký Ức Riêng",
-    description: "Giảm ngay 50.000₫",
-    type: "fixed",
-    value: 50000,
-  },
-  {
-    code: "FREESHIP",
-    label: "Freeship Đơn Hàng",
-    description: "Miễn phí vận chuyển toàn quốc",
-    type: "freeship",
-    value: 0,
-  },
-];
+export type PromoCode = Promotion;
+export const AVAILABLE_PROMOS = AVAILABLE_PROMOTIONS;
 
 type CartContextValue = {
   items: CartItem[];
@@ -75,7 +52,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
   const [hydrated, setHydrated] = useState(false);
   const [lastAdded, setLastAdded] = useState<ToastItem | null>(null);
-  const [appliedPromo, setAppliedPromo] = useState<PromoCode | null>(null);
+  const [appliedPromoCode, setAppliedPromoCode] = useState<string | null>(null);
 
   useEffect(() => {
     try {
@@ -89,10 +66,13 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
       const storedPromo = window.localStorage.getItem(PROMO_STORAGE_KEY);
       if (storedPromo) {
-        const parsedPromo = JSON.parse(storedPromo) as PromoCode;
-        if (parsedPromo && typeof parsedPromo.code === "string") {
-          setAppliedPromo(parsedPromo);
-        }
+        const parsedPromo = JSON.parse(storedPromo) as unknown;
+        const storedCode = typeof parsedPromo === "string"
+          ? parsedPromo
+          : typeof parsedPromo === "object" && parsedPromo && "code" in parsedPromo
+            ? String(parsedPromo.code)
+            : "";
+        if (findPromotion(storedCode)) setAppliedPromoCode(normalizePromoCode(storedCode));
       }
     } catch {
       // Ignore malformed local cart data and start clean.
@@ -108,12 +88,12 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     if (!hydrated) return;
-    if (appliedPromo) {
-      window.localStorage.setItem(PROMO_STORAGE_KEY, JSON.stringify(appliedPromo));
+    if (appliedPromoCode) {
+      window.localStorage.setItem(PROMO_STORAGE_KEY, JSON.stringify(appliedPromoCode));
     } else {
       window.localStorage.removeItem(PROMO_STORAGE_KEY);
     }
-  }, [hydrated, appliedPromo]);
+  }, [hydrated, appliedPromoCode]);
 
   const addItem = (slug: string, quantity = 1) => {
     const validQty = Math.max(1, quantity);
@@ -149,7 +129,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   const clearCart = () => {
     setItems([]);
-    setAppliedPromo(null);
+    setAppliedPromoCode(null);
   };
 
   const closeToast = () => setLastAdded(null);
@@ -162,35 +142,22 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     }, 0);
   }, [items]);
 
-  const discountAmount = useMemo(() => {
-    if (!appliedPromo) return 0;
-    if (appliedPromo.type === "percent") {
-      return Math.round((subtotal * appliedPromo.value) / 100);
-    }
-    if (appliedPromo.type === "fixed") {
-      return Math.min(subtotal, appliedPromo.value);
-    }
-    return 0; // freeship modifies shipping
-  }, [appliedPromo, subtotal]);
-
-  const isFreeShipping = useMemo(() => {
-    return subtotal >= 1000000 || appliedPromo?.type === "freeship";
-  }, [subtotal, appliedPromo]);
+  const promotionQuote = useMemo(
+    () => quotePromotion(subtotal, appliedPromoCode),
+    [subtotal, appliedPromoCode]
+  );
+  const appliedPromo = promotionQuote.promotion;
+  const discountAmount = promotionQuote.discountAmount;
+  const isFreeShipping = promotionQuote.isFreeShipping;
 
   const applyPromo = (code: string) => {
-    const clean = code.trim().toUpperCase();
-    const found = AVAILABLE_PROMOS.find((p) => p.code === clean);
-    if (!found) {
-      return { success: false, message: `Mã "${clean}" không tồn tại hoặc đã hết hạn` };
-    }
-    if (found.minOrder && subtotal < found.minOrder) {
-      return { success: false, message: `Mã "${clean}" chỉ áp dụng cho đơn từ ${found.minOrder.toLocaleString("vi-VN")}₫` };
-    }
-    setAppliedPromo(found);
-    return { success: true, message: `Đã áp dụng mã "${found.label}" (-${found.type === "percent" ? `${found.value}%` : found.type === "fixed" ? `${found.value.toLocaleString("vi-VN")}₫` : "Freeship"})` };
+    const quote = quotePromotion(subtotal, code);
+    if (!quote.promotion) return { success: false, message: quote.error || "Mã ưu đãi không hợp lệ" };
+    setAppliedPromoCode(quote.promotion.code);
+    return { success: true, message: `Đã áp dụng ${quote.promotion.code}` };
   };
 
-  const removePromo = () => setAppliedPromo(null);
+  const removePromo = () => setAppliedPromoCode(null);
 
   return (
     <CartContext.Provider

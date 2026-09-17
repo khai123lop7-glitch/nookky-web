@@ -13,6 +13,7 @@ import {
   DISTRICTS_BY_PROVINCE,
 } from "@/data/vietnamLocations";
 import { sendOrderConfirmationEmail } from "@/lib/emailService";
+import { quotePromotion } from "@/lib/promotions";
 import styles from "./CheckoutForm.module.css";
 
 type PaymentMethod = "cod" | "bank_transfer" | "momo" | "zalopay";
@@ -25,7 +26,6 @@ export default function CheckoutPage() {
     hydrated,
     appliedPromo,
     discountAmount,
-    isFreeShipping,
   } = useCart();
 
   const [fullName, setFullName] = useState("");
@@ -49,8 +49,9 @@ export default function CheckoutPage() {
     .filter((line): line is NonNullable<typeof line> => Boolean(line));
 
   const subtotal = lines.reduce((sum, line) => sum + line.product.price * line.quantity, 0);
-  const shippingFee = isFreeShipping || subtotal === 0 ? 0 : 30000;
-  const total = Math.max(0, subtotal - discountAmount) + shippingFee;
+  const promotionQuote = quotePromotion(subtotal, appliedPromo?.code);
+  const shippingFee = promotionQuote.shippingFee;
+  const total = promotionQuote.total;
 
   useEffect(() => {
     if (hydrated && lines.length > 0) {
