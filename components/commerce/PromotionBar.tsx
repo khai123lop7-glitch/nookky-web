@@ -1,18 +1,16 @@
 "use client";
 
 import { formatVnd } from "@/data/products";
+import { FREE_SHIPPING_THRESHOLD, GIFT_THRESHOLD } from "@/lib/promotions";
 import { useCart } from "./CartProvider";
 import styles from "./PromotionBar.module.css";
-
-const GOAL_FREESHIP = 1000000;
-const GOAL_GIFT = 1500000;
 
 export function PromotionBar() {
   const { subtotal } = useCart();
 
-  const percentage = Math.min(100, Math.max(0, Math.round((subtotal / GOAL_GIFT) * 100)));
-  const hasFreeship = subtotal >= GOAL_FREESHIP;
-  const hasGift = subtotal >= GOAL_GIFT;
+  const percentage = Math.min(100, Math.max(0, Math.round((subtotal / GIFT_THRESHOLD) * 100)));
+  const hasFreeship = subtotal >= FREE_SHIPPING_THRESHOLD;
+  const hasGift = subtotal >= GIFT_THRESHOLD;
 
   return (
     <div className={styles.barContainer} role="region" aria-label="Tiến độ ưu đãi">
@@ -23,11 +21,11 @@ export function PromotionBar() {
           ) : hasFreeship ? (
             <>
               🚚 Đã đạt <strong>Freeship</strong>! Thêm{" "}
-              <strong>{formatVnd(GOAL_GIFT - subtotal)}</strong> để nhận 🎁 <strong>Bộ dụng cụ lắp ráp</strong>
+              <strong>{formatVnd(GIFT_THRESHOLD - subtotal)}</strong> để nhận 🎁 <strong>Bộ dụng cụ lắp ráp</strong>
             </>
           ) : (
             <>
-              🚚 Thêm <strong>{formatVnd(GOAL_FREESHIP - subtotal)}</strong> để được{" "}
+              🚚 Thêm <strong>{formatVnd(FREE_SHIPPING_THRESHOLD - subtotal)}</strong> để được{" "}
               <strong>Miễn phí vận chuyển toàn quốc</strong>
             </>
           )}
