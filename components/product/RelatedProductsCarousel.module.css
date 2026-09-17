@@ -74,23 +74,26 @@
 .meta p {
   margin: 0 0 6px;
   color: #d9953b;
+  font-family: var(--nk-v3-ui, "Product Sans VH", sans-serif);
   font-size: 9px;
-  font-weight: 800;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: .1em;
 }
 
 .meta h3 {
   margin: 0;
-  font-family: var(--nk-v3-serif, "Lora", "Playfair Display", serif);
-  font-weight: 600;
+  font-family: "NookOrtland", "Be Vietnam Pro", sans-serif;
+  font-weight: 400;
   font-size: 27px;
-  line-height: 1.05;
+  line-height: 1.06;
+  letter-spacing: -.018em;
   color: #fcf4e9;
 }
 
 .meta strong {
   color: #f3c47c;
+  font-family: var(--nk-v3-ui, "Product Sans VH", sans-serif);
   font-size: 12px;
   white-space: nowrap;
 }
