@@ -38,33 +38,6 @@ export function ProductGrid() {
         </div>
       </div>
 
-      <div className={styles.editorialIntro}>
-        <figure className={styles.editorialVisual}>
-          <img
-            src={SECONDARY_HERO}
-            alt="Các mẫu Nook Ký được đặt cạnh nhau"
-            loading="lazy"
-            decoding="async"
-          />
-        </figure>
-
-        <div className={styles.editorialContent}>
-          <p className={styles.eyebrow}>MỘT GÓC NHỎ, MỘT CÂU CHUYỆN RIÊNG</p>
-          <h2>Không chỉ để trưng bày.</h2>
-          <div className={styles.editorialCopy}>
-            <p>
-              Nook Ký được làm để bạn có thể tự tay đi qua từng lớp không gian: ghép từng mảng nhỏ,
-              đặt từng chi tiết vào đúng chỗ và bật ánh đèn đầu tiên sau khi hoàn thiện.
-            </p>
-            <p>
-              Sáu mẫu là sáu nhịp sống khác nhau — Hội An, Huế, Hà Nội, Sài Gòn, Đà Lạt và Miền Tây —
-              nhưng cùng chung một ý niệm: giữ lại một nơi chốn quen thuộc theo cách rất riêng.
-            </p>
-            <div className={styles.editorialMeta}>6 địa danh · 6 nhịp ánh sáng · 1 bộ sưu tập</div>
-          </div>
-        </div>
-      </div>
-
       <div className={styles.innerContainer} id="catalog-products">
         <header className={styles.header}>
           <div className={styles.titleArea}>
@@ -128,6 +101,66 @@ export function ProductGrid() {
           ))}
         </div>
       </div>
+
+      <section className={styles.editorialIntro} aria-labelledby="nk-editorial-title">
+        <figure className={styles.editorialVisual}>
+          <img
+            src={SECONDARY_HERO}
+            alt="Các mẫu Nook Ký được đặt cạnh nhau"
+            loading="lazy"
+            decoding="async"
+          />
+        </figure>
+
+        <div className={styles.editorialContent}>
+          <p className={styles.eyebrow}>MỘT GÓC NHỎ, MỘT CÂU CHUYỆN RIÊNG</p>
+          <h2 id="nk-editorial-title">Không chỉ để trưng bày.</h2>
+
+          <div className={styles.editorialCopy}>
+            <p className={styles.editorialLead}>
+              Mỗi Nook bắt đầu từ một nơi chốn có thật trong ký ức: một mặt tiền cũ, một con hẻm hẹp,
+              một hàng hiên sáng đèn hay một lối dốc đầy hoa. Nook Ký không cố sao chép nguyên xi,
+              mà giữ lại những chi tiết khiến ta nhận ra nơi ấy ngay từ cái nhìn đầu tiên.
+            </p>
+            <p>
+              Trải nghiệm không dừng ở lúc đặt mô hình lên kệ. Bạn sẽ tự đi qua từng lớp không gian,
+              ghép từng mảng nhỏ, sắp từng món phụ kiện và nhìn tổng thể dần thành hình trong tay mình.
+              Khoảnh khắc bật đèn lần đầu cũng là lúc một cảnh quen bỗng có đời sống riêng.
+            </p>
+            <p>
+              Sáu mẫu là sáu nhịp khác nhau — Hội An ấm và chậm, Huế trầm, Hà Nội cũ kỹ,
+              Sài Gòn chật mà sống động, Đà Lạt dịu và Miền Tây thoáng mở. Đặt cạnh nhau,
+              chúng tạo thành một bộ sưu tập thống nhất mà vẫn giữ được cá tính riêng của từng nơi.
+            </p>
+          </div>
+
+          <div className={styles.editorialPoints}>
+            <article>
+              <span>01</span>
+              <div>
+                <strong>Ánh sáng tạo cảm xúc</strong>
+                <p>LED được dùng như một phần của câu chuyện, không chỉ để làm mô hình sáng hơn.</p>
+              </div>
+            </article>
+            <article>
+              <span>02</span>
+              <div>
+                <strong>Nhiều lớp không gian</strong>
+                <p>Mặt tiền, lớp giữa và hậu cảnh tạo chiều sâu khi nhìn trực diện trên kệ sách.</p>
+              </div>
+            </article>
+            <article>
+              <span>03</span>
+              <div>
+                <strong>Tự tay hoàn thiện</strong>
+                <p>Phần thú vị nằm ở quá trình lắp, chỉnh và biến bộ chi tiết thành một góc của riêng bạn.</p>
+              </div>
+            </article>
+          </div>
+
+          <div className={styles.editorialMeta}>6 địa danh · 6 nhịp ánh sáng · 1 bộ sưu tập</div>
+        </div>
+      </section>
     </section>
   );
 }
