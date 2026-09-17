@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { track } from "@/lib/analytics";
 import styles from "./NookChatWidget.module.css";
 
@@ -16,6 +16,14 @@ interface ViewedProduct {
   name: string;
   price: number;
 }
+
+type WidgetPosition = {
+  x: number;
+  y: number;
+};
+
+const POSITION_STORAGE_KEY = "nookky-chat-position-v1";
+const VIEWPORT_MARGIN = 8;
 
 function renderTextWithBold(text: string): React.ReactNode[] {
   const parts = text.split(/(\*\*[^*]+\*\*)/g);
@@ -60,6 +68,7 @@ export function NookChatWidget() {
   const [isLoading, setIsLoading] = useState(false);
   const [contextProduct, setContextProduct] = useState<ViewedProduct | null>(null);
   const [lastOrderId, setLastOrderId] = useState<string | null>(null);
+  const [position, setPosition] = useState<WidgetPosition>({ x: 0, y: 0 });
 
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
@@ -73,6 +82,84 @@ export function NookChatWidget() {
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+  const dragSurfaceRef = useRef<HTMLDivElement>(null);
+  const positionRef = useRef(position);
+  const dragRef = useRef<{
+    pointerId: number;
+    startX: number;
+    startY: number;
+    originX: number;
+    originY: number;
+    moved: boolean;
+  } | null>(null);
+  const suppressClickRef = useRef(false);
+
+  const updatePosition = useCallback((nextPosition: WidgetPosition) => {
+    positionRef.current = nextPosition;
+    setPosition(nextPosition);
+  }, []);
+
+  const clampPosition = useCallback((candidate: WidgetPosition) => {
+    const dragSurface = dragSurfaceRef.current;
+    if (!dragSurface) return candidate;
+
+    const current = positionRef.current;
+    const rect = dragSurface.getBoundingClientRect();
+    const baseLeft = rect.left - current.x;
+    const baseRight = rect.right - current.x;
+    const baseTop = rect.top - current.y;
+    const baseBottom = rect.bottom - current.y;
+
+    return {
+      x: Math.min(
+        window.innerWidth - VIEWPORT_MARGIN - baseRight,
+        Math.max(VIEWPORT_MARGIN - baseLeft, candidate.x)
+      ),
+      y: Math.min(
+        window.innerHeight - VIEWPORT_MARGIN - baseBottom,
+        Math.max(VIEWPORT_MARGIN - baseTop, candidate.y)
+      ),
+    };
+  }, []);
+
+  const savePosition = useCallback((nextPosition: WidgetPosition) => {
+    try {
+      window.sessionStorage.setItem(POSITION_STORAGE_KEY, JSON.stringify(nextPosition));
+    } catch {
+      // Bỏ qua khi trình duyệt chặn sessionStorage.
+    }
+  }, []);
+
+  const handleDragStart = (event: React.PointerEvent<HTMLElement>) => {
+    if (event.button !== 0) return;
+    event.currentTarget.setPointerCapture(event.pointerId);
+    dragRef.current = {
+      pointerId: event.pointerId,
+      startX: event.clientX,
+      startY: event.clientY,
+      originX: positionRef.current.x,
+      originY: positionRef.current.y,
+      moved: false,
+    };
+  };
+
+  const handleDragMove = (event: React.PointerEvent<HTMLElement>) => {
+    const drag = dragRef.current;
+    if (!drag || drag.pointerId !== event.pointerId) return;
+
+    const deltaX = event.clientX - drag.startX;
+    const deltaY = event.clientY - drag.startY;
+    if (Math.hypot(deltaX, deltaY) > 5) drag.moved = true;
+    updatePosition(clampPosition({ x: drag.originX + deltaX, y: drag.originY + deltaY }));
+  };
+
+  const handleDragEnd = (event: React.PointerEvent<HTMLElement>) => {
+    const drag = dragRef.current;
+    if (!drag || drag.pointerId !== event.pointerId) return;
+    suppressClickRef.current = drag.moved;
+    dragRef.current = null;
+    savePosition(positionRef.current);
+  };
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -128,6 +215,36 @@ export function NookChatWidget() {
     };
   }, []);
 
+  useEffect(() => {
+    try {
+      const rawPosition = window.sessionStorage.getItem(POSITION_STORAGE_KEY);
+      if (rawPosition) {
+        const parsed = JSON.parse(rawPosition) as Partial<WidgetPosition>;
+        if (Number.isFinite(parsed.x) && Number.isFinite(parsed.y)) {
+          updatePosition({ x: Number(parsed.x), y: Number(parsed.y) });
+        }
+      }
+    } catch {
+      // Bỏ qua vị trí cũ không hợp lệ.
+    }
+  }, [updatePosition]);
+
+  useEffect(() => {
+    const keepInsideViewport = () => {
+      const nextPosition = clampPosition(positionRef.current);
+      updatePosition(nextPosition);
+      savePosition(nextPosition);
+    };
+
+    keepInsideViewport();
+    const animationFrame = window.requestAnimationFrame(keepInsideViewport);
+    window.addEventListener("resize", keepInsideViewport);
+    return () => {
+      window.cancelAnimationFrame(animationFrame);
+      window.removeEventListener("resize", keepInsideViewport);
+    };
+  }, [isOpen, clampPosition, savePosition, updatePosition]);
+
   // Đóng khi bấm phím Esc
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -140,6 +257,10 @@ export function NookChatWidget() {
   }, [isOpen]);
 
   const toggleOpen = () => {
+    if (suppressClickRef.current) {
+      suppressClickRef.current = false;
+      return;
+    }
     const nextState = !isOpen;
     setIsOpen(nextState);
     if (nextState) {
@@ -225,10 +346,14 @@ export function NookChatWidget() {
   ];
 
   return (
-    <div className={styles.widgetContainer} aria-label="Khung trò chuyện tư vấn Nook Ký">
+    <div
+      className={styles.widgetContainer}
+      style={{ transform: `translate3d(${position.x}px, ${position.y}px, 0)` }}
+      aria-label="Khung trò chuyện tư vấn Nook Ký"
+    >
       {/* Floating Action Button - Mascot 3D & Speech Bubble */}
       {!isOpen && (
-        <div className={styles.fabWrapper}>
+        <div ref={dragSurfaceRef} className={styles.fabWrapper}>
           <div className={styles.fabSpeechBubble}>
             Bạn cần Nook Ký tư vấn gì nè? 🏮
           </div>
@@ -236,12 +361,18 @@ export function NookChatWidget() {
             type="button"
             className={styles.fabButtonImage}
             onClick={toggleOpen}
-            aria-label="Mở khung tư vấn Nghệ nhân Nook Ký"
+            onPointerDown={handleDragStart}
+            onPointerMove={handleDragMove}
+            onPointerUp={handleDragEnd}
+            onPointerCancel={handleDragEnd}
+            aria-label="Mở khung tư vấn Nghệ nhân Nook Ký. Có thể kéo để di chuyển"
+            title="Kéo để di chuyển, bấm để mở tư vấn"
           >
             <img
               src="/media/chat-button-full.png"
               alt="Tư vấn Nook Ký"
               className={styles.fabMascotImg}
+              draggable={false}
             />
           </button>
         </div>
@@ -249,9 +380,22 @@ export function NookChatWidget() {
 
       {/* Chat Window Dialog */}
       {isOpen && (
-        <div className={styles.chatWindow} role="dialog" aria-modal="true" aria-labelledby="chat-title">
+        <div
+          ref={dragSurfaceRef}
+          className={styles.chatWindow}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="chat-title"
+        >
           {/* Header */}
-          <div className={styles.header}>
+          <div
+            className={styles.header}
+            onPointerDown={handleDragStart}
+            onPointerMove={handleDragMove}
+            onPointerUp={handleDragEnd}
+            onPointerCancel={handleDragEnd}
+            title="Kéo để di chuyển khung chat"
+          >
             <div className={styles.headerLeft}>
               <div className={styles.avatarBox}>
                 <img
@@ -273,6 +417,7 @@ export function NookChatWidget() {
               type="button"
               className={styles.closeButton}
               onClick={toggleOpen}
+              onPointerDown={(event) => event.stopPropagation()}
               aria-label="Đóng khung chat"
             >
               ✕
