@@ -1,0 +1,89 @@
+.barContainer {
+  margin-bottom: 28px;
+  padding: 18px 22px;
+  background: #fffdf9;
+  border: 1px solid rgba(217, 149, 59, 0.35);
+  box-shadow: 0 4px 16px rgba(47, 22, 7, 0.04);
+}
+
+.barHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.barMessage {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: #2f1607;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.barMessage strong {
+  color: #d9953b;
+  font-weight: 750;
+}
+
+.progressTrack {
+  position: relative;
+  height: 8px;
+  background: #ede4d8;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, #d9953b, #193c32);
+  transition: width 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.milestones {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: #745d4f;
+}
+
+.milestoneItem {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.milestoneActive {
+  color: #193c32;
+  font-weight: 700;
+}
+
+.checkBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #193c32;
+  color: #fff;
+  font-size: 9px;
+  font-weight: 800;
+}
+
+@media (max-width: 600px) {
+  .barContainer {
+    padding: 14px 16px;
+  }
+  .barHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+  .milestones {
+    flex-direction: column;
+    gap: 6px;
+  }
+}

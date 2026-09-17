@@ -1,0 +1,167 @@
+.box {
+  margin: 18px 0;
+  padding: 18px;
+  background: #fff;
+  border: 1px dashed rgba(47, 22, 7, 0.22);
+}
+
+.boxTitle {
+  margin: 0 0 12px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #745d4f;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.inputRow {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+}
+
+.input {
+  min-height: 42px;
+  padding: 0 12px;
+  border: 1px solid rgba(47, 22, 7, 0.2);
+  background: #fffdfa;
+  color: #2f1607;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  border-radius: 0;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #2f1607;
+}
+
+.applyBtn {
+  min-height: 42px;
+  padding: 0 18px;
+  border: 1px solid #2f1607;
+  background: #2f1607;
+  color: #fcf4e9;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.04em;
+  transition: background 0.2s ease;
+}
+
+.applyBtn:hover {
+  background: #193c32;
+  border-color: #193c32;
+}
+
+.suggestions {
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.suggestionsLabel {
+  font-size: 10px;
+  color: #745d4f;
+  font-weight: 600;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  border: 1px solid rgba(217, 149, 59, 0.4);
+  background: #fffaf2;
+  color: #2f1607;
+  font-size: 11px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.chip:hover {
+  background: #fbf0df;
+  border-color: #d9953b;
+  transform: translateY(-1px);
+}
+
+.chipCode {
+  font-family: monospace;
+  font-weight: 700;
+  color: #d9953b;
+}
+
+.chipDesc {
+  color: #745d4f;
+  font-size: 10px;
+}
+
+.messageSuccess {
+  margin: 10px 0 0;
+  font-size: 12px;
+  color: #193c32;
+  font-weight: 600;
+}
+
+.messageError {
+  margin: 10px 0 0;
+  font-size: 12px;
+  color: #c93b2b;
+  font-weight: 600;
+}
+
+/* Applied promo card */
+.appliedCard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 14px;
+  background: #f4f8f6;
+  border: 1px solid rgba(25, 60, 50, 0.25);
+}
+
+.appliedInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.appliedCode {
+  font-family: monospace;
+  font-size: 14px;
+  font-weight: 800;
+  color: #193c32;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.appliedDesc {
+  font-size: 11px;
+  color: #745d4f;
+}
+
+.removeBtn {
+  border: 0;
+  background: transparent;
+  color: #c93b2b;
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+  padding: 4px;
+}
+.removeBtn:hover {
+  color: #962518;
+}

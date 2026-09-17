@@ -1,0 +1,713 @@
+.successPage {
+  padding-top: clamp(60px, 7vw, 100px);
+  padding-bottom: clamp(80px, 9vw, 130px);
+  max-width: 800px;
+  margin-inline: auto;
+}
+
+.successCard {
+  padding: clamp(28px, 5vw, 48px);
+  border: 1px solid rgba(47, 22, 7, 0.16);
+  background: #fffaf4;
+  text-align: center;
+}
+
+.checkIcon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  background: #193c32;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  font-weight: 900;
+}
+
+.title {
+  margin: 0 0 12px;
+  font-family: var(--nk-v3-display);
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 400;
+  line-height: 1.1;
+  color: #2f1607;
+}
+
+.subtitle {
+  margin: 0 0 28px;
+  font-size: 15px;
+  color: #745d4f;
+  line-height: 1.6;
+}
+
+.orderBadge {
+  display: inline-block;
+  padding: 10px 22px;
+  background: #f4ecdf;
+  border: 1px solid rgba(47, 22, 7, 0.14);
+  font-family: var(--nk-v3-display);
+  font-size: 17px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: #2f1607;
+  margin-bottom: 32px;
+}
+
+/* Payment QR Box with multi-channel themes */
+.paymentQrBox {
+  text-align: left;
+  margin: 32px 0;
+  padding: 24px;
+  background: #fffdf9;
+  border: 2px solid #d9953b;
+}
+
+.bankTheme {
+  border-color: #d9953b;
+  background: #fffdf9;
+}
+
+.momoTheme {
+  border-color: #a50064;
+  background: #fff9fc;
+}
+
+.zaloTheme {
+  border-color: #0068ff;
+  background: #f4f9ff;
+}
+
+.codTheme {
+  border-color: #745d4f;
+  background: #fcfaf7;
+}
+
+.boxTitle {
+  margin: 0 0 18px;
+  font-family: var(--nk-v3-display);
+  font-size: 21px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: #2f1607;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.qrGrid {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.qrFrame {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px;
+  background: #fff;
+  border: 1px solid rgba(47, 22, 7, 0.14);
+  box-shadow: 0 4px 14px rgba(47, 22, 7, 0.05);
+}
+
+.qrImage {
+  width: 100%;
+  max-width: 196px;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  display: block;
+}
+
+.qrScanHint {
+  margin: 8px 0 4px;
+  font-size: 11px;
+  color: #745d4f;
+  text-align: center;
+}
+
+.qrDownloadBtn {
+  font-size: 11px;
+  font-weight: 600;
+  color: #193c32;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.infoDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.infoRowItem {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.infoRowItemLabel {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #745d4f;
+  letter-spacing: 0.08em;
+}
+
+.infoRowItemValGroup {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.infoRowItemVal {
+  font-size: 14px;
+  font-weight: 700;
+  color: #2f1607;
+}
+
+.infoHighlight {
+  color: #c93b2b;
+  font-size: 17px;
+}
+
+.copyBtn {
+  padding: 3px 9px;
+  font-size: 11px;
+  font-weight: 600;
+  border: 1px solid rgba(47, 22, 7, 0.2);
+  background: #fff;
+  color: #2f1607;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: all 0.15s ease;
+}
+.copyBtn:hover {
+  background: #f4ecdf;
+}
+
+.copiedBtn {
+  background: #193c32 !important;
+  color: #fff !important;
+  border-color: #193c32 !important;
+}
+
+.instructionsNote {
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(47, 22, 7, 0.1);
+  font-size: 12px;
+  color: #745d4f;
+  line-height: 1.5;
+}
+
+@media (max-width: 680px) {
+  .qrGrid {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+  .infoDetails {
+    width: 100%;
+  }
+}
+
+/* Order Details breakdown */
+.detailsSection {
+  text-align: left;
+  margin: 32px 0;
+  padding-top: 24px;
+  border-top: 1px solid rgba(47, 22, 7, 0.12);
+}
+
+.detailsTitle {
+  margin: 0 0 16px;
+  font-family: var(--nk-v3-display);
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: #2f1607;
+}
+
+.infoGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  font-size: 13px;
+  margin-bottom: 24px;
+}
+
+.infoRow {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.infoLabel {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #745d4f;
+  letter-spacing: 0.06em;
+}
+
+.infoVal {
+  color: #2f1607;
+  font-weight: 500;
+}
+
+.itemsList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.itemRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(47, 22, 7, 0.08);
+}
+
+.itemLeft {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.itemThumb {
+  width: 36px;
+  height: 36px;
+  background: #f0e7dc;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.itemThumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.totalBanner {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 16px 0;
+  border-top: 1px solid rgba(47, 22, 7, 0.16);
+  font-family: var(--nk-v3-display);
+  font-size: 18px;
+  font-weight: 400;
+  color: #2f1607;
+}
+
+.totalBanner strong {
+  font-size: 28px;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+/* Actions */
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 36px;
+}
+
+/* Email Sent Notice */
+.emailNoticeBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 14px 18px;
+  background: #edf7f2;
+  border: 1px solid #c7e8d7;
+  text-align: left;
+  margin-bottom: 28px;
+}
+
+.emailNoticeContent {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: #193c32;
+}
+
+.emailNoticeIcon {
+  font-size: 20px;
+}
+
+.viewEmailBtn {
+  padding: 5px 12px;
+  background: #193c32;
+  color: #fff;
+  border: none;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: background 0.15s ease;
+}
+
+.viewEmailBtn:hover {
+  background: #132f27;
+}
+
+/* Tracking & Google Map Section */
+.trackingSection {
+  text-align: left;
+  margin: 32px 0;
+  padding: 24px;
+  background: #fffdfa;
+  border: 1px solid rgba(47, 22, 7, 0.16);
+}
+
+.trackingHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(47, 22, 7, 0.1);
+}
+
+.trackingTitle {
+  margin: 0;
+  font-family: var(--nk-v3-display);
+  font-size: 22px;
+  font-weight: 400;
+  color: #2f1607;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.refreshTrackingBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #193c32;
+  background: #f0e7dc;
+  border: 1px solid rgba(47, 22, 7, 0.15);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.refreshTrackingBtn:hover {
+  background: #e5dacd;
+}
+
+/* Google Maps Card */
+.mapCard {
+  position: relative;
+  width: 100%;
+  border: 1px solid rgba(47, 22, 7, 0.14);
+  background: #f4ecdf;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.mapIframe {
+  width: 100%;
+  height: 280px;
+  border: none;
+  display: block;
+}
+
+.mapRouteInfo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 10px 14px;
+  background: #2f1607;
+  color: #fcf4e9;
+  font-size: 12px;
+}
+
+.mapRoutePoints {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+}
+
+.routeArrow {
+  color: #d9953b;
+}
+
+.deliveryEstimate {
+  color: #e5b376;
+  font-weight: 700;
+}
+
+/* Shipper Card */
+.shipperCard {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  background: #faf5ed;
+  border: 1px solid rgba(47, 22, 7, 0.12);
+  margin-bottom: 24px;
+}
+
+.shipperAvatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #193c32;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.shipperMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.shipperNameRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.shipperName {
+  font-size: 15px;
+  font-weight: 700;
+  color: #2f1607;
+}
+
+.carrierBadge {
+  display: inline-block;
+  padding: 2px 6px;
+  background: #e85338;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 800;
+  border-radius: 2px;
+  text-transform: uppercase;
+}
+
+.shipperVehicle {
+  font-size: 12px;
+  color: #745d4f;
+}
+
+.trackingCodeRow {
+  font-size: 12px;
+  color: #2f1607;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.trackingCodeVal {
+  font-family: monospace;
+  font-weight: 700;
+  color: #193c32;
+}
+
+.shipperCallBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  background: #193c32;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 2px;
+  white-space: nowrap;
+  transition: background 0.15s ease;
+}
+
+.shipperCallBtn:hover {
+  background: #132f27;
+}
+
+/* Timeline Stepper */
+.orderTimeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+  padding-left: 20px;
+  margin-top: 10px;
+}
+
+.timelineItem {
+  position: relative;
+  padding-bottom: 22px;
+  padding-left: 24px;
+  border-left: 2px solid #dfd1be;
+}
+
+.timelineItem:last-child {
+  border-left-color: transparent;
+  padding-bottom: 0;
+}
+
+.timelineDot {
+  position: absolute;
+  left: -9px;
+  top: 0;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #dfd1be;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  color: #fff;
+}
+
+.stepCompleted {
+  border-left-color: #193c32;
+}
+
+.stepCompleted .timelineDot {
+  background: #193c32;
+}
+
+.stepActive {
+  border-left-color: #d9953b;
+}
+
+.stepActive .timelineDot {
+  background: #d9953b;
+  box-shadow: 0 0 0 4px rgba(217, 149, 59, 0.2);
+}
+
+.timelineContent {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.timelineTitleRow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.timelineTitle {
+  font-size: 14px;
+  font-weight: 700;
+  color: #2f1607;
+}
+
+.timelineTime {
+  font-size: 11px;
+  color: #745d4f;
+}
+
+.timelineDesc {
+  font-size: 12px;
+  color: #745d4f;
+  line-height: 1.5;
+  margin: 2px 0 0;
+}
+
+/* Email Modal */
+.modalBackdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(30, 15, 6, 0.65);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modalContent {
+  background: #fff;
+  border: 1px solid #ebdcc5;
+  max-width: 680px;
+  width: 100%;
+  max-height: 88vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+}
+
+.modalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  background: #193c32;
+  color: #fff;
+}
+
+.modalHeaderTitle {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin: 0;
+}
+
+.modalCloseBtn {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 22px;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.modalBody {
+  padding: 16px;
+  overflow-y: auto;
+  background: #f7f2ea;
+  flex: 1;
+}
+
+@media (max-width: 600px) {
+  .shipperCard {
+    grid-template-columns: 1fr;
+    text-align: left;
+  }
+  .shipperCallBtn {
+    width: 100%;
+    justify-content: center;
+  }
+  .bankRows,
+  .infoGrid {
+    grid-template-columns: 1fr;
+  }
+  .actions {
+    flex-direction: column;
+  }
+  .actions a {
+    width: 100%;
+    text-align: center;
+  }
+}

@@ -1,0 +1,256 @@
+/* ================================================
+   RealNooks Module — 1-Window Lifestyle Gallery
+   ================================================ */
+
+.realSection {
+  position: relative;
+  background: #200f06;
+  color: var(--nk-v3-cream);
+  border-top: 1px solid rgba(239, 189, 114, 0.2);
+  border-bottom: 1px solid rgba(239, 189, 114, 0.2);
+  overflow: hidden;
+  padding: 36px 0;
+  scroll-margin-top: 72px;
+}
+
+@media (min-width: 901px) and (min-height: 600px) {
+  .realSection {
+    min-height: calc(100vh - 72px);
+    max-height: calc(100vh - 72px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: clamp(16px, 2.5vh, 28px) 0;
+    box-sizing: border-box;
+  }
+}
+
+.innerContainer {
+  width: min(calc(100% - 64px), 1320px);
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-bottom: 1px solid rgba(252, 244, 233, 0.1);
+  padding-bottom: 12px;
+  margin-bottom: 12px;
+}
+
+.eyebrow {
+  font-family: var(--nk-v3-ui);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #efbd72;
+  margin: 0 0 4px;
+}
+
+.title {
+  font-family: var(--nk-v3-display);
+  font-size: clamp(26px, 3vw, 38px);
+  line-height: 1.1;
+  color: #fffaf4;
+  margin: 0;
+}
+
+.lead {
+  max-width: 460px;
+  font-family: var(--nk-v3-ui);
+  font-size: 13px;
+  line-height: 1.6;
+  color: rgba(252, 244, 233, 0.7);
+  margin: 0;
+  text-align: right;
+}
+
+/* Gallery Grid */
+.galleryGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.9fr);
+  gap: clamp(24px, 4vw, 56px);
+  align-items: center;
+  flex: 1;
+  min-height: 0;
+  padding: 8px 0;
+}
+
+/* Left: Main Lifestyle Stage */
+.stage {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(239, 189, 114, 0.35);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+  height: 100%;
+  max-height: 40vh;
+  background: #150903;
+}
+
+.stageImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.35s ease, transform 0.6s var(--nk-v3-ease);
+}
+
+.stageImg.switching {
+  opacity: 0.35;
+  transform: scale(1.03);
+}
+
+.stageOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(16, 7, 2, 0.85) 0%, rgba(16, 7, 2, 0.2) 40%, transparent 70%);
+  pointer-events: none;
+}
+
+.stageCaption {
+  position: absolute;
+  bottom: 18px;
+  left: 20px;
+  right: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  z-index: 2;
+}
+
+.captionLeft {
+  display: flex;
+  flex-direction: column;
+}
+
+.roomTag {
+  font-family: var(--nk-v3-ui);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #efbd72;
+  margin-bottom: 4px;
+}
+
+.productTag {
+  font-family: var(--nk-v3-serif);
+  font-size: 20px;
+  color: #fffaf4;
+  margin: 0;
+}
+
+.viewBtn {
+  padding: 6px 14px;
+  background: rgba(20, 10, 4, 0.85);
+  border: 1px solid rgba(239, 189, 114, 0.45);
+  border-radius: 4px;
+  color: #efbd72;
+  font-family: var(--nk-v3-ui);
+  font-size: 11px;
+  font-weight: 700;
+  transition: all 0.2s ease;
+}
+
+.viewBtn:hover {
+  background: #8f1e1d;
+  color: #ffffff;
+  border-color: #efbd72;
+}
+
+/* Right: 4 Room Thumbnails */
+.roomList {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.roomCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: rgba(30, 14, 6, 0.5);
+  border: 1px solid rgba(252, 244, 233, 0.12);
+  border-radius: 6px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.24s ease;
+  text-align: left;
+  padding: 0;
+}
+
+.roomCard:hover {
+  border-color: rgba(239, 189, 114, 0.4);
+  transform: translateY(-2px);
+}
+
+.roomCard.activeRoom {
+  border-color: #efbd72;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4);
+  border-width: 2px;
+}
+
+.thumbWrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+}
+
+.thumbImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.roomCard:hover .thumbImg {
+  transform: scale(1.05);
+}
+
+.cardFooter {
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  background: rgba(20, 8, 3, 0.7);
+}
+
+.cardRoom {
+  font-family: var(--nk-v3-ui);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #efbd72;
+}
+
+.cardProd {
+  font-family: var(--nk-v3-ui);
+  font-size: 11px;
+  font-weight: 700;
+  color: #fffaf4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (max-width: 900px) {
+  .galleryGrid {
+    grid-template-columns: 1fr;
+  }
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .lead {
+    text-align: left;
+  }
+}
