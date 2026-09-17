@@ -16,7 +16,19 @@ interface LandscapeStory {
   lead: string;
 }
 
+const COLLECTION_HERO = "https://drive.google.com/thumbnail?id=1pUnw74xRwg5aCjERwL_S5ul7op6ZweOu&sz=w2400";
+
 const LANDSCAPES: LandscapeStory[] = [
+  {
+    id: "collection",
+    name: "Bộ sưu tập",
+    sub: "Những góc Việt Nam",
+    posterSrc: COLLECTION_HERO,
+    thumbSrc: COLLECTION_HERO,
+    headlineMain: "Một góc Việt Nam,",
+    headlineAccent: "tự tay giữ lại.",
+    lead: "Những nơi chốn quen thuộc được thu nhỏ thành các book nook để bạn tự tay lắp ráp, bật đèn và giữ lại trên kệ sách.",
+  },
   {
     id: "hoi-an",
     name: "Hội An",
@@ -111,14 +123,13 @@ const LANDSCAPES: LandscapeStory[] = [
 ];
 
 export function Hero() {
-  const [activeLandscape, setActiveLandscape] = useState<string>("hoi-an");
+  const [activeLandscape, setActiveLandscape] = useState<string>("collection");
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const railRef = useRef<HTMLDivElement | null>(null);
 
   const currentIndex = LANDSCAPES.findIndex((l) => l.id === activeLandscape);
   const current = LANDSCAPES[currentIndex] || LANDSCAPES[0];
 
-  // Auto-play video on landscape switch
   useEffect(() => {
     if (videoRef.current && current.videoSrc) {
       videoRef.current.load();
@@ -149,7 +160,6 @@ export function Hero() {
 
   return (
     <section className={styles.heroSection} aria-labelledby="nk-hero-title">
-      {/* Background Video Media */}
       <div className={styles.mediaContainer} aria-hidden="true">
         {current.videoSrc ? (
           <video
@@ -168,12 +178,9 @@ export function Hero() {
         )}
       </div>
 
-      {/* Cinematic Vignette Overlay */}
       <div className={styles.vignetteOverlay} aria-hidden="true" />
 
-      {/* ── Main Center Content ─────────────────────────────── */}
       <div className={styles.contentContainer}>
-        {/* Main Center Headline & Story */}
         <div className={styles.centerDossier} aria-live="polite" aria-atomic="true">
           <h1 id="nk-hero-title" className={styles.mainTitle}>
             <span className={styles.titleLine}>{current.headlineMain}</span>
@@ -207,7 +214,6 @@ export function Hero() {
           </div>
         </div>
 
-        {/* ── Bottom Floating Destination Carousel Bar ───────── */}
         <div className={styles.carouselBarWrapper}>
           <div className={styles.carouselTrack} ref={railRef}>
             {LANDSCAPES.map((land) => {
@@ -247,7 +253,6 @@ export function Hero() {
             })}
           </div>
 
-          {/* Right Arrow Navigation Button */}
           <button
             type="button"
             className={styles.nextNavBtn}
