@@ -1,5 +1,6 @@
 "use client";
 
+import { useRef } from "react";
 import { useRouter } from "next/navigation";
 import { formatVnd, products } from "@/data/products";
 import { track } from "@/lib/analytics";
@@ -8,6 +9,7 @@ import styles from "./ProductCatalog.module.css";
 
 export function ProductGrid() {
   const router = useRouter();
+  const carouselRef = useRef<HTMLDivElement | null>(null);
 
   const openProduct = (product: (typeof products)[number]) => {
     track("select_item", {
@@ -19,6 +21,15 @@ export function ProductGrid() {
     router.push(`/product/${product.slug}`);
   };
 
+  const scrollCarousel = (direction: -1 | 1) => {
+    const carousel = carouselRef.current;
+    if (!carousel) return;
+
+    const card = carousel.querySelector<HTMLElement>("article");
+    const step = card ? card.offsetWidth + 16 : 280;
+    carousel.scrollBy({ left: direction * step * 2, behavior: "smooth" });
+  };
+
   return (
     <section className={styles.showcaseSection} id="shop-all" aria-labelledby="nk-shop-title">
       <div className={styles.innerContainer}>
@@ -28,9 +39,14 @@ export function ProductGrid() {
             <h2 id="nk-shop-title" className={styles.title}>Sáu Nơi Chốn, Sáu Nhịp Ánh Sáng.</h2>
             <p className={styles.subtitle}>Chọn một nơi chốn để xem đầy đủ hình ảnh, câu chuyện và thông tin sản phẩm.</p>
           </div>
+
+          <div className={styles.carouselControls} aria-label="Điều khiển danh sách sản phẩm">
+            <button type="button" onClick={() => scrollCarousel(-1)} aria-label="Sản phẩm trước">←</button>
+            <button type="button" onClick={() => scrollCarousel(1)} aria-label="Sản phẩm tiếp theo">→</button>
+          </div>
         </header>
 
-        <div className={styles.catalogGrid}>
+        <div ref={carouselRef} className={styles.catalogCarousel}>
           {products.map((product) => (
             <article
               key={product.slug}
@@ -83,6 +99,8 @@ export function ProductGrid() {
             </article>
           ))}
         </div>
+
+        <p className={styles.swipeHint}>Kéo ngang để xem thêm <span aria-hidden="true">→</span></p>
       </div>
     </section>
   );
