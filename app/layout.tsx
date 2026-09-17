@@ -4,6 +4,7 @@ import { CartToast } from "@/components/commerce/CartToast";
 import { ScrollMotionSync } from "@/components/common/ScrollMotionSync";
 import { NookChatWidget } from "@/components/chat/NookChatWidget";
 import { AnalyticsTracker } from "@/components/analytics/AnalyticsTracker";
+import { TableOfContents } from "@/components/home/TableOfContents";
 import "./globals.css";
 import "./v3-migration.css";
 import "./final-polish.css";
@@ -22,6 +23,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <CartProvider>
           <a className="nk-skip-link" href="#main-content">Bỏ qua điều hướng</a>
           {children}
+          <TableOfContents />
           <CartToast />
           <ScrollMotionSync />
           <NookChatWidget />
