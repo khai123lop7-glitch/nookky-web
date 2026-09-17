@@ -7,6 +7,7 @@ import { AddToCartButton } from "@/components/commerce/AddToCartButton";
 import styles from "./ProductCatalog.module.css";
 
 const COLLECTION_HERO = "https://drive.google.com/thumbnail?id=1pUnw74xRwg5aCjERwL_S5ul7op6ZweOu&sz=w2400";
+const SECONDARY_HERO = "https://drive.google.com/thumbnail?id=1fjbvnuuTRjt4C9SGrbAySjIjrTf7o3ie&sz=w2000";
 
 export function ProductGrid() {
   const router = useRouter();
@@ -36,6 +37,16 @@ export function ProductGrid() {
           <a href="#catalog-products" className={styles.heroCta}>Khám phá 6 mẫu <span aria-hidden="true">↓</span></a>
         </div>
       </div>
+
+      <figure className={styles.secondaryHero}>
+        <div className={styles.secondaryHeroMedia}>
+          <img src={SECONDARY_HERO} alt="Một góc khác của bộ sưu tập Nook Ký" loading="lazy" decoding="async" />
+        </div>
+        <figcaption>
+          <span>NHỮNG GÓC NHÌN KHÁC NHAU</span>
+          <p>Mỗi nơi chốn có một nhịp riêng, nhưng khi đặt cạnh nhau lại thành một lát cắt rất Việt Nam.</p>
+        </figcaption>
+      </figure>
 
       <div className={styles.editorialIntro}>
         <div className={styles.editorialHeading}>
