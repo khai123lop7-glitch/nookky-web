@@ -3,7 +3,6 @@ import { notFound } from "next/navigation";
 import { Header } from "@/components/site/Header";
 import { ProductPurchaseSection } from "@/components/commerce/ProductPurchaseSection";
 import { ProductGallery } from "@/components/product/ProductGallery";
-import { TableOfContents } from "@/components/home/TableOfContents";
 import { formatVnd, products } from "@/data/products";
 import styles from "./ProductPage.module.css";
 
@@ -179,8 +178,6 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
             </div>
           </div>
         </section>
-
-        <TableOfContents />
 
         <div className={styles.mobileBuy}>
           <div>
