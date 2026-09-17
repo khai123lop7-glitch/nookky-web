@@ -23,15 +23,12 @@
   align-items: start;
   padding: 34px 0 74px;
 }
-
 .galleryCol { min-width: 0; }
-
 .summary {
   position: sticky;
   top: 88px;
   padding: 22px 8px 34px 18px;
 }
-
 .location,
 .eyebrow {
   margin: 0 0 14px;
@@ -42,7 +39,6 @@
   letter-spacing: .13em;
   text-transform: uppercase;
 }
-
 .summary h1,
 .story h2,
 .sectionCopy h2,
@@ -56,12 +52,10 @@
   letter-spacing: -.016em !important;
   line-height: 1.05;
 }
-
 .summary h1 {
   max-width: 620px;
   font-size: clamp(48px, 3.4vw, 62px);
 }
-
 .tagline {
   margin: 18px 0 0;
   max-width: 520px;
@@ -71,7 +65,6 @@
   line-height: 1.48;
   color: #f7e6d3;
 }
-
 .description {
   margin: 14px 0 0;
   max-width: 560px;
@@ -86,14 +79,13 @@
   grid-template-columns: repeat(2, minmax(0,1fr));
   gap: 10px;
 }
-
 .facts div {
   min-width: 0;
   padding: 14px 15px;
   border: 1px solid rgba(252,244,233,.11);
+  border-radius: 12px;
   background: rgba(255,255,255,.035);
 }
-
 .facts dt {
   margin-bottom: 5px;
   color: rgba(252,244,233,.52);
@@ -101,7 +93,6 @@
   letter-spacing: .1em;
   text-transform: uppercase;
 }
-
 .facts dd {
   margin: 0;
   color: var(--pdp-cream);
@@ -168,6 +159,7 @@
   overflow: hidden;
   background: #25150d;
   border: 1px solid rgba(252,244,233,.08);
+  border-radius: 16px;
 }
 .detailImage img { width: 100%; aspect-ratio: 1.72 / 1; object-fit: cover; }
 .detailNotes {
@@ -180,6 +172,7 @@
   min-height: 108px;
   padding: 15px 16px;
   border: 1px solid rgba(252,244,233,.09);
+  border-radius: 12px;
   background: rgba(255,255,255,.03);
 }
 .detailNotes span {
@@ -206,7 +199,7 @@
   overflow: hidden;
   background: var(--pdp-paper);
   color: var(--pdp-brown);
-  border-radius: 10px;
+  border-radius: 16px;
 }
 .splitMedia { min-height: 530px; overflow: hidden; background: var(--pdp-paper-2); }
 .splitMedia img { width: 100%; height: 100%; min-height: 530px; object-fit: cover; }
@@ -251,7 +244,7 @@
   margin: 28px auto;
   min-height: 580px;
   overflow: hidden;
-  border-radius: 10px;
+  border-radius: 16px;
   background: var(--pdp-dark);
   color: var(--pdp-cream);
 }
@@ -296,6 +289,7 @@
   min-height: 104px;
   padding: 18px 18px 16px;
   border: 1px solid rgba(252,244,233,.1);
+  border-radius: 12px;
   background: rgba(255,255,255,.035);
 }
 .specGrid div::before {
@@ -305,6 +299,7 @@
   top: 0;
   width: 34px;
   height: 2px;
+  border-radius: 999px;
   background: var(--pdp-gold);
 }
 .specGrid span {
@@ -399,6 +394,7 @@
     padding: 0 20px;
     display: grid;
     place-items: center;
+    border-radius: 10px;
     background: var(--pdp-gold);
     color: var(--pdp-dark);
     font-size: 12px;
