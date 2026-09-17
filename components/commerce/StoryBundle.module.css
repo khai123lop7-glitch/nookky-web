@@ -1,0 +1,33 @@
+.bundle {
+  margin-top: 28px;
+  padding: 28px;
+  border-radius: 24px;
+  background: #f4eadb;
+  color: #2f1607;
+}
+
+.eyebrow {
+  font-size: 12px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 12px 0;
+}
+
+.price {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.button {
+  margin-top: 16px;
+  border: 0;
+  border-radius: 999px;
+  padding: 12px 20px;
+  background: #2f1607;
+  color: #f4eadb;
+  cursor: pointer;
+}
