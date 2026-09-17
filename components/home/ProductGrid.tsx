@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { formatVnd, products } from "@/data/products";
 import { track } from "@/lib/analytics";
 import { AddToCartButton } from "@/components/commerce/AddToCartButton";
-import styles from "./ProductGrid.module.css";
+import styles from "./ProductCatalog.module.css";
 
 export function ProductGrid() {
   const router = useRouter();
