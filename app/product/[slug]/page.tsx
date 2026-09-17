@@ -28,7 +28,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
             <ProductGallery images={gallery} labels={labels} name={product.name} />
           </div>
 
-          <aside className={styles.summary}>
+          <aside id="buy" className={styles.summary}>
             <p className={styles.location}>{product.location}</p>
             <h1>{product.name}</h1>
             {product.tagline ? <p className={styles.tagline}>{product.tagline}</p> : null}
@@ -167,10 +167,10 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
                 <Link href={`/product/${item.slug}`} className={styles.relatedCard} key={item.slug}>
                   <img src={item.media.cover} alt={item.name} loading="lazy" decoding="async" />
                   <div>
-                    <span>
+                    <div>
                       <p>{item.location}</p>
                       <h3>{item.name}</h3>
-                    </span>
+                    </div>
                     <strong>{formatVnd(item.price)}</strong>
                   </div>
                 </Link>
@@ -184,7 +184,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
             <span>{product.name}</span>
             <strong>{formatVnd(product.price)}</strong>
           </div>
-          <a href="#overview">Mua ngay</a>
+          <a href="#buy">Mua ngay</a>
         </div>
       </main>
     </>
