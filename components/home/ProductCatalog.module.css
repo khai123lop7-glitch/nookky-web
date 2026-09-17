@@ -81,78 +81,10 @@
   letter-spacing: .02em;
 }
 
-.editorialIntro {
-  width: min(calc(100% - 48px), 1080px);
-  margin: 0 auto;
-  padding: clamp(58px, 7vw, 86px) 0 clamp(54px, 7vw, 82px);
-  display: grid;
-  grid-template-columns: minmax(260px, .78fr) minmax(0, 1.22fr);
-  gap: clamp(36px, 5vw, 66px);
-  align-items: center;
-}
-
-.editorialVisual {
-  margin: 0;
-  width: 100%;
-  max-width: 360px;
-  justify-self: end;
-}
-
-.editorialVisual img {
-  width: 100%;
-  height: auto;
-  display: block;
-  object-fit: contain;
-  background: transparent;
-}
-
-.editorialContent {
-  max-width: 640px;
-}
-
-.editorialContent h2,
-.title,
-.catalogName {
-  font-family: var(--nk-v3-serif, "Lora", "Playfair Display", serif);
-}
-
-.editorialContent h2 {
-  margin: 0;
-  max-width: 520px;
-  font-size: clamp(38px, 3.3vw, 50px);
-  font-weight: 600;
-  letter-spacing: -.015em;
-  line-height: 1.08;
-}
-
-.editorialCopy {
-  margin-top: 22px;
-}
-
-.editorialCopy p {
-  margin: 0 0 14px;
-  font-family: var(--nk-v3-ui, "Product Sans VH", "Be Vietnam Pro", sans-serif);
-  font-size: 15px;
-  line-height: 1.76;
-  color: #6a5546;
-}
-
-.editorialMeta {
-  margin-top: 24px;
-  padding-top: 14px;
-  border-top: 1px solid rgba(47,22,7,.14);
-  font-family: var(--nk-v3-ui, "Product Sans VH", "Be Vietnam Pro", sans-serif);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  color: #822622;
-}
-
 .innerContainer {
   width: min(calc(100% - 48px), 1040px);
   margin: 0 auto;
-  padding: 0 0 clamp(72px, 8vw, 96px);
+  padding: clamp(70px, 7vw, 92px) 0 clamp(78px, 8vw, 100px);
 }
 
 .header { margin-bottom: 28px; }
@@ -166,6 +98,12 @@
   letter-spacing: .18em;
   text-transform: uppercase;
   color: #822622;
+}
+
+.title,
+.catalogName,
+.editorialContent h2 {
+  font-family: var(--nk-v3-serif, "Lora", "Playfair Display", serif);
 }
 
 .title {
@@ -277,30 +215,130 @@
   font-size: 12px !important;
 }
 
+.editorialIntro {
+  width: min(calc(100% - 48px), 1120px);
+  margin: 0 auto;
+  padding: clamp(78px, 8vw, 112px) 0 clamp(94px, 10vw, 138px);
+  border-top: 1px solid rgba(47,22,7,.12);
+  display: grid;
+  grid-template-columns: minmax(300px, .82fr) minmax(0, 1.18fr);
+  gap: clamp(44px, 6vw, 82px);
+  align-items: start;
+}
+
+.editorialVisual {
+  margin: 0;
+  width: 100%;
+  max-width: 410px;
+  justify-self: end;
+}
+
+.editorialVisual img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+.editorialContent {
+  max-width: 650px;
+}
+
+.editorialContent h2 {
+  margin: 0;
+  max-width: 560px;
+  font-size: clamp(40px, 3.5vw, 54px);
+  font-weight: 600;
+  letter-spacing: -.015em;
+  line-height: 1.06;
+}
+
+.editorialCopy { margin-top: 24px; }
+
+.editorialCopy p {
+  margin: 0 0 16px;
+  font-family: var(--nk-v3-ui, "Product Sans VH", "Be Vietnam Pro", sans-serif);
+  font-size: 15px;
+  line-height: 1.78;
+  color: #6a5546;
+}
+
+.editorialLead {
+  font-size: 16px !important;
+  color: #4e382a !important;
+}
+
+.editorialPoints {
+  margin-top: 28px;
+  border-top: 1px solid rgba(47,22,7,.14);
+}
+
+.editorialPoints article {
+  display: grid;
+  grid-template-columns: 34px 1fr;
+  gap: 14px;
+  padding: 15px 0;
+  border-bottom: 1px solid rgba(47,22,7,.11);
+}
+
+.editorialPoints article > span {
+  padding-top: 2px;
+  color: #822622;
+  font-family: var(--nk-v3-ui, "Product Sans VH", "Be Vietnam Pro", sans-serif);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .08em;
+}
+
+.editorialPoints strong {
+  display: block;
+  margin-bottom: 4px;
+  font-family: var(--nk-v3-ui, "Product Sans VH", "Be Vietnam Pro", sans-serif);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.editorialPoints p {
+  margin: 0;
+  color: #745f51;
+  font-family: var(--nk-v3-ui, "Product Sans VH", "Be Vietnam Pro", sans-serif);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.editorialMeta {
+  margin-top: 24px;
+  padding-top: 14px;
+  font-family: var(--nk-v3-ui, "Product Sans VH", "Be Vietnam Pro", sans-serif);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: #822622;
+}
+
 @media (max-width: 900px) {
   .heroBanner { min-height: 620px; }
   .heroCopy h1 { width: min(640px, 82vw); }
   .heroCopy > p:not(.heroEyebrow) { width: min(560px, 80vw); }
-  .editorialIntro {
-    width: min(calc(100% - 36px), 760px);
-    grid-template-columns: minmax(200px, .75fr) minmax(0, 1.25fr);
-    gap: 28px;
-  }
-  .editorialVisual { max-width: 300px; }
   .innerContainer { width: min(calc(100% - 36px), 760px); }
   .catalogGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .editorialIntro {
+    width: min(calc(100% - 36px), 760px);
+    grid-template-columns: minmax(220px, .72fr) minmax(0, 1.28fr);
+    gap: 32px;
+  }
+  .editorialVisual { max-width: 300px; }
 }
 
 @media (max-width: 680px) {
   .editorialIntro {
     grid-template-columns: 1fr;
-    align-items: start;
   }
   .editorialVisual {
-    max-width: 280px;
+    max-width: 300px;
     justify-self: start;
   }
-  .editorialContent { max-width: none; }
 }
 
 @media (max-width: 560px) {
@@ -313,12 +351,9 @@
   .heroCopy h1 { width: 100%; font-size: 42px; }
   .heroCopy > p:not(.heroEyebrow) { width: 100%; font-size: 14px; }
   .heroCta { font-size: 12px; }
-  .editorialIntro,
-  .innerContainer { width: calc(100% - 24px); }
-  .editorialIntro { padding: 46px 0 44px; }
-  .editorialVisual { max-width: 230px; }
-  .editorialContent h2 { font-size: 36px; }
-  .editorialCopy p { font-size: 15px; }
+  .innerContainer,
+  .editorialIntro { width: calc(100% - 24px); }
+  .innerContainer { padding-top: 54px; }
   .catalogGrid { grid-template-columns: 1fr 1fr; gap: 12px; }
   .catalogBody { padding: 9px; }
   .catalogName { min-height: auto; font-size: 15px; }
@@ -330,4 +365,9 @@
     min-height: 28px !important;
     padding: 0 7px !important;
   }
+  .editorialIntro { padding: 64px 0 88px; }
+  .editorialVisual { max-width: 250px; }
+  .editorialContent h2 { font-size: 36px; }
+  .editorialCopy p { font-size: 14px; }
+  .editorialLead { font-size: 15px !important; }
 }
