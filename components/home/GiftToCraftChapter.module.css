@@ -1,0 +1,43 @@
+.chapter { position: relative; height: 230svh; background: #fbf8f1; }
+.stage { position: sticky; top: 60px; height: calc(100svh - 60px); min-height: 650px; overflow: hidden; isolation: isolate; }
+.stage :global([data-nk-gift-scene]) { height: 100%; min-height: 0; }
+.stage :global([data-nk-gift-scene] [data-nk-reveal]) { opacity: 1 !important; transform: none !important; }
+.scene { position: absolute; z-index: 6; inset: 0; pointer-events: none; }
+.overlay { position: absolute; inset: 0; opacity: 0; visibility: hidden; overflow: hidden; }
+.workshop { position: absolute; inset: -1px; background: linear-gradient(90deg,#11171280,transparent 38%,#10130f45),url("/media/editorial/craft-process-bg.png") right center / cover no-repeat; clip-path: circle(0% at 72% 54%); transform-origin: 72% 54%; will-change: clip-path,transform; }
+.paper { position: absolute; z-index: 2; inset: 0 auto 0 0; width: 49%; background: #fbf8f1; box-shadow: 20px 0 60px #0b0b08a3; }
+.paper::before { content: ""; position: absolute; inset: 0; background: url("/media/editorial/brand-story-bg.png") center / cover; opacity: .13; mix-blend-mode: multiply; }
+.paperEdge { position: absolute; top: 0; bottom: 0; right: -30px; width: 31px; background: #fbf8f1; clip-path: polygon(0 0,100% 0,100% 13%,18% 13%,18% 28%,85% 28%,85% 42%,20% 42%,20% 57%,100% 57%,100% 72%,25% 72%,25% 88%,75% 88%,75% 100%,0 100%); }
+.light { position: absolute; z-index: 1; left: 48%; top: 14%; width: 48%; height: 70%; border-radius: 50%; background: radial-gradient(ellipse,#f6a14b3e,transparent 68%); filter: blur(28px); mix-blend-mode: screen; }
+.mobileIntro { display: none; }
+.wordOne,.wordTwo { position: absolute; z-index: 4; left: 48%; top: 43%; width: 48%; color: #fff8ec; font: 400 clamp(60px,8.5vw,150px)/.9 var(--nk-v3-display,Georgia,serif); letter-spacing: -.07em; text-align: center; text-shadow: 0 5px 30px #100b07; white-space: nowrap; transform-origin: center; will-change: transform,opacity; }
+.wordTwo { left: 37%; top: 42%; width: 61%; font-size: clamp(54px,7.8vw,138px); color: #f6c29a; }
+.drawing { position: absolute; z-index: 5; inset: 0; width: 100%; height: 100%; overflow: visible; opacity: .92; }
+.drawing path { fill: none; stroke: #eda66d; stroke-width: 2.5; stroke-linecap: round; filter: drop-shadow(0 0 8px #fdb46b); }
+.final { position: absolute; z-index: 6; left: 3%; top: 27%; width: 26%; display: flex; flex-direction: column; gap: 22px; color: #234039; will-change: transform,opacity; }
+.kicker { color: #b25e42; font: 700 clamp(10px,.8vw,13px)/1.4 var(--nk-v3-ui,sans-serif); letter-spacing: .19em; }
+.final strong { font: 400 clamp(36px,3vw,61px)/1.05 var(--nk-v3-display,Georgia,serif); letter-spacing: -.045em; }
+.hint { margin-top: 15px; color: #8e5e47; font: 700 11px/1.3 var(--nk-v3-ui,sans-serif); letter-spacing: .14em; }
+@media (max-width: 760px) {
+  .chapter { height: auto; }
+  .stage { position: relative; top: auto; height: auto; min-height: 0; overflow: visible; }
+  .stage :global([data-nk-gift-scene]) { height: auto; min-height: 0; }
+  .scene { position: relative; height: calc(100svh - 60px); min-height: 610px; background: url("/media/editorial/corporate-gifts-product.webp") center center / cover; overflow: hidden; }
+  .overlay { opacity: 1; visibility: visible; }
+  .workshop { background-position: 69% center; }
+  .paper { width: 50%; }
+  .mobileIntro { position: absolute; z-index: 5; left: 5%; top: 25%; display: flex; flex-direction: column; gap: 8px; width: 40%; color: #244238; font: 400 clamp(27px,8vw,42px)/1 var(--nk-v3-display,Georgia,serif); letter-spacing: -.05em; }
+  .mobileIntro span { color: #aa6146; }
+  .mobileIntro strong { font-weight: 400; }
+  .wordOne,.wordTwo { display: none; }
+  .drawing { transform: scale(1.7); transform-origin: center; opacity: .45; }
+  .final { left: 5%; top: 54%; box-sizing: border-box; width: 59%; gap: 11px; padding: 16px 13px; background: #fffaf1ef; box-shadow: 0 15px 35px #190e0966; }
+  .final strong { font-size: clamp(27px,7vw,40px); }
+  .hint { font-size: 9px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .chapter { height: auto; }
+  .stage { position: relative; top: auto; height: auto; min-height: 0; overflow: visible; }
+  .stage :global([data-nk-gift-scene]) { height: auto; }
+  .scene { display: none; }
+}

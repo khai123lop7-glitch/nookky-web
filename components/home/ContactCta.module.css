@@ -378,3 +378,39 @@
   }
 
 }
+
+/* Light closing chapter */
+.ctaSection {
+  min-height: auto;
+  padding: clamp(95px, 10vw, 150px) 0;
+  color: #293d38;
+  background: radial-gradient(circle at 9% 84%, #f5d4bc 0%, transparent 35%), #fbf4e9;
+}
+.title { color: #293d38; text-shadow: none; }
+.titleLine1, .titleLine2 { white-space: normal; }
+.goldText, .accentWord { color: #b76849; text-shadow: none; }
+.desc { color: #5b675f; text-shadow: none; }
+.goldEmphasis { color: #a3583c; text-shadow: none; }
+.perkIcon { color: #b76849; background: #fff9ef; border-color: #e7c4aa; box-shadow: none; }
+.perk:hover .perkIcon { box-shadow: 0 6px 18px rgba(153,96,64,.15); }
+.perkTitle { color: #293d38; }
+.perkSub { color: #69766b; }
+.bottomQuote { color: #a7654a; }
+.formCol { background: #fffdf8; border: 1px solid #e7ddce; border-radius: 4px; box-shadow: 0 24px 60px rgba(89,67,44,.12); backdrop-filter: none; }
+.formTitle { color: #293d38; text-shadow: none; }
+.formTitleBrand, .formSubGold { color: #b76849; }
+.formSubtitle { color: #69766b; }
+.inputGroup label { color: #365b50; }
+.inputGroup input, .inputGroup select, .inputGroup textarea { background: #f8f6ef; border-color: #d9dfd4; color: #293d38; }
+.inputGroup input::placeholder, .inputGroup textarea::placeholder { color: #899389; }
+.inputGroup input:focus, .inputGroup select:focus, .inputGroup textarea:focus { background: white; border-color: #548578; box-shadow: 0 0 0 3px rgba(84,133,120,.14); }
+.inputGroup select option { background: white; color: #293d38; }
+.submitBtn { background: #31594e; border-color: #31594e; color: white; box-shadow: 0 8px 18px rgba(49,89,78,.18); }
+.submitBtn:hover { background: #b76849; border-color: #b76849; color: white; box-shadow: 0 12px 22px rgba(183,104,73,.2); }
+.privacyNote { color: #738078; }
+.successIcon { background: #e1eee5; color: #31594e; }
+.successTitle { color: #293d38; }
+.successDesc { color: #69766b; }
+.resetBtn { border-color: #9cb9a8; color: #31594e; }
+.resetBtn:hover { background: #e1eee5; border-color: #31594e; }
+@media (max-width: 992px) { .ctaSection { padding: 80px 20px; } }

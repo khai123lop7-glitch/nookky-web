@@ -423,3 +423,11 @@ h1, h2, h3, p { text-wrap: pretty; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
 }
+
+/* Trang chủ mới dùng các lớp chuyển cảnh lớn hơn viewport. Giữ chúng trong
+   canvas trang để không sinh thanh cuộn ngang hoặc làm lệch tâm nội dung. */
+main[data-nk-home] {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: clip;
+}

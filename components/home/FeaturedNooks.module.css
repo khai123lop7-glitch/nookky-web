@@ -1,0 +1,54 @@
+.section { position: relative; height: 380svh; background: #faf5eb; color: #263a37; }
+.stage { position: sticky; top: 0; height: 100svh; min-height: 640px; isolation: isolate; overflow: hidden; background: #faf5eb; }
+.ambient { position: absolute; width: min(72vw, 920px); aspect-ratio: 1; border-radius: 50%; right: -15vw; top: 50%; transform: translateY(-50%); opacity: .32; filter: blur(100px); transition: background 1s ease; z-index: -1; }
+.inner { position: relative; width: min(1360px, calc(100% - clamp(36px, 7vw, 112px))); height: 100%; margin: auto; }
+.copy { position: absolute; z-index: 5; left: 0; top: 50%; width: min(48%, 600px); transform: translateY(-48%); }
+.eyebrow, .place, .scrollHint, .artworkNumber { font-family: var(--nk-v3-ui, sans-serif); font-size: 11px; font-weight: 700; letter-spacing: .17em; }
+.eyebrow { color: #a96242; margin: 0 0 25px; }
+.title { font-family: var(--nk-v3-display, Georgia, serif); font-size: clamp(48px, 5.8vw, 89px); line-height: 1; font-weight: 400; letter-spacing: -.04em; margin: 0 0 clamp(38px, 5vw, 74px); }
+.title em { color: #b66745; font-weight: 400; }
+.activeCopy { animation: copyEnter .5s both; min-height: 165px; }
+.place { color: #a96242; }
+.activeCopy h3 { font-family: var(--nk-v3-display, Georgia, serif); font-size: clamp(30px, 3vw, 46px); font-weight: 400; line-height: 1.1; margin: 10px 0; }
+.activeCopy p { margin: 0 0 17px; max-width: 390px; color: #5c6c63; font-size: clamp(13px, 1.15vw, 16px); line-height: 1.55; }
+.productLink, .allLink { color: #275648; text-decoration: none; font-size: 14px; font-weight: 700; }
+.productLink { display: inline-flex; align-items: center; gap: 18px; border-bottom: 1px solid currentColor; padding-bottom: 7px; }
+.productLink:hover, .allLink:hover { color: #b66745; }
+.productLink span, .allLink span { font-size: 20px; font-weight: 400; }
+.progress { width: min(340px, 80%); height: 2px; background: #d8d9ca; margin-top: 32px; }
+.progress span { display: block; height: 100%; width: calc(var(--gallery-progress, 0) * 100%); background: #b66745; }
+.scrollHint { margin: 15px 0 0; color: #9b7d68; font-size: 10px; }
+.gallery { position: absolute; z-index: 2; left: 73%; top: 50%; width: 1px; height: 1px; perspective: 1200px; }
+.artwork { position: absolute; left: 0; top: 0; width: clamp(240px, 27vw, 390px); height: clamp(360px, 63vh, 560px); padding: 12px; border-radius: 3px; box-shadow: 0 32px 70px rgba(53,42,29,.25), 0 4px 15px rgba(53,42,29,.12); transform: translate(-50%, -50%); transform-origin: center; will-change: transform, opacity; color: #263a37; text-decoration: none; }
+.artwork img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.artworkNumber { position: absolute; left: 23px; top: 23px; background: rgba(255,251,242,.9); padding: 9px 11px; }
+.allLink { position: absolute; z-index: 6; right: 0; bottom: 35px; display: flex; gap: 22px; align-items: center; }
+@keyframes copyEnter { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+@media (max-width: 760px) {
+  .section { height: 330svh; }
+  .stage { min-height: 0; }
+  .copy { top: 17%; width: 100%; transform: none; }
+  .eyebrow { margin-bottom: 12px; font-size: 9px; }
+  .title { font-size: clamp(39px, 10vw, 64px); margin-bottom: 20px; }
+  .activeCopy { min-height: 125px; }
+  .activeCopy h3 { font-size: 30px; margin: 6px 0; }
+  .activeCopy p { font-size: 13px; margin-bottom: 8px; }
+  .progress { margin-top: 16px; }
+  .scrollHint { font-size: 8px; margin-top: 9px; }
+  .gallery { left: 50%; top: 77%; }
+  .artwork { width: min(58vw, 270px); height: min(37vh, 330px); padding: 8px; }
+  .artworkNumber { top: 14px; left: 14px; font-size: 9px; }
+  .allLink { right: 0; bottom: 8px; font-size: 12px; }
+  .ambient { width: 110vw; right: -30vw; top: 76%; filter: blur(60px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .section { height: auto; padding: 80px 0; }
+  .stage { position: relative; height: auto; overflow: visible; }
+  .inner { height: auto; }
+  .copy { position: relative; top: auto; width: 100%; transform: none; }
+  .activeCopy { animation: none; }
+  .gallery { position: relative; left: auto; top: auto; width: auto; height: auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 35px; }
+  .artwork { position: relative; width: 100%; height: auto; aspect-ratio: .7; left: auto; top: auto; transform: none; box-shadow: 0 12px 25px rgba(53,42,29,.12); }
+  .allLink { position: relative; right: auto; bottom: auto; margin-top: 30px; display: inline-flex; }
+}
+@media (prefers-reduced-motion: reduce) and (max-width: 760px) { .gallery { grid-template-columns: 1fr; } }

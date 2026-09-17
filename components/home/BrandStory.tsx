@@ -6,18 +6,31 @@ export function BrandStory() {
   return (
     <section
       className={styles.giftSection}
-      id="qua-tang-doanh-nghiep"
+      data-nk-scene
+      data-nk-gift-scene
       aria-labelledby="gift-heading"
     >
-      {/* Background Image Container with Parallax Support */}
-      <div className={styles.bgWrapper} aria-hidden="true" data-nk-parallax data-nk-parallax-speed="0.12">
+      <div className={styles.bgWrapper} aria-hidden="true">
         <img
           src="/media/editorial/corporate-gifts-product.webp"
           alt="Quà tặng doanh nghiệp Nook Ký"
           className={styles.bgImage}
+          data-nk-parallax
+          data-nk-parallax-speed="0.05"
         />
-        <div className={styles.gradientOverlay} />
+        <div className={styles.mediaRibbon}>
+          <span>Một góc Việt trong từng món quà</span>
+          <i />
+        </div>
       </div>
+      <div className={styles.seal} aria-hidden="true">TINH<br />HOA<br />VIỆT</div>
+      <p className={styles.sideNote} aria-hidden="true">THỦ CÔNG KẾT NỐI KÝ ỨC VIỆT</p>
+      <svg className={styles.landscape} viewBox="0 0 800 150" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 118 75 106 135 112 212 91 272 104 345 75 395 93 467 68 525 92 595 79 650 95 720 83 800 111v39H0Z" fill="currentColor" opacity=".28" />
+        <path d="M0 133c107-8 205 8 307 0s220-2 325 0 130 3 168-3M0 142c96-4 169 3 264 1s178-4 286 0 179 2 250-1" fill="none" stroke="currentColor" strokeWidth="2" opacity=".32" />
+        <path d="M609 119c19 5 39 5 58 0l-8 8h-43zM636 119V84l23 31h-23" fill="currentColor" opacity=".55" />
+        <path d="M-5 103C35 80 58 49 96 13M13 91C9 59 16 48 39 41c7 24-2 38-26 50ZM38 70c0-29 10-44 39-45-1 26-13 41-39 45ZM63 48C57 24 68 9 92 3c7 22-3 39-29 45Z" fill="currentColor" opacity=".6" />
+      </svg>
 
       {/* Content Container aligned on the left with Scroll Reveal */}
       <div className={styles.contentContainer}>

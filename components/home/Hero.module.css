@@ -230,6 +230,8 @@
 /* ── BOTTOM FLOATING DESTINATION CAROUSEL BAR ──────────── */
 .carouselBarWrapper {
   width: 100%;
+  max-width: 1280px;
+  margin-inline: auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -243,7 +245,8 @@
   align-items: center;
   justify-content: flex-start;
   gap: 12px;
-  width: min(100%, 1160px);
+  width: auto;
+  flex: 1 1 auto;
   min-width: 0;
   padding: 8px 4px 10px;
   overflow-x: auto;
