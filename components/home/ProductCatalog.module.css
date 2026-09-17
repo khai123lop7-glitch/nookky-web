@@ -1,6 +1,6 @@
 .showcaseSection {
-  background: #fffaf4;
-  color: #2a180e;
+  background: #2f1607;
+  color: #fcf4e9;
   font-family: var(--nk-v3-body, "Product Sans VH", "Be Vietnam Pro", sans-serif);
 }
 
@@ -9,6 +9,7 @@
   min-height: clamp(560px, 72vh, 780px);
   overflow: hidden;
   background: #1d120c;
+  border-radius: 0 0 24px 24px;
 }
 
 .heroImage {
@@ -24,8 +25,8 @@
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, rgba(24, 12, 5, .82) 0%, rgba(24, 12, 5, .58) 34%, rgba(24, 12, 5, .16) 66%, rgba(24, 12, 5, .02) 100%),
-    linear-gradient(0deg, rgba(18, 9, 4, .42) 0%, rgba(18, 9, 4, .03) 46%);
+    linear-gradient(90deg, rgba(24, 12, 5, .84) 0%, rgba(24, 12, 5, .6) 34%, rgba(24, 12, 5, .18) 66%, rgba(24, 12, 5, .05) 100%),
+    linear-gradient(0deg, rgba(18, 9, 4, .48) 0%, rgba(18, 9, 4, .04) 46%);
 }
 
 .heroCopy {
@@ -73,8 +74,10 @@
 .heroCta {
   width: fit-content;
   margin-top: 28px;
-  padding-bottom: 4px;
-  border-bottom: 1px solid rgba(255, 250, 244, .85);
+  padding: 10px 15px;
+  border: 1px solid rgba(255, 250, 244, .26);
+  border-radius: 999px;
+  background: rgba(255,255,255,.04);
   font-family: var(--nk-v3-ui, "Product Sans VH", "Be Vietnam Pro", sans-serif);
   font-size: 13px;
   font-weight: 650;
@@ -97,7 +100,7 @@
   font-weight: 800;
   letter-spacing: .18em;
   text-transform: uppercase;
-  color: #822622;
+  color: #d9953b;
 }
 
 .title,
@@ -115,6 +118,7 @@
   font-weight: 600;
   letter-spacing: -.015em;
   line-height: 1.08;
+  color: #fcf4e9;
 }
 
 .subtitle {
@@ -123,7 +127,7 @@
   font-family: var(--nk-v3-ui, "Product Sans VH", "Be Vietnam Pro", sans-serif);
   font-size: 14px;
   line-height: 1.65;
-  color: #5e4938;
+  color: rgba(252,244,233,.68);
 }
 
 .catalogGrid {
@@ -136,19 +140,20 @@
 .catalogCard {
   width: 100%;
   overflow: hidden;
-  background: #fffdf9;
-  border: 1px solid rgba(130, 38, 34, .13);
-  border-radius: 7px;
+  background: #f3e7d8;
+  color: #2f1607;
+  border: 1px solid rgba(217,149,59,.2);
+  border-radius: 16px;
   cursor: pointer;
-  box-shadow: 0 6px 18px rgba(50, 28, 12, .065);
+  box-shadow: 0 10px 28px rgba(17, 8, 3, .18);
   transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
 }
 
 .catalogCard:hover,
 .catalogCard:focus-visible {
   transform: translateY(-3px);
-  box-shadow: 0 11px 26px rgba(50, 28, 12, .12);
-  border-color: rgba(130, 38, 34, .42);
+  box-shadow: 0 16px 36px rgba(17, 8, 3, .28);
+  border-color: rgba(217,149,59,.5);
   outline: none;
 }
 
@@ -156,6 +161,7 @@
   aspect-ratio: 1 / 1.06;
   overflow: hidden;
   background: #201209;
+  border-radius: 15px 15px 10px 10px;
 }
 
 .catalogImage {
@@ -167,7 +173,7 @@
 }
 
 .catalogCard:hover .catalogImage { transform: scale(1.018); }
-.catalogBody { padding: 12px 12px 13px; }
+.catalogBody { padding: 13px 13px 14px; }
 
 .catalogLocation {
   margin: 0 0 3px;
@@ -176,7 +182,7 @@
   font-weight: 800;
   letter-spacing: .14em;
   text-transform: uppercase;
-  color: #822622;
+  color: #8b2f28;
 }
 
 .catalogName {
@@ -207,11 +213,11 @@
 .catalogCart { position: relative; z-index: 2; }
 
 .miniCartBtn {
-  min-width: 34px !important;
-  min-height: 30px !important;
-  padding: 0 8px !important;
+  min-width: 36px !important;
+  min-height: 32px !important;
+  padding: 0 9px !important;
   border: 0 !important;
-  border-radius: 4px !important;
+  border-radius: 10px !important;
   background: #822622 !important;
   color: #fff !important;
   cursor: pointer;
@@ -224,6 +230,7 @@
 .collectionClose {
   width: min(calc(100% - 48px), 1180px);
   margin: 0 auto 34px;
+  border-radius: 18px;
 }
 
 .storyFeature,
@@ -231,14 +238,15 @@
   display: grid;
   grid-template-columns: 1.12fr .88fr;
   overflow: hidden;
-  background: #f5ede4;
+  background: #f3e7d8;
+  color: #2f1607;
 }
 
 .storyFeatureMedia,
 .storySplitMedia {
   min-height: 540px;
   overflow: hidden;
-  background: #e9ddd0;
+  background: #ead8c5;
 }
 
 .storyFeatureMedia img,
@@ -269,9 +277,7 @@
 }
 
 .storyFeatureCopy > p:not(.eyebrow),
-.storySplitCopy > p:not(.eyebrow),
-.detailStoryCopy > p:not(.eyebrow),
-.collectionCloseCopy > p:not(.eyebrow) {
+.storySplitCopy > p:not(.eyebrow) {
   margin: 20px 0 0;
   color: #6b5648;
   font-family: var(--nk-v3-ui, "Product Sans VH", "Be Vietnam Pro", sans-serif);
@@ -279,10 +285,7 @@
   line-height: 1.76;
 }
 
-.storySplitReverse {
-  grid-template-columns: .88fr 1.12fr;
-}
-
+.storySplitReverse { grid-template-columns: .88fr 1.12fr; }
 .storySplitReverse .storySplitMedia { order: 2; }
 .storySplitReverse .storySplitCopy { order: 1; }
 
@@ -292,18 +295,17 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 12px;
 }
-
 .storyStats div {
-  padding-top: 12px;
-  border-top: 1px solid rgba(47,22,7,.16);
+  padding: 12px;
+  border: 1px solid rgba(47,22,7,.1);
+  border-radius: 12px;
+  background: rgba(47,22,7,.035);
 }
-
 .storyStats span,
 .storyStats strong {
   display: block;
   font-family: var(--nk-v3-ui, "Product Sans VH", "Be Vietnam Pro", sans-serif);
 }
-
 .storyStats span {
   margin-bottom: 5px;
   color: #8b7667;
@@ -311,7 +313,6 @@
   letter-spacing: .08em;
   text-transform: uppercase;
 }
-
 .storyStats strong { font-size: 13px; }
 
 .storyList {
@@ -319,7 +320,6 @@
   padding: 0;
   list-style: none;
 }
-
 .storyList li {
   padding: 11px 0;
   border-bottom: 1px solid rgba(47,22,7,.12);
@@ -332,16 +332,25 @@
   grid-template-columns: .82fr 1.18fr;
   align-items: center;
   gap: clamp(34px, 5vw, 68px);
-  padding: clamp(64px, 7vw, 94px) 0;
+  padding: clamp(42px, 5vw, 62px);
+  background: #3a1f10;
+  color: #fcf4e9;
 }
 
-.detailStoryCopy { padding-left: clamp(10px, 2vw, 28px); }
+.detailStoryCopy { padding-left: 0; }
+.detailStoryCopy > p:not(.eyebrow) {
+  margin: 20px 0 0;
+  color: rgba(252,244,233,.72);
+  font-family: var(--nk-v3-ui, "Product Sans VH", "Be Vietnam Pro", sans-serif);
+  font-size: 15px;
+  line-height: 1.76;
+}
 
 .detailStoryMedia {
   overflow: hidden;
-  background: #ede3d8;
+  background: #201209;
+  border-radius: 14px;
 }
-
 .detailStoryMedia img {
   width: 100%;
   height: auto;
@@ -355,22 +364,20 @@
   margin-bottom: clamp(84px, 9vw, 124px);
   background: #1d120c;
   color: #fff8ef;
+  border-radius: 20px;
 }
-
 .collectionClose > img {
   width: 100%;
   height: 760px;
   display: block;
   object-fit: cover;
 }
-
 .collectionClose::after {
   content: "";
   position: absolute;
   inset: 0;
   background: linear-gradient(0deg, rgba(23,10,5,.8) 0%, rgba(23,10,5,.08) 58%);
 }
-
 .collectionCloseCopy {
   position: absolute;
   z-index: 2;
@@ -378,20 +385,27 @@
   bottom: clamp(28px, 5vw, 62px);
   width: min(620px, calc(100% - 56px));
 }
-
 .collectionClose .eyebrow { color: #efbd72; }
-.collectionCloseCopy > p:not(.eyebrow) { color: rgba(255,248,239,.82); }
+.collectionCloseCopy > p:not(.eyebrow) {
+  margin: 20px 0 0;
+  color: rgba(255,248,239,.82);
+  font-family: var(--nk-v3-ui, "Product Sans VH", "Be Vietnam Pro", sans-serif);
+  font-size: 15px;
+  line-height: 1.76;
+}
 .collectionCloseCopy a {
   display: inline-block;
   margin-top: 24px;
-  padding-bottom: 4px;
-  border-bottom: 1px solid rgba(255,248,239,.75);
+  padding: 10px 14px;
+  border: 1px solid rgba(255,248,239,.28);
+  border-radius: 999px;
+  background: rgba(255,255,255,.05);
   font-family: var(--nk-v3-ui, "Product Sans VH", "Be Vietnam Pro", sans-serif);
   font-size: 13px;
 }
 
 @media (max-width: 900px) {
-  .heroBanner { min-height: 620px; }
+  .heroBanner { min-height: 620px; border-radius: 0 0 18px 18px; }
   .heroCopy h1 { width: min(640px, 82vw); }
   .heroCopy > p:not(.heroEyebrow) { width: min(560px, 80vw); }
   .innerContainer { width: min(calc(100% - 36px), 760px); }
@@ -412,7 +426,7 @@
   .storySplitMedia img { aspect-ratio: 4 / 3; }
   .storyFeatureCopy,
   .storySplitCopy { padding: 46px 28px; }
-  .detailStoryCopy { padding: 0 12px; }
+  .detailStory { padding: 30px; }
   .collectionClose,
   .collectionClose > img { min-height: 0; height: 620px; }
 }
@@ -436,7 +450,7 @@
   .catalogFooter { margin-top: 9px; gap: 8px; }
   .catalogPrice strong { font-size: 11px; }
   .catalogPrice del { font-size: 8px; }
-  .miniCartBtn { min-width: 30px !important; min-height: 28px !important; padding: 0 7px !important; }
+  .miniCartBtn { min-width: 30px !important; min-height: 28px !important; padding: 0 7px !important; border-radius: 9px !important; }
   .storyFeatureCopy,
   .storySplitCopy { padding: 38px 22px; }
   .storyFeature h2,
@@ -444,7 +458,7 @@
   .detailStory h2,
   .collectionClose h2 { font-size: 38px; }
   .storyStats { grid-template-columns: 1fr; }
-  .detailStory { padding: 52px 0; }
+  .detailStory { padding: 24px; }
   .collectionClose,
   .collectionClose > img { height: 520px; }
   .collectionCloseCopy { left: 22px; bottom: 24px; width: calc(100% - 44px); }
