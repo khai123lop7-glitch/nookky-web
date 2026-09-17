@@ -1,6 +1,8 @@
 .gallery {
+  width: min(100%, 720px);
+  margin: 0 auto;
   display: grid;
-  gap: 14px;
+  gap: 12px;
   outline: none;
 }
 
@@ -9,7 +11,7 @@
   overflow: hidden;
   background: #eee5da;
   border-radius: 8px;
-  aspect-ratio: 1.08 / 1;
+  aspect-ratio: 1.18 / 1;
   touch-action: pan-y;
 }
 
@@ -24,8 +26,8 @@
   position: absolute;
   top: 50%;
   z-index: 3;
-  width: 44px;
-  height: 44px;
+  width: 40px;
+  height: 40px;
   transform: translateY(-50%);
   border: 1px solid rgba(47, 22, 7, 0.16);
   border-radius: 999px;
@@ -50,8 +52,8 @@
 }
 
 .arrowButton svg {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   fill: none;
   stroke: currentColor;
   stroke-width: 2;
@@ -59,19 +61,19 @@
   stroke-linejoin: round;
 }
 
-.arrowPrevious { left: 14px; }
-.arrowNext { right: 14px; }
+.arrowPrevious { left: 12px; }
+.arrowNext { right: 12px; }
 
 .counter {
   position: absolute;
-  right: 14px;
-  bottom: 14px;
+  right: 12px;
+  bottom: 12px;
   z-index: 2;
-  padding: 7px 10px;
+  padding: 6px 9px;
   border-radius: 999px;
   background: rgba(29, 18, 12, 0.76);
   color: #fffdfa;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.05em;
   backdrop-filter: blur(8px);
@@ -80,18 +82,18 @@
 .thumbnailRow {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 10px;
+  gap: 8px;
 }
 
 .thumbnailButton {
   position: relative;
   padding: 0;
   border: 1px solid rgba(47, 22, 7, 0.12);
-  border-radius: 6px;
+  border-radius: 5px;
   overflow: hidden;
   background: #eee5da;
   cursor: pointer;
-  aspect-ratio: 1.2 / 1;
+  aspect-ratio: 1.38 / 1;
   transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -114,26 +116,26 @@
 
 .thumbnailButton span {
   position: absolute;
-  left: 7px;
-  bottom: 6px;
-  min-width: 24px;
-  padding: 3px 5px;
+  left: 6px;
+  bottom: 5px;
+  min-width: 22px;
+  padding: 2px 4px;
   border-radius: 999px;
   background: rgba(29, 18, 12, 0.72);
   color: #fffdfa;
-  font-size: 8px;
+  font-size: 7px;
   font-weight: 800;
   letter-spacing: 0.06em;
 }
 
 .caption {
-  min-height: 24px;
+  min-height: 20px;
   display: flex;
   align-items: baseline;
   justify-content: space-between;
   gap: 16px;
   color: #6f5c4f;
-  font-size: 9px;
+  font-size: 8px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
@@ -149,7 +151,7 @@
 }
 
 .empty {
-  min-height: 620px;
+  min-height: 520px;
   display: grid;
   place-items: center;
   background: #e9dfd4;
@@ -157,7 +159,18 @@
   font-size: 13px;
 }
 
+@media (max-width: 1100px) and (min-width: 901px) {
+  .gallery {
+    width: min(100%, 640px);
+  }
+}
+
 @media (max-width: 900px) {
+  .gallery {
+    width: 100%;
+    margin: 0;
+  }
+
   .mainStage {
     aspect-ratio: 4 / 5;
     border-radius: 6px;
@@ -183,21 +196,21 @@
   .thumbnailRow::-webkit-scrollbar { display: none; }
 
   .thumbnailButton {
-    flex: 0 0 74px;
+    flex: 0 0 68px;
     scroll-snap-align: start;
   }
 }
 
 @media (max-width: 560px) {
-  .gallery { gap: 10px; }
+  .gallery { gap: 9px; }
   .arrowButton {
-    width: 36px;
-    height: 36px;
+    width: 34px;
+    height: 34px;
   }
   .counter {
-    right: 10px;
-    bottom: 10px;
-    font-size: 10px;
+    right: 9px;
+    bottom: 9px;
+    font-size: 9px;
   }
-  .thumbnailButton { flex-basis: 66px; }
+  .thumbnailButton { flex-basis: 62px; }
 }
