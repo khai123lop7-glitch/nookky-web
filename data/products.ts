@@ -77,6 +77,14 @@ const saiGonGallery = [
   driveImage("1CDO397KStqNGZq5qn46MB9m-pc_OOl-l"),
 ];
 
+const daLatGallery = [
+  driveImage("1_ttrAsnme_zj9U9OillUsEKWUYTN0t2q"),
+  driveImage("1ytGc7CJyeh1jy2-LX-CCvc_cO1Hwo4ki"),
+  driveImage("1lKYeSbKrGf7lLRnIztkHkC_Qs4KbXQ6-"),
+  driveImage("1NOebPO5d5ZWQD4mLAEk0ammHtsy1Tejn"),
+  driveImage("177-xKOVbIjwKEg4Gp9lwFRbNKVHn6pol"),
+];
+
 const mienTayGallery = [
   driveImage("13iEp7hZkyohlIylPzsh7t2vDcg7W-adA"),
   driveImage("1S_ZBFnIpSxqYEL0NUUVQTfNCoQSZi8nV"),
@@ -236,16 +244,11 @@ export const products: NookProduct[] = [
     ],
     boxContents: defaultBoxContents,
     media: {
-      cover: "/media/products/05-den-am-tren-doc-da-lat/cover.webp",
-      detail: "/media/products/05-den-am-tren-doc-da-lat/detail.webp",
-      lifestyle: "/media/products/05-den-am-tren-doc-da-lat/lifestyle.webp",
-      gallery: [
-        "/media/products/Da-Lat-4-anh-gen-moi/Da-Lat-01-Product.png",
-        "/media/products/Da-Lat-4-anh-gen-moi/Da-Lat-02-Top-View.png",
-        "/media/products/Da-Lat-4-anh-gen-moi/Da-Lat-03-Details-Collage.png",
-        "/media/products/Da-Lat-4-anh-gen-moi/Da-Lat-04-Assembly.png",
-      ],
-      galleryLabels: ["Tổng quan", "Góc nhìn", "Chi tiết", "Lắp ráp"],
+      cover: daLatGallery[4],
+      detail: daLatGallery[2],
+      lifestyle: daLatGallery[4],
+      gallery: daLatGallery,
+      galleryLabels,
     },
   },
   {
