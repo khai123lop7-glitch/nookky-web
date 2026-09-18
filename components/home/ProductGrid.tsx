@@ -1,15 +1,13 @@
 "use client";
 
-import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { formatVnd, products } from "@/data/products";
 import { track } from "@/lib/analytics";
 import { AddToCartButton } from "@/components/commerce/AddToCartButton";
 import styles from "./ProductCatalog.module.css";
 
-const displayFont = '"NookOrtland", "Be Vietnam Pro", sans-serif';
-
 const driveImage = (id: string, width = 2200) => `https://drive.google.com/thumbnail?id=${id}&sz=w${width}`;
+const displayFont = '"NookOrtland", "Be Vietnam Pro", sans-serif';
 
 const COLLECTION_HERO = "https://drive.google.com/thumbnail?id=1pUnw74xRwg5aCjERwL_S5ul7op6ZweOu&sz=w2400";
 const LIFESTYLE_IMAGE = driveImage("1Nb_AB08zHjaLh1gLDPn66ytachTA4Ggz");
@@ -20,13 +18,6 @@ const FULL_SET_IMAGE = driveImage("1FHOi9OjKM4HFNzVRLT4GjdW0CeMWPxc5");
 
 export function ProductGrid() {
   const router = useRouter();
-
-  // Prefetch top products in background when catalog loads
-  useEffect(() => {
-    products.forEach((p) => {
-      router.prefetch(`/product/${p.slug}`);
-    });
-  }, [router]);
 
   const openProduct = (product: (typeof products)[number]) => {
     track("select_item", {
@@ -72,14 +63,12 @@ export function ProductGrid() {
               tabIndex={0}
               aria-label={`Xem chi tiết ${product.name}`}
               onClick={() => openProduct(product)}
-              onMouseEnter={() => router.prefetch(`/product/${product.slug}`)}
-              onTouchStart={() => router.prefetch(`/product/${product.slug}`)}
               onKeyDown={(event) => {
                 if (event.key === "Enter") openProduct(product);
               }}
             >
               <div className={styles.catalogImageWrap}>
-                <img src={product.media.lifestyle} alt={product.name} className={styles.catalogImage} loading="lazy" decoding="async" />
+                <img src={product.media.cover} alt={product.name} className={styles.catalogImage} loading="lazy" decoding="async" />
               </div>
 
               <div className={styles.catalogBody}>

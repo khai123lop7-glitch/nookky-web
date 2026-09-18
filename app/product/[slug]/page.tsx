@@ -17,12 +17,6 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
 
   const gallery = product.media.gallery;
   const labels = product.media.galleryLabels ?? [];
-  const heroGallery = gallery.length >= 5
-    ? [gallery[4], gallery[0], gallery[1], gallery[2], gallery[3]]
-    : gallery;
-  const heroLabels = labels.length >= 5
-    ? [labels[4], labels[0], labels[1], labels[2], labels[3]]
-    : labels;
   const related = products.filter((item) => item.slug !== product.slug);
 
   return (
@@ -31,7 +25,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
       <main id="main-content" tabIndex={-1} className={styles.page}>
         <section id="overview" className={styles.hero}>
           <div className={styles.galleryCol}>
-            <ProductGallery images={heroGallery} labels={heroLabels} name={product.name} />
+            <ProductGallery images={gallery} labels={labels} name={product.name} />
           </div>
 
           <aside id="buy" className={styles.summary}>

@@ -26,6 +26,9 @@ export type NookProduct = {
   };
 };
 
+const driveImage = (id: string, width = 1800) =>
+  `https://drive.google.com/thumbnail?id=${id}&sz=w${width}`;
+
 const galleryLabels = [
   "Lắp ráp",
   "Trong hộp",
@@ -41,9 +44,6 @@ const defaultBoxContents = [
   "Phụ kiện lắp ráp",
   "Hướng dẫn lắp ráp",
 ];
-
-const driveImage = (id: string, width = 1800) =>
-  `https://drive.google.com/thumbnail?id=${id}&sz=w${width}`;
 
 const hoiAnGallery = [
   driveImage("1bgIUqZN7c3dsQA-VKe9xHrUVcIMbJHjl"),
@@ -119,7 +119,7 @@ export const products: NookProduct[] = [
     ],
     boxContents: defaultBoxContents,
     media: {
-      cover: "/media/products/01-pho-vua-len-den-hoi-an/cover.webp",
+      cover: hoiAnGallery[4],
       detail: hoiAnGallery[2],
       lifestyle: hoiAnGallery[4],
       gallery: hoiAnGallery,
@@ -150,7 +150,7 @@ export const products: NookProduct[] = [
     ],
     boxContents: defaultBoxContents,
     media: {
-      cover: "/media/products/02-mua-qua-san-gach-hue/cover.webp",
+      cover: hueGallery[4],
       detail: hueGallery[2],
       lifestyle: hueGallery[4],
       gallery: hueGallery,
@@ -182,7 +182,7 @@ export const products: NookProduct[] = [
     ],
     boxContents: defaultBoxContents,
     media: {
-      cover: "/media/products/03-sang-tren-pho-cu-ha-noi/cover.webp",
+      cover: haNoiGallery[4],
       detail: haNoiGallery[2],
       lifestyle: haNoiGallery[4],
       gallery: haNoiGallery,
@@ -213,7 +213,7 @@ export const products: NookProduct[] = [
     ],
     boxContents: defaultBoxContents,
     media: {
-      cover: "/media/products/04-hem-con-sang-den-sai-gon/cover.webp",
+      cover: saiGonGallery[4],
       detail: saiGonGallery[2],
       lifestyle: saiGonGallery[4],
       gallery: saiGonGallery,
@@ -244,7 +244,7 @@ export const products: NookProduct[] = [
     ],
     boxContents: defaultBoxContents,
     media: {
-      cover: "/media/products/05-den-am-tren-doc-da-lat/cover.webp",
+      cover: daLatGallery[4],
       detail: daLatGallery[2],
       lifestyle: daLatGallery[4],
       gallery: daLatGallery,
@@ -276,7 +276,7 @@ export const products: NookProduct[] = [
     ],
     boxContents: defaultBoxContents,
     media: {
-      cover: "/media/products/06-song-vua-thuc-giac-mien-tay/cover.webp",
+      cover: mienTayGallery[4],
       detail: mienTayGallery[2],
       lifestyle: mienTayGallery[4],
       gallery: mienTayGallery,

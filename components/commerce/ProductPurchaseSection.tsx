@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { track } from "@/lib/analytics";
 import { useCart } from "./CartProvider";
@@ -18,11 +17,6 @@ export function ProductPurchaseSection({ slug, name, price }: ProductPurchaseSec
   const { addItem } = useCart();
   const [quantity, setQuantity] = useState(1);
   const [isAdding, setIsAdding] = useState(false);
-
-  useEffect(() => {
-    router.prefetch("/checkout");
-    router.prefetch("/cart");
-  }, [router]);
 
   useEffect(() => {
     track("view_item", {
@@ -114,9 +108,9 @@ export function ProductPurchaseSection({ slug, name, price }: ProductPurchaseSec
       </div>
 
       <div className={styles.cartLinkRow}>
-        <Link href="/cart" className={styles.cartLink} prefetch={true}>
+        <a href="/cart" className={styles.cartLink}>
           Xem giỏ hàng
-        </Link>
+        </a>
         <span className={styles.shippingNote}>
           ✓ Miễn phí vận chuyển cho đơn từ 1.000.000₫
         </span>

@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import Link from "next/link";
 import { track } from "@/lib/analytics";
 import styles from "./Hero.module.css";
 
@@ -10,6 +9,8 @@ const LANDSCAPES = [
     id: "hoi-an",
     name: "Hội An",
     sub: "Phố cổ hoa đăng",
+    videoSrc: "/media/editorial/hero-hoian.mp4",
+    posterSrc: "/media/products/01-pho-vua-len-den-hoi-an/cover.webp",
     thumbSrc: "/media/editorial/thumb-hero-hoi-an.webp",
     headlineMain: "Giữ lại một",
     headlineAccent: "góc Việt Nam.",
@@ -19,6 +20,7 @@ const LANDSCAPES = [
     id: "hue",
     name: "Huế",
     sub: "Mưa qua sân gạch",
+    posterSrc: "/media/editorial/hero-hue.webp",
     thumbSrc: "/media/editorial/thumb-hero-hue.webp",
     headlineMain: "Khoảng sân trầm",
     headlineAccent: "sau cơn mưa.",
@@ -28,6 +30,7 @@ const LANDSCAPES = [
     id: "sai-gon",
     name: "TP. Hồ Chí Minh",
     sub: "Hẻm còn sáng đèn",
+    posterSrc: "/media/editorial/hero-sai-gon.webp",
     thumbSrc: "/media/editorial/thumb-hero-sai-gon.webp",
     headlineMain: "Góc hẻm thức cùng",
     headlineAccent: "thành phố.",
@@ -37,6 +40,7 @@ const LANDSCAPES = [
     id: "ha-noi",
     name: "Hà Nội",
     sub: "Phố cũ lên đèn",
+    posterSrc: "/media/editorial/hero-ha-noi.webp",
     thumbSrc: "/media/editorial/thumb-hero-ha-noi.webp",
     headlineMain: "Phố cũ lưu trong",
     headlineAccent: "một vệt nắng.",
@@ -52,22 +56,20 @@ export function Hero() {
   const current = LANDSCAPES.find((item) => item.id === activeLandscape) || LANDSCAPES[0];
 
   useEffect(() => {
-    videoRef.current?.play().catch(() => {});
-  }, []);
+    if (videoRef.current && current.videoSrc) {
+      videoRef.current.load();
+      videoRef.current.play().catch(() => {});
+    }
+  }, [current]);
 
   return (
-    <section className={`${styles.heroSection} nk-hero`} aria-labelledby="nk-hero-title">
+    <section className={styles.heroSection} aria-labelledby="nk-hero-title">
       <div className={styles.mediaContainer} aria-hidden="true">
-        <video
-          ref={videoRef}
-          className={styles.bgVideo}
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
-          src="/media/editorial/hero-hoian.mp4"
-        />
+        {current.videoSrc ? (
+          <video ref={videoRef} className={styles.bgVideo} autoPlay loop muted playsInline poster={current.posterSrc} src={current.videoSrc} />
+        ) : (
+          <img className={styles.bgImage} src={current.posterSrc} alt="" />
+        )}
       </div>
 
       <div className={styles.vignetteOverlay} aria-hidden="true" />
@@ -81,7 +83,7 @@ export function Hero() {
           <p className={styles.leadText}>{current.lead}</p>
           <div className={styles.ctaRow}>
             <a className={styles.primaryCta} href="#shop-all" onClick={() => track("hero_primary_click", { destination: "shop-all" })}>Khám phá bộ sưu tập →</a>
-            <Link className={styles.secondaryCta} href="/studio" prefetch={true}>Tự ráp Nook (Studio)</Link>
+            <a className={styles.secondaryCta} href="/studio">Tự ráp Nook (Studio)</a>
           </div>
         </div>
 
