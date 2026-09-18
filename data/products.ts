@@ -42,52 +42,55 @@ const defaultBoxContents = [
   "Hướng dẫn lắp ráp",
 ];
 
+const driveImage = (id: string, width = 1800) =>
+  `https://drive.google.com/thumbnail?id=${id}&sz=w${width}`;
+
 const hoiAnGallery = [
-  "/media/products/Hoi-An-4-anh-gen-moi/Hoi-An-04-Assembly.webp",
-  "/media/products/01-pho-vua-len-den-hoi-an/detail.webp",
-  "/media/products/Hoi-An-4-anh-gen-moi/Hoi-An-03-Details.webp",
-  "/media/products/Hoi-An-4-anh-gen-moi/Hoi-An-02-Transparent-Roof.webp",
-  "/media/products/01-pho-vua-len-den-hoi-an/lifestyle.webp",
+  driveImage("1bgIUqZN7c3dsQA-VKe9xHrUVcIMbJHjl"),
+  driveImage("1h6tFohah_6hHwjlVI0FRGsggZh2mywO2"),
+  driveImage("1Q1wbHDDQhWP_e4ID3NHfWI93ldINEmQb"),
+  driveImage("1_vQEx0WV8uxVsP3hXpLQvtZwpPmTO-6X"),
+  driveImage("1JPMCTnEanjC_bev401JYxlRcrQ6g7MMv"),
 ];
 
 const hueGallery = [
-  "/media/products/Hue-4-anh-gen-moi/Hue-04-Assembly.webp",
-  "/media/products/02-mua-qua-san-gach-hue/detail.webp",
-  "/media/products/Hue-4-anh-gen-moi/Hue-03-Details.webp",
-  "/media/products/Hue-4-anh-gen-moi/Hue-02-Interior.webp",
-  "/media/products/02-mua-qua-san-gach-hue/lifestyle.webp",
+  driveImage("1hYWg3kQbbLHAOmIyMVw-H9Ihb2PD79-h"),
+  driveImage("1q9URjqv-Msl5QGSCrWTzgKpVdUwiOq6p"),
+  driveImage("1cnBz16f1lCJ7AWM9l6Z8pj821sVMsLCP"),
+  driveImage("1CXAreI6NAvA1zxU_9IHYIf9NoZ3afR8x"),
+  driveImage("1INBsS42eAmHp7jMKt7gAAXU1J0szeGcz"),
 ];
 
 const haNoiGallery = [
-  "/media/products/Ha-Noi-4-anh-gen-moi/Ha-Noi-04.webp",
-  "/media/products/03-sang-tren-pho-cu-ha-noi/detail.webp",
-  "/media/products/Ha-Noi-4-anh-gen-moi/Ha-Noi-03.webp",
-  "/media/products/Ha-Noi-4-anh-gen-moi/Ha-Noi-02.webp",
-  "/media/products/03-sang-tren-pho-cu-ha-noi/lifestyle.webp",
+  driveImage("1lC7DAsfyw-URy1SjlwhyUjx3HsMUk7N_"),
+  driveImage("19Av5ZebsDRrDmpCtuNINcd_DIfned-JB"),
+  driveImage("1Bxuba5VA4grtNMF-_8oQmIJSvxa79-gR"),
+  driveImage("1wZtOe0FHkvwax7HxnIDPQenGGkkTfgKm"),
+  driveImage("1_0sRSlX6QrxE9Dk4tddSJa2xn86_21qg"),
 ];
 
 const saiGonGallery = [
-  "/media/products/Sai-Gon-4-anh-gen-moi/Sai-Gon-04.webp",
-  "/media/products/04-hem-con-sang-den-sai-gon/detail.webp",
-  "/media/products/Sai-Gon-4-anh-gen-moi/Sai-Gon-03.webp",
-  "/media/products/Sai-Gon-4-anh-gen-moi/Sai-Gon-02.webp",
-  "/media/products/04-hem-con-sang-den-sai-gon/lifestyle.webp",
+  driveImage("1n_oowv_AptEIYgBLalOc7zN6TfH2th2Z"),
+  driveImage("1H1iO-EwdluFq0sDZe4DIZegTIdnz7J2y"),
+  driveImage("1kQSoxpGIUfAs8wOYfdfvB9Koer-otX6Q"),
+  driveImage("194iXdE2-nTZ36YnMeubLr0IZXHnQ9rkU"),
+  driveImage("1CDO397KStqNGZq5qn46MB9m-pc_OOl-l"),
 ];
 
 const daLatGallery = [
-  "/media/products/Da-Lat-4-anh-gen-moi/Da-Lat-04-Assembly.webp",
-  "/media/products/05-den-am-tren-doc-da-lat/detail.webp",
-  "/media/products/Da-Lat-4-anh-gen-moi/Da-Lat-03-Details-Collage.webp",
-  "/media/products/Da-Lat-4-anh-gen-moi/Da-Lat-02-Top-View.webp",
-  "/media/products/05-den-am-tren-doc-da-lat/lifestyle.webp",
+  driveImage("1_ttrAsnme_zj9U9OillUsEKWUYTN0t2q"),
+  driveImage("1ytGc7CJyeh1jy2-LX-CCvc_cO1Hwo4ki"),
+  driveImage("1lKYeSbKrGf7lLRnIztkHkC_Qs4KbXQ6-"),
+  driveImage("1NOebPO5d5ZWQD4mLAEk0ammHtsy1Tejn"),
+  driveImage("177-xKOVbIjwKEg4Gp9lwFRbNKVHn6pol"),
 ];
 
 const mienTayGallery = [
-  "/media/products/Mien-Tay-4-anh-gen-moi/Mien-Tay-03-Assembly.webp",
-  "/media/products/06-song-vua-thuc-giac-mien-tay/detail.webp",
-  "/media/products/Mien-Tay-4-anh-gen-moi/Mien-Tay-02-Details.webp",
-  "/media/products/Mien-Tay-4-anh-gen-moi/Mien-Tay-01-Product.webp",
-  "/media/products/Mien-Tay-4-anh-gen-moi/Mien-Tay-04-Lifestyle.webp",
+  driveImage("13iEp7hZkyohlIylPzsh7t2vDcg7W-adA"),
+  driveImage("1S_ZBFnIpSxqYEL0NUUVQTfNCoQSZi8nV"),
+  driveImage("1eoDpltNhIEFQErF7FVWxO-ine0yGavgw"),
+  driveImage("1E9XAu6oER8hq3RZu4D_woX6et8Sw92Qg"),
+  driveImage("1oATA_wLTCrslJZjtbgMgEW9OckeBzy01"),
 ];
 
 export const products: NookProduct[] = [
@@ -116,7 +119,7 @@ export const products: NookProduct[] = [
     ],
     boxContents: defaultBoxContents,
     media: {
-      cover: "/media/products/01-pho-vua-len-den-hoi-an/cover.webp",
+      cover: hoiAnGallery[0],
       detail: hoiAnGallery[2],
       lifestyle: hoiAnGallery[4],
       gallery: hoiAnGallery,
@@ -147,7 +150,7 @@ export const products: NookProduct[] = [
     ],
     boxContents: defaultBoxContents,
     media: {
-      cover: "/media/products/02-mua-qua-san-gach-hue/cover.webp",
+      cover: hueGallery[0],
       detail: hueGallery[2],
       lifestyle: hueGallery[4],
       gallery: hueGallery,
@@ -179,7 +182,7 @@ export const products: NookProduct[] = [
     ],
     boxContents: defaultBoxContents,
     media: {
-      cover: "/media/products/03-sang-tren-pho-cu-ha-noi/cover.webp",
+      cover: haNoiGallery[0],
       detail: haNoiGallery[2],
       lifestyle: haNoiGallery[4],
       gallery: haNoiGallery,
@@ -210,7 +213,7 @@ export const products: NookProduct[] = [
     ],
     boxContents: defaultBoxContents,
     media: {
-      cover: "/media/products/04-hem-con-sang-den-sai-gon/cover.webp",
+      cover: saiGonGallery[0],
       detail: saiGonGallery[2],
       lifestyle: saiGonGallery[4],
       gallery: saiGonGallery,
@@ -241,7 +244,7 @@ export const products: NookProduct[] = [
     ],
     boxContents: defaultBoxContents,
     media: {
-      cover: "/media/products/05-den-am-tren-doc-da-lat/cover.webp",
+      cover: daLatGallery[0],
       detail: daLatGallery[2],
       lifestyle: daLatGallery[4],
       gallery: daLatGallery,
@@ -273,7 +276,7 @@ export const products: NookProduct[] = [
     ],
     boxContents: defaultBoxContents,
     media: {
-      cover: "/media/products/06-song-vua-thuc-giac-mien-tay/cover.webp",
+      cover: mienTayGallery[0],
       detail: mienTayGallery[2],
       lifestyle: mienTayGallery[4],
       gallery: mienTayGallery,
