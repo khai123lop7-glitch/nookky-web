@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import styles from "./TableOfContents.module.css";
 
 export function TableOfContents() {
@@ -30,9 +31,9 @@ export function TableOfContents() {
             <h4 className={styles.colHeader}>KHÁM PHÁ THẾ GIỚI</h4>
             <ul className={styles.navList}>
               <li>
-                <a href="/shop" className={styles.navLink}>
+                <Link href="/shop" className={styles.navLink} prefetch={true}>
                   Tất cả sản phẩm
-                </a>
+                </Link>
               </li>
               <li>
                 <a href="#collections" className={styles.navLink}>
@@ -57,9 +58,9 @@ export function TableOfContents() {
             <h4 className={styles.colHeader}>TRẢI NGHIỆM & HỖ TRỢ</h4>
             <ul className={styles.navList}>
               <li>
-                <a href="/studio" className={styles.navLink}>
+                <Link href="/studio" className={styles.navLink} prefetch={true}>
                   Tự ráp Nook (Studio)
-                </a>
+                </Link>
               </li>
               <li>
                 <a href="#quy-trinh-che-tac" className={styles.navLink}>
@@ -72,9 +73,9 @@ export function TableOfContents() {
                 </a>
               </li>
               <li>
-                <a href="/cart" className={styles.navLink}>
+                <Link href="/cart" className={styles.navLink} prefetch={true}>
                   Tra cứu đơn hàng
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

@@ -1,17 +1,21 @@
 "use client";
 
 import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 /**
  * ScrollMotionSync Hook / Component:
  * - Observes elements with [data-nk-reveal] and triggers fade-in-up animations.
  * - Adds a subtle parallax effect on elements with [data-nk-parallax].
+ * - Re-runs on client-side navigation (usePathname) to reveal new page content immediately.
  */
 export function ScrollMotionSync() {
+  const pathname = usePathname();
+
   useEffect(() => {
     // 1. Reveal on scroll using IntersectionObserver
     const revealElements = document.querySelectorAll("[data-nk-reveal]");
-    
+
     const revealObserver = new IntersectionObserver(
       (entries, observer) => {
         entries.forEach((entry) => {
@@ -24,12 +28,20 @@ export function ScrollMotionSync() {
       },
       {
         root: null,
-        rootMargin: "0px 0px -10% 0px",
-        threshold: 0.1,
+        rootMargin: "0px 0px -5% 0px",
+        threshold: 0.05,
       }
     );
 
-    revealElements.forEach((el) => revealObserver.observe(el));
+    revealElements.forEach((el) => {
+      // If already in viewport on mount/page switch, reveal immediately
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        el.classList.add("nk-revealed");
+      } else {
+        revealObserver.observe(el);
+      }
+    });
 
     // 2. Subtle Parallax Effect on Scroll
     let ticking = false;
@@ -64,7 +76,7 @@ export function ScrollMotionSync() {
       revealObserver.disconnect();
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [pathname]);
 
   return null;
 }

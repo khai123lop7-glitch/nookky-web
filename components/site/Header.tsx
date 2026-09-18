@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useCart } from "@/components/commerce/CartProvider";
 import styles from "./Header.module.css";
@@ -83,43 +84,54 @@ export function Header() {
 
       <div className="nk-header__main nk-container-wide">
         <div className="nk-header__brand">
-          <a className="nk-symbol" href="/" aria-label="Nook Ký trang chủ">
+          <Link className="nk-symbol" href="/" prefetch={true} aria-label="Nook Ký trang chủ">
             {!symbolFailed ? (
               <img
-                src={useDarkBrandAssets ? "/media/brand/logo-symbol-dark.png" : "/media/brand/logo-symbol-light.png"}
+                src={useDarkBrandAssets ? "/media/brand/logo-symbol-dark.webp" : "/media/brand/logo-symbol-light.webp"}
                 alt=""
                 onError={() => setSymbolFailed(true)}
               />
             ) : (
               <span className="nk-symbol__fallback" aria-hidden="true">NK</span>
             )}
-          </a>
+          </Link>
 
-          <a className="nk-wordmark" href="/" aria-label="Nook Ký">
+          <Link className="nk-wordmark" href="/" prefetch={true} aria-label="Nook Ký">
             {!wordmarkFailed ? (
               <img
-                src={useDarkBrandAssets ? "/media/brand/wordmark-dark.png" : "/media/brand/wordmark-light.png"}
+                src={useDarkBrandAssets ? "/media/brand/wordmark-dark.webp" : "/media/brand/wordmark-light.webp"}
                 alt="Nook Ký"
                 onError={() => setWordmarkFailed(true)}
               />
             ) : (
               <span className="nk-wordmark__fallback">NOOK KÝ</span>
             )}
-          </a>
+          </Link>
         </div>
 
         <nav id="nk-primary-nav" className="nk-nav" aria-label="Điều hướng chính">
           {nav.map(([label, href]) => {
             const active = isNavActive(href);
-            return <a className={active ? "is-active" : ""} aria-current={active ? "page" : undefined} href={href} key={href}>{label}</a>;
+            return (
+              <Link
+                className={active ? "is-active" : ""}
+                aria-current={active ? "page" : undefined}
+                href={href}
+                key={href}
+                prefetch={true}
+                onClick={() => setMenuOpen(false)}
+              >
+                {label}
+              </Link>
+            );
           })}
         </nav>
 
         <div className="nk-header__tools" aria-label="Tiện ích">
-          <a className="nk-icon-button nk-cart-link" href="/cart" aria-label={`Giỏ hàng, ${itemCount} sản phẩm`}>
+          <Link className="nk-icon-button nk-cart-link" href="/cart" prefetch={true} aria-label={`Giỏ hàng, ${itemCount} sản phẩm`}>
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 8.5h11l-1 11h-9l-1-11Z"/><path d="M9 9V6.5a3 3 0 0 1 6 0V9"/></svg>
             {itemCount > 0 ? <span className="nk-cart-count" aria-hidden="true">{itemCount > 99 ? "99+" : itemCount}</span> : null}
-          </a>
+          </Link>
           <button
             className="nk-menu-toggle"
             type="button"

@@ -26,9 +26,6 @@ export type NookProduct = {
   };
 };
 
-const driveImage = (id: string, width = 1800) =>
-  `https://drive.google.com/thumbnail?id=${id}&sz=w${width}`;
-
 const galleryLabels = [
   "Lắp ráp",
   "Trong hộp",
@@ -44,6 +41,9 @@ const defaultBoxContents = [
   "Phụ kiện lắp ráp",
   "Hướng dẫn lắp ráp",
 ];
+
+const driveImage = (id: string, width = 1800) =>
+  `https://drive.google.com/thumbnail?id=${id}&sz=w${width}`;
 
 const hoiAnGallery = [
   driveImage("1bgIUqZN7c3dsQA-VKe9xHrUVcIMbJHjl"),
@@ -119,7 +119,7 @@ export const products: NookProduct[] = [
     ],
     boxContents: defaultBoxContents,
     media: {
-      cover: hoiAnGallery[4],
+      cover: hoiAnGallery[0],
       detail: hoiAnGallery[2],
       lifestyle: hoiAnGallery[4],
       gallery: hoiAnGallery,
@@ -150,7 +150,7 @@ export const products: NookProduct[] = [
     ],
     boxContents: defaultBoxContents,
     media: {
-      cover: hueGallery[4],
+      cover: hueGallery[0],
       detail: hueGallery[2],
       lifestyle: hueGallery[4],
       gallery: hueGallery,
@@ -182,7 +182,7 @@ export const products: NookProduct[] = [
     ],
     boxContents: defaultBoxContents,
     media: {
-      cover: haNoiGallery[4],
+      cover: haNoiGallery[0],
       detail: haNoiGallery[2],
       lifestyle: haNoiGallery[4],
       gallery: haNoiGallery,
@@ -213,7 +213,7 @@ export const products: NookProduct[] = [
     ],
     boxContents: defaultBoxContents,
     media: {
-      cover: saiGonGallery[4],
+      cover: saiGonGallery[0],
       detail: saiGonGallery[2],
       lifestyle: saiGonGallery[4],
       gallery: saiGonGallery,
@@ -244,7 +244,7 @@ export const products: NookProduct[] = [
     ],
     boxContents: defaultBoxContents,
     media: {
-      cover: daLatGallery[4],
+      cover: daLatGallery[0],
       detail: daLatGallery[2],
       lifestyle: daLatGallery[4],
       gallery: daLatGallery,
@@ -276,7 +276,7 @@ export const products: NookProduct[] = [
     ],
     boxContents: defaultBoxContents,
     media: {
-      cover: mienTayGallery[4],
+      cover: mienTayGallery[0],
       detail: mienTayGallery[2],
       lifestyle: mienTayGallery[4],
       gallery: mienTayGallery,

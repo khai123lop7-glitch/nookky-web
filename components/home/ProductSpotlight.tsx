@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import { AddToCartButton } from "@/components/commerce/AddToCartButton";
 import { formatVnd, spotlightProduct as product } from "@/data/products";
 import { track } from "@/lib/analytics";
@@ -109,8 +110,8 @@ export function ProductSpotlight() {
 
             <div className="nk-spotlight__actions">
               <AddToCartButton slug={product.slug} />
-              <a className="nk-text-link" href={`/product/${product.slug}`}>Xem chi tiết sản phẩm</a>
-              <a className="nk-text-link" href="/cart">Xem giỏ hàng</a>
+              <Link className="nk-text-link" href={`/product/${product.slug}`} prefetch={true}>Xem chi tiết sản phẩm</Link>
+              <Link className="nk-text-link" href="/cart" prefetch={true}>Xem giỏ hàng</Link>
             </div>
 
             <ul className="nk-spotlight__trust">
