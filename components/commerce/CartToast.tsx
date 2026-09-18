@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import Link from "next/link";
 import { formatVnd } from "@/data/products";
 import { useCart } from "./CartProvider";
 import styles from "./CartToast.module.css";
@@ -51,12 +52,12 @@ export function CartToast() {
         </div>
 
         <div className={styles.actions}>
-          <a href="/cart" className={styles.viewCart} onClick={closeToast}>
+          <Link href="/cart" className={styles.viewCart} onClick={closeToast} prefetch={true}>
             Xem giỏ hàng
-          </a>
-          <a href="/checkout" className={styles.checkout} onClick={closeToast}>
+          </Link>
+          <Link href="/checkout" className={styles.checkout} onClick={closeToast} prefetch={true}>
             Thanh toán ngay →
-          </a>
+          </Link>
         </div>
       </div>
     </aside>

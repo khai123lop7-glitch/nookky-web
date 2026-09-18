@@ -1,6 +1,7 @@
 "use client";
 
 import { Suspense, useEffect, useState } from "react";
+import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { Header } from "@/components/site/Header";
 import { formatVnd } from "@/data/products";
@@ -392,12 +393,12 @@ function SuccessContent() {
         )}
 
         <div className={styles.actions}>
-          <a href="/" className="nk-button">
+          <Link href="/" className="nk-button" prefetch={true}>
             Về trang chủ
-          </a>
-          <a href="/shop" className="nk-button nk-button--light">
+          </Link>
+          <Link href="/shop" className="nk-button nk-button--light" prefetch={true}>
             Tiếp tục xem sản phẩm
-          </a>
+          </Link>
         </div>
       </div>
 

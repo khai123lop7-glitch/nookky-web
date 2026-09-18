@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Header } from "@/components/site/Header";
 import { formatVnd, products } from "@/data/products";
@@ -188,7 +189,7 @@ export default function CheckoutPage() {
             <p className="nk-eyebrow">THANH TOÁN</p>
             <h1>Giỏ hàng của bạn đang trống.</h1>
             <p>Vui lòng chọn ít nhất một tác phẩm Nook Ký để tiến hành đặt hàng.</p>
-            <a className="nk-button" href="/shop">Khám phá bộ sưu tập →</a>
+            <Link className="nk-button" href="/shop" prefetch={true}>Khám phá bộ sưu tập →</Link>
           </section>
         </main>
       </>

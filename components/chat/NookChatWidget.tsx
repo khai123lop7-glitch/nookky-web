@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import { track } from "@/lib/analytics";
 import styles from "./NookChatWidget.module.css";
 
@@ -39,11 +40,19 @@ function formatMessageContent(content: string): React.ReactNode {
     }
     const text = match[1];
     const url = match[2];
-    nodes.push(
-      <a key={`link-${match.index}`} href={url} className={styles.chatLink}>
-        {text}
-      </a>
-    );
+    if (url.startsWith("/")) {
+      nodes.push(
+        <Link key={`link-${match.index}`} href={url} prefetch={true} className={styles.chatLink}>
+          {text}
+        </Link>
+      );
+    } else {
+      nodes.push(
+        <a key={`link-${match.index}`} href={url} target="_blank" rel="noopener noreferrer" className={styles.chatLink}>
+          {text}
+        </a>
+      );
+    }
     lastIdx = match.index + match[0].length;
   }
 

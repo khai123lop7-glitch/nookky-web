@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { formatVnd, products } from "@/data/products";
 import { track } from "@/lib/analytics";
@@ -17,6 +18,13 @@ const FULL_SET_IMAGE = "/media/editorial/corporate-gifts-product.webp";
 
 export function ProductGrid() {
   const router = useRouter();
+
+  // Prefetch top products in background when catalog loads
+  useEffect(() => {
+    products.forEach((p) => {
+      router.prefetch(`/product/${p.slug}`);
+    });
+  }, [router]);
 
   const openProduct = (product: (typeof products)[number]) => {
     track("select_item", {
@@ -62,6 +70,8 @@ export function ProductGrid() {
               tabIndex={0}
               aria-label={`Xem chi tiết ${product.name}`}
               onClick={() => openProduct(product)}
+              onMouseEnter={() => router.prefetch(`/product/${product.slug}`)}
+              onTouchStart={() => router.prefetch(`/product/${product.slug}`)}
               onKeyDown={(event) => {
                 if (event.key === "Enter") openProduct(product);
               }}

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { products } from "@/data/products";
 import styles from "./RealNooks.module.css";
 
@@ -58,9 +59,9 @@ export function RealNooks() {
                 <span className={styles.roomTag}>{current.context}</span>
                 <h3 className={styles.productTag}>{current.product.name}</h3>
               </div>
-              <a href={`/product/${current.product.slug}`} className={styles.viewBtn}>
+              <Link href={`/product/${current.product.slug}`} className={styles.viewBtn} prefetch={true}>
                 Xem tác phẩm
-              </a>
+              </Link>
             </div>
           </div>
 

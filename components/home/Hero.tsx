@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import Link from "next/link";
 import { track } from "@/lib/analytics";
 import styles from "./Hero.module.css";
 
@@ -83,7 +84,7 @@ export function Hero() {
           <p className={styles.leadText}>{current.lead}</p>
           <div className={styles.ctaRow}>
             <a className={styles.primaryCta} href="#shop-all" onClick={() => track("hero_primary_click", { destination: "shop-all" })}>Khám phá bộ sưu tập →</a>
-            <a className={styles.secondaryCta} href="/studio">Tự ráp Nook (Studio)</a>
+            <Link className={styles.secondaryCta} href="/studio" prefetch={true}>Tự ráp Nook (Studio)</Link>
           </div>
         </div>
 

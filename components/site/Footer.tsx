@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const navGroups = [
   {
     title: "Khám phá thế giới",
@@ -75,11 +77,26 @@ export function Footer() {
               <p style={{ color: "#efbd72", fontWeight: 700, fontSize: "12px", letterSpacing: "0.06em", textTransform: "uppercase" }}>
                 {group.title}
               </p>
-              {group.links.map(([label, href]) => (
-                <a href={href} key={label} style={{ fontSize: "13px", opacity: 0.85, transition: "opacity 0.2s ease" }}>
-                  {label}
-                </a>
-              ))}
+              {group.links.map(([label, href]) =>
+                href.startsWith("/") ? (
+                  <Link
+                    href={href}
+                    key={label}
+                    prefetch={true}
+                    style={{ fontSize: "13px", opacity: 0.85, transition: "opacity 0.2s ease" }}
+                  >
+                    {label}
+                  </Link>
+                ) : (
+                  <a
+                    href={href}
+                    key={label}
+                    style={{ fontSize: "13px", opacity: 0.85, transition: "opacity 0.2s ease" }}
+                  >
+                    {label}
+                  </a>
+                )
+              )}
             </div>
           ))}
         </div>

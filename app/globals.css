@@ -419,7 +419,25 @@ h1, h2, h3, p { text-wrap: pretty; }
   .nk-brand-close h2 { font-size: clamp(62px, 18vw, 84px); }
 }
 
+/* Smooth page fade-in on navigation */
+main#main-content {
+  animation: nkPageFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+@keyframes nkPageFadeIn {
+  from {
+    opacity: 0.88;
+    transform: translateY(3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
+  main#main-content { animation: none !important; }
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
 }

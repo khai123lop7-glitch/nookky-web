@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { CartProvider } from "@/components/commerce/CartProvider";
 import { CartToast } from "@/components/commerce/CartToast";
 import { ScrollMotionSync } from "@/components/common/ScrollMotionSync";
+import { NavigationProgressBar } from "@/components/common/NavigationProgressBar";
 import { NookChatWidget } from "@/components/chat/NookChatWidget";
 import { AnalyticsTracker } from "@/components/analytics/AnalyticsTracker";
 import { TableOfContents } from "@/components/home/TableOfContents";
@@ -19,6 +21,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="vi">
       <body>
+        <Suspense fallback={null}>
+          <NavigationProgressBar />
+        </Suspense>
         <AnalyticsTracker />
         <CartProvider>
           <a className="nk-skip-link" href="#main-content">Bỏ qua điều hướng</a>

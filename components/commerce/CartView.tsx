@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import Link from "next/link";
 import { formatVnd, products } from "@/data/products";
 import { track } from "@/lib/analytics";
 import { useCart } from "./CartProvider";
@@ -63,7 +64,7 @@ export function CartView() {
         <p className="nk-eyebrow">GIỎ HÀNG</p>
         <h1>Giỏ hàng của bạn đang trống.</h1>
         <p>Chọn một Nook bạn muốn giữ lại, sau đó thêm vào giỏ để tiếp tục.</p>
-        <a className="nk-button" href="/shop">Xem bộ sưu tập</a>
+        <Link className="nk-button" href="/shop" prefetch={true}>Xem bộ sưu tập</Link>
       </section>
     );
   }
@@ -93,13 +94,13 @@ export function CartView() {
         <div className={styles.items}>
           {lines.map(({ product, quantity }) => (
             <article className={styles.line} key={product.slug}>
-              <a className={styles.media} href={`/product/${product.slug}`}>
+              <Link className={styles.media} href={`/product/${product.slug}`} prefetch={true}>
                 <img src={product.media.cover} alt={product.name} loading="lazy" decoding="async" />
-              </a>
+              </Link>
               <div className={styles.body}>
                 <div>
                   <p className={styles.location}>{product.location}</p>
-                  <a href={`/product/${product.slug}`}><h2>{product.name}</h2></a>
+                  <Link href={`/product/${product.slug}`} prefetch={true}><h2>{product.name}</h2></Link>
                 </div>
                 <div className={styles.controls}>
                   <div className={styles.quantity} aria-label={`Số lượng ${product.name}`}>
@@ -139,13 +140,13 @@ export function CartView() {
             )}
           </div>
 
-          <a className="nk-button" href="/checkout" onClick={handleCheckoutClick}>
+          <Link className="nk-button" href="/checkout" onClick={handleCheckoutClick} prefetch={true}>
             Tiến hành đặt hàng →
-          </a>
+          </Link>
           <div className={styles.continueShopping}>
-            <a className="nk-text-link" href="/shop">
+            <Link className="nk-text-link" href="/shop" prefetch={true}>
               ← Tiếp tục xem sản phẩm
-            </a>
+            </Link>
           </div>
         </aside>
       </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { products } from "@/data/products";
 import { track } from "@/lib/analytics";
 
@@ -52,10 +53,10 @@ export function PlaceSelector() {
             ))}
           </div>
 
-          <a className="nk-button" href={`/product/${product.slug}`}>
+          <Link className="nk-button" href={`/product/${product.slug}`} prefetch={true}>
             Khám phá Nook này
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M14 7l5 5-5 5"/></svg>
-          </a>
+          </Link>
         </div>
       </div>
     </section>
