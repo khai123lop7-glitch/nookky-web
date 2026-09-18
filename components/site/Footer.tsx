@@ -36,7 +36,7 @@ export function Footer() {
         <div className="nk-footer__brand">
           <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "16px" }}>
             <img
-              src="/media/brand/logo-symbol-light.png"
+              src="/media/brand/logo-symbol-light.webp"
               alt="Nook Ký symbol"
               style={{ width: "32px", height: "32px", objectFit: "contain" }}
             />

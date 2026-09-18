@@ -6,15 +6,14 @@ import { track } from "@/lib/analytics";
 import { AddToCartButton } from "@/components/commerce/AddToCartButton";
 import styles from "./ProductCatalog.module.css";
 
-const driveImage = (id: string, width = 2200) => `https://drive.google.com/thumbnail?id=${id}&sz=w${width}`;
 const displayFont = '"NookOrtland", "Be Vietnam Pro", sans-serif';
 
-const COLLECTION_HERO = "https://drive.google.com/thumbnail?id=1pUnw74xRwg5aCjERwL_S5ul7op6ZweOu&sz=w2400";
-const LIFESTYLE_IMAGE = driveImage("1Nb_AB08zHjaLh1gLDPn66ytachTA4Ggz");
-const ASSEMBLY_IMAGE = driveImage("1yhaIiJNzz2SvXWSVd-RNvjWSQb0Oj18b");
-const UNBOX_IMAGE = driveImage("1jeMDp9bMDkwgMMF9hFGf4uBKU2azVOsf");
-const DETAILS_IMAGE = driveImage("1POxkGUfPAE8W4Bp6zAIi251AvpZPYRc4");
-const FULL_SET_IMAGE = driveImage("1FHOi9OjKM4HFNzVRLT4GjdW0CeMWPxc5");
+const COLLECTION_HERO = "/media/editorial/collection-bg.webp";
+const LIFESTYLE_IMAGE = "/media/products/01-pho-vua-len-den-hoi-an/lifestyle.webp";
+const ASSEMBLY_IMAGE = "/media/products/Hoi-An-4-anh-gen-moi/Hoi-An-04-Assembly.webp";
+const UNBOX_IMAGE = "/media/editorial/craft-process-poster.webp";
+const DETAILS_IMAGE = "/media/products/Hoi-An-4-anh-gen-moi/Hoi-An-03-Details.webp";
+const FULL_SET_IMAGE = "/media/editorial/corporate-gifts-product.webp";
 
 export function ProductGrid() {
   const router = useRouter();

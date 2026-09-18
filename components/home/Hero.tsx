@@ -66,7 +66,7 @@ export function Hero() {
     <section className={styles.heroSection} aria-labelledby="nk-hero-title">
       <div className={styles.mediaContainer} aria-hidden="true">
         {current.videoSrc ? (
-          <video ref={videoRef} className={styles.bgVideo} autoPlay loop muted playsInline poster={current.posterSrc} src={current.videoSrc} />
+          <video ref={videoRef} className={styles.bgVideo} autoPlay loop muted playsInline preload="metadata" poster={current.posterSrc} src={current.videoSrc} />
         ) : (
           <img className={styles.bgImage} src={current.posterSrc} alt="" />
         )}

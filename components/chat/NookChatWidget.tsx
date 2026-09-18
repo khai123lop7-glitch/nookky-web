@@ -239,7 +239,7 @@ export function NookChatWidget() {
             aria-label="Mở khung tư vấn Nghệ nhân Nook Ký"
           >
             <img
-              src="/media/chat-button-full.png"
+              src="/media/chat-button-full.webp"
               alt="Tư vấn Nook Ký"
               className={styles.fabMascotImg}
             />
@@ -255,7 +255,7 @@ export function NookChatWidget() {
             <div className={styles.headerLeft}>
               <div className={styles.avatarBox}>
                 <img
-                  src="/media/chat-mascot-avatar.png"
+                  src="/media/chat-mascot-avatar.webp"
                   alt="Linh vật Nghệ nhân Nook Ký"
                   className={styles.avatarImg}
                 />

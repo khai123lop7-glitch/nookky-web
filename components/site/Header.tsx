@@ -86,7 +86,7 @@ export function Header() {
           <a className="nk-symbol" href="/" aria-label="Nook Ký trang chủ">
             {!symbolFailed ? (
               <img
-                src={useDarkBrandAssets ? "/media/brand/logo-symbol-dark.png" : "/media/brand/logo-symbol-light.png"}
+                src={useDarkBrandAssets ? "/media/brand/logo-symbol-dark.webp" : "/media/brand/logo-symbol-light.webp"}
                 alt=""
                 onError={() => setSymbolFailed(true)}
               />
@@ -98,7 +98,7 @@ export function Header() {
           <a className="nk-wordmark" href="/" aria-label="Nook Ký">
             {!wordmarkFailed ? (
               <img
-                src={useDarkBrandAssets ? "/media/brand/wordmark-dark.png" : "/media/brand/wordmark-light.png"}
+                src={useDarkBrandAssets ? "/media/brand/wordmark-dark.webp" : "/media/brand/wordmark-light.webp"}
                 alt="Nook Ký"
                 onError={() => setWordmarkFailed(true)}
               />
