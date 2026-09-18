@@ -54,12 +54,45 @@ function formatMessageContent(content: string): React.ReactNode {
   return nodes;
 }
 
+type PositionPreset = "bottom-right" | "bottom-left" | "top-right" | "top-left";
+type PositionMode = PositionPreset | "custom";
+
+const STORAGE_KEY = "nookky_chat_pos";
+
 export function NookChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
   const [inputText, setInputText] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [contextProduct, setContextProduct] = useState<ViewedProduct | null>(null);
   const [lastOrderId, setLastOrderId] = useState<string | null>(null);
+
+  // Quản lý vị trí linh hoạt (Góc hoặc Tự do kéo thả)
+  const [positionMode, setPositionMode] = useState<PositionMode>("bottom-right");
+  const [coords, setCoords] = useState<{ x: number; y: number } | null>(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [showPosMenu, setShowPosMenu] = useState(false);
+
+  const widgetRef = useRef<HTMLDivElement>(null);
+  const justDraggedRef = useRef(false);
+  const dragRef = useRef<{
+    isDown: boolean;
+    startX: number;
+    startY: number;
+    originX: number;
+    originY: number;
+    hasMoved: boolean;
+    elementWidth: number;
+    elementHeight: number;
+  }>({
+    isDown: false,
+    startX: 0,
+    startY: 0,
+    originX: 0,
+    originY: 0,
+    hasMoved: false,
+    elementWidth: 0,
+    elementHeight: 0,
+  });
 
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
@@ -84,6 +117,58 @@ export function NookChatWidget() {
       inputRef.current?.focus();
     }
   }, [isOpen, messages, isLoading]);
+
+  // Khôi phục vị trí lưu trước đó từ localStorage
+  useEffect(() => {
+    try {
+      const savedPos = window.localStorage.getItem(STORAGE_KEY);
+      if (savedPos) {
+        const parsed = JSON.parse(savedPos);
+        if (parsed.mode === "custom" && parsed.coords) {
+          const maxX = Math.max(10, window.innerWidth - 180);
+          const maxY = Math.max(10, window.innerHeight - 180);
+          const clampedX = Math.min(Math.max(10, parsed.coords.x), maxX);
+          const clampedY = Math.min(Math.max(10, parsed.coords.y), maxY);
+          setCoords({ x: clampedX, y: clampedY });
+          setPositionMode("custom");
+        } else if (["bottom-right", "bottom-left", "top-right", "top-left"].includes(parsed.mode)) {
+          setPositionMode(parsed.mode);
+        }
+      }
+    } catch {
+      // Bỏ qua lỗi truy cập storage
+    }
+  }, []);
+
+  // Điều chỉnh toạ độ nếu người dùng đổi kích cỡ cửa sổ
+  useEffect(() => {
+    const handleResize = () => {
+      if (positionMode === "custom" && coords && widgetRef.current) {
+        const rect = widgetRef.current.getBoundingClientRect();
+        const maxX = Math.max(10, window.innerWidth - rect.width - 10);
+        const maxY = Math.max(10, window.innerHeight - rect.height - 10);
+        const clampedX = Math.min(Math.max(10, coords.x), maxX);
+        const clampedY = Math.min(Math.max(10, coords.y), maxY);
+        if (clampedX !== coords.x || clampedY !== coords.y) {
+          setCoords({ x: clampedX, y: clampedY });
+        }
+      }
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [positionMode, coords]);
+
+  // Tự động đóng menu chọn vị trí khi click ra ngoài
+  useEffect(() => {
+    if (!showPosMenu) return;
+    const handleClickOutside = (e: MouseEvent) => {
+      if (!(e.target as HTMLElement).closest(`.${styles.headerActions}`)) {
+        setShowPosMenu(false);
+      }
+    };
+    window.addEventListener("click", handleClickOutside);
+    return () => window.removeEventListener("click", handleClickOutside);
+  }, [showPosMenu]);
 
   // Đọc ngữ cảnh từ sessionStorage & localStorage khi khởi động
   useEffect(() => {
@@ -144,6 +229,99 @@ export function NookChatWidget() {
     setIsOpen(nextState);
     if (nextState) {
       track("chat_open", { page: typeof window !== "undefined" ? window.location.pathname : "" });
+    }
+  };
+
+  // Logic kéo thả mượt mà (Pointer Events)
+  const handlePointerDown = (e: React.PointerEvent) => {
+    if (e.button !== 0) return;
+    if ((e.target as HTMLElement).closest(`.${styles.headerActions}`)) return;
+
+    const container = widgetRef.current;
+    if (!container) return;
+
+    const rect = container.getBoundingClientRect();
+    dragRef.current = {
+      isDown: true,
+      startX: e.clientX,
+      startY: e.clientY,
+      originX: rect.left,
+      originY: rect.top,
+      hasMoved: false,
+      elementWidth: rect.width,
+      elementHeight: rect.height,
+    };
+
+    (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
+  };
+
+  const handlePointerMove = (e: React.PointerEvent) => {
+    if (!dragRef.current.isDown) return;
+    const dx = e.clientX - dragRef.current.startX;
+    const dy = e.clientY - dragRef.current.startY;
+
+    if (!dragRef.current.hasMoved && Math.hypot(dx, dy) > 6) {
+      dragRef.current.hasMoved = true;
+      setIsDragging(true);
+    }
+
+    if (dragRef.current.hasMoved) {
+      const newX = dragRef.current.originX + dx;
+      const newY = dragRef.current.originY + dy;
+      const maxX = Math.max(10, window.innerWidth - (dragRef.current.elementWidth || 160) - 10);
+      const maxY = Math.max(10, window.innerHeight - (dragRef.current.elementHeight || 160) - 10);
+      const clampedX = Math.min(Math.max(10, newX), maxX);
+      const clampedY = Math.min(Math.max(10, newY), maxY);
+
+      setCoords({ x: clampedX, y: clampedY });
+      setPositionMode("custom");
+    }
+  };
+
+  const handlePointerUp = (e: React.PointerEvent) => {
+    if (!dragRef.current.isDown) return;
+    const hadMoved = dragRef.current.hasMoved;
+    dragRef.current.isDown = false;
+    setIsDragging(false);
+
+    try {
+      (e.currentTarget as HTMLElement).releasePointerCapture(e.pointerId);
+    } catch {
+      // Bỏ qua lỗi capture
+    }
+
+    if (hadMoved) {
+      justDraggedRef.current = true;
+      setTimeout(() => {
+        justDraggedRef.current = false;
+      }, 120);
+
+      const newX = dragRef.current.originX + (e.clientX - dragRef.current.startX);
+      const newY = dragRef.current.originY + (e.clientY - dragRef.current.startY);
+      const maxX = Math.max(10, window.innerWidth - (dragRef.current.elementWidth || 160) - 10);
+      const maxY = Math.max(10, window.innerHeight - (dragRef.current.elementHeight || 160) - 10);
+      const clampedX = Math.min(Math.max(10, newX), maxX);
+      const clampedY = Math.min(Math.max(10, newY), maxY);
+
+      try {
+        window.localStorage.setItem(
+          STORAGE_KEY,
+          JSON.stringify({ mode: "custom", coords: { x: clampedX, y: clampedY } })
+        );
+      } catch {
+        // Bỏ qua lỗi storage
+      }
+    }
+  };
+
+  const selectPreset = (preset: PositionPreset) => {
+    setPositionMode(preset);
+    setCoords(null);
+    setShowPosMenu(false);
+    try {
+      window.localStorage.setItem(STORAGE_KEY, JSON.stringify({ mode: preset }));
+    } catch {
+      // Bỏ qua lỗi storage
     }
   };
 
@@ -224,24 +402,75 @@ export function NookChatWidget() {
     { label: "🛡️ Chính sách bảo hành gãy mảnh?", prompt: "Nếu trong quá trình lắp ráp tôi vô tình làm gãy chi tiết thì có được đổi không?" },
   ];
 
+  const isRightAligned =
+    positionMode === "bottom-right" ||
+    positionMode === "top-right" ||
+    (positionMode === "custom" && coords
+      ? coords.x > (typeof window !== "undefined" ? window.innerWidth / 2 : 500)
+      : true);
+
+  const isBottomAligned =
+    positionMode === "bottom-right" ||
+    positionMode === "bottom-left" ||
+    (positionMode === "custom" && coords
+      ? coords.y > (typeof window !== "undefined" ? window.innerHeight / 2 : 400)
+      : true);
+
+  let positionClass = "";
+  if (positionMode === "bottom-right") positionClass = styles.posBottomRight;
+  else if (positionMode === "bottom-left") positionClass = styles.posBottomLeft;
+  else if (positionMode === "top-right") positionClass = styles.posTopRight;
+  else if (positionMode === "top-left") positionClass = styles.posTopLeft;
+
+  const customStyle: React.CSSProperties =
+    positionMode === "custom" && coords
+      ? {
+          left: `${coords.x}px`,
+          top: `${coords.y}px`,
+          right: "auto",
+          bottom: "auto",
+        }
+      : {};
+
   return (
-    <div className={styles.widgetContainer} aria-label="Khung trò chuyện tư vấn Nook Ký">
+    <div
+      ref={widgetRef}
+      className={`${styles.widgetContainer} ${positionClass} ${isDragging ? styles.isDragging : ""}`}
+      style={customStyle}
+      aria-label="Khung trò chuyện tư vấn Nook Ký"
+    >
       {/* Floating Action Button - Mascot 3D & Speech Bubble */}
       {!isOpen && (
-        <div className={styles.fabWrapper}>
-          <div className={styles.fabSpeechBubble}>
+        <div className={`${styles.fabWrapper} ${isRightAligned ? styles.alignRight : styles.alignLeft}`}>
+          <div
+            className={`${styles.fabSpeechBubble} ${
+              isBottomAligned ? styles.bubbleBottom : styles.bubbleTop
+            } ${isRightAligned ? styles.bubbleRight : styles.bubbleLeft}`}
+          >
             Bạn cần Nook Ký tư vấn gì nè? 🏮
           </div>
           <button
             type="button"
             className={styles.fabButtonImage}
-            onClick={toggleOpen}
-            aria-label="Mở khung tư vấn Nghệ nhân Nook Ký"
+            onPointerDown={handlePointerDown}
+            onPointerMove={handlePointerMove}
+            onPointerUp={handlePointerUp}
+            onClick={() => {
+              if (justDraggedRef.current) {
+                justDraggedRef.current = false;
+                return;
+              }
+              toggleOpen();
+            }}
+            aria-label="Mở khung tư vấn Nghệ nhân Nook Ký (Nhấn để mở, kéo thả để đổi vị trí)"
+            title="Bấm để mở, giữ chuột để kéo đổi vị trí"
           >
+            <span className={styles.dragHintBadge}>Kéo để đổi vị trí ✦</span>
             <img
               src="/media/chat-button-full.webp"
               alt="Tư vấn Nook Ký"
               className={styles.fabMascotImg}
+              draggable={false}
             />
           </button>
         </div>
@@ -249,9 +478,28 @@ export function NookChatWidget() {
 
       {/* Chat Window Dialog */}
       {isOpen && (
-        <div className={styles.chatWindow} role="dialog" aria-modal="true" aria-labelledby="chat-title">
-          {/* Header */}
-          <div className={styles.header}>
+        <div
+          className={`${styles.chatWindow} ${
+            isBottomAligned
+              ? isRightAligned
+                ? styles.chatAnchorBottomRight
+                : styles.chatAnchorBottomLeft
+              : isRightAligned
+              ? styles.chatAnchorTopRight
+              : styles.chatAnchorTopLeft
+          }`}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="chat-title"
+        >
+          {/* Header - Kéo thả để di chuyển */}
+          <div
+            className={styles.header}
+            onPointerDown={handlePointerDown}
+            onPointerMove={handlePointerMove}
+            onPointerUp={handlePointerUp}
+            title="Giữ chuột tại đây để kéo thả di chuyển khung chat"
+          >
             <div className={styles.headerLeft}>
               <div className={styles.avatarBox}>
                 <img
@@ -262,21 +510,73 @@ export function NookChatWidget() {
               </div>
               <div className={styles.headerTitles}>
                 <h3 id="chat-title" className={styles.title}>
-                  Nghệ nhân Nook Ký
+                  Nghệ nhân Nook Ký ✥
                 </h3>
                 <p className={styles.statusText}>
                   <span className={styles.onlineDot} /> Sẵn sàng lắng nghe & tra cứu
                 </p>
               </div>
             </div>
-            <button
-              type="button"
-              className={styles.closeButton}
-              onClick={toggleOpen}
-              aria-label="Đóng khung chat"
-            >
-              ✕
-            </button>
+
+            <div className={styles.headerActions}>
+              {/* Nút chỉnh vị trí góc */}
+              <button
+                type="button"
+                className={styles.posBtn}
+                onClick={() => setShowPosMenu((prev) => !prev)}
+                title="Đổi vị trí góc màn hình"
+                aria-label="Tuỳ chỉnh vị trí khung chat"
+              >
+                📍
+              </button>
+
+              {/* Menu chọn góc / preset */}
+              {showPosMenu && (
+                <div className={styles.posMenu}>
+                  <div className={styles.posMenuTitle}>Vị trí hiển thị</div>
+                  <button
+                    type="button"
+                    className={`${styles.posMenuItem} ${positionMode === "bottom-right" ? styles.posMenuItemActive : ""}`}
+                    onClick={() => selectPreset("bottom-right")}
+                  >
+                    ↘ Dưới cùng bên phải
+                  </button>
+                  <button
+                    type="button"
+                    className={`${styles.posMenuItem} ${positionMode === "bottom-left" ? styles.posMenuItemActive : ""}`}
+                    onClick={() => selectPreset("bottom-left")}
+                  >
+                    ↙ Dưới cùng bên trái
+                  </button>
+                  <button
+                    type="button"
+                    className={`${styles.posMenuItem} ${positionMode === "top-right" ? styles.posMenuItemActive : ""}`}
+                    onClick={() => selectPreset("top-right")}
+                  >
+                    ↗ Trên cùng bên phải
+                  </button>
+                  <button
+                    type="button"
+                    className={`${styles.posMenuItem} ${positionMode === "top-left" ? styles.posMenuItemActive : ""}`}
+                    onClick={() => selectPreset("top-left")}
+                  >
+                    ↖ Trên cùng bên trái
+                  </button>
+                  <div className={styles.posMenuHint}>
+                    💡 Bạn có thể giữ chuột vào linh vật hoặc thanh tiêu đề để kéo thả tự do!
+                  </div>
+                </div>
+              )}
+
+              <button
+                type="button"
+                className={styles.closeButton}
+                onClick={toggleOpen}
+                aria-label="Đóng khung chat"
+              >
+                ✕
+              </button>
+            </div>
           </div>
 
           {/* Context Banner nếu đang xem sản phẩm */}
