@@ -9,7 +9,9 @@ import styles from "./ProductCatalog.module.css";
 
 const displayFont = '"NookOrtland", "Be Vietnam Pro", sans-serif';
 
-const driveImage = (id: string, width = 2200) => `https://drive.google.com/thumbnail?id=${id}&sz=w${width}`;\n\nconst COLLECTION_HERO = "https://drive.google.com/thumbnail?id=1pUnw74xRwg5aCjERwL_S5ul7op6ZweOu&sz=w2400";
+const driveImage = (id: string, width = 2200) => `https://drive.google.com/thumbnail?id=${id}&sz=w${width}`;
+
+const COLLECTION_HERO = "https://drive.google.com/thumbnail?id=1pUnw74xRwg5aCjERwL_S5ul7op6ZweOu&sz=w2400";
 const LIFESTYLE_IMAGE = driveImage("1Nb_AB08zHjaLh1gLDPn66ytachTA4Ggz");
 const ASSEMBLY_IMAGE = driveImage("1yhaIiJNzz2SvXWSVd-RNvjWSQb0Oj18b");
 const UNBOX_IMAGE = driveImage("1jeMDp9bMDkwgMMF9hFGf4uBKU2azVOsf");
