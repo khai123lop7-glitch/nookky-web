@@ -10,7 +10,7 @@ const LANDSCAPES = [
     name: "Hội An",
     sub: "Phố cổ hoa đăng",
     videoSrc: "/media/editorial/hero-hoian.mp4",
-    posterSrc: "/media/editorial/hero-hoian.webp",
+    posterSrc: "/media/products/01-pho-vua-len-den-hoi-an/cover.webp",
     thumbSrc: "/media/editorial/thumb-hero-hoi-an.webp",
     headlineMain: "Giữ lại một",
     headlineAccent: "góc Việt Nam.",
@@ -52,43 +52,23 @@ export function Hero() {
   const [activeLandscape, setActiveLandscape] = useState("hoi-an");
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const railRef = useRef<HTMLDivElement | null>(null);
-  const lastLoadedVideoRef = useRef<string | null>(LANDSCAPES[0].videoSrc || null);
 
   const current = LANDSCAPES.find((item) => item.id === activeLandscape) || LANDSCAPES[0];
 
   useEffect(() => {
     if (videoRef.current && current.videoSrc) {
-      if (lastLoadedVideoRef.current !== current.videoSrc) {
-        lastLoadedVideoRef.current = current.videoSrc;
-        videoRef.current.load();
-      }
+      videoRef.current.load();
       videoRef.current.play().catch(() => {});
     }
-  }, [current.videoSrc]);
+  }, [current]);
 
   return (
-    <section className={`${styles.heroSection} nk-hero`} aria-labelledby="nk-hero-title">
+    <section className={styles.heroSection} aria-labelledby="nk-hero-title">
       <div className={styles.mediaContainer} aria-hidden="true">
         {current.videoSrc ? (
-          <video
-            key={current.id}
-            ref={videoRef}
-            className={styles.bgVideo}
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="auto"
-            poster={current.posterSrc}
-            src={current.videoSrc}
-          />
+          <video ref={videoRef} className={styles.bgVideo} autoPlay loop muted playsInline poster={current.posterSrc} src={current.videoSrc} />
         ) : (
-          <img
-            key={current.id}
-            className={styles.bgImage}
-            src={current.posterSrc}
-            alt=""
-          />
+          <img className={styles.bgImage} src={current.posterSrc} alt="" />
         )}
       </div>
 
