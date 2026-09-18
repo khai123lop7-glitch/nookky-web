@@ -10,8 +10,6 @@ const LANDSCAPES = [
     id: "hoi-an",
     name: "Hội An",
     sub: "Phố cổ hoa đăng",
-    videoSrc: "/media/editorial/hero-hoian.mp4",
-    posterSrc: "/media/editorial/hero-hoian.webp",
     thumbSrc: "/media/editorial/thumb-hero-hoi-an.webp",
     headlineMain: "Giữ lại một",
     headlineAccent: "góc Việt Nam.",
@@ -21,7 +19,6 @@ const LANDSCAPES = [
     id: "hue",
     name: "Huế",
     sub: "Mưa qua sân gạch",
-    posterSrc: "/media/editorial/hero-hue.webp",
     thumbSrc: "/media/editorial/thumb-hero-hue.webp",
     headlineMain: "Khoảng sân trầm",
     headlineAccent: "sau cơn mưa.",
@@ -31,7 +28,6 @@ const LANDSCAPES = [
     id: "sai-gon",
     name: "TP. Hồ Chí Minh",
     sub: "Hẻm còn sáng đèn",
-    posterSrc: "/media/editorial/hero-sai-gon.webp",
     thumbSrc: "/media/editorial/thumb-hero-sai-gon.webp",
     headlineMain: "Góc hẻm thức cùng",
     headlineAccent: "thành phố.",
@@ -41,7 +37,6 @@ const LANDSCAPES = [
     id: "ha-noi",
     name: "Hà Nội",
     sub: "Phố cũ lên đèn",
-    posterSrc: "/media/editorial/hero-ha-noi.webp",
     thumbSrc: "/media/editorial/thumb-hero-ha-noi.webp",
     headlineMain: "Phố cũ lưu trong",
     headlineAccent: "một vệt nắng.",
@@ -53,38 +48,26 @@ export function Hero() {
   const [activeLandscape, setActiveLandscape] = useState("hoi-an");
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const railRef = useRef<HTMLDivElement | null>(null);
-  const lastLoadedVideoRef = useRef<string | null>(LANDSCAPES[0].videoSrc || null);
 
   const current = LANDSCAPES.find((item) => item.id === activeLandscape) || LANDSCAPES[0];
 
   useEffect(() => {
-    if (videoRef.current && current.videoSrc) {
-      if (lastLoadedVideoRef.current !== current.videoSrc) {
-        lastLoadedVideoRef.current = current.videoSrc;
-        videoRef.current.load();
-      }
-      videoRef.current.play().catch(() => {});
-    }
-  }, [current.videoSrc]);
+    videoRef.current?.play().catch(() => {});
+  }, []);
 
   return (
     <section className={`${styles.heroSection} nk-hero`} aria-labelledby="nk-hero-title">
       <div className={styles.mediaContainer} aria-hidden="true">
-        {current.videoSrc ? (
-          <video
-            ref={videoRef}
-            className={styles.bgVideo}
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="auto"
-            poster={current.posterSrc}
-            src={current.videoSrc}
-          />
-        ) : (
-          <img className={styles.bgImage} src={current.posterSrc} alt="" />
-        )}
+        <video
+          ref={videoRef}
+          className={styles.bgVideo}
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          src="/media/editorial/hero-hoian.mp4"
+        />
       </div>
 
       <div className={styles.vignetteOverlay} aria-hidden="true" />
