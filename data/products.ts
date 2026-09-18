@@ -119,7 +119,7 @@ export const products: NookProduct[] = [
     ],
     boxContents: defaultBoxContents,
     media: {
-      cover: hoiAnGallery[0],
+      cover: "/media/products/01-pho-vua-len-den-hoi-an/cover.webp",
       detail: hoiAnGallery[2],
       lifestyle: hoiAnGallery[4],
       gallery: hoiAnGallery,
@@ -150,7 +150,7 @@ export const products: NookProduct[] = [
     ],
     boxContents: defaultBoxContents,
     media: {
-      cover: hueGallery[0],
+      cover: "/media/products/02-mua-qua-san-gach-hue/cover.webp",
       detail: hueGallery[2],
       lifestyle: hueGallery[4],
       gallery: hueGallery,
@@ -182,7 +182,7 @@ export const products: NookProduct[] = [
     ],
     boxContents: defaultBoxContents,
     media: {
-      cover: haNoiGallery[0],
+      cover: "/media/products/03-sang-tren-pho-cu-ha-noi/cover.webp",
       detail: haNoiGallery[2],
       lifestyle: haNoiGallery[4],
       gallery: haNoiGallery,
@@ -213,7 +213,7 @@ export const products: NookProduct[] = [
     ],
     boxContents: defaultBoxContents,
     media: {
-      cover: saiGonGallery[0],
+      cover: "/media/products/04-hem-con-sang-den-sai-gon/cover.webp",
       detail: saiGonGallery[2],
       lifestyle: saiGonGallery[4],
       gallery: saiGonGallery,
@@ -244,7 +244,7 @@ export const products: NookProduct[] = [
     ],
     boxContents: defaultBoxContents,
     media: {
-      cover: daLatGallery[0],
+      cover: "/media/products/05-den-am-tren-doc-da-lat/cover.webp",
       detail: daLatGallery[2],
       lifestyle: daLatGallery[4],
       gallery: daLatGallery,
@@ -276,7 +276,7 @@ export const products: NookProduct[] = [
     ],
     boxContents: defaultBoxContents,
     media: {
-      cover: mienTayGallery[0],
+      cover: "/media/products/06-song-vua-thuc-giac-mien-tay/cover.webp",
       detail: mienTayGallery[2],
       lifestyle: mienTayGallery[4],
       gallery: mienTayGallery,
