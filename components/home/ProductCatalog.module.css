@@ -362,7 +362,7 @@
 .collectionClose {
   position: relative;
   overflow: hidden;
-  min-height: 760px;
+  min-height: 0;
   margin-bottom: 0;
   background: #1d120c;
   color: #fff8ef;
@@ -370,9 +370,11 @@
 }
 .collectionClose > img {
   width: 100%;
-  height: 760px;
+  height: auto;
+  max-height: none;
   display: block;
-  object-fit: cover;
+  object-fit: contain;
+  object-position: center;
 }
 .collectionClose::after {
   content: "";
@@ -430,8 +432,13 @@
   .storyFeatureCopy,
   .storySplitCopy { padding: 46px 28px; }
   .detailStory { padding: 30px; }
-  .collectionClose,
-  .collectionClose > img { min-height: 0; height: 620px; }
+  .collectionClose { min-height: 0; }
+  .collectionClose > img {
+    width: 100%;
+    height: auto;
+    max-height: none;
+    object-fit: contain;
+  }
 }
 
 @media (max-width: 560px) {
@@ -463,7 +470,12 @@
   .collectionClose h2 { font-size: 38px; }
   .storyStats { grid-template-columns: 1fr; }
   .detailStory { padding: 24px; }
-  .collectionClose,
-  .collectionClose > img { height: 520px; }
+  .collectionClose { height: auto; }
+  .collectionClose > img {
+    width: 100%;
+    height: auto;
+    max-height: none;
+    object-fit: contain;
+  }
   .collectionCloseCopy { left: 22px; bottom: 24px; width: calc(100% - 44px); }
 }
