@@ -27,7 +27,7 @@ export function RelatedProductsCarousel({ products }: { products: NookProduct[] 
         {products.map((item) => (
           <article className={styles.card} key={item.slug}>
             <Link href={`/product/${item.slug}`} className={styles.link}>
-              <img src={item.media.cover} alt={item.name} loading="lazy" decoding="async" />
+              <img src={item.media.lifestyle} alt={item.name} loading="lazy" decoding="async" />
               <div className={styles.meta}>
                 <div>
                   <p>{item.location}</p>
