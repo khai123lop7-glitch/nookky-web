@@ -58,7 +58,7 @@ export function Footer() {
           <div style={{ marginTop: "24px", display: "flex", flexDirection: "column", gap: "10px", fontSize: "13px", color: "rgba(252,244,233,0.85)", fontFamily: "var(--nk-v3-ui)" }}>
             <div><span style={{ color: "#efbd72", fontWeight: 700 }}>Địa chỉ:</span> Xưởng sáng tạo Phố cổ Hội An & Hà Nội</div>
             <div><span style={{ color: "#efbd72", fontWeight: 700 }}>Thư điện tử:</span> lienhe@nookky.vn</div>
-            <div><span style={{ color: "#efbd72", fontWeight: 700 }}>Hotline:</span> 0987 654 321 (8:30 – 21:00)</div>
+            <div><span style={{ color: "#efbd72", fontWeight: 700 }}>Hotline:</span> 0909 283 678 (8:30 – 21:00)</div>
           </div>
 
           {/* Social Links */}

@@ -167,7 +167,7 @@ export function generateOrderConfirmationEmailHtml(order: {
     <!-- Footer -->
     <div style="background: #f4ecdf; padding: 20px 28px; text-align: center; font-size: 12px; color: #745d4f; border-top: 1px solid #e8decb;">
       <p style="margin: 0 0 6px;">Nook Ký Studio — Nơi thu nhỏ ký ức và không gian sống Việt Nam.</p>
-      <p style="margin: 0;">Hotline: 0909 283 678 · Email: support@nookky.vn</p>
+      <p style="margin: 0;">Hotline: 0909 283 678 · Email: lienhe@nookky.vn</p>
     </div>
   </div>
 </body>

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Header } from "@/components/site/Header";
 import { ProductPurchaseSection } from "@/components/commerce/ProductPurchaseSection";
@@ -8,6 +9,29 @@ import styles from "./ProductPage.module.css";
 
 export function generateStaticParams() {
   return products.map((product) => ({ slug: product.slug }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const product = products.find((item) => item.slug === slug);
+  if (!product) return { title: "Sản phẩm không tồn tại | Nook Ký" };
+
+  const title = `${product.name} (${product.location}) | Nook Ký`;
+  const description = product.description;
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      images: [{ url: product.media.cover, alt: product.name }],
+    },
+  };
 }
 
 export default async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -85,7 +109,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
             <img src={gallery[0]} alt={`${product.name} — trải nghiệm lắp ráp`} loading="lazy" decoding="async" />
           </div>
           <div className={styles.sectionCopy}>
-            <p className={styles.eyebrow}>Build it yourself</p>
+            <p className={styles.eyebrow}>Trải nghiệm tự ráp</p>
             <h2>Tự tay dựng nên một góc Việt Nam</h2>
             <p>
               Đây không chỉ là món decor hoàn thiện sẵn. Trải nghiệm nằm ở việc ghép từng lớp không gian,
@@ -102,7 +126,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
 
         <section className={`${styles.split} ${styles.splitReverse}`}>
           <div className={styles.darkCopy}>
-            <p className={styles.eyebrow}>What&apos;s in the box?</p>
+            <p className={styles.eyebrow}>Trong hộp có gì?</p>
             <h2>Mở hộp là có thể bắt đầu</h2>
             <p>Mọi nhóm chi tiết chính được gom theo một bộ để quá trình lắp ráp dễ theo dõi và có nhịp rõ ràng.</p>
             <ul className={styles.contents}>
@@ -118,7 +142,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           <img src={gallery[3]} alt={`${product.name} — góc nhìn bên trong`} loading="lazy" decoding="async" />
           <div className={styles.fullShade} />
           <div className={styles.fullCopy}>
-            <p className={styles.eyebrow}>Step inside</p>
+            <p className={styles.eyebrow}>Chiều sâu không gian</p>
             <h2>Nhìn sâu hơn vào từng lớp không gian</h2>
             <p>
               Các lớp trước, giữa và sau được xếp để tạo cảm giác chiều sâu thật khi nhìn từ chính diện,
@@ -132,7 +156,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
             <img src={gallery[4]} alt={`${product.name} — trưng bày trên kệ sách`} loading="lazy" decoding="async" />
           </div>
           <div className={styles.sectionCopy}>
-            <p className={styles.eyebrow}>Made to display</p>
+            <p className={styles.eyebrow}>Dấu ấn trưng bày</p>
             <h2>Một góc nhỏ trên kệ sách</h2>
             <p>
               Sau khi hoàn thiện, mô hình trở thành một điểm sáng ấm giữa sách và đồ decor. Kích thước đứng giúp nó
@@ -143,7 +167,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
 
         <section id="specs" className={styles.specs}>
           <div className={styles.specsInner}>
-            <p className={styles.eyebrow}>Specifications</p>
+            <p className={styles.eyebrow}>Thông số chi tiết</p>
             <h2>Thông tin sản phẩm</h2>
             <div className={styles.specGrid}>
               <div><span>Địa danh</span><strong>{product.location}</strong></div>
@@ -151,8 +175,8 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
               <div><span>Thời gian lắp</span><strong>{product.buildTime}</strong></div>
               <div><span>Số mảnh</span><strong>{product.pieces ?? "—"}</strong></div>
               <div><span>LED</span><strong>{product.hasLed ? "Có" : "Không"}</strong></div>
-              <div><span>Phong cách</span><strong>Book nook DIY</strong></div>
-              <div><span>Trưng bày</span><strong>Kệ sách / bàn làm việc</strong></div>
+              <div><span>Phong cách</span><strong>Mô hình Book Nook thủ công</strong></div>
+              <div><span>Trưng bày</span><strong>Kệ sách / Bàn làm việc</strong></div>
               <div><span>Bộ sưu tập</span><strong>Nook Ký Việt Nam</strong></div>
             </div>
           </div>

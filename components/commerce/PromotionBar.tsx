@@ -17,10 +17,10 @@ export function PromotionBar() {
       <div className={styles.barHeader}>
         <p className={styles.barMessage}>
           {hasGift ? (
-            <>🎉 <strong>Chúc mừng!</strong> Đơn hàng đã đạt Freeship & Quà tặng bộ dụng cụ Nook Ký</>
+            <>🎉 <strong>Chúc mừng!</strong> Đơn hàng đã đạt Miễn phí vận chuyển & Quà tặng bộ dụng cụ Nook Ký</>
           ) : hasFreeship ? (
             <>
-              🚚 Đã đạt <strong>Freeship</strong>! Thêm{" "}
+              🚚 Đã đạt <strong>Miễn phí vận chuyển</strong>! Thêm{" "}
               <strong>{formatVnd(GIFT_THRESHOLD - subtotal)}</strong> để nhận 🎁 <strong>Bộ dụng cụ lắp ráp</strong>
             </>
           ) : (

@@ -36,7 +36,7 @@ export function BrandStory() {
       <div className={styles.contentContainer}>
         {/* Eyebrow */}
         <p className={styles.eyebrow} data-nk-reveal data-nk-delay="1">
-          CUSTOM GIFTS
+          QUÀ TẶNG BẢN SẮC
         </p>
 
         {/* Main Heading */}

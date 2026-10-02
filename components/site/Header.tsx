@@ -10,7 +10,7 @@ const nav = [
   ["Trang chủ", "/"],
   ["Sản phẩm", "/shop"],
   ["Bộ sưu tập", "/collections"],
-  ["Build Your Nook", "/studio"],
+  ["Tự ráp Nook", "/studio"],
   ["Về Nook Ký", "/about"],
 ] as const;
 

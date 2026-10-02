@@ -1,4 +1,10 @@
+import type { Metadata } from "next";
 import { Header } from "@/components/site/Header";
+
+export const metadata: Metadata = {
+  title: "Tự Ráp Nook | Nook Ký Studio",
+  description: "Trải nghiệm tự tạo và tùy biến Book Nook mang dấu ấn phong cách riêng của bạn.",
+};
 
 export default function StudioPage() {
   return (

@@ -1,5 +1,11 @@
+import type { Metadata } from "next";
 import { Header } from "@/components/site/Header";
 import { BrandClose } from "@/components/home/BrandClose";
+
+export const metadata: Metadata = {
+  title: "Về Nook Ký | Bản Sắc Việt Thu Nhỏ",
+  description: "Hành trình gìn giữ ký ức và bản sắc văn hóa Việt Nam qua từng tác phẩm Book Nook thủ công.",
+};
 
 export default function AboutPage() {
   return (
