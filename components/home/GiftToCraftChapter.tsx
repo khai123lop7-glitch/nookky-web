@@ -42,37 +42,45 @@ export function GiftToCraftChapter() {
       const context = gsap.context(() => {
         const media = gsap.matchMedia();
         const build = (mobile: boolean) => {
-          gsap.set(overlay, { autoAlpha: mobile ? 1 : 0 });
-          gsap.set(workshop, { clipPath: "circle(0% at 72% 54%)", scale: 1.35 });
-          gsap.set(paper, { width: mobile ? "50%" : "49%" });
-          gsap.set([first, second], { autoAlpha: 0 });
-          gsap.set(final, { autoAlpha: 0, y: 55 });
+          gsap.set(overlay, { autoAlpha: 1 });
+          gsap.set(workshop, { scale: 1.15, opacity: 1 });
+          gsap.set(paper, { xPercent: -100, opacity: 0 });
+          gsap.set(first, { autoAlpha: 0, xPercent: 20, scale: 1.1 });
+          gsap.set(second, { autoAlpha: 0, xPercent: 20, scale: 1.1 });
+          gsap.set(final, { autoAlpha: 0, y: 25 });
           gsap.set(path, { strokeDasharray: 1300, strokeDashoffset: 1300 });
           if (mobileIntro) gsap.set(mobileIntro, { autoAlpha: mobile ? 1 : 0 });
 
           const timeline = gsap.timeline({
             scrollTrigger: {
-              trigger: mobile ? scene : chapter,
+              trigger: chapter,
               start: "top top+=60",
-              end: mobile ? "+=110%" : "bottom bottom",
-              pin: mobile ? scene : false,
-              scrub: 0.65,
+              end: "bottom bottom",
+              scrub: 0.6,
               invalidateOnRefresh: true,
-              anticipatePin: 1,
             },
           });
 
-          if (!mobile) timeline.to(overlay, { autoAlpha: 1, duration: .08 }, .05);
-          if (mobileIntro && mobile) timeline.to(mobileIntro, { autoAlpha: 0, x: -30, duration: .26 }, .2);
-          timeline.to(workshop, { clipPath: "circle(150% at 72% 54%)", scale: 1, duration: .7, ease: "none" }, .13);
-          timeline.to(paper, { width: mobile ? "36%" : "29%", duration: .59, ease: "power2.inOut" }, .23);
-          timeline.fromTo(first, { xPercent: 55, scale: 1.35, autoAlpha: 0 }, { xPercent: 0, scale: 1, autoAlpha: 1, duration: .19, ease: "power2.out" }, .16);
-          timeline.to(first, { xPercent: -48, scale: 1.25, autoAlpha: 0, duration: .22 }, .41);
-          timeline.fromTo(second, { xPercent: 48, scale: 1.4, autoAlpha: 0 }, { xPercent: 0, scale: 1, autoAlpha: 1, duration: .2, ease: "power2.out" }, .42);
-          timeline.to(second, { yPercent: -75, scale: 1.2, autoAlpha: 0, duration: .2 }, .66);
-          timeline.to(path, { strokeDashoffset: 0, duration: .56, ease: "none" }, .36);
-          timeline.to(final, { autoAlpha: 1, y: 0, duration: .32, ease: "power2.out" }, mobile ? .56 : .36);
-          timeline.to({}, { duration: .1 }, .96);
+          // Phase 1 (0% -> 22%): "TỪ KÝ ỨC" xuất hiện và dẫn lối
+          timeline.to(first, { autoAlpha: 1, xPercent: 0, scale: 1, duration: 0.15, ease: "power2.out" }, 0.02);
+          timeline.to(path, { strokeDashoffset: 650, duration: 0.25, ease: "power1.inOut" }, 0.05);
+          timeline.to(first, { autoAlpha: 0, xPercent: -25, scale: 0.92, duration: 0.12, ease: "power2.in" }, 0.20);
+
+          // Phase 2 (22% -> 42%): "ĐẾN TÁC PHẨM" xuất hiện và vẽ hoàn tất nét vẽ
+          timeline.to(second, { autoAlpha: 1, xPercent: 0, scale: 1, duration: 0.15, ease: "power2.out" }, 0.22);
+          timeline.to(path, { strokeDashoffset: 0, duration: 0.2, ease: "power1.inOut" }, 0.22);
+          timeline.to(workshop, { scale: 1, duration: 0.45, ease: "none" }, 0);
+          timeline.to(second, { autoAlpha: 0, yPercent: -25, scale: 0.92, duration: 0.12, ease: "power2.in" }, 0.38);
+
+          // Phase 3 (40% -> 58%): Hiệu ứng mở màn tan biến (dissolve/reveal), mở ra nội dung BrandStory
+          if (mobileIntro && mobile) {
+            timeline.to(mobileIntro, { autoAlpha: 0, x: -30, duration: 0.15 }, 0.35);
+          }
+          timeline.to(overlay, { autoAlpha: 0, duration: 0.25, ease: "power2.inOut" }, 0.42);
+
+          // Phase 4 (58% -> 100%): Toàn bộ nội dung Quà tặng Doanh nghiệp (BrandStory) hiện rõ hoàn toàn
+          timeline.to({}, { duration: 0.4 });
+
           return () => timeline.scrollTrigger?.kill();
         };
         media.add("(min-width: 761px) and (prefers-reduced-motion: no-preference)", () => build(false));

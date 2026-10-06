@@ -10,7 +10,7 @@ const LANDSCAPES = [
     name: "Hội An",
     sub: "Phố cổ hoa đăng",
     videoSrc: "/media/editorial/hero-hoian.mp4",
-    posterSrc: "/media/products/01-pho-vua-len-den-hoi-an/cover.webp",
+    posterSrc: "/media/editorial/hero-hoian.webp",
     thumbSrc: "/media/editorial/thumb-hero-hoi-an.webp",
     headlineMain: "Giữ lại một",
     headlineAccent: "góc Việt Nam.",

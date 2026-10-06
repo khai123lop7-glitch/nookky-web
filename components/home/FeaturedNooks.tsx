@@ -54,6 +54,7 @@ const mix = (a: number, b: number, t: number) => a + (b - a) * t;
 export function FeaturedNooks() {
   const sectionRef = useRef<HTMLElement>(null);
   const cardRefs = useRef<(HTMLAnchorElement | null)[]>([]);
+  const progressSpanRef = useRef<HTMLSpanElement | null>(null);
   const [active, setActive] = useState(0);
 
   useEffect(() => {
@@ -61,12 +62,33 @@ export function FeaturedNooks() {
     if (!section || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     let raf = 0;
     let lastActive = -1;
+    let lastProgress = -1;
+
+    let rectTop = 0;
+    let travel = 1;
+
+    const measure = () => {
+      const rect = section.getBoundingClientRect();
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      rectTop = rect.top + scrollTop;
+      travel = Math.max(1, rect.height - window.innerHeight);
+    };
+
+    measure();
+
     const update = () => {
       raf = 0;
-      const rect = section.getBoundingClientRect();
-      const travel = Math.max(1, rect.height - window.innerHeight);
-      const progress = Math.max(0, Math.min(1, -rect.top / travel));
-      section.style.setProperty("--gallery-progress", String(progress));
+      const scrollY = window.scrollY || document.documentElement.scrollTop;
+      const rawProgress = (scrollY - rectTop) / travel;
+      const progress = Math.max(0, Math.min(1, rawProgress));
+
+      if (Math.abs(progress - lastProgress) < 0.0005 && rawProgress >= 0 && rawProgress <= 1) return;
+      lastProgress = progress;
+
+      if (progressSpanRef.current) {
+        progressSpanRef.current.style.transform = `scaleX(${progress})`;
+      }
+
       let from = frames[0], to = frames[1];
       for (let i = 0; i < frames.length - 1; i++) {
         if (progress >= frames[i].at) { from = frames[i]; to = frames[i + 1]; }
@@ -74,23 +96,33 @@ export function FeaturedNooks() {
       const t = Math.max(0, Math.min(1, (progress - from.at) / (to.at - from.at)));
       const current = progress < .38 ? 0 : progress < .72 ? 1 : 2;
       if (current !== lastActive) { lastActive = current; setActive(current); }
+
       cardRefs.current.forEach((card, i) => {
         if (!card) return;
         const a = from.poses[i], b = to.poses[i];
-        card.style.transform = `translate(-50%, -50%) translate3d(${mix(a.x,b.x,t)}vw, ${mix(a.y,b.y,t)}vh, 0) rotate(${mix(a.rotate,b.rotate,t)}deg) scale(${mix(a.scale,b.scale,t)})`;
-        card.style.opacity = String(mix(a.opacity,b.opacity,t));
+        const x = mix(a.x, b.x, t);
+        const y = mix(a.y, b.y, t);
+        const rot = mix(a.rotate, b.rotate, t);
+        const sc = mix(a.scale, b.scale, t);
+        const op = mix(a.opacity, b.opacity, t);
+
+        card.style.transform = `translate3d(calc(-50% + ${x}vw), calc(-50% + ${y}vh), 0) rotate(${rot}deg) scale(${sc})`;
+        card.style.opacity = String(op);
         card.style.zIndex = i === current ? "3" : i === 1 ? "2" : "1";
         card.style.pointerEvents = i === current ? "auto" : "none";
         card.tabIndex = i === current ? 0 : -1;
       });
     };
+
     const schedule = () => { if (!raf) raf = requestAnimationFrame(update); };
+    const handleResize = () => { measure(); schedule(); };
+
     update();
     window.addEventListener("scroll", schedule, { passive: true });
-    window.addEventListener("resize", schedule);
+    window.addEventListener("resize", handleResize, { passive: true });
     return () => {
       window.removeEventListener("scroll", schedule);
-      window.removeEventListener("resize", schedule);
+      window.removeEventListener("resize", handleResize);
       if (raf) cancelAnimationFrame(raf);
     };
   }, []);
@@ -98,7 +130,11 @@ export function FeaturedNooks() {
   return (
     <section className={styles.section} id="shop-all" aria-labelledby="featured-title" ref={sectionRef}>
       <div className={styles.stage}>
-        <div className={styles.ambient} aria-hidden="true" style={{ background: featured[active].color }} />
+        <div
+          className={styles.ambient}
+          aria-hidden="true"
+          style={{ background: `radial-gradient(circle, ${featured[active].color} 0%, rgba(223, 185, 144, 0.3) 45%, transparent 70%)` }}
+        />
         <div className={styles.inner}>
           <div className={styles.copy}>
             <p className={styles.eyebrow}>NOOK KÝ / NHỮNG NƠI CHỐN THU NHỎ</p>
@@ -109,7 +145,7 @@ export function FeaturedNooks() {
               <p>{featured[active].note}</p>
               <Link href={featured[active].href} className={styles.productLink}>Xem mẫu này <span aria-hidden="true">↗</span></Link>
             </div>
-            <div className={styles.progress} aria-hidden="true"><span /></div>
+            <div className={styles.progress} aria-hidden="true"><span ref={progressSpanRef} /></div>
             <p className={styles.scrollHint}>CUỘN ĐỂ XOAY QUA TỪNG GÓC PHỐ &nbsp; ↓</p>
           </div>
           <div className={styles.gallery}>

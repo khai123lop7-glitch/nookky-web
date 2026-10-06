@@ -1,9 +1,9 @@
 import { Header } from "@/components/site/Header";
 import { Hero } from "@/components/home/Hero";
-import { CraftProcess } from "@/components/home/CraftProcess";
-import { ContactCta } from "@/components/home/ContactCta";
 import { FeaturedNooks } from "@/components/home/FeaturedNooks";
 import { GiftToCraftChapter } from "@/components/home/GiftToCraftChapter";
+import { CraftProcess } from "@/components/home/CraftProcess";
+import { ContactCta } from "@/components/home/ContactCta";
 import { HomeScrollDirector } from "@/components/home/HomeScrollDirector";
 
 export default function HomePage() {

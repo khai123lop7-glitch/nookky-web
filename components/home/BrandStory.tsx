@@ -5,6 +5,7 @@ import styles from "./BrandStory.module.css";
 export function BrandStory() {
   return (
     <section
+      id="qua-tang-doanh-nghiep"
       className={styles.giftSection}
       data-nk-scene
       data-nk-gift-scene
