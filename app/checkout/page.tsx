@@ -253,22 +253,6 @@ export default function CheckoutPage() {
                       {errors.phone && <p className={styles.errorMessage}>{errors.phone}</p>}
                     </div>
 
-                    <div className={styles.fieldFull}>
-                      <div className={styles.field}>
-                        <label className={styles.label} htmlFor="email">
-                          Email nhận xác nhận đơn hàng (không bắt buộc)
-                        </label>
-                        <input
-                          id="email"
-                          type="email"
-                          className={styles.input}
-                          placeholder="email@example.com"
-                          value={email}
-                          onChange={(e) => setEmail(e.target.value)}
-                        />
-                      </div>
-                    </div>
-
                     <div className={styles.field}>
                       <label className={styles.label} htmlFor="city">
                         Tỉnh / Thành phố <span className={styles.required}>*</span>
@@ -303,33 +287,6 @@ export default function CheckoutPage() {
                       {errors.city && <p className={styles.errorMessage}>{errors.city}</p>}
                     </div>
 
-                    <div className={styles.field}>
-                      <label className={styles.label} htmlFor="district">
-                        Quận / Huyện
-                      </label>
-                      <input
-                        id="district"
-                        type="text"
-                        list="district-list"
-                        className={styles.input}
-                        placeholder={
-                          currentDistricts.length > 0
-                            ? "Chọn hoặc nhập Quận / Huyện"
-                            : "Quận / Huyện"
-                        }
-                        value={district}
-                        onChange={(e) => setDistrict(e.target.value)}
-                        autoComplete="off"
-                      />
-                      {currentDistricts.length > 0 && (
-                        <datalist id="district-list">
-                          {currentDistricts.map((d) => (
-                            <option key={d} value={d} />
-                          ))}
-                        </datalist>
-                      )}
-                    </div>
-
                     <div className={styles.fieldFull}>
                       <div className={styles.field}>
                         <label className={styles.label} htmlFor="address">
@@ -350,21 +307,70 @@ export default function CheckoutPage() {
                       </div>
                     </div>
 
-                    <div className={styles.fieldFull}>
+                  </div>
+
+                  <details className={styles.optionalFields}>
+                    <summary className={styles.optionalSummary}>Thêm thông tin (không bắt buộc): email, quận/huyện, ghi chú</summary>
+                    <div className={styles.fieldsGrid}>
+                      <div className={styles.fieldFull}>
+                        <div className={styles.field}>
+                          <label className={styles.label} htmlFor="email">
+                            Email nhận xác nhận đơn hàng (không bắt buộc)
+                          </label>
+                          <input
+                            id="email"
+                            type="email"
+                            className={styles.input}
+                            placeholder="email@example.com"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                          />
+                        </div>
+                      </div>
+
                       <div className={styles.field}>
-                        <label className={styles.label} htmlFor="note">
-                          Ghi chú đơn hàng (nếu có)
+                        <label className={styles.label} htmlFor="district">
+                          Quận / Huyện
                         </label>
-                        <textarea
-                          id="note"
-                          className={styles.textarea}
-                          placeholder="Ghi chú về thời gian giao hàng hoặc chỉ dẫn thêm cho shipper..."
-                          value={note}
-                          onChange={(e) => setNote(e.target.value)}
+                        <input
+                          id="district"
+                          type="text"
+                          list="district-list"
+                          className={styles.input}
+                          placeholder={
+                            currentDistricts.length > 0
+                              ? "Chọn hoặc nhập Quận / Huyện"
+                              : "Quận / Huyện"
+                          }
+                          value={district}
+                          onChange={(e) => setDistrict(e.target.value)}
+                          autoComplete="off"
                         />
+                        {currentDistricts.length > 0 && (
+                          <datalist id="district-list">
+                            {currentDistricts.map((d) => (
+                              <option key={d} value={d} />
+                            ))}
+                          </datalist>
+                        )}
+                      </div>
+
+                      <div className={styles.fieldFull}>
+                        <div className={styles.field}>
+                          <label className={styles.label} htmlFor="note">
+                            Ghi chú đơn hàng (nếu có)
+                          </label>
+                          <textarea
+                            id="note"
+                            className={styles.textarea}
+                            placeholder="Ghi chú về thời gian giao hàng hoặc chỉ dẫn thêm cho shipper..."
+                            value={note}
+                            onChange={(e) => setNote(e.target.value)}
+                          />
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  </details>
                 </div>
 
                 {/* Step 2: Payment method */}

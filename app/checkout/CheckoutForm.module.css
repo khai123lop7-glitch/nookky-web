@@ -413,3 +413,21 @@
     padding: 20px 16px;
   }
 }
+
+.optionalFields {
+  margin-top: 18px;
+  border-top: 1px dashed rgba(47, 22, 7, 0.16);
+  padding-top: 14px;
+}
+
+.optionalSummary {
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 650;
+  color: #715f53;
+  list-style-position: inside;
+}
+
+.optionalFields[open] .optionalSummary {
+  margin-bottom: 14px;
+}
