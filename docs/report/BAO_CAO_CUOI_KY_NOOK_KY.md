@@ -4,6 +4,8 @@
 
 Nhóm: [CẦN BỔ SUNG: tên nhóm, lớp học phần, giảng viên hướng dẫn]
 
+> **Trạng thái bản này: KHUNG BÁO CÁO.** Chưa có export GA4 của property gắn với nookky.shop. Mọi ô "CHƯA CÓ DỮ LIỆU" là dữ liệu còn thiếu, **không phải giá trị 0**. Không dùng số liệu của website photobooth (PhotoBuzz) cho Nook Ký. Các phát hiện ghi "rà soát mã nguồn" là kiểm tra code, chưa phải kết quả đo trên production.
+
 **Bảng 0. Thành viên và vai trò**
 
 | Thành viên | MSSV | Vai trò chính | Đầu việc cụ thể |
@@ -17,23 +19,36 @@ Nhóm: [CẦN BỔ SUNG: tên nhóm, lớp học phần, giảng viên hướng 
 
 ## 1. Bối cảnh
 
-**Ngành hàng.** Nook Ký kinh doanh Book Nook: mô hình thu nhỏ dạng hộp đặt vừa kệ sách, người mua tự lắp ráp rồi giữ lại làm vật décor. Đây là nhánh nhỏ trong ngành quà tặng và đồ thủ công DIY (do it yourself, tự làm). Danh mục hiện có 6 SKU (mã sản phẩm), mỗi mẫu tái hiện một nơi chốn Việt Nam: Hội An, Huế, Hà Nội, Sài Gòn, Đà Lạt và miền Tây, giá niêm yết từ 749.000đ đến 1.099.000đ (nguồn: dữ liệu sản phẩm trên website).
+**Ngành hàng.** Nook Ký kinh doanh Book Nook: mô hình thu nhỏ dạng hộp đặt vừa kệ sách, người mua tự lắp ráp rồi giữ lại làm vật décor. Đây là nhánh nhỏ trong ngành quà tặng và đồ thủ công DIY (do it yourself, tự làm).
 
-**Lý do chọn.** [CẦN BỔ SUNG: lý do nhóm chọn ngành hàng này, ví dụ khoảng trống thị trường, sở thích, khả năng tự sản xuất nội dung hình ảnh]. Về mặt đồ án, sản phẩm có giá trị đơn hàng trung bình cao và quyết định mua cần nhiều hình ảnh, câu chuyện, nên phù hợp để quan sát hành vi duyệt trang trước khi mua.
+**Bảng 1. Danh mục sản phẩm (metadata, không phải số GA4)**
 
-**Định vị website.** Mô hình bán hàng trực tiếp (D2C, direct to consumer) với thông điệp "Bản sắc Việt thu nhỏ": mỗi sản phẩm gắn với một ký ức nơi chốn thay vì chỉ là bộ kit lắp ráp. Website gồm trang chủ dạng kể chuyện (video Hội An, mẫu nổi bật, quy trình chế tác, form liên hệ), trang Sản phẩm, Bộ sưu tập, trang chi tiết sản phẩm (PDP, product detail page), giỏ hàng, thanh toán và trang "Tự ráp Nook" (Studio). USP (lợi điểm bán hàng độc nhất) mà nhóm muốn truyền tải: [CẦN BỔ SUNG: nhóm xác nhận 1 câu USP chính thức].
+| item_id (slug) | Tên sản phẩm | Địa danh | Giá hiện tại (VND) | Giá gốc (VND) |
+| --- | --- | --- | ---: | ---: |
+| pho-vua-len-den-hoi-an | Phố Vừa Lên Đèn | Hội An | 899.000 | 949.000 |
+| mua-qua-san-gach-hue | Mưa Qua Sân Gạch | Huế | 929.000 | |
+| sang-tren-pho-cu-ha-noi | Sáng Trên Phố Cũ | Hà Nội | 849.000 | 899.000 |
+| hem-con-sang-den-sai-gon | Hẻm Còn Sáng Đèn | Sài Gòn | 1.099.000 | |
+| den-am-tren-doc-da-lat | Đèn Ấm Trên Dốc | Đà Lạt | 849.000 | |
+| song-vua-thuc-giac-mien-tay | Sông Vừa Thức Giấc | Miền Tây | 749.000 | 799.000 |
 
-**Nền tảng.** Website được xây dựng ban đầu trên WordPress/WooCommerce (bản V3.2), sau đó nhóm chuyển sang Next.js triển khai trên Vercel để làm việc nhóm theo nhánh (branch) và xem trước từng thay đổi trước khi đưa lên bản chính. Giai đoạn thu thập dữ liệu GA4 (05/09 đến 30/09/2026) chạy trên nền tảng: [CẦN BỔ SUNG: WordPress hay Next.js, ngày chuyển đổi chính thức]. Thông tin này ảnh hưởng trực tiếp đến cách đọc số liệu nên cần ghi rõ.
+*Nguồn: data/products.ts của website, ngày đối chiếu 26/10/2026. Giá niêm yết, không phải doanh thu.*
+
+**Lý do chọn.** [CẦN BỔ SUNG: lý do nhóm chọn ngành hàng này]. Về mặt đồ án, sản phẩm có giá trị đơn cao (749.000đ đến 1.099.000đ) và quyết định mua cần nhiều hình ảnh, câu chuyện, nên phù hợp để quan sát hành vi duyệt trang trước khi mua.
+
+**Định vị website.** Mô hình bán hàng trực tiếp (D2C, direct to consumer) với thông điệp "Bản sắc Việt thu nhỏ": mỗi sản phẩm gắn với một ký ức nơi chốn thay vì chỉ là bộ kit lắp ráp. Cấu trúc trang: trang chủ dạng kể chuyện (video Hội An, mẫu nổi bật, quy trình chế tác, form liên hệ), /shop, /collections, trang chi tiết sản phẩm (PDP, product detail page) /product/[slug], /cart, /checkout, /checkout/payment, /studio ("Tự ráp Nook", đang hoàn thiện) và /about. Thanh toán hỗ trợ COD, chuyển khoản, MoMo, ZaloPay. USP chính thức: [CẦN BỔ SUNG].
+
+**Nền tảng.** Website được xây dựng ban đầu trên WordPress/WooCommerce (bản V3.2), sau đó nhóm chuyển sang Next.js triển khai trên Vercel để làm việc theo nhánh và xem trước từng thay đổi. Ngày chuyển đổi và nền tảng trong kỳ đo: [CẦN BỔ SUNG].
 
 **Khách hàng mục tiêu (persona tóm tắt).**
 
 | Thuộc tính | Mô tả |
 | --- | --- |
-| Ai | [CẦN BỔ SUNG: độ tuổi, nghề nghiệp, khu vực]. Giả định của nhóm: người trẻ đi làm hoặc sinh viên năm cuối tại thành phố lớn, thích đồ décor có câu chuyện và hoạt động thủ công |
+| Ai | [CẦN BỔ SUNG]. Giả định của nhóm: người trẻ đi làm hoặc sinh viên năm cuối tại thành phố lớn, thích đồ décor có câu chuyện và hoạt động thủ công |
 | Cần gì | Một món quà hoặc vật trang trí mang dấu ấn Việt, có trải nghiệm tự tay làm; cần xem kỹ hình ảnh, kích thước, độ khó trước khi chi khoảng 750.000đ đến 1.100.000đ |
-| Thiết bị | Dữ liệu GA4 cho thấy desktop chiếm 68,2% sessions có xác định thiết bị (Bảng 3), nhưng tỷ lệ này có thể bị đẩy lên bởi traffic nội bộ của nhóm (mục 2.4). Thiết bị thực của khách hàng cần kiểm chứng thêm |
+| Thiết bị | CHƯA CÓ DỮ LIỆU (sẽ lấy từ GA4 Tech > Device category, Bảng 5) |
 
-*Ghi chú: các dòng ghi "giả định" là suy luận từ định vị sản phẩm, chưa có khảo sát khách hàng.*
+*Ghi chú: các dòng "giả định" là suy luận từ định vị sản phẩm, chưa có khảo sát khách hàng.*
 
 ---
 
@@ -41,45 +56,46 @@ Nhóm: [CẦN BỔ SUNG: tên nhóm, lớp học phần, giảng viên hướng 
 
 ### 2.1 Công cụ
 
-**Bảng 1. Công cụ thu thập dữ liệu**
+**Bảng 2. Công cụ thu thập dữ liệu**
 
 | Công cụ | Dùng để đo gì |
 | --- | --- |
-| Google Analytics 4 (GA4) | Traffic, kênh nguồn, thiết bị, sessions, engagement, lượt xem trang, landing page, sự kiện (event) và phễu người dùng |
-| Supermetrics (connector) | Trích xuất dữ liệu GA4 dạng bảng để tổng hợp theo kênh, theo tuần |
-| Giao diện GA4 trên trình duyệt | Đọc báo cáo theo người dùng (users), lượt xem trang và thời gian tương tác |
-| Rà soát giao diện và mã nguồn | Đối chiếu số liệu với thành phần giao diện thực tế (nút, liên kết, form) để xác định nguyên nhân |
+| Google Analytics 4 (GA4), property gắn với nookky.shop | Sessions, users, engagement, kênh nguồn, thiết bị, lượt xem trang, landing page, sự kiện thương mại điện tử (view_item_list, select_item, view_item, add_to_cart, view_cart, begin_checkout) và sự kiện tương tác (hero_primary_click, newsletter_subscribe...) |
+| GA4 DebugView, Realtime | Kiểm tra event có thực sự đến GA4 trước khi dùng số liệu phễu |
+| Google Sheet order log (backend) | Đối soát đơn đặt (dòng order_placed) và khách tự báo đã thanh toán (dòng payment_reported_by_customer) |
+| Rà soát giao diện và mã nguồn | Đối chiếu số liệu với thành phần giao diện thực tế và cách gắn tracking |
 
-*Nguồn: nhóm tổng hợp. Nhóm không dùng công cụ heatmap (Clarity, Hotjar) hay PageSpeed Insights trong kỳ đo.*
+*Nguồn: nhóm tổng hợp. Nhóm chỉ dùng GA4 làm công cụ đo hành vi.*
 
 ### 2.2 Thời gian thu thập
 
-Dữ liệu được chia thành hai bộ, không cộng gộp và không so sánh trực tiếp:
+| Giai đoạn | Kỳ đo | Mục đích |
+| --- | --- | --- |
+| 0. Chuẩn hóa đo lường | [CẦN BỔ SUNG: ngày] | Sửa các lỗi tracking P0 (mục 2.4), bật lọc traffic nội bộ, kiểm tra DebugView |
+| 1. Baseline (trước thay đổi) | [CẦN BỔ SUNG: từ ngày ... đến ngày ..., tối thiểu 7 ngày] | Số liệu cho Phần 3 |
+| 2. Triển khai 3 thay đổi | [CẦN BỔ SUNG: ngày] | Phần 4 |
+| 3. Đo lại (sau thay đổi) | [CẦN BỔ SUNG: cùng độ dài với giai đoạn 1] | Số liệu cho Phần 5 |
 
-**Bảng 2. Hai bộ dữ liệu GA4**
-
-| Bộ | Kỳ đo | Cách lấy | Đơn vị chính |
-| --- | --- | --- | --- |
-| Bộ A | 05/09 đến 30/09/2026 (Measurement ID gắn ngày 05/09) | Supermetrics, xuất ngày 30/09 và truy vấn lại ngày 01/10 | Sessions |
-| Bộ B | 27/08 đến 23/09/2026 (28 ngày, theo giao diện GA4) | Đọc trực tiếp giao diện GA4 | Users, lượt xem trang |
-
-*Nguồn: GA4. Số sessions chuẩn dùng trong báo cáo là 839 (truy vấn ngày 01/10). Một số bảng dùng số nền 825 hoặc 848 của bản xuất 30/09 và được ghi rõ.*
+*Múi giờ báo cáo: Asia/Ho_Chi_Minh. Ghi lại thời điểm xuất mỗi export vì GA4 có thể cập nhật số muộn.*
 
 ### 2.3 Cách thức thu thập và cỡ mẫu
 
-Toàn bộ là traffic tự nhiên đến website trong kỳ đo, không chạy quảng cáo trả phí. Nguồn traffic gồm tìm kiếm Google, truy cập trực tiếp, bài đăng mạng xã hội của nhóm, và mã QR [CẦN BỔ SUNG: mã QR được đặt ở đâu, ví dụ sự kiện, ấn phẩm in]. Nhóm có tự duyệt và kiểm thử website nhiều lần trong kỳ [CẦN BỔ SUNG: có nhờ bạn bè test không, bao nhiêu người, kịch bản nhiệm vụ]. Cỡ mẫu: 839 sessions, 401 users (Bộ A).
+Traffic tự nhiên và traffic từ kênh nhóm chủ động phân phối [CẦN BỔ SUNG: kênh nào, có gắn UTM không]. Cỡ mẫu: CHƯA CÓ DỮ LIỆU (sessions, users của giai đoạn 1). Nhóm tự kiểm thử website nên cần loại traffic nội bộ và các domain preview của Vercel trước khi phân tích.
 
-### 2.4 Kiểm soát chất lượng dữ liệu
+### 2.4 Kiểm soát chất lượng dữ liệu (rà soát mã nguồn ngày 26/10/2026)
 
-Nhóm ghi nhận 5 vấn đề có thể làm lệch kết quả:
+**Bảng 3. Vấn đề đo lường phát hiện trong code**
 
-1. **Traffic nội bộ chưa lọc:** 60 user desktop quay lại tạo 333 sessions, tương đương 333 / 839 = 39,7% tổng sessions. Bộ lọc IP nội bộ chưa được bật.
-2. **26 session Unassigned ngày 29/09** có 0 tương tác, kéo engagement rate tuần cuối xuống.
-3. **Năm cách đếm sessions** cho cùng kỳ (819 đến 848), chênh tối đa 29 sessions (3,5%), không đổi thứ hạng kênh.
-4. **Measurement ID bị đổi ngày 12/09** rồi khôi phục trong ngày, có thể gián đoạn thu thập.
-5. **Chưa cấu hình key event (sự kiện chuyển đổi):** GA4 ghi 0 key event, nên các số liệu chuyển đổi phản ánh thiếu đo lường trước khi phản ánh hành vi.
+| Mức | Vấn đề | Căn cứ trong code | Tác động lên báo cáo | Xử lý |
+| --- | --- | --- | --- | --- |
+| P0 | Sự kiện purchase bắn trước khi xác nhận đơn | app/checkout/page.tsx: gọi fetch("/api/orders") không chờ kết quả, ngay sau đó track("purchase") | Purchase có thể cao hơn số đơn thật; không dùng purchase làm số đơn | Thêm order_placed sau khi server trả kết quả; đối chiếu order_id với order log |
+| P0 | Gửi dữ liệu cá nhân (PII) vào GA4 | Payload purchase chứa email, phone, fullName; track() đẩy nguyên payload vào gtag | Vi phạm chính sách GA4 về PII | Xóa PII khỏi payload GA4 và dataLayer |
+| P0 | "Đã thanh toán" do khách tự báo | app/checkout/payment/page.tsx đặt trạng thái paid khi khách bấm xác nhận | Không chứng minh đã nhận tiền | Tách payment_reported (tự khai) với payment_verified (đối soát ngân hàng/COD) |
+| P1 | Có thể đếm trùng | track() gửi cả gtag trình duyệt và GA4 Measurement Protocol từ server cho event quan trọng | Event count có thể gấp đôi | Chọn 1 nguồn GA4 chính hoặc kiểm thử khử trùng lặp |
+| P1 | Chưa xác nhận GA4 đang nhận dữ liệu | Measurement ID đọc từ biến môi trường Vercel, không có trong repo | Có thể chưa có dữ liệu nào | Kiểm tra env Vercel và GA4 Realtime |
+| P2 | Traffic nội bộ | Nhóm QA nhiều lần trên site | Méo engagement rate, Direct, tỷ lệ chuyển đổi | Bật bộ lọc internal traffic |
 
-Ngoài ra, một số nhãn trang trong bản xuất (ví dụ trang studio ghi đường dẫn /app, các trang /share, /join) chưa khớp với cấu trúc URL hiện tại của Nook Ký. Nhóm chỉ dùng các số liệu xác định được trang tương ứng; phần còn lại để ở trạng thái chờ xác nhận [CẦN BỔ SUNG: đối chiếu URL trong GA4 với site].
+*Nguồn: rà soát mã nguồn repo nookky-web nhánh main. Đây không phải kết quả kiểm thử GA4 production; mức độ ảnh hưởng thực tế cần xác nhận bằng DebugView.*
 
 ---
 
@@ -87,167 +103,148 @@ Ngoài ra, một số nhãn trang trong bản xuất (ví dụ trang studio ghi 
 
 ### 3.1 Traffic
 
-**Bảng 3. Traffic theo kênh và thiết bị (Bộ A, 05/09 đến 30/09/2026)**
+**Bảng 4. Traffic theo kênh (GA4 > Acquisition > Traffic acquisition, giai đoạn 1)**
 
-| Kênh | Sessions | Tỉ trọng | Engagement rate | Giây tương tác/session |
+| Kênh | Sessions | % tổng sessions | Engaged sessions | Engagement rate |
 | --- | --- | --- | --- | --- |
-| Direct (truy cập trực tiếp) | 387 | 46,1% | 53,0% | 69 |
-| Organic Search (tìm kiếm tự nhiên) | 235 | 28,0% | 74,9% | 121 |
-| Organic Social (mạng xã hội tự nhiên) | 137 | 16,3% | 63,5% | 64 |
-| Referral (giới thiệu, chủ yếu mã QR) | 55 | 6,6% | 61,8% | 52 |
-| Còn lại (Unassigned, kênh khác) | 25 | 3,0% | không tách được | không tách được |
-| **Tổng** | **839** | **100%** | **63,1%** | |
+| Direct | CHƯA CÓ DỮ LIỆU | | | |
+| Organic Search | CHƯA CÓ DỮ LIỆU | | | |
+| Organic Social | CHƯA CÓ DỮ LIỆU | | | |
+| Paid Social / Paid Search | CHƯA CÓ DỮ LIỆU | | | |
+| Referral | CHƯA CÓ DỮ LIỆU | | | |
+| Unassigned / khác | CHƯA CÓ DỮ LIỆU | | | |
+| **Tổng** | **CHƯA CÓ DỮ LIỆU** | 100% | | |
 
-| Thiết bị | Sessions | Tỉ trọng (trên 796 sessions có xác định thiết bị) |
-| --- | --- | --- |
-| Desktop | 543 | 68,2% |
-| Mobile | 250 | 31,4% |
-| Tablet | 3 | 0,4% |
+**Bảng 5. Traffic theo thiết bị (GA4 > Tech, giai đoạn 1)**
 
-*Nguồn: GA4 qua Supermetrics, truy vấn 01/10/2026. Tỉ trọng thiết bị = sessions thiết bị / 796; còn 43 sessions không xác định thiết bị. Engagement rate (ER, tỷ lệ phiên có tương tác) = engaged sessions / sessions; tổng: 529 / 839 = 63,1%.*
+| Thiết bị | Sessions | Users | Engagement rate |
+| --- | --- | --- | --- |
+| Desktop | CHƯA CÓ DỮ LIỆU | | |
+| Mobile | CHƯA CÓ DỮ LIỆU | | |
+| Tablet | CHƯA CÓ DỮ LIỆU | | |
 
-**Bảng 4. Xu hướng theo tuần (Bộ A, bản xuất 30/09, số nền 848)**
+*Công thức: % tổng sessions = sessions kênh / tổng sessions; Engagement rate (ER, tỷ lệ phiên có tương tác) = engaged sessions / sessions. Gợi ý Hình 1: cột chồng sessions theo kênh theo tuần, đường ER trên trục phụ.*
 
-| Tuần | Sessions | ER | Search | Social | Direct | Referral |
-| --- | --- | --- | --- | --- | --- | --- |
-| 05 đến 10/09 (6 ngày) | 198 | 61,1% | 48 | 38 | 107 | 4 |
-| 11 đến 17/09 | 201 | 63,7% | 74 | 40 | 85 | 2 |
-| 18 đến 24/09 | 225 | 66,7% | 58 | 31 | 109 | 27 |
-| 25 đến 30/09 | 224 | 47,8% | 56 | 30 | 86 | 22 |
+**Nhận xét.** [CẦN BỔ SUNG sau khi có số liệu]. Các điểm cần đọc: kênh chiếm tỉ trọng lớn nhất; kênh có ER cao nhất; tỉ trọng mobile so với desktop; Direct có bị phình bởi traffic nội bộ hay không.
 
-*Nguồn: GA4 qua Supermetrics. Gợi ý Hình 1: biểu đồ cột chồng sessions theo kênh từng tuần, đường ER trên trục phụ.*
-
-**Nhận xét.**
-- Direct chiếm gần một nửa traffic (46,1%) nhưng có ER thấp nhất (53,0%). Một phần Direct nhiều khả năng là traffic nội bộ (mục 2.4) và lượt từ ứng dụng mạng xã hội bị mất nguồn khi mở bằng trình duyệt trong ứng dụng. Đây là giả thuyết, chưa kiểm chứng.
-- Organic Search là kênh chất lượng nhất: ER 74,9% (khoảng tin cậy 95% Wilson: 69,0% đến 80,0%), cao hơn Direct 21,9 điểm phần trăm (p < 0,001) và gấp 1,75 lần thời gian tương tác của Direct (121 / 69). Search cũng là kênh duy nhất tăng mạnh trong tuần 2 (48 lên 74 sessions, +54%).
-- Referral tăng từ 2 lên 27 sessions ở tuần 3, khớp với 25 sessions từ qr1.me-qr.com, cho thấy kênh offline qua mã QR có tác dụng kéo traffic.
-- ER tuần 4 giảm còn 47,8%, trùng với 26 session Unassigned không tương tác ngày 29/09, nên đây là bất thường dữ liệu hơn là suy giảm hành vi.
-
-**Kết luận:** Traffic của Nook Ký phụ thuộc vào Direct về lượng nhưng Organic Search mới là kênh mang lại người dùng chất lượng cao nhất.
+**Kết luận:** [CẦN BỔ SUNG: 1 câu, ví dụ dạng "Kênh X chiếm Y% sessions nhưng kênh Z có ER cao nhất (W%)"].
 
 ### 3.2 Phiên truy cập (Sessions)
 
-**Bảng 5. Chỉ số phiên truy cập**
+**Bảng 6. Chỉ số phiên truy cập (giai đoạn 1)**
 
-| Chỉ số | Giá trị | Kỳ đo, nguồn |
+| Chỉ số | Giá trị | Cách lấy |
 | --- | --- | --- |
-| Sessions | 839 | Bộ A, truy vấn 01/10 |
-| Engaged sessions | 529 (ER 63,1%) | Bộ A, truy vấn 01/10 |
-| Thời gian tương tác trung bình | 83 giây/session | Bộ A, bản xuất 30/09 |
-| Pages/session | 3.036 / 825 = 3,68 trang | Bộ A, bản xuất 30/09 |
-| Events/session | 5.660 / 825 = 6,86 sự kiện | Bộ A, bản xuất 30/09 |
-| Returning users | 90 / 395 = 22,8% users | Bộ A, bản xuất 30/09 |
-| Thời gian tương tác trung bình/user | 2 phút 56 giây | Bộ B |
-| Engaged sessions/user | 1,31 | Bộ B |
+| Sessions | CHƯA CÓ DỮ LIỆU | GA4 Traffic acquisition |
+| Total users / New users / Returning users | CHƯA CÓ DỮ LIỆU | GA4 User acquisition |
+| Engaged sessions, Engagement rate | CHƯA CÓ DỮ LIỆU | Engaged sessions / Sessions |
+| Thời gian tương tác trung bình | CHƯA CÓ DỮ LIỆU | Giây/session; không so với giây/user |
+| Views/session | CHƯA CÓ DỮ LIỆU | Views / Sessions |
+| Tỉ lệ returning users | CHƯA CÓ DỮ LIỆU | Returning users / Total users |
 
-**Bảng 6. Người dùng mới và quay lại theo kênh (Bộ B, 27/08 đến 23/09/2026)**
+**Nhận xét.** [CẦN BỔ SUNG]. Cần đọc: phiên có đủ dài để xem PDP không (sản phẩm giá cao cần thời gian cân nhắc); khách quay lại chiếm bao nhiêu; kênh nào giữ chân tốt nhất.
 
-| Kênh | New users | Returning users | Tỉ trọng returning | Thời gian tương tác/user |
-| --- | --- | --- | --- | --- |
-| Direct | 130 | 29 | 43% | 3 phút 56 giây |
-| Organic Search | 79 | 29 | 43% | 3 phút 53 giây |
-| Organic Social | 70 | 4 | 6% | 31 giây |
-| Referral | 17 | 5 | 7% | 34 giây |
-| Tổng | 296 | 67 | 100% | |
-
-*Nguồn: giao diện GA4. Bộ B tính thời gian theo user, Bộ A tính theo session; không so trực tiếp hai đơn vị.*
-
-**Nhận xét.**
-- Phiên trung bình xem 3,68 trang, nghĩa là người dùng có duyệt sâu chứ không thoát ngay; 63,1% phiên có tương tác.
-- Organic Social mang về 70 new users (24% người dùng mới) nhưng chỉ giữ chân 31 giây/user và có 4 lượt quay lại (6%). Direct và Search chiếm 58 / 67 = 86,6% lượt quay lại.
-- Độ sâu phiên cao có thể một phần đến từ nhóm tự kiểm thử website (333 sessions từ 60 user desktop quay lại), nên số 3,68 trang/phiên có thể cao hơn hành vi khách thật. Đây là giới hạn cần ghi nhận.
-
-**Kết luận:** Người dùng có tương tác và duyệt nhiều trang trong phiên, nhưng traffic từ mạng xã hội gần như không ở lại và không quay lại.
+**Kết luận:** [CẦN BỔ SUNG: 1 câu].
 
 ### 3.3 Luồng di chuyển (User flow)
 
-**Bảng 7. Lượt xem trang và landing page**
+**Bảng 7. Lượt xem và landing page theo trang (GA4 > Engagement > Pages and screens, Landing page)**
 
-| Trang | Lượt xem (Bộ B) | Sessions bắt đầu tại trang (Bộ A) |
-| --- | --- | --- |
-| Trang chủ | 1.100 | [CẦN BỔ SUNG] |
-| Trang Studio "Tự ráp Nook" | 434 | 71 |
-| Blog/Journal | 149 | 28 (trang chỉ mục) |
-| Trang Sản phẩm, PDP, Giỏ hàng | [CẦN BỔ SUNG] | [CẦN BỔ SUNG] |
+| Trang | Vai trò | Views | Landing sessions |
+| --- | --- | --- | --- |
+| / | Trang chủ | CHƯA CÓ DỮ LIỆU | CHƯA CÓ DỮ LIỆU |
+| /shop | Danh mục 6 mẫu | CHƯA CÓ DỮ LIỆU | CHƯA CÓ DỮ LIỆU |
+| /collections | Chọn địa danh | CHƯA CÓ DỮ LIỆU | CHƯA CÓ DỮ LIỆU |
+| /product/[slug] (gộp 6 PDP) | Chi tiết sản phẩm | CHƯA CÓ DỮ LIỆU | CHƯA CÓ DỮ LIỆU |
+| /cart | Giỏ hàng | CHƯA CÓ DỮ LIỆU | CHƯA CÓ DỮ LIỆU |
+| /checkout | Thông tin đặt hàng | CHƯA CÓ DỮ LIỆU | |
+| /studio | Tự ráp Nook (đang hoàn thiện) | CHƯA CÓ DỮ LIỆU | CHƯA CÓ DỮ LIỆU |
+| /about | Câu chuyện thương hiệu | CHƯA CÓ DỮ LIỆU | CHƯA CÓ DỮ LIỆU |
 
-*Nguồn: GA4. Trang Studio được bản xuất ghi nhãn /app; nhóm cần xác nhận đây là /studio trên Nook Ký. Các landing page /share (khoảng 33), /join (17) và một số tiêu đề bài blog chưa khớp với site nên không đưa vào phân tích.*
+*Chỉ số dẫn xuất cần tính: Views /shop / Views trang chủ; Views /studio / Views trang chủ; Views PDP / Views /shop. Nếu có thể, dùng GA4 Path exploration bắt đầu từ / và từ /studio. Gợi ý Hình 2: sơ đồ luồng Trang chủ → /shop → PDP → /cart.*
 
-**Tính toán.**
-- Tỉ lệ lượt xem Studio trên trang chủ = 434 / 1.100 = 39,5%.
-- Tỉ trọng sessions vào thẳng Studio = 71 / 839 = 8,5%.
+**Đối chiếu giao diện (rà soát mã nguồn).**
+- Trên trang chủ, nút CTA (call to action, lời kêu gọi hành động) chính của Hero "Khám phá bộ sưu tập →" trỏ đến neo #shop-all, nhưng trang chủ hiện không có khối nào mang định danh này (components/home/Hero.tsx). Bấm nút không cuộn và không chuyển trang.
+- Trang /studio chỉ có tiêu đề, đoạn giới thiệu và trạng thái "Trải nghiệm tùy chỉnh đang được hoàn thiện", không có liên kết dẫn tiếp; trong khi menu chính và nút phụ của Hero đều dẫn vào đây.
 
-**Nhận xét.**
-- Trang chủ là điểm tập trung lớn nhất (1.100 lượt xem, gấp 2,5 lần Studio), nên mọi lối đi tiếp từ trang chủ đều quyết định luồng còn lại của phiên.
-- Studio là trang được xem nhiều thứ hai và là landing page riêng lẻ lớn nhất trong dữ liệu đã xác định. Tuy nhiên, rà soát giao diện cho thấy trang này hiện chỉ có tiêu đề, một đoạn giới thiệu và trạng thái "Trải nghiệm tùy chỉnh đang được hoàn thiện", không có liên kết hay nút dẫn tiếp sang sản phẩm. Nhóm suy luận Studio đang là trang cụt (dead end) trong luồng: người dùng tò mò về tính năng tự ráp đến nơi nhưng không có đường đi tiếp. Suy luận này cần kiểm chứng bằng chỉ số thoát (exit) của trang [CẦN BỔ SUNG: exits hoặc exit rate của /studio trong GA4 Explorations].
-- Chưa có số liệu lượt xem trang Sản phẩm, PDP và Giỏ hàng nên chưa vẽ được đường đi đầy đủ Trang chủ → Sản phẩm → PDP → Giỏ hàng.
+**Nhận xét.** [CẦN BỔ SUNG]. Hai giả thuyết cần kiểm chứng bằng số liệu: (H1) tỉ lệ đi tiếp từ trang chủ sang /shop thấp so với lượng xem trang chủ; (H2) /studio có lượng xem đáng kể nhưng là điểm thoát.
 
-**Kết luận:** Luồng chính đi qua trang chủ rồi rẽ mạnh sang Studio, nhưng Studio chưa có lối đi tiếp nên có nguy cơ trở thành điểm thoát của phiên.
+**Kết luận:** [CẦN BỔ SUNG: 1 câu].
 
 ### 3.4 Điểm nghẽn (Bottlenecks)
 
-**Bảng 8. Phễu người dùng và sự kiện (Bộ A, 05/09 đến 30/09/2026)**
+**Bảng 8. Phễu thương mại điện tử (GA4 Funnel exploration, đơn vị: users hoặc sessions, chọn 1 và ghi rõ)**
 
-| Bước | Users | Tỉ lệ so với users truy cập | Tỉ lệ rớt so với bước trước |
+| Bước | Sự kiện | Số thực tế | Tỉ lệ rớt so với bước trước |
 | --- | --- | --- | --- |
-| Có truy cập | 394 | 100% | |
-| Cuộn trang (scroll) | 250 | 63,5% | 1 - 250 / 394 = 36,5% |
-| Có tương tác | 204 | 51,8% | 1 - 204 / 250 = 18,4% |
-| Có sự kiện click | 10 | 2,5% | 1 - 10 / 204 = **95,1%** |
-| Bắt đầu điền form (form_start) | 4 | 1,0% | 1 - 4 / 10 = 60,0% |
-| Hoàn tất key event | 0 | 0% | **100%** |
+| 1. Truy cập | session_start | CHƯA CÓ DỮ LIỆU | |
+| 2. Xem danh mục | view_item_list | CHƯA CÓ DỮ LIỆU | 1 - bước 2 / bước 1 |
+| 3. Chọn sản phẩm | select_item | CHƯA CÓ DỮ LIỆU | 1 - bước 3 / bước 2 |
+| 4. Xem chi tiết | view_item | CHƯA CÓ DỮ LIỆU | 1 - bước 4 / bước 3 |
+| 5. Thêm giỏ | add_to_cart | CHƯA CÓ DỮ LIỆU | 1 - bước 5 / bước 4 |
+| 6. Xem giỏ | view_cart | CHƯA CÓ DỮ LIỆU | 1 - bước 6 / bước 5 |
+| 7. Bắt đầu checkout | begin_checkout | CHƯA CÓ DỮ LIỆU | 1 - bước 7 / bước 6 |
+| 8. Đặt đơn thành công | order_id duy nhất trong order log | CHƯA CÓ DỮ LIỆU | 1 - bước 8 / bước 7 |
+| 9. Khách tự báo đã trả | payment_reported_by_customer | CHƯA CÓ DỮ LIỆU | Tự khai, chưa đối soát |
 
-*Nguồn: GA4 truy vấn 01/10/2026. Số sự kiện: click 24 lượt, form_start 6 lượt. Các bước không bắt buộc lồng nhau tuyệt đối (một user có thể form_start mà không click), nên tỉ lệ rớt dùng để định vị điểm nghẽn, không phải tỉ lệ chuyển đổi chính xác. Gợi ý Hình 2: biểu đồ phễu ngang.*
+**Bảng 9. Micro-conversion trên trang chủ**
 
-**Đối chiếu với giao diện.** Rà soát mã nguồn trang chủ phát hiện nút CTA (call to action, lời kêu gọi hành động) chính ở Hero "Khám phá bộ sưu tập →" trỏ đến neo #shop-all, trong khi trang chủ hiện không có khối nào mang định danh này. Khi bấm, trang không cuộn đến đâu và không chuyển trang. Đây là một nút "chết" (dead click) ngay tại vị trí nổi bật nhất của trang được xem nhiều nhất [CẦN BỔ SUNG: xác nhận lỗi tồn tại trên bản live trong kỳ đo].
+| Sự kiện | Số lượt (event count) | Users |
+| --- | --- | --- |
+| hero_primary_click | CHƯA CÓ DỮ LIỆU | CHƯA CÓ DỮ LIỆU |
+| hero_secondary_click | CHƯA CÓ DỮ LIỆU | CHƯA CÓ DỮ LIỆU |
+| form_start (form liên hệ) | CHƯA CÓ DỮ LIỆU | CHƯA CÓ DỮ LIỆU |
+| newsletter_subscribe (gửi form liên hệ) | CHƯA CÓ DỮ LIỆU | CHƯA CÓ DỮ LIỆU |
 
-**Nhận xét.**
-- Điểm rớt lớn nhất nằm giữa "có tương tác" và "click": 204 users có tương tác nhưng chỉ 10 users phát sinh click (4,9%). Lưu ý sự kiện click trong GA4 Enhanced Measurement chủ yếu ghi nhận click ra liên kết ngoài, nên con số 10 không đo hết mọi lượt bấm trong site; tuy vậy, kết hợp với nút CTA chính không hoạt động, nhóm đánh giá trang chủ đang thiếu một lối hành động rõ ràng.
-- Điểm rớt thứ hai: 4 users bắt đầu điền form nhưng 0 hoàn tất. Form liên hệ ở cuối trang chủ có 4 trường (họ tên, email, mối quan tâm, lời nhắn). Có hai giả thuyết song song: (a) form dài làm người dùng bỏ dở; (b) sự kiện gửi form (newsletter_subscribe) chưa được đánh dấu là key event nên GA4 ghi 0. Với 4 users, chưa thể phân biệt hai giả thuyết.
-- GA4 chưa ghi nhận các sự kiện thương mại (add_to_cart, begin_checkout, purchase) trong dữ liệu tổng hợp, nên chưa đo được phễu mua hàng.
+*Không dùng purchase của GA4 làm số đơn (xem Bảng 3, P0). Gợi ý Hình 3: biểu đồ phễu ngang.*
 
-**Kết luận:** Điểm nghẽn lớn nhất là bước chuyển từ "xem" sang "hành động" trên trang chủ (rớt 95,1%), trùng với vị trí nút CTA chính không hoạt động.
+**Đối chiếu giao diện (rà soát mã nguồn).** Form liên hệ cuối trang chủ có 4 trường (họ tên, email, mối quan tâm, lời nhắn); sự kiện newsletter_subscribe chưa được xác nhận là key event trong GA4.
+
+**Nhận xét.** [CẦN BỔ SUNG]. Xác định bước có tỉ lệ rớt cao nhất và so với tỉ lệ form_start sang newsletter_subscribe.
+
+**Kết luận:** [CẦN BỔ SUNG: 1 câu nêu bước nghẽn lớn nhất và tỉ lệ rớt].
 
 ### 3.5 Liên kết 4 mảng: nguyên nhân gốc
 
-Bốn mảng cùng chỉ về một vấn đề: website thu hút được người xem nhưng chưa dẫn họ đến hành động. Traffic có chất lượng (ER 63,1%, Search 74,9%), phiên duyệt sâu (3,68 trang/phiên), nhưng luồng di chuyển tập trung ở trang chủ và Studio, hai nơi đều thiếu lối đi tiếp: trang chủ có CTA chính không hoạt động, Studio là trang cụt chưa có tính năng. Hệ quả là phễu rớt 95,1% ở bước chuyển sang click và 0 hoàn tất form. Mạng xã hội càng khuếch đại vấn đề vì khách từ đây chỉ ở lại 31 giây, không đủ thời gian tự tìm đường khi lối chính bị gãy. Lớp nguyên nhân thứ hai là đo lường: thiếu key event và chưa lọc traffic nội bộ khiến mọi tỷ lệ chuyển đổi hiện mới ở mức tín hiệu, chưa phải kết luận.
+[CẦN BỔ SUNG sau khi có số liệu]. Giả thuyết làm việc của nhóm, cần số liệu để xác nhận hoặc bác bỏ: website có thể thu hút người xem bằng phần kể chuyện ở trang chủ nhưng chưa dẫn họ đến hành động, vì hai lối chính từ trang chủ đều có vấn đề (CTA chính không hoạt động, /studio là trang cụt). Nếu số liệu cho thấy views /shop thấp so với trang chủ và /studio có lượng xem cao, giả thuyết được củng cố; nếu không, nhóm điều chỉnh lại Phần 4.
 
 ---
 
 ## 4. Đề xuất & thay đổi đã thực hiện
 
-Các thay đổi được sắp theo ma trận tác động/công sức: tác động cao, công sức thấp lên trước.
+Các thay đổi sắp theo ma trận tác động/công sức. Mỗi "Vấn đề" gồm bằng chứng giao diện (đã có) và bằng chứng số liệu (điền từ Phần 3). Thay đổi chỉ được giữ trong báo cáo nếu số liệu giai đoạn 1 ủng hộ.
 
-**Bảng 9. Thứ tự ưu tiên**
+**Bảng 10. Thứ tự ưu tiên**
 
 | # | Thay đổi | Trang | Tác động | Công sức | Trạng thái |
 | --- | --- | --- | --- | --- | --- |
 | 1 | Sửa CTA chính ở Hero | Trang chủ | Cao | Thấp | [CẦN BỔ SUNG: ngày triển khai] |
-| 2 | Biến Studio từ trang cụt thành trang có lối đi tiếp | /studio | Cao | Trung bình | [CẦN BỔ SUNG: ngày triển khai] |
-| 3 | Rút gọn form liên hệ và gắn key event | Trang chủ | Trung bình | Trung bình | [CẦN BỔ SUNG: ngày triển khai] |
+| 2 | Thêm lối đi tiếp cho Studio | /studio | Cao | Trung bình | [CẦN BỔ SUNG: ngày triển khai] |
+| 3 | Rút gọn form liên hệ, gắn key event | Trang chủ | Trung bình | Trung bình | [CẦN BỔ SUNG: ngày triển khai] |
 
 ### 4.1 Thay đổi 1: Sửa nút CTA chính ở Hero trang chủ
 
-- **Vấn đề:** Phễu rớt 95,1% từ "có tương tác" (204 users) sang "click" (10 users) (mục 3.4). Trang chủ là trang được xem nhiều nhất (1.100 lượt, mục 3.3), nhưng nút "Khám phá bộ sưu tập →" trỏ đến neo #shop-all không tồn tại nên không đưa người dùng đi đâu.
-- **Thay đổi:** Trên trang chủ, khối Hero: đổi đích của nút chính từ #shop-all sang trang /shop (danh sách 6 sản phẩm); giữ sự kiện hero_primary_click để đo. Nút phụ "Tự ráp Nook (Studio)" giữ nguyên nhưng gắn thêm sự kiện hero_secondary_click để so sánh hai lối. [CẦN BỔ SUNG: nhóm xác nhận nội dung thực tế đã sửa]
-- **Ảnh Trước-Sau:** [Hình 3: Trước | Sau. Chụp Hero trang chủ nookky.shop trên desktop 1440px; ảnh Trước kèm thanh địa chỉ sau khi bấm nút (URL chỉ đổi thành /#shop-all, trang không cuộn); ảnh Sau là trang /shop mở ra sau khi bấm.]
-  *Hình 3. Nút CTA chính trước và sau khi sửa đích liên kết.*
-- **Lý do dữ liệu:** CTA chính nằm trên trang chiếm lượng xem lớn nhất, nên một nút hỏng tại đây ảnh hưởng trực tiếp đến phần lớn phiên. Sửa lỗi gần như không tốn công nhưng mở lại lối đi chính Trang chủ → Sản phẩm. Chỉ số kỳ vọng cải thiện: số lượt hero_primary_click, tỉ lệ lượt xem /shop trên lượt xem trang chủ, và lượt xem PDP.
+- **Vấn đề:** Nút "Khám phá bộ sưu tập →" trỏ đến neo #shop-all không tồn tại trên trang chủ nên không đưa người dùng đi đâu (rà soát mã nguồn). Số liệu (mục 3.3, 3.4): views trang chủ [CẦN BỔ SUNG], views /shop / views trang chủ = [CẦN BỔ SUNG]%, hero_primary_click [CẦN BỔ SUNG].
+- **Thay đổi:** Khối Hero trang chủ: đổi đích nút chính từ #shop-all sang /shop; giữ sự kiện hero_primary_click. [CẦN BỔ SUNG: xác nhận nội dung đã làm]
+- **Ảnh Trước-Sau:** [Hình 4: Trước | Sau. Chụp Hero trang chủ nookky.shop trên desktop 1440px; ảnh Trước kèm thanh địa chỉ sau khi bấm (URL thành /#shop-all, trang không cuộn); ảnh Sau là trang /shop mở ra.]
+  *Hình 4. Nút CTA chính trước và sau khi sửa đích liên kết.*
+- **Lý do dữ liệu:** CTA chính nằm ở vị trí nổi bật nhất của trang chủ; nếu trang chủ là trang có lượng xem lớn nhất (cần xác nhận ở Bảng 7) thì lỗi này ảnh hưởng phần lớn phiên. Công sửa gần như bằng 0. Chỉ số kỳ vọng cải thiện: views /shop / views trang chủ, view_item_list, select_item.
 
 ### 4.2 Thay đổi 2: Thêm lối đi tiếp cho trang Studio
 
-- **Vấn đề:** Studio nhận 434 lượt xem (bằng 39,5% lượt xem trang chủ) và 71 sessions vào thẳng (8,5% tổng sessions) (mục 3.3), nhưng trang chỉ hiển thị trạng thái "đang được hoàn thiện", không có liên kết nào dẫn tiếp. Người dùng quan tâm đến trải nghiệm tự ráp không có hành động khả thi nào sau khi đến.
-- **Thay đổi:** Trên trang /studio, dưới phần giới thiệu, bổ sung: (1) nút "Xem 6 mẫu có sẵn để tự ráp" dẫn đến /shop; (2) dải 3 sản phẩm nổi bật (Hội An, Huế, Hà Nội) dẫn đến PDP; (3) form 1 trường email "Nhận tin khi Studio mở" thay cho dòng trạng thái tĩnh. [CẦN BỔ SUNG: nhóm xác nhận nội dung thực tế đã làm]
-- **Ảnh Trước-Sau:** [Hình 4: Trước | Sau. Chụp toàn trang nookky.shop/studio trên desktop và mobile 390px; ảnh Trước chỉ có tiêu đề và dòng trạng thái; ảnh Sau có nút sang /shop, dải 3 sản phẩm và form email.]
-  *Hình 4. Trang Studio trước và sau khi bổ sung lối đi tiếp.*
-- **Lý do dữ liệu:** Studio là trang có lượng xem lớn thứ hai, nên biến nó từ điểm cụt thành điểm trung chuyển giúp giữ lại một luồng traffic đáng kể. Form email cũng biến nhu cầu "chờ tính năng" thành danh sách khách tiềm năng đo được. Chỉ số kỳ vọng cải thiện: exit rate của /studio giảm, lượt xem /shop và PDP có trang trước là /studio tăng, số lượt đăng ký email từ Studio.
+- **Vấn đề:** /studio đang thông báo "đang được hoàn thiện" và không có liên kết dẫn tiếp, trong khi menu chính và nút phụ Hero đều dẫn vào (rà soát mã nguồn). Số liệu (mục 3.3): views /studio [CẦN BỔ SUNG], landing sessions /studio [CẦN BỔ SUNG], exit rate /studio [CẦN BỔ SUNG].
+- **Thay đổi:** Trên /studio bổ sung: (1) nút "Xem 6 mẫu có sẵn để tự ráp" dẫn đến /shop; (2) dải 3 sản phẩm nổi bật dẫn đến PDP; (3) form 1 trường email "Nhận tin khi Studio mở". [CẦN BỔ SUNG: xác nhận nội dung đã làm]
+- **Ảnh Trước-Sau:** [Hình 5: Trước | Sau. Chụp toàn trang nookky.shop/studio trên desktop và mobile 390px; Trước chỉ có tiêu đề và dòng trạng thái; Sau có nút sang /shop, dải 3 sản phẩm và form email.]
+  *Hình 5. Trang Studio trước và sau khi bổ sung lối đi tiếp.*
+- **Lý do dữ liệu:** Nếu /studio có lượng xem đáng kể so với trang chủ, biến trang cụt thành điểm trung chuyển giữ lại luồng traffic đó; form email biến nhu cầu chờ tính năng thành danh sách khách tiềm năng đo được. Chỉ số kỳ vọng cải thiện: exit rate /studio giảm, views PDP có trang trước là /studio, số đăng ký email.
 
 ### 4.3 Thay đổi 3: Rút gọn form liên hệ và gắn key event
 
-- **Vấn đề:** 4 users bắt đầu điền form (6 lượt form_start) nhưng 0 key event hoàn tất (mục 3.4). Form cuối trang chủ có 4 trường, trong đó có ô lời nhắn tự do.
-- **Thay đổi:** Trên trang chủ, khối form liên hệ: giảm từ 4 xuống 2 trường bắt buộc (email, mối quan tâm); họ tên và lời nhắn chuyển thành tùy chọn, thu gọn mặc định; thêm thông báo xác nhận ngay sau khi gửi. Trong GA4, đánh dấu sự kiện newsletter_subscribe là key event. [CẦN BỔ SUNG: nhóm xác nhận nội dung thực tế đã làm]
-- **Ảnh Trước-Sau:** [Hình 5: Trước | Sau. Chụp khối form cuối trang chủ trên mobile 390px; ảnh Trước có 4 trường; ảnh Sau có 2 trường và trạng thái gửi thành công. Kèm ảnh màn hình GA4 Admin > Events với newsletter_subscribe đã bật "Mark as key event".]
-  *Hình 5. Form liên hệ trước và sau khi rút gọn, kèm cấu hình key event.*
-- **Lý do dữ liệu:** Thay đổi xử lý cùng lúc cả hai giả thuyết ở mục 3.4: rút gọn form xử lý giả thuyết form dài, gắn key event xử lý giả thuyết thiếu đo lường. Nếu sau thay đổi vẫn có form_start nhưng 0 key event, nhóm loại được giả thuyết đo lường. Chỉ số kỳ vọng cải thiện: tỉ lệ hoàn tất form = key event / form_start (hiện 0 / 4 users).
+- **Vấn đề:** Form liên hệ có 4 trường và sự kiện gửi form chưa là key event (rà soát mã nguồn). Số liệu (mục 3.4): form_start [CẦN BỔ SUNG] users, newsletter_subscribe [CẦN BỔ SUNG] users, tỉ lệ hoàn tất = newsletter_subscribe / form_start = [CẦN BỔ SUNG]%.
+- **Thay đổi:** Khối form cuối trang chủ: giảm từ 4 xuống 2 trường bắt buộc (email, mối quan tâm); họ tên và lời nhắn thành tùy chọn; thêm thông báo gửi thành công. Trong GA4, đánh dấu newsletter_subscribe là key event. [CẦN BỔ SUNG: xác nhận nội dung đã làm]
+- **Ảnh Trước-Sau:** [Hình 6: Trước | Sau. Chụp khối form cuối trang chủ trên mobile 390px; Trước có 4 trường; Sau có 2 trường và trạng thái gửi thành công; kèm ảnh GA4 Admin > Events với newsletter_subscribe đã bật key event.]
+  *Hình 6. Form liên hệ trước và sau khi rút gọn, kèm cấu hình key event.*
+- **Lý do dữ liệu:** Mỗi trường bắt buộc thêm vào là thêm một điểm có thể bỏ dở; nếu tỉ lệ hoàn tất ở giai đoạn 1 thấp, rút gọn form nhắm thẳng vào bước rớt đó. Gắn key event giúp đo được lead hợp lệ. Chỉ số kỳ vọng cải thiện: newsletter_subscribe / form_start.
 
 ---
 
@@ -255,32 +252,30 @@ Các thay đổi được sắp theo ma trận tác động/công sức: tác đ
 
 ### 5.1 Tác động dự kiến
 
-Nhóm chưa có số liệu GA4 sau thay đổi vì quyền truy cập connector hết hạn ngày 09/10/2026 và chưa đọc lại giao diện GA4 sau mốc 30/09. Toàn bộ tác động dưới đây là **dự kiến**, kèm cách đo lại.
+**Bảng 11. Tác động dự kiến và kế hoạch đo lại**
 
-**Bảng 10. Tác động dự kiến và kế hoạch đo lại**
-
-| Thay đổi | Chỉ số chính | Trước (thực đo) | Sau | Cách đo lại |
+| Thay đổi | Chỉ số chính | Trước (giai đoạn 1) | Sau (giai đoạn 3) | Cách đo lại |
 | --- | --- | --- | --- | --- |
-| 1. CTA Hero | Users có click/users tương tác; lượt xem /shop trên lượt xem trang chủ | 10 / 204 = 4,9%; /shop: [CẦN BỔ SUNG] | [CẦN BỔ SUNG hoặc "chưa có"] | GA4 Explorations, sự kiện hero_primary_click, 14 đến 28 ngày sau triển khai |
-| 2. Studio | Exit rate /studio; lượt xem PDP từ /studio; đăng ký email | Exit rate: [CẦN BỔ SUNG]; email: 0 | [CẦN BỔ SUNG hoặc "chưa có"] | GA4 Path exploration bắt đầu từ /studio, cùng thời lượng |
-| 3. Form | Key event / form_start | 0 / 4 users | [CẦN BỔ SUNG hoặc "chưa có"] | GA4 Funnel exploration form_start → newsletter_subscribe |
+| 1. CTA Hero | Views /shop / views trang chủ; hero_primary_click | CHƯA CÓ DỮ LIỆU | CHƯA CÓ DỮ LIỆU | GA4 Pages and screens, Events; cùng độ dài kỳ đo |
+| 2. Studio | Exit rate /studio; views PDP từ /studio; đăng ký email | CHƯA CÓ DỮ LIỆU | CHƯA CÓ DỮ LIỆU | GA4 Path exploration bắt đầu từ /studio |
+| 3. Form | newsletter_subscribe / form_start | CHƯA CÓ DỮ LIỆU | CHƯA CÓ DỮ LIỆU | GA4 Funnel exploration form_start → newsletter_subscribe |
 
-Nguyên tắc so sánh: dùng cùng độ dài kỳ đo trước và sau, loại traffic nội bộ trước khi so, và không gán cải thiện cho thay đổi nếu cùng lúc có sự kiện kéo traffic khác (đăng bài mạng xã hội, đặt mã QR mới).
+Nguyên tắc so sánh: cùng độ dài kỳ đo trước và sau, đã loại traffic nội bộ, ghi lại các sự kiện kéo traffic khác trong kỳ (đăng bài, khuyến mãi) để không gán nhầm hiệu quả cho thay đổi. Nếu đến hạn nộp chưa có đủ dữ liệu giai đoạn 3, ghi rõ tác động là dự kiến.
 
 ### 5.2 Hạn chế của đồ án
 
-1. **Cỡ mẫu nhỏ:** 839 sessions, 401 users trong 26 ngày; phễu chỉ còn 10 users ở bước click và 4 users ở form_start, không đủ để kiểm định thống kê các bước cuối.
-2. **Traffic nội bộ chưa lọc:** khoảng 39,7% sessions có thể đến từ nhóm, làm lệch ER, thời gian tương tác, pages/session và tỷ trọng desktop. Các kiểm định ở mục 3.1 chưa hiệu chỉnh cho yếu tố này.
-3. **Thiếu đo lường hành vi:** không có key event, chưa thấy sự kiện thương mại trong dữ liệu, không có heatmap hay scroll map, nên luồng di chuyển và điểm nghẽn được suy luận từ lượt xem trang kết hợp rà soát giao diện, không phải quan sát trực tiếp.
-4. **Dữ liệu không nhất quán:** hai bộ số khác kỳ và khác đơn vị; năm cách đếm sessions; một số nhãn trang trong bản xuất chưa khớp URL của site; Measurement ID bị đổi ngày 12/09.
-5. **Thời gian ngắn và chưa đo lại:** chưa có dữ liệu sau thay đổi, nên mọi tác động ở Bảng 10 là kỳ vọng. Yếu tố ngoại cảnh (Trung Thu, lịch đăng bài) chưa được kiểm soát.
-6. **Kết luận ở mức tương quan:** các liên hệ như "CTA hỏng dẫn đến rớt phễu" là suy luận hợp lý từ dữ liệu và giao diện, chưa phải quan hệ nhân quả đã kiểm chứng.
+1. **Dữ liệu GA4 của Nook Ký chưa được thu thập/xuất tại thời điểm viết khung:** toàn bộ Phần 3 phụ thuộc vào giai đoạn 1.
+2. **Lỗi đo lường trong code (Bảng 3):** purchase bắn trước khi xác nhận đơn, PII trong payload, khả năng đếm trùng; số liệu trước khi sửa các lỗi này cần đọc thận trọng.
+3. **Cỡ mẫu nhỏ, thời gian ngắn:** site mới, traffic tự nhiên ít; các bước cuối phễu có thể chỉ vài users, không đủ kiểm định thống kê.
+4. **Chỉ dùng GA4:** không có heatmap, scroll map hay quan sát người dùng, nên luồng di chuyển được suy luận từ lượt xem trang kết hợp rà soát giao diện.
+5. **Traffic nội bộ** từ quá trình QA có thể làm méo engagement và Direct nếu chưa lọc.
+6. **Kết luận ở mức tương quan:** so sánh trước và sau không phải thử nghiệm có đối chứng; yếu tố ngoại cảnh chưa được kiểm soát.
 
 ### 5.3 Hướng phát triển tiếp theo
 
-1. **Chuẩn hóa đo lường trước khi tối ưu tiếp:** bật bộ lọc traffic nội bộ, kiểm tra các sự kiện view_item, add_to_cart, begin_checkout, purchase trong GA4 DebugView, đánh dấu key event; cài Microsoft Clarity để có heatmap, rage click và dead click trên trang chủ và Studio.
-2. **A/B test CTA Hero:** biến thể A "Khám phá bộ sưu tập" dẫn đến /shop, biến thể B "Chọn nơi chốn của bạn" dẫn thẳng đến PDP mẫu Hội An. Chỉ số chính: tỉ lệ users xem PDP trên users vào trang chủ. Chạy đến khi mỗi nhánh đủ cỡ mẫu tính trước theo mức hiệu ứng tối thiểu mong muốn.
-3. **Tối ưu traffic mạng xã hội:** gắn UTM cho từng bài đăng và đưa link về thẳng PDP tương ứng thay vì trang chủ, sau đó so thời gian tương tác/user của Organic Social với mức 31 giây hiện tại.
+1. **Hoàn thiện đo lường thương mại:** thêm order_placed sau phản hồi server, tách payment_reported và payment_verified, xóa PII khỏi GA4, đối soát order log với GA4 theo transaction_id.
+2. **A/B test CTA Hero:** biến thể A "Khám phá bộ sưu tập" → /shop, biến thể B "Chọn nơi chốn của bạn" → PDP mẫu Hội An. Chỉ số chính: users có view_item / users vào trang chủ; tính trước cỡ mẫu theo mức hiệu ứng tối thiểu mong muốn.
+3. **Gắn UTM cho mọi link phân phối** (mạng xã hội, QR, đối tác) và đưa link về thẳng PDP tương ứng, để so sánh chất lượng kênh bằng add_to_cart và đơn đặt chứ không chỉ sessions.
 
 ---
 
@@ -288,11 +283,13 @@ Nguyên tắc so sánh: dùng cùng độ dài kỳ đo trước và sau, loại
 
 | Hình | Nội dung | Trang/nguồn cần chụp |
 | --- | --- | --- |
-| Hình 1 | Biểu đồ sessions theo kênh từng tuần và đường ER | Dựng từ Bảng 4 (Excel/Google Sheets) |
-| Hình 2 | Biểu đồ phễu users từ truy cập đến key event | Dựng từ Bảng 8 hoặc GA4 Funnel exploration |
-| Hình 3 | Nút CTA Hero trước và sau khi sửa | nookky.shop trang chủ, desktop 1440px |
-| Hình 4 | Trang Studio trước và sau khi thêm lối đi tiếp | nookky.shop/studio, desktop và mobile 390px |
-| Hình 5 | Form liên hệ trước và sau khi rút gọn, cấu hình key event | Trang chủ (mobile 390px); GA4 Admin > Events |
-| Hình 6 | Báo cáo GA4 Traffic acquisition (kênh) | GA4 > Reports > Acquisition |
-| Hình 7 | Báo cáo GA4 Pages and screens | GA4 > Reports > Engagement |
-| Hình 8 | Báo cáo GA4 Tech > Device category | GA4 > Reports > Tech |
+| Hình 1 | Sessions theo kênh theo tuần và đường ER | Dựng từ GA4 Traffic acquisition |
+| Hình 2 | Sơ đồ luồng Trang chủ → /shop → PDP → /cart | GA4 Path exploration |
+| Hình 3 | Biểu đồ phễu thương mại điện tử | GA4 Funnel exploration (Bảng 8) |
+| Hình 4 | Nút CTA Hero trước và sau | nookky.shop trang chủ, desktop 1440px |
+| Hình 5 | Trang Studio trước và sau | nookky.shop/studio, desktop và mobile 390px |
+| Hình 6 | Form liên hệ trước và sau, cấu hình key event | Trang chủ (mobile 390px); GA4 Admin > Events |
+| Hình 7 | GA4 Traffic acquisition | GA4 > Reports > Acquisition |
+| Hình 8 | GA4 Pages and screens | GA4 > Reports > Engagement |
+| Hình 9 | GA4 Tech > Device category | GA4 > Reports > Tech |
+| Hình 10 | GA4 DebugView xác nhận event sau khi sửa tracking | GA4 > Admin > DebugView |
