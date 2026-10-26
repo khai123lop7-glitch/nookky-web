@@ -8,7 +8,7 @@ File nộp chính thức: `BAO_CAO_CUOI_KY_NOOK_KY.docx` (bản xem trước: `B
 | --- | --- | --- |
 | Sản phẩm 1: website TMĐT | Đạt, kèm rủi ro: đề yêu cầu WordPress/WooCommerce, website đang chạy Next.js (đã ghi rõ quá trình chuyển trong mục 1.2) | nookky.shop |
 | Sản phẩm 2: báo cáo cuối kỳ | Đạt khung và số liệu; còn [CẦN BỔ SUNG] thông tin nhóm | file .docx |
-| Sản phẩm 3: bài thuyết trình | Đã có | `../presentation/` |
+| Sản phẩm 3: bài thuyết trình | Đã có: 17 slide, tải về được .pptx hoặc PDF | https://claude.ai/artifact/X75aUdGFxrBBtH5xhEkE97 |
 | Vai trò từng thành viên trong báo cáo | Đủ vai trò, trách nhiệm, sản phẩm bàn giao; CHƯA có tên, MSSV | Bảng 1 |
 | ≥ 3 thay đổi làm thật trên website | Đã code, kiểm thử (test, typecheck, build), chụp ảnh ngày 26/10/2026; chỉ lên production sau khi merge PR | Phần 4 |
 | Mỗi thay đổi đủ: Vấn đề, Thay đổi, Ảnh Trước-Sau, Lý do dữ liệu | Đạt cả 3 | Mục 4.1, 4.2, 4.3; Hình 5, 6, 7 |
